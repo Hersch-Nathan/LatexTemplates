@@ -261,7 +261,37 @@ Collecting matplotlib
 Successfully installed control-0.9.4 matplotlib-3.7.2 numpy-1.24.3
 \end{hwterminal}
 
-% Feature 13: Advanced Mathematical Concepts
+% Feature 13: Graphics Inclusion Command
+\problem{Demonstrate the hwgraphic command for including images.}
+
+The \texttt{hwgraphic} command provides a convenient wrapper for including graphics with automatic centering:
+
+\subproblem{Command syntax and features.}
+
+\textbf{Basic syntax:}
+\begin{center}
+\texttt{\textbackslash hwgraphic\{path\}[optional title][optional scale]}
+\end{center}
+
+\textbf{Key features:}
+\begin{itemize}
+\item Automatic centering of images
+\item Optional title with bold formatting
+\item Default sizing to 80\% of text width
+\item Custom scaling support with scale parameter
+\item Works with PNG, JPG, PDF, and EPS formats
+\end{itemize}
+
+\textbf{Usage examples:}
+\begin{itemize}
+\item \texttt{\textbackslash hwgraphic\{figure.png\}} - Basic inclusion with default size
+\item \texttt{\textbackslash hwgraphic\{plot.pdf\}[System Response]} - With title
+\item \texttt{\textbackslash hwgraphic\{diagram.jpg\}[Circuit Diagram][0.6]} - With title and 60\% scale
+\end{itemize}
+
+\note[NOTE: Actual image files must exist for the hwgraphic command to work in practice]
+
+% Feature 14: Advanced Mathematical Concepts
 \problem{Showcase advanced mathematical typesetting capabilities.}
 
 \subproblem{Partial derivatives and multivariable calculus.}
@@ -279,7 +309,7 @@ H(j\omega) \eq \frac{K}{j\omega + a} \\
 \angle H(j\omega) \eq -\arctan\left(\frac{\omega}{a}\right)
 \end{hwmath}
 
-% Feature 14: Piecewise Functions and Special Cases
+% Feature 15: Piecewise Functions and Special Cases
 \problem{Demonstrate piecewise functions and special mathematical constructs.}
 
 \subproblem{Unit step and impulse functions.}
@@ -306,7 +336,7 @@ u(t) \eq \begin{cases}
 \end{cases}
 \end{hwmath}
 
-% Feature 15: Integration with Standard LaTeX Packages
+% Feature 16: Integration with Standard LaTeX Packages
 \problem{Show integration with standard LaTeX environments and packages.}
 
 The homework class works seamlessly with standard LaTeX features:
@@ -324,7 +354,7 @@ The homework class works seamlessly with standard LaTeX features:
 \item Third item with inline code: \texttt{plot(x, y)}
 \end{enumerate}
 
-% Feature 16: Final Comprehensive Example
+% Feature 17: Final Comprehensive Example
 \problem{Comprehensive example combining all features.}
 
 \note[FINAL EXAMPLE: Combines multiple features]

@@ -4,7 +4,7 @@ A comprehensive LaTeX document class designed for academic homework assignments 
 
 ## Overview
 
-The `homework.cls` is a feature-rich LaTeX document class that extends the standard `article` class with specialized commands and environments for academic homework. It provides automatic problem numbering, custom math environments with alignment, code environments for MATLAB and Python, terminal output display, highlighting commands, appendix management, and consistent professional formatting.
+The `homework.cls` is a feature-rich LaTeX document class that extends the standard `article` class with specialized commands and environments for academic homework. It provides automatic problem numbering, custom math environments with alignment, code environments for MATLAB and Python, terminal output display, graphics inclusion, highlighting commands, appendix management, and consistent professional formatting.
 
 ## Quick Start
 
@@ -230,7 +230,50 @@ Highlight important information with bold, red, large text.
 - Bold, red, large font for high visibility
 - Perfect for marking items needing attention
 
-### 8. **Advanced Mathematical Features**
+### 8. **Graphics Inclusion**
+
+The `\hwgraphic` command provides a convenient wrapper for including images with automatic centering and optional formatting.
+
+#### Basic Usage
+```latex
+\hwgraphic{path/to/image.png}
+\hwgraphic{figure.pdf}[Optional Title]
+\hwgraphic{diagram.jpg}[Custom Title][0.5]
+```
+
+#### Command Syntax
+```latex
+\hwgraphic{image_path}[optional_title][optional_scale]
+```
+
+**Parameters:**
+- `image_path` - Required path to the image file
+- `[optional_title]` - Optional title displayed above the image in bold
+- `[optional_scale]` - Optional scale factor (default: width=0.8\textwidth)
+
+**Features:**
+- Automatic centering of all images
+- Default sizing to 80% of text width
+- Bold title formatting when provided
+- Custom scaling support
+- Compatible with PNG, JPG, PDF, and EPS formats
+
+**Examples:**
+```latex
+% Basic image inclusion
+\hwgraphic{results/plot.png}
+
+% With descriptive title
+\hwgraphic{circuits/schematic.pdf}[Circuit Schematic]
+
+% With title and custom scaling
+\hwgraphic{data/graph.jpg}[Experimental Results][0.6]
+
+% Large image with reduced scale
+\hwgraphic{diagrams/flowchart.png}[System Flowchart][0.4]
+```
+
+### 9. **Advanced Mathematical Features**
 
 #### Derivatives and Calculus
 ```latex
@@ -345,7 +388,7 @@ The Bode plot shows:
 \end{document}
 ```
 
-### 9. **Appendix Management**
+### 10. **Appendix Management**
 
 The homework class provides an easy way to add appendices with automatic lettering and formatting.
 

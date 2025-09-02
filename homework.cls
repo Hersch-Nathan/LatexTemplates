@@ -13,6 +13,7 @@
 \RequirePackage{fix-cm}
 \RequirePackage{environ}
 \RequirePackage{xcolor}
+\RequirePackage{graphicx}
 
 
 % 1. Header command
@@ -71,6 +72,19 @@
 	}{%
 		{\Large\textbf{\textcolor{red}{NOTE}}}%
 	}%
+}
+
+% Graphic inclusion command with automatic centering, optional title, and optional scale
+\NewDocumentCommand{\hwgraphic}{m o o}{%
+	\begin{center}%
+		\IfValueT{#2}{\textbf{#2}\\[0.5em]}%
+		\IfValueTF{#3}{%
+			\includegraphics[scale=#3]{#1}%
+		}{%
+			\includegraphics[width=0.8\textwidth]{#1}%
+		}%
+		\IfValueT{#2}{\\[0.5em]}%
+	\end{center}%
 }
 
 % MATLAB code environment with caption
