@@ -1,26 +1,96 @@
-# Homework LaTeX Class - Complete Documentation
+# LaTeX Templates: Homework and Capstone Report Classes
 
-A comprehensive LaTeX document class designed for academic homework assignments with automatic numbering, advanced math environments, code highlighting, and professional formatting.
+This repository contains two polished LaTeX document classes:
+
+- `homework.cls` — Feature-rich class for academic homework assignments (problems, sub-problems, math, code, terminal output, graphics).
+- `capstone_report.cls` — Generic capstone progress report class for weekly/biweekly individual updates with standardized sections, headers/footers, figures, and code environments.
 
 ## Overview
 
-The `homework.cls` is a feature-rich LaTeX document class that extends the standard `article` class with specialized commands and environments for academic homework. It provides automatic problem numbering, custom math environments with alignment, code environments for MATLAB and Python, terminal output display, graphics inclusion, highlighting commands, appendix management, and consistent professional formatting.
+### homework.cls
+Feature-rich LaTeX class extending `article` with specialized commands and environments for academic homework. It provides automatic problem numbering, custom math environments with alignment, code environments (MATLAB/Python), terminal output display, graphics inclusion, highlighting commands, appendix management, and consistent professional formatting.
+
+### capstone_report.cls
+Generic (course-agnostic) class for individual capstone progress reports. It standardizes metadata, section structure, references, and code listings. Options support weekly/biweekly labels and heading case styles.
 
 ## Quick Start
 
 ```latex
+## Quick Start
+
+### Templates
+- **`homework_template.tex`** — Minimal starter template for homework assignments
+- **`capstone_template.tex`** — Minimal starter template for capstone progress reports
+
+### Homework Example
+```latex
 \documentclass{homework}
 
-\begin{document}
-\hwheader{Course Name}{Assignment Number}{Date}{Your Name}
+\course{Course Name}
+\title{Assignment Title}
+\author{Your Name}
+\email{your.email@domain.edu}
+\duedate{Due Date}
 
-\problem{Your first problem statement here.}
+\begin{document}
+\makeheader
+
+\problem{Problem Title}
+
 Solution goes here...
 
 \end{document}
 ```
 
-## Complete Feature Reference
+### Capstone Report Example
+```latex
+\documentclass[titlecase]{capstone_report}
+
+\begin{document}
+% \progressreport{report#}{name}{team}{team#}{start-date}{end-date}[course]
+\progressreport{01}{First Last}{Project/Team Name}{12}{Sep 1, 2025}{Sep 14, 2025}[Course Name: Capstone Design]
+\makeheader
+
+\reportIntroduction
+\reportProjectDescription
+\reportProgressSummary
+\reportMyPlan
+\reportWorkAccomplished
+\reportProblems
+\reportPlans
+\reportReqChanges
+\reportAssessment
+\reportInstructorIssues
+
+\end{document}
+```
+```
+
+Quick start for a capstone progress report:
+
+```latex
+\documentclass[titlecase]{capstone_report}
+
+\begin{document}
+% \progressreport{report#}{name}{team}{team#}{start-date}{end-date}[course]
+\progressreport{01}{First Last}{Project/Team Name}{12}{Sep 1, 2025}{Sep 14, 2025}[Course Name: Capstone Design]
+\makeheader
+
+\reportIntroduction
+\reportProjectDescription
+\reportProgressSummary
+\reportMyPlan
+\reportWorkAccomplished
+\reportProblems
+\reportPlans
+\reportReqChanges
+\reportAssessment
+\reportInstructorIssues
+
+\end{document}
+```
+
+## Complete Feature Reference (homework.cls)
 
 ### 1. **Document Header**
 Create a professional header with course information.
@@ -208,6 +278,69 @@ Successfully installed numpy-1.24.3 matplotlib-3.7.2
 \end{hwterminal}
 ```
 
+---
+
+## capstone_report.cls Feature Reference
+
+### Class Options
+- `weekly` / `biweekly` — Toggle the report type label in the header (default: biweekly)
+- `uppercase` / `titlecase` — Control case style of section headings (default: titlecase)
+- `figabbrev` — Use “Fig.” instead of “Figure” in references
+
+### Metadata & Header
+```latex
+% \progressreport{report#}{name}{team}{team#}{start-date}{end-date}[course]
+\progressreport{02}{First Last}{Team Name}{7}{Sep 1, 2025}{Sep 14, 2025}[Course Name]
+\makeheader
+```
+
+### Standard Sections (commands)
+- `\reportIntroduction`
+- `\reportProjectDescription`
+- `\reportProgressSummary`
+- `\reportMyPlan`
+- `\reportWorkAccomplished`
+- `\reportProblems`
+- `\reportPlans`
+- `\reportReqChanges`
+- `\reportAssessment`
+- `\reportInstructorIssues`
+
+### Utilities
+- `\subhead{Title:}` — Run-in subheading useful within sections
+- `\figref{\ref{label}}` — Reference to a figure with “Figure” or “Fig.” depending on option
+- `\reportappendix[Optional Title]` — Start an appendix (auto-lettered)
+
+### Figures
+TikZ and graphics are supported by default. Example:
+```latex
+\begin{figure}[htb]
+    \centering
+    % TikZ or \includegraphics here
+    \caption{Example figure}
+    \label{fig:example}
+\end{figure}
+```
+
+### Code Environments (listings)
+- `reportcpp` — C/C++
+- `reportpython` — Python
+- `reportmatlab` — MATLAB
+- `reportterminal` — Terminal/console output (black on white)
+
+All support optional `[]` for caption and pass-through listings options.
+
+```latex
+\begin{reportpython}[caption=Data Analysis]
+import numpy as np
+print(np.mean([1,2,3]))
+\end{reportpython}
+```
+
+### Example Showcase
+- **`capstone_template.tex`** — Minimal starter template
+- **`capstonereporttest.tex`** — Complete, compile-ready feature demo
+
 ### 7. **Note Command**
 Highlight important information with bold, red, large text.
 
@@ -317,7 +450,11 @@ H(j\omega) \eq \frac{K}{j\omega + a} \\
 \end{hwmath}
 ```
 
-## Complete Usage Example
+## Complete Usage Examples
+
+### homework.cls
+**Starter:** `homework_template.tex`  
+**Full demo:** `homeworktest.tex`
 
 ```latex
 \documentclass{homework}
