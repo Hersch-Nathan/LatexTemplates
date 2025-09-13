@@ -1,0 +1,70 @@
+% Homework Template - Basic Structure
+% This is a minimal template to get you started with the homework.cls
+% For a complete feature demonstration, see homeworktest.tex
+
+\documentclass{homework}
+
+% Document metadata
+\course{Course Name}
+\title{Assignment Title}
+\author{Your Name}
+\email{your.email@domain.edu}
+\duedate{Due Date}
+
+\begin{document}
+
+\makeheader
+
+\problem{Problem Title}
+
+Your solution goes here. You can use inline math like $x = 5$ or display math:
+\begin{align}
+    f(x) &= x^2 + 2x + 1 \\
+    &= (x + 1)^2
+\end{align}
+
+\subproblem{Sub-problem A}
+
+Sub-problem solution here.
+
+\subproblem{Sub-problem B}
+
+Another sub-problem solution.
+
+\problem{Code Example}
+
+You can include code using the provided environments:
+
+\begin{matlab}
+% MATLAB code example
+x = linspace(0, 2*pi, 100);
+y = sin(x);
+plot(x, y);
+\end{matlab}
+
+\begin{python}
+# Python code example
+import numpy as np
+x = np.linspace(0, 2*np.pi, 100)
+y = np.sin(x)
+\end{python}
+
+\begin{terminal}
+$ python script.py
+Output appears here
+\end{terminal}
+
+\problem{Including Graphics}
+
+You can include figures and reference them:
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{your-figure.pdf}
+%     \caption{Figure caption}
+%     \label{fig:example}
+% \end{figure}
+% 
+% See Figure \ref{fig:example} for details.
+
+\end{document}
