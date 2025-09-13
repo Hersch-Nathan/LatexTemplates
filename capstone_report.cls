@@ -39,7 +39,6 @@
 \RequirePackage{graphicx}             % Image inclusion
 \RequirePackage{xcolor}               % Colors
 \RequirePackage{listings}             % Code listings
-\RequirePackage{tikz}                 % For diagrams
 \RequirePackage{iftex}                % Engine detection
 \RequirePackage{lastpage}             % For page X of Y
 \RequirePackage{fancyhdr}             % Headers and footers
@@ -172,6 +171,19 @@
 % 6. Figure support
 \NewDocumentCommand{\figref}{m}{%
     \if@figabbrev Fig.~#1\else Figure~#1\fi
+}
+
+% Graphic inclusion command with automatic centering, optional title, and optional scale
+\NewDocumentCommand{\reportgraphic}{m o o}{%
+    \begin{center}%
+        \IfValueT{#2}{\textbf{#2}\\[0.5em]}%
+        \IfValueTF{#3}{%
+            \includegraphics[scale=#3]{#1}%
+        }{%
+            \includegraphics[width=0.8\textwidth]{#1}%
+        }%
+        \IfValueT{#2}{\\[0.5em]}%
+    \end{center}%
 }
 
 \NewDocumentCommand{\reportfigure}{O{0.6\textwidth} m m}{%

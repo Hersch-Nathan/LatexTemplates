@@ -4,16 +4,9 @@
 
 \documentclass{homework}
 
-% Document metadata
-\course{Course Name}
-\title{Assignment Title}
-\author{Your Name}
-\email{your.email@domain.edu}
-\duedate{Due Date}
-
 \begin{document}
 
-\makeheader
+\hwheader{Course Name}{Assignment Number}{Due Date}{Your Name}
 
 \problem{Problem Title}
 
@@ -23,36 +16,34 @@ Your solution goes here. You can use inline math like $x = 5$ or display math:
     &= (x + 1)^2
 \end{align}
 
-\subproblem{Sub-problem A}
-
+\subproblem
 Sub-problem solution here.
 
-\subproblem{Sub-problem B}
-
-Another sub-problem solution.
+\subproblem
+Another sub-problem solution here.
 
 \problem{Code Example}
 
 You can include code using the provided environments:
 
-\begin{matlab}
+\begin{hwmatlab}
 % MATLAB code example
 x = linspace(0, 2*pi, 100);
 y = sin(x);
 plot(x, y);
-\end{matlab}
+\end{hwmatlab}
 
-\begin{python}
+\begin{hwpython}
 # Python code example
 import numpy as np
 x = np.linspace(0, 2*np.pi, 100)
 y = np.sin(x)
-\end{python}
+\end{hwpython}
 
-\begin{terminal}
+\begin{hwterminal}
 $ python script.py
 Output appears here
-\end{terminal}
+\end{hwterminal}
 
 \problem{Including Graphics}
 
