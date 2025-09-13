@@ -73,23 +73,28 @@ This demonstrates the \texttt{\\reportWorkAccomplished} command which creates an
 % Feature 9: Figure inclusion with built-in support
 \begin{figure}[htb]
     \centering
-    \begin{tikzpicture}
-        % Simple block diagram example
-        \draw[fill=blue!10, rounded corners] (0,0) rectangle (3,1.5);
-        \draw[fill=red!10, rounded corners] (5,0) rectangle (8,1.5);
-        \draw[->] (3,0.75) -- (5,0.75);
-        
-        % Labels
-        \node at (1.5,0.75) {Input Stage};
-        \node at (6.5,0.75) {Output Stage};
-        \node at (4,1) {Signal};
-        
-    \end{tikzpicture}
+    % Example figure - in a real document, you would include your own image file
+    \rule{3in}{2in} % Placeholder rectangle for demo purposes
     \caption{Example system block diagram}
     \label{fig:example}
 \end{figure}
 
-Figure support is built into the class. As shown in \figref{\ref{fig:example}}, you can create diagrams using TikZ and reference them with the \texttt{\\figref} command. The class also provides support for SI units through the siunitx package: \SI{12.5}{\milli\second}.
+Figure support is built into the class. As shown in \figref{\ref{fig:example}}, you can include images with the standard \texttt{\\includegraphics} command and reference them with the \texttt{\\figref} command. The class also provides support for SI units through the siunitx package: \SI{12.5}{\milli\second}.
+
+% Feature 9b: Simplified graphic inclusion using \reportgraphic
+\subhead{Simplified Graphics Inclusion:} The \texttt{\\reportgraphic} command provides a convenient wrapper for including graphics with automatic centering:
+
+\texttt{\textbackslash reportgraphic\{path\}[optional title][optional scale]}
+
+For example:
+
+% In a real document, these would be actual image paths
+% Using placeholder rectangles for demonstration
+\reportgraphic{example-image}[Example Image with Default Width]
+
+\reportgraphic{example-image}[Example Image with Custom Scale][0.5]
+
+This helper command is particularly useful for quickly including images without worrying about figure environments when you don't need captions or labels.
 
 % Feature 10: Problems Encountered section
 \reportProblems
@@ -465,7 +470,7 @@ bool protocol_receive(uint8_t* buffer, uint8_t max_len, uint32_t timeout) {
 
 \reportappendix{Testing Results}
 
-This second appendix demonstrates that multiple appendices are supported. Notice that appendices are lettered automatically (Appendix A, Appendix B, etc.).
+This second appendix demonstrates that multiple appendices are supported. Note: In the current class, appendices are not auto-lettered; headings appear as “Appendix: <Title>”.
 
 \begin{table}[h]
     \centering

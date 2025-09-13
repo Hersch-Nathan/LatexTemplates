@@ -3,4 +3,5 @@
 *.fls
 *.log
 *.synctex.gz
-.hw1.synctex
+*.synctex
+update.md

@@ -120,12 +120,12 @@
 
 % Appendix counter and command
 \newcounter{hwappendix}
-\newcommand{\hwappendix}[2][\empty]{%
+\newcommand{\hwappendix}[1][\empty]{%
 	\newpage%
 	\refstepcounter{hwappendix}%
 	\begin{center}
-		{\fontsize{20pt}{24pt}\selectfont\textbf{Appendix~\ifx\empty#1\empty\Alph{hwappendix}\else#1\fi}}\\[0.5em]
-		\ifx\empty#2\empty\else\textbf{#2}\\[1em]\fi
+		{\fontsize{20pt}{24pt}\selectfont\textbf{Appendix~\Alph{hwappendix}}}%
+		\ifx\empty#1\empty\else{: #1}\fi\\[1em]
 	\end{center}
 }
 
