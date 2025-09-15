@@ -98,6 +98,50 @@ Center images with optional title and scale.
 \hwgraphic{figures/plot.pdf}[Response Plot][0.7]
 ```
 
+## Block Diagrams
+
+The `hwblocks` environment provides a centered wrapper around `tikzpicture` for creating block diagrams. It automatically loads tikz and blox packages, so you can use blox commands directly without extra `\usepackage` lines.
+
+### Basic usage
+
+```latex
+\begin{hwblocks}
+\node (a) at (0,0) {A}; 
+\node (b) at (2,0) {B}; 
+\draw[->] (a)--(b);
+\end{hwblocks}
+```
+
+### With blox commands
+
+```latex
+\begin{hwblocks}
+\bXInput{A} 
+\bXBlocL{B}{$G(s)$}{A} 
+\bXOutput{C}{B}
+\bXLink{A}{B} 
+\bXLink{B}{C}
+\end{hwblocks}
+```
+
+### With options (forwarded to tikzpicture)
+
+```latex
+\begin{hwblocks}[scale=0.85, transform shape]
+\bXInput{A} 
+\bXBlocL{B}{$G(s)$}{A} 
+\bXOutput{C}{B}
+\bXLink{A}{B} 
+\bXLink{B}{C}
+\end{hwblocks}
+```
+
+### Troubleshooting
+
+- The environment automatically centers content with proper spacing (0.5em before and after)
+- All tikz and blox commands work inside `hwblocks` without additional package imports
+- Options in `[]` are passed directly to the underlying `tikzpicture` environment
+
 ## Appendices
 
 Start auto-lettered appendices, optionally with a title:

@@ -33,6 +33,17 @@ Converged in 12 iterations
 \end{hwterminal}
 ```
 
+### Block diagrams
+```latex
+\begin{hwblocks}[scale=0.8]
+\bXInput{A} 
+\bXBlocL{B}{$G(s)$}{A} 
+\bXOutput{C}{B}
+\bXLink{A}{B} 
+\bXLink{B}{C}
+\end{hwblocks}
+```
+
 ## Capstone report examples
 
 Starter template: `capstone_template.tex`
