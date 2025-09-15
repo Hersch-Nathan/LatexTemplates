@@ -58,4 +58,16 @@ You can include figures and reference them:
 % 
 % See Figure \ref{fig:example} for details.
 
+\problem{Block Diagrams}
+
+Create centered block diagrams using the hwblocks environment:
+
+\begin{hwblocks}
+\bXInput{A} 
+\bXBlocL{B}{$G(s)$}{A} 
+\bXOutput{C}{B}
+\bXLink{A}{B} 
+\bXLink{B}{C}
+\end{hwblocks}
+
 \end{document}

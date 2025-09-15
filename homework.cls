@@ -14,6 +14,8 @@
 \RequirePackage{environ}
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{blox}
 
 
 % 1. Header command
@@ -117,6 +119,17 @@
 		#1
 	}%
 }{}
+
+% Block diagram environment for centered tikzpicture with blox support
+\NewEnviron{hwblocks}[1][]{%
+	\par\vspace{0.5em}%
+	\begin{center}%
+		\begin{tikzpicture}[#1]%
+			\BODY%
+		\end{tikzpicture}%
+	\end{center}%
+	\vspace{0.5em}%
+}
 
 % Appendix counter and command
 \newcounter{hwappendix}

@@ -427,6 +427,37 @@ print(f"Controller: PID({Kp}, {Ki}, {Kd})")
 
 This example demonstrates the complete integration of mathematical typesetting, code environments, problem structuring, and highlighting features available in the homework class.
 
+\problem{Demonstrate the hwblocks environment for block diagrams.}
+
+\subproblem{Basic block diagram with blox commands.}
+
+The hwblocks environment provides centered tikzpicture with automatic blox package support:
+
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
+\bXOutput{C}{B}
+\bXLink{A}{B}
+\bXLink{B}{C}
+\end{hwblocks}
+
+\subproblem{Block diagram with scaling options.}
+
+You can pass tikzpicture options to control scaling and other properties:
+
+\begin{hwblocks}[scale=0.75, transform shape]
+\bXInput{Input}
+\bXCompSum{Sum}{Input}{+}{-}{+}{}
+\bXBlocL{Controller}{$K_p + \frac{K_i}{s} + K_d s$}{Sum}
+\bXBlocL{Plant}{$\frac{1}{s(s+1)}$}{Controller}
+\bXOutput{Output}{Plant}
+\bXLink{Input}{Sum}
+\bXLink{Sum}{Controller}
+\bXLink{Controller}{Plant}
+\bXLink{Plant}{Output}
+\bXReturn{Plant-Output}{Sum}{}
+\end{hwblocks}
+
 % Appendix demonstration
 \hwappendix
 This is the first appendix. It contains additional derivations and supplementary material.
