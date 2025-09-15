@@ -152,7 +152,7 @@
 }
 
 \NewDocumentCommand{\reportReqChanges}{}{%
-    \@sectionheading{Changes to the Requirements (if applicable)}
+    \@sectionheading{Changes to the Requirements}
 }
 
 \NewDocumentCommand{\reportAssessment}{}{%
