@@ -16,6 +16,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
 \RequirePackage{blox}
+\RequirePackage{tcolorbox}
 
 
 % 1. Header command
@@ -54,8 +55,12 @@
 	\vspace{0.5em}%
 }
 
-% Shorthand for aligned equals
+% Shorthand for aligned equals and comparison operators
 \newcommand{\eq}{&=}
+\newcommand{\gt}{&>}
+\newcommand{\lt}{&<}
+\newcommand{\llt}{&<<}
+\newcommand{\ggt}{&>>}
 
 
 % Alternative numbered environment 
@@ -74,6 +79,26 @@
 	}{%
 		{\Large\textbf{\textcolor{red}{NOTE}}}%
 	}%
+}
+
+% Example environment - creates a framed box with a header
+\NewDocumentEnvironment{example}{m}{%
+	\par\vspace{1em}%
+	\begin{tcolorbox}[
+		colback=gray!5,
+		colframe=black,
+		boxrule=1pt,
+		arc=2pt,
+		left=6pt,
+		right=6pt,
+		top=6pt,
+		bottom=6pt,
+		title=\textbf{#1},
+		fonttitle=\bfseries
+	]%
+}{%
+	\end{tcolorbox}%
+	\par\vspace{1em}%
 }
 
 % Graphic inclusion command with automatic centering, optional title, and optional scale

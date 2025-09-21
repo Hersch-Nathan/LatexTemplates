@@ -1,7 +1,7 @@
 %Homework Class Complete Feature Showcase
-%This file demonstrates every feature available in homework.cls
+%This file demonstrates every feature available in homework.cls in the order they appear in the class file
 %Author: Homework Class Template
-%Date: September 1, 2025
+%Date: September 21, 2025
 
 \documentclass{homework}
 
@@ -10,17 +10,15 @@
 % Feature 1: Document Header - \hwheader{Course}{Assignment}{Date}{Name}
 \hwheader{EE571}{Feature Demo}{2025-09-01}{Template Showcase}
 
-% Feature 2: Basic Problem with Automatic Numbering
+% Feature 2: Problem Commands - Basic and Custom Numbering
 \problem{This demonstrates the basic problem command with automatic numbering.}
 
 This is how you create a basic problem. The numbering happens automatically (Problem 1, Problem 2, etc.).
 
-% Feature 3: Problem with Custom Numbering
 \problem[A.1]{This demonstrates custom problem numbering.}
 
 You can override the automatic numbering by providing a custom label in square brackets.
 
-% Feature 4: Problem with Question Text
 \problem{Find the derivative of $f(x) = 3x^2 + 2x - 5$ and evaluate it at $x = 2$.}
 
 This shows how to include the actual question or description within the problem command.
@@ -32,10 +30,11 @@ f'(x) \eq 6x + 2 \\
 f'(2) \eq 6(2) + 2 \eq 12 + 2 \eq 14
 \end{hwmath}
 
-% Feature 5: Sub-problems with Automatic Lettering
+% Feature 3: Sub-problems with Automatic Lettering
 \problem{This problem demonstrates sub-problems with multiple parts.}
 
-\subproblem{Find the transfer function of the system.}
+\subproblem
+Find the transfer function of the system.
 
 Given the differential equation $\ddot{y} + 3\dot{y} + 2y = 5u(t)$:
 
@@ -44,21 +43,26 @@ s^2Y(s) + 3sY(s) + 2Y(s) \eq 5U(s) \\
 G(s) \eq \frac{Y(s)}{U(s)} \eq \frac{5}{s^2 + 3s + 2}
 \end{hwmath}
 
-\subproblem{Factor the denominator and find the poles.}
+\subproblem
+Factor the denominator and find the poles.
 
 \begin{hwmath}
 s^2 + 3s + 2 \eq (s + 1)(s + 2) \\
 \text{Poles: } s_1 \eq -1, \quad s_2 \eq -2
 \end{hwmath}
 
-\subproblem[iii]{Determine system stability (custom sub-problem numbering).}
+\subproblem[iii]
+Determine system stability (custom sub-problem numbering).
 
 Since both poles have negative real parts, the system is stable.
 
-% Feature 6: hwmath Environment - Custom Math with Alignment
-\problem{Demonstrate the hwmath environment for aligned equations.}
+% Feature 4: hwmath Environment - Custom Math with Alignment and Comparison Operators
+\problem{Demonstrate the hwmath environment and new comparison shorthand operators.}
 
-The hwmath environment provides automatic alignment on equals signs using the \texttt{\\textbackslash eq} shorthand:
+The hwmath environment provides automatic alignment using shorthand commands:
+
+\subproblem
+Basic alignment with \texttt{\\eq} shorthand:
 
 \begin{hwmath}
 \mathcal{L}\{f(t)\} \eq F(s) \\
@@ -66,30 +70,22 @@ The hwmath environment provides automatic alignment on equals signs using the \t
 \mathcal{L}\{\ddot{f}(t)\} \eq s^2F(s) - sf(0) - \dot{f}(0)
 \end{hwmath}
 
-% Feature 7: hwmathnumbered Environment - Numbered Equations
-\problem{Show numbered equations for referencing.}
-
-For equations that need to be referenced later, use hwmathnumbered:
-
-\begin{hwmathnumbered}
-E \eq mc^2 \\
-F \eq ma \\
-P \eq VI
-\end{hwmathnumbered}
-
-These equations are numbered automatically and can be referenced in the text.
-
-% Feature 8: Complex Mathematical Expressions
-\problem{Demonstrate complex mathematical formatting capabilities.}
-
-\subproblem{Matrix operations and state-space representation.}
+\subproblem
+New comparison operators using \texttt{\\gt}, \texttt{\\lt}, \texttt{\\ggt}, and \texttt{\\llt}:
 
 \begin{hwmath}
-\dot{\mathbf{x}} \eq \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u} \\
-\mathbf{y} \eq \mathbf{C}\mathbf{x} + \mathbf{D}\mathbf{u}
+f(x) \eq x^2 + 1 \\
+f(x) \gt 0 \text{ for all } x \\
+f(2) \gt f(1) \\
+f(3) \ggt f(0) \\
+0 \lt f(x) \\
+f(-1) \llt f(2) \\
+10 \ggt 1 \llt 100
 \end{hwmath}
 
-Where the system matrices are:
+\subproblem
+Complex mathematical expressions with mixed operators:
+
 \begin{hwmath}
 \mathbf{A} \eq \begin{bmatrix}
 0 & 1 & 0 \\
@@ -98,54 +94,152 @@ Where the system matrices are:
 \end{bmatrix}, \quad
 \mathbf{B} \eq \begin{bmatrix}
 0 \\ 0 \\ 1
-\end{bmatrix}, \quad
-\mathbf{C} \eq \begin{bmatrix}
-1 & 0 & 0
-\end{bmatrix}
+\end{bmatrix} \\
+\lambda_1 \lt \lambda_2 \lt \lambda_3 \\
+|\lambda_{\text{max}}| \ggt |\lambda_{\text{min}}| \\
+\text{Re}(\lambda_i) \lt 0 \text{ for all } i
 \end{hwmath}
 
-\subproblem{Convolution integral and Laplace transforms.}
+% Feature 5: hwmathnumbered Environment - Numbered Equations
+\problem{Show numbered equations for referencing.}
 
-The convolution of two functions:
-\begin{hwmath}
-(f \ast g)(t) \eq \int_{-\infty}^{\infty} f(\tau)g(t-\tau) d\tau
-\end{hwmath}
+For equations that need to be referenced later, use hwmathnumbered:
 
-Laplace transform definition:
-\begin{hwmath}
-\mathcal{L}\{f(t)\} \eq \int_{0}^{\infty} f(t)e^{-st} dt
-\end{hwmath}
+\begin{hwmathnumbered}
+E \eq mc^2 \\
+F \eq ma \\
+P \eq VI \\
+|H(j\omega)| \gt 0.707 \text{ for } \omega \lt \omega_c
+\end{hwmathnumbered}
 
-% Feature 9: Note Command for Highlighting
-\problem{Demonstrate the note command for highlighting important information.}
+These equations are numbered automatically and can be referenced in the text.
 
-The note command displays text in bold, red, and large font:
+% Feature 6: Note Command for Highlighting
+\problem{Demonstrate the note command for emphasis.}
 
-\note[IMPORTANT: Check all calculations before submitting]
+\subproblem
+Basic note without custom text:
 
-\note[TODO: Add numerical verification]
+\note
 
-\note[FIX ME: Verify units are consistent]
+This is the default "NOTE" highlighting.
 
-\note  % This displays the default "NOTE"
+\subproblem
+Custom note with specific text:
 
-This is useful for marking sections that need attention during review.
+\note[IMPORTANT: Check stability margins before proceeding with the design.]
 
-% Feature 10: MATLAB Code Environment
-\problem{Demonstrate the hwmatlab environment for MATLAB code.}
+\subproblem
+Multiple notes with different messages:
 
-\subproblem{MATLAB function with caption.}
+\note[WARNING: Ensure proper gain margins]
 
-\begin{hwmatlab}[caption=Second Order System Analysis]
+Calculate the open-loop transfer function first.
+
+\note[CRITICAL: Verify closed-loop stability]
+
+The system must remain stable under all operating conditions.
+
+% Feature 7: Example Environment - Boxed Examples with Headers
+\problem{Demonstrate the new example environment for highlighting important examples.}
+
+The new \texttt{example} environment creates a boxed area with a custom header for showcasing worked examples:
+
+\begin{example}{Example 4-1: PID Controller Design}
+Given a second-order plant:
+$$G_p(s) = \frac{10}{s(s+2)}$$
+
+Design a PID controller $G_c(s) = K_p + \frac{K_i}{s} + K_d s$ to achieve:
+\begin{itemize}
+\item Steady-state error $< 2\%$ for step input
+\item Phase margin $> 45^\circ$ 
+\item Gain margin $> 6$ dB
+\end{itemize}
+
+\textbf{Solution:}
+Using root locus design, we select: $K_p = 5$, $K_i = 2$, $K_d = 0.5$.
+\end{example}
+
+\begin{example}{Example 7-2: Frequency Response Analysis}
+For the transfer function $H(j\omega) = \frac{1}{1 + j\omega/\omega_c}$:
+
+Find the magnitude and phase at $\omega = \omega_c$.
+
+\textbf{Solution:}
+At $\omega = \omega_c$:
+\begin{align}
+|H(j\omega_c)| &= \frac{1}{\sqrt{1 + 1}} = \frac{1}{\sqrt{2}} = 0.707 \\
+\angle H(j\omega_c) &= -\tan^{-1}(1) = -45^\circ
+\end{align}
+
+This is the 3-dB point (half-power frequency).
+\end{example}
+
+\begin{example}{Example 12-5: State-Space Controllability}
+Given the state-space system:
+$$\dot{x} = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix} x + \begin{bmatrix} 0 \\ 1 \end{bmatrix} u$$
+
+Determine if the system is controllable.
+
+\textbf{Solution:}
+The controllability matrix is:
+$$\mathcal{C} = [B \quad AB] = \begin{bmatrix} 0 & 1 \\ 1 & -3 \end{bmatrix}$$
+
+Since $\det(\mathcal{C}) = -1 \neq 0$, the system is controllable.
+\end{example}
+
+% Feature 8: Graphics Inclusion Command
+\problem{Demonstrate the hwgraphic command for including images.}
+
+\subproblem
+Command syntax and features:
+
+The \texttt{\\hwgraphic} command provides automatic centering with optional titles and scaling:
+
+\texttt{\\hwgraphic\{path\}[optional title][optional scale]}
+
+\textbf{Key features:}
+\begin{itemize}
+\item Automatic centering
+\item Optional title above the image
+\item Optional scaling (default: 0.8\\textwidth)
+\item Proper spacing before and after
+\end{itemize}
+
+\subproblem
+Example usage patterns:
+
+\begin{itemize}
+\item \texttt{\\hwgraphic\{figure.pdf\}} — Basic inclusion with default width
+\item \texttt{\\hwgraphic\{figure.pdf\}[Plot Title]} — With title
+\item \texttt{\\hwgraphic\{figure.pdf\}[Title][0.6]} — With title and custom scale
+\item \texttt{\\hwgraphic\{figure.pdf\}[][0.5]} — Custom scale, no title
+\end{itemize}
+
+% Feature 9: Code Environments - MATLAB, Python, Terminal
+\problem{Demonstrate code listing environments.}
+
+\subproblem
+MATLAB implementation with caption:
+
+\begin{hwmatlab}[caption=Second Order System Response Function]
 function [y, t] = second_order_response(wn, zeta, K, tfinal)
     % Calculate step response of second order system
-    % wn: natural frequency, zeta: damping ratio, K: gain
+    % Inputs:
+    %   wn: natural frequency (rad/s)
+    %   zeta: damping ratio  
+    %   K: gain
+    %   tfinal: final simulation time
     
-    s = tf('s');
-    G = K * wn^2 / (s^2 + 2*zeta*wn*s + wn^2);
+    % Create transfer function
+    num = [K * wn^2];
+    den = [1, 2*zeta*wn, wn^2];
+    G = tf(num, den);
     
+    % Calculate and plot step response
     [y, t] = step(G, tfinal);
     
+    % Create plot
     figure;
     plot(t, y, 'LineWidth', 2);
     xlabel('Time (s)');
@@ -155,7 +249,8 @@ function [y, t] = second_order_response(wn, zeta, K, tfinal)
 end
 \end{hwmatlab}
 
-\subproblem{Simple MATLAB commands without caption.}
+\subproblem
+Simple MATLAB commands without caption:
 
 \begin{hwmatlab}
 % Define system parameters
@@ -167,10 +262,8 @@ K = 2;         % Gain
 [y, t] = second_order_response(wn, zeta, K, 2);
 \end{hwmatlab}
 
-% Feature 11: Python Code Environment
-\problem{Demonstrate the hwpython environment for Python code.}
-
-\subproblem{Python implementation with caption.}
+\subproblem
+Python implementation with caption:
 
 \begin{hwpython}[caption=Control Systems Analysis in Python]
 import numpy as np
@@ -201,251 +294,82 @@ def second_order_response(wn, zeta, K, tfinal):
     plt.plot(t, y, linewidth=2, label='Step Response')
     plt.xlabel('Time (s)')
     plt.ylabel('Amplitude')
-    plt.title(f'Second Order System (wn={wn}, zeta={zeta}, K={K})')
-    plt.grid(True, alpha=0.3)
+    plt.title('Second Order System Step Response')
+    plt.grid(True)
     plt.legend()
     plt.show()
     
     return y, t
+
+# Example usage
+wn = 5.0      # Natural frequency
+zeta = 0.3    # Damping ratio
+K = 2.0       # Gain
+tfinal = 2.0  # Simulation time
+
+y, t = second_order_response(wn, zeta, K, tfinal)
+print(f"Final value: {y[-1]:.3f}")
 \end{hwpython}
 
-\subproblem{Python data analysis without caption.}
+\subproblem
+Simple Python code without caption:
 
 \begin{hwpython}
-# System parameters
-wn = 5.0      # Natural frequency
-zeta = 0.3    # Damping ratio  
-K = 2.0       # Gain
-
-# Performance metrics
-overshoot = np.exp(-zeta*np.pi/np.sqrt(1-zeta**2)) * 100
-settling_time = 4 / (zeta * wn)
-peak_time = np.pi / (wn * np.sqrt(1 - zeta**2))
-
-print(f"Overshoot: {overshoot:.1f}%")
-print(f"Settling time: {settling_time:.2f} s")
-print(f"Peak time: {peak_time:.2f} s")
-\end{hwpython}
-
-% Feature 12: Terminal Output Environment
-\problem{Demonstrate the hwterminal environment for terminal output.}
-
-The hwterminal environment displays terminal commands and output with appropriate styling:
-
-\begin{hwterminal}[caption=MATLAB Simulation Output]
->> wn = 5; zeta = 0.3; K = 1;
->> s = tf('s');
->> G = K*wn^2/(s^2 + 2*zeta*wn*s + wn^2);
->> step(G);
->> stepinfo(G)
-
-ans = 
-       RiseTime: 0.2927
-    SettlingTime: 2.6667
-     SettlingMin: 0.9000
-     SettlingMax: 1.3625
-       Overshoot: 36.2467
-      Undershoot: 0
-            Peak: 1.3625
-        PeakTime: 0.6283
-\end{hwterminal}
-
-\begin{hwterminal}[caption=Python Package Installation]
-$ pip install control matplotlib numpy
-Collecting control
-  Downloading control-0.9.4-py3-none-any.whl (719 kB)
-     ======================================== 719.0/719.0 kB 5.2 MB/s
-Collecting matplotlib
-  Downloading matplotlib-3.7.2-cp311-cp311-macosx_10_12_x86_64.whl (7.8 MB)
-     ======================================== 7.8/7.8 MB 8.4 MB/s
-Successfully installed control-0.9.4 matplotlib-3.7.2 numpy-1.24.3
-\end{hwterminal}
-
-% Feature 13: Graphics Inclusion Command
-\problem{Demonstrate the hwgraphic command for including images.}
-
-The \texttt{hwgraphic} command provides a convenient wrapper for including graphics with automatic centering:
-
-\subproblem{Command syntax and features.}
-
-\textbf{Basic syntax:}
-\begin{center}
-\texttt{\textbackslash hwgraphic\{path\}[optional title][optional scale]}
-\end{center}
-
-\textbf{Key features:}
-\begin{itemize}
-\item Automatic centering of images
-\item Optional title with bold formatting
-\item Default sizing to 80\% of text width
-\item Custom scaling support with scale parameter
-\item Works with PNG, JPG, PDF, and EPS formats
-\end{itemize}
-
-\textbf{Usage examples:}
-\begin{itemize}
-\item \texttt{\textbackslash hwgraphic\{figure.png\}} - Basic inclusion with default size
-\item \texttt{\textbackslash hwgraphic\{plot.pdf\}[System Response]} - With title
-\item \texttt{\textbackslash hwgraphic\{diagram.jpg\}[Circuit Diagram][0.6]} - With title and 60\% scale
-\end{itemize}
-
-\note[NOTE: Actual image files must exist for the hwgraphic command to work in practice]
-
-% Feature 14: Advanced Mathematical Concepts
-\problem{Showcase advanced mathematical typesetting capabilities.}
-
-\subproblem{Partial derivatives and multivariable calculus.}
-
-\begin{hwmath}
-\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \eq 0 \quad \text{(Laplace's equation)} \\
-\nabla^2 u \eq \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} + \frac{\partial^2 u}{\partial z^2} \eq 0
-\end{hwmath}
-
-\subproblem{Complex analysis and frequency domain.}
-
-\begin{hwmath}
-H(j\omega) \eq \frac{K}{j\omega + a} \\
-|H(j\omega)| \eq \frac{K}{\sqrt{\omega^2 + a^2}} \\
-\angle H(j\omega) \eq -\arctan\left(\frac{\omega}{a}\right)
-\end{hwmath}
-
-% Feature 15: Piecewise Functions and Special Cases
-\problem{Demonstrate piecewise functions and special mathematical constructs.}
-
-\subproblem{Unit step and impulse functions.}
-
-\begin{hwmath}
-u(t) \eq \begin{cases}
-1 & t \geq 0 \\
-0 & t < 0
-\end{cases} \\
-\delta(t) \eq \begin{cases}
-\infty & t = 0 \\
-0 & t \neq 0
-\end{cases}, \quad \int_{-\infty}^{\infty} \delta(t) dt \eq 1
-\end{hwmath}
-
-\subproblem{System response types based on damping.}
-
-\begin{hwmath}
-\text{Response type} \eq \begin{cases}
-\text{Overdamped} & \zeta > 1 \\
-\text{Critically damped} & \zeta = 1 \\
-\text{Underdamped} & 0 < \zeta < 1 \\
-\text{Undamped} & \zeta = 0
-\end{cases}
-\end{hwmath}
-
-% Feature 16: Integration with Standard LaTeX Packages
-\problem{Show integration with standard LaTeX environments and packages.}
-
-The homework class works seamlessly with standard LaTeX features:
-
-\begin{itemize}
-\item Standard lists and enumerations
-\item Mathematical symbols: $\alpha, \beta, \gamma, \Delta, \Omega$
-\item Greek letters and special symbols: $\infty, \partial, \nabla, \sum, \int$
-\item Text formatting: \textbf{bold}, \textit{italic}, \texttt{monospace}
-\end{itemize}
-
-\begin{enumerate}
-\item First numbered item
-\item Second numbered item with math: $E = mc^2$
-\item Third item with inline code: \texttt{plot(x, y)}
-\end{enumerate}
-
-% Feature 17: Final Comprehensive Example
-\problem{Comprehensive example combining all features.}
-
-\note[FINAL EXAMPLE: Combines multiple features]
-
-\subproblem{Design a control system.}
-
-Given plant: $G_p(s) = \frac{10}{s(s+2)}$
-
-Design a PID controller: $G_c(s) = K_p + \frac{K_i}{s} + K_d s$
-
-\begin{hwmathnumbered}
-G_{ol}(s) \eq G_c(s)G_p(s) \\
-G_{cl}(s) \eq \frac{G_{ol}(s)}{1 + G_{ol}(s)}
-\end{hwmathnumbered}
-
-\subproblem{MATLAB implementation.}
-
-\begin{hwmatlab}[caption=PID Controller Design and Analysis]
-% Plant transfer function
-s = tf('s');
-Gp = 10 / (s * (s + 2));
-
-% PID controller parameters
-Kp = 5; Ki = 2; Kd = 0.5;
-Gc = pid(Kp, Ki, Kd);
-
-% Closed-loop system
-Gcl = feedback(Gc * Gp, 1);
-
-% Analysis
-step(Gcl);
-title('Closed-Loop Step Response');
-grid on;
-
-% Display controller
-fprintf('PID Controller: Kp=%.1f, Ki=%.1f, Kd=%.1f\n', Kp, Ki, Kd);
-\end{hwmatlab}
-
-\subproblem[*]{Bonus: Python verification.}
-
-\begin{hwpython}[caption=Python Control Systems Verification]
-import control as ct
+# Quick calculation
 import numpy as np
-import matplotlib.pyplot as plt
 
-# Plant transfer function
-Gp = ct.tf([10], [1, 2, 0])
+# System parameters
+A = np.array([[0, 1], [-2, -3]])
+B = np.array([[0], [1]])
 
-# PID controller
-Kp, Ki, Kd = 5, 2, 0.5
-Gc = ct.tf([Kd, Kp, Ki], [1, 0])
-
-# Closed-loop system  
-Gcl = ct.feedback(Gc * Gp, 1)
-
-# Step response
-t = np.linspace(0, 5, 1000)
-y, t = ct.step_response(Gcl, t)
-
-plt.figure(figsize=(10, 6))
-plt.plot(t, y, 'b-', linewidth=2)
-plt.xlabel('Time (s)')
-plt.ylabel('Output')
-plt.title('PID Controlled System Step Response')
-plt.grid(True, alpha=0.3)
-plt.show()
-
-print(f"Controller: PID({Kp}, {Ki}, {Kd})")
+# Check controllability
+C = np.hstack([B, A @ B])
+rank = np.linalg.matrix_rank(C)
+print(f"Controllability matrix rank: {rank}")
 \end{hwpython}
 
-This example demonstrates the complete integration of mathematical typesetting, code environments, problem structuring, and highlighting features available in the homework class.
+\subproblem
+Terminal output with caption:
 
-\problem{Demonstrate the hwblocks environment for block diagrams.}
+\begin{hwterminal}[caption=Package Installation and Testing]
+$ pip install control numpy matplotlib
+Collecting control
+  Downloading control-0.9.2-py3-none-any.whl (709 kB)
+Collecting numpy>=1.17
+  Using cached numpy-1.21.2-cp39-cp39-macosx_10_9_x86_64.whl (17.0 MB)
+Collecting matplotlib>=3.0
+  Using cached matplotlib-3.4.3-cp39-cp39-macosx_10_9_x86_64.whl (7.2 MB)
+Successfully installed control-0.9.2 numpy-1.21.2 matplotlib-3.4.3
 
-\subproblem{Basic block diagram with blox commands.}
+$ python control_analysis.py
+System is controllable: True
+Poles: [-1. -2.]
+Step response calculated successfully
+Final value: 2.500
+\end{hwterminal}
 
-The hwblocks environment provides centered tikzpicture with automatic blox package support:
+\subproblem
+Simple terminal commands without caption:
+
+\begin{hwterminal}
+$ cd ~/project
+$ python -m pytest tests/
+======================== test session starts ========================
+collected 15 items
+
+tests/test_control.py ........               [ 53%]
+tests/test_analysis.py .......               [100%]
+
+======================== 15 passed in 2.34s ========================
+\end{hwterminal}
+
+% Feature 10: Block Diagrams Environment
+\problem{Demonstrate the hwblocks environment for creating control system diagrams.}
+
+\subproblem
+Basic block diagram with feedback:
 
 \begin{hwblocks}
-\bXInput{A}
-\bXBlocL{B}{$G(s)$}{A}
-\bXOutput{C}{B}
-\bXLink{A}{B}
-\bXLink{B}{C}
-\end{hwblocks}
-
-\subproblem{Block diagram with scaling options.}
-
-You can pass tikzpicture options to control scaling and other properties:
-
-\begin{hwblocks}[scale=0.75, transform shape]
 \bXInput{Input}
 \bXCompSum{Sum}{Input}{+}{-}{+}{}
 \bXBlocL{Controller}{$K_p + \frac{K_i}{s} + K_d s$}{Sum}
@@ -458,23 +382,84 @@ You can pass tikzpicture options to control scaling and other properties:
 \bXReturn{Plant-Output}{Sum}{}
 \end{hwblocks}
 
-% Appendix demonstration
+\subproblem
+More complex system with multiple elements:
+
+\begin{hwblocks}[scale=0.8, transform shape]
+\bXInput{R}
+\bXCompSum[3]{E}{R}{+}{-}{}{}
+\bXBlocL[2]{Gc}{$G_c(s)$}{E}
+\bXBlocL[2]{Gp}{$G_p(s)$}{Gc}
+\bXBlocL[2]{H}{$H(s)$}{Gp}
+\bXOutput[2]{Y}{Gp}
+\bXLink{R}{E}
+\bXLink{E}{Gc}
+\bXLink{Gc}{Gp}
+\bXLink{Gp}{Y}
+\bXReturn{H}{E}{H}
+\end{hwblocks}
+
+\subproblem
+Simple signal flow with scaling:
+
+\begin{hwblocks}[scale=0.85, transform shape]
+\bXInput{A} 
+\bXBlocL{B}{$G(s)$}{A} 
+\bXOutput{C}{B}
+\bXLink{A}{B} 
+\bXLink{B}{C}
+\end{hwblocks}
+
+% Feature 11: Appendices
+\problem{Integration with Standard LaTeX Features}
+
+This problem demonstrates that the homework class works well with standard LaTeX environments like tables, figures, and lists, while maintaining consistent formatting.
+
+\subproblem
+Standard itemize and enumerate lists work normally:
+
+\begin{enumerate}
+\item First numbered item
+\item Second numbered item with math: $x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$
+\item Third item with sub-list:
+    \begin{itemize}
+    \item Bullet point A
+    \item Bullet point B with inline code: \texttt{control.tf([1], [1, 1])}
+    \end{itemize}
+\end{enumerate}
+
+\subproblem
+Tables integrate seamlessly:
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+\hline
+Natural Frequency & $\omega_n$ & 5 rad/s \\
+Damping Ratio & $\zeta$ & 0.3 \\
+Gain & $K$ & 2.0 \\
+\hline
+\end{tabular}
+\end{center}
+
+% Appendix demonstration - should be last
 \hwappendix
-This is the first appendix. It contains additional derivations and supplementary material.
+This is the first appendix. It contains additional derivations and supplementary material that supports the main homework solutions.
 
 \begin{hwmath}
 \text{Extended derivation of the quadratic formula:} \\
-ax^2 + bx + c = 0 \\
-ax^2 + bx = -c \\
-x^2 + \frac{b}{a}x = -\frac{c}{a} \\
-x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 = -\frac{c}{a} + \left(\frac{b}{2a}\right)^2 \\
-\left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2} \\
-x + \frac{b}{2a} = \pm\frac{\sqrt{b^2 - 4ac}}{2a} \\
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+ax^2 + bx + c \eq 0 \\
+ax^2 + bx \eq -c \\
+x^2 + \frac{b}{a}x \eq -\frac{c}{a} \\
+x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 \eq -\frac{c}{a} + \left(\frac{b}{2a}\right)^2 \\
+\left(x + \frac{b}{2a}\right)^2 \eq \frac{b^2 - 4ac}{4a^2} \\
+x + \frac{b}{2a} \eq \pm\frac{\sqrt{b^2 - 4ac}}{2a} \\
+x \eq \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 \end{hwmath}
 
-\hwappendix[Reference Tables]
-This appendix contains useful reference tables and formulas.
+\hwappendix[Reference Tables and Constants]
+This appendix contains useful reference tables and formulas commonly used in control systems analysis.
 
 \begin{table}[h]
 \centering
@@ -486,14 +471,46 @@ Unit Step & $u(t)$ & $\frac{1}{s}$ \\
 Ramp & $t \cdot u(t)$ & $\frac{1}{s^2}$ \\
 Exponential & $e^{-at} \cdot u(t)$ & $\frac{1}{s+a}$ \\
 Sine & $\sin(\omega t) \cdot u(t)$ & $\frac{\omega}{s^2 + \omega^2}$ \\
+Cosine & $\cos(\omega t) \cdot u(t)$ & $\frac{s}{s^2 + \omega^2}$ \\
 \hline
 \end{tabular}
 \caption{Common Laplace Transform Pairs}
 \end{table}
 
-\hwappendix
-This is the third appendix, showing automatic lettering continues (Appendix C).
+\begin{example}{Appendix Example A-1: Root Locus Design Steps}
+1. Plot the open-loop poles and zeros
+2. Determine the root locus branches
+3. Find breakaway and break-in points
+4. Calculate asymptotes
+5. Determine gain values for desired pole locations
+6. Verify closed-loop performance
+\end{example}
 
-\note[Appendices are useful for including detailed calculations, reference materials, or code listings that would interrupt the flow of the main document.]
+\hwappendix[MATLAB Code Listings]
+This appendix shows automatic lettering continues (Appendix C) and contains detailed code implementations.
+
+\begin{hwmatlab}
+% Complete control system design script
+function design_pid_controller()
+    % Plant definition
+    s = tf('s');
+    Gp = 10/(s*(s+2));
+    
+    % PID controller design
+    Kp = 5; Ki = 2; Kd = 0.5;
+    Gc = pid(Kp, Ki, Kd);
+    
+    % Closed-loop system
+    T = feedback(Gc*Gp, 1);
+    
+    % Analysis
+    step(T);
+    margin(Gc*Gp);
+    
+    fprintf('Design complete\n');
+end
+\end{hwmatlab}
+
+\note[All features of the homework class have been demonstrated in the order they appear in the class file definition. This organization makes it easier to understand the feature hierarchy and locate specific functionality.]
 
 \end{document}

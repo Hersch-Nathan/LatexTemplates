@@ -58,6 +58,39 @@ You can include figures and reference them:
 % 
 % See Figure \ref{fig:example} for details.
 
+\problem{Math Comparison Operators}
+
+Use the new comparison shorthand commands in aligned math:
+
+\begin{hwmath}
+f(x) \eq x^2 + 1 \\
+f(x) \gt 0 \text{ for all } x \\
+f(1) \gt f(0) \\
+f(2) \ggt f(1) \\
+0 \lt f(x) \\
+f(-1) \llt f(2)
+\end{hwmath}
+
+\problem{Example Boxes}
+
+Create highlighted example boxes:
+
+\begin{example}{Example 5-1: PID Controller Design}
+Given a plant transfer function $G_p(s) = \frac{10}{s(s+2)}$, design a PID controller 
+$G_c(s) = K_p + \frac{K_i}{s} + K_d s$ to meet the following specifications:
+\begin{itemize}
+\item Steady-state error $< 2\%$ for step input
+\item Phase margin $> 45°$
+\item Gain margin $> 6$ dB
+\end{itemize}
+\end{example}
+
+\begin{example}{Example 2-3: State Space Analysis}
+For the system $\dot{x} = Ax + Bu$, where:
+$$A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}, \quad B = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+Find the eigenvalues and determine system stability.
+\end{example}
+
 \problem{Block Diagrams}
 
 Create centered block diagrams using the hwblocks environment:
