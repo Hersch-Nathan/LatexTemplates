@@ -13,8 +13,18 @@ Full feature demo: `homeworktest.tex`
 \problem{Analyze the system}
 \begin{hwmath}
 G(s) \eq \frac{10}{s(s+2)} \\
-\text{Design } G_c(s) \eq K_p + K_i/s + K_d s
+\text{Design } G_c(s) \eq K_p + K_i/s + K_d s \\
+|G(j\omega)| \gt 1 \text{ for } \omega \lt 2 \\
+f(x) \ggt 0 \text{ for all } x
 \end{hwmath}
+```
+
+### Example boxes
+```latex
+\begin{example}{Example 3-2: Frequency Analysis}
+For $H(s) = \frac{1}{s+1}$, find the magnitude at $\omega = 1$:
+$$|H(j1)| = \frac{1}{\sqrt{2}} \approx 0.707$$
+\end{example}
 ```
 
 ### Code blocks

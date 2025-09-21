@@ -2,7 +2,7 @@
 
 Two LaTeX classes for coursework:
 
-- `homework.cls` — Feature-rich homework class (problems, sub-problems, aligned math, code blocks, terminal output, graphics, block diagrams, appendices).
+- `homework.cls` — Feature-rich homework class (problems, sub-problems, aligned math with comparison operators, example boxes, code blocks, terminal output, graphics, block diagrams, appendices).
 - `capstone_report.cls` — Weekly/biweekly capstone progress reports with consistent headers, sections, figures, and listings.
 
 ## Table of Contents
@@ -16,7 +16,7 @@ Two LaTeX classes for coursework:
 
 ## Overview
 
-This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions and consistent capstone progress reports. The homework class includes preloaded tikz and blox packages for creating block diagrams.
+This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions and consistent capstone progress reports. The homework class includes preloaded tikz and blox packages for creating block diagrams, math alignment shortcuts for comparison operators, and boxed example environments.
 
 ## Quick Start
 

@@ -39,19 +39,29 @@ Discuss stability
 
 ## Math environments
 
-Use the provided math environments to align at equals signs. Inside them, `\eq` is shorthand for `&=`.
+Use the provided math environments to align at equals signs and comparison operators. Inside them, you can use alignment shortcuts:
 
+- `\eq` for `&=` (equals)
+- `\gt` for `&>` (greater than)
+- `\lt` for `&<` (less than)
+- `\ggt` for `&>>` (much greater than)
+- `\llt` for `&<<` (much less than)
+
+Math environments:
 - Unnumbered: `hwmath`
 - Numbered: `hwmathnumbered`
 
 ```latex
 \begin{hwmath}
 G_{ol}(s) \eq G_c(s) G_p(s) \\
-\eq \frac{10(K_d s^2 + K_p s + K_i)}{s^2(s+2)}
+\eq \frac{10(K_d s^2 + K_p s + K_i)}{s^2(s+2)} \\
+|G(j\omega)| \gt 1 \text{ for } \omega < 2 \\
+|G(j\omega)| \llt 1 \text{ for } \omega \ggt 10
 \end{hwmath}
 
 \begin{hwmathnumbered}
-|G(j\omega)| \eq \frac{10K}{\omega\sqrt{\omega^2 + 4}}
+|G(j\omega)| \eq \frac{10K}{\omega\sqrt{\omega^2 + 4}} \\
+f(x) \gt 0 \text{ for all } x \gt -1
 \end{hwmathnumbered}
 ```
 
@@ -88,6 +98,26 @@ Emphasize important points:
 \note[IMPORTANT: Check stability margins]
 \note  % prints "NOTE"
 ```
+
+## Example boxes
+
+Create highlighted example boxes with custom headers for important worked examples:
+
+```latex
+\begin{example}{Example 5-1: PID Controller Design}
+Given a plant transfer function $G_p(s) = \frac{10}{s(s+2)}$, design a PID controller 
+to meet the following specifications:
+\begin{itemize}
+\item Steady-state error $< 2\%$ for step input
+\item Phase margin $> 45^\circ$
+\item Gain margin $> 6$ dB
+\end{itemize}
+
+Solution: Using root locus design...
+\end{example}
+```
+
+The example environment creates a lightly shaded box with a bold header, perfect for highlighting worked examples, case studies, or important derivations.
 
 ## Graphics helper
 
