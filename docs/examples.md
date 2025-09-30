@@ -44,13 +44,33 @@ Converged in 12 iterations
 ```
 
 ### Block diagrams
+
+Simple feedback system:
 ```latex
 \begin{hwblocks}[scale=0.8]
-\bXInput{A} 
-\bXBlocL{B}{$G(s)$}{A} 
-\bXOutput{C}{B}
-\bXLink{A}{B} 
-\bXLink{B}{C}
+\bXInput[r]{A} 
+\bXComp{B}{A}
+\bXBlocL{C}{$G_c(s)$}{B}
+\bXBlocL{D}{$G_p(s)$}{C}
+\bXOutput[3]{E}{D}
+\bXLink[$r$]{A}{B}
+\bXLink[$u$]{C}{D}
+\bXLink[$y$]{D}{E}
+\bXReturn{D-E}{B}{$H(s)$}
+\end{hwblocks}
+```
+
+Complex multi-input system with branches:
+```latex
+\begin{hwblocks}[scale=0.7]
+\bXInput[r]{A}
+\bXCompSum{B}{A}{+}{-}{+}{}
+\bXChain[1.5]{B}{C/$G_1(s)$,D/$G_2(s)$}
+\bXOutput{E}{D}
+\bXReturn{D-E}{B}{}
+\bXBranchy[-3]{A}{F}
+\bXBlocL{G}{Disturbance}{F}
+\bXLinkyx{G}{C}
 \end{hwblocks}
 ```
 

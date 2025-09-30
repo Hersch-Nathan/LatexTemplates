@@ -71,7 +71,7 @@ Basic alignment with \texttt{\\eq} shorthand:
 \end{hwmath}
 
 \subproblem
-New comparison operators using \texttt{\\gt}, \texttt{\\lt}, \texttt{\\ggt}, and \texttt{\\llt}:
+All comparison operators including new additions:
 
 \begin{hwmath}
 f(x) \eq x^2 + 1 \\
@@ -80,7 +80,10 @@ f(2) \gt f(1) \\
 f(3) \ggt f(0) \\
 0 \lt f(x) \\
 f(-1) \llt f(2) \\
-10 \ggt 1 \llt 100
+\omega_n \geqq 5 \text{ rad/s} \\
+\text{Error} \leqq 2\% \\
+K_p \neqq 0 \\
+G(j\omega) \approxx H(j\omega) \text{ at high freq}
 \end{hwmath}
 
 \subproblem
@@ -363,51 +366,81 @@ tests/test_analysis.py .......               [100%]
 ======================== 15 passed in 2.34s ========================
 \end{hwterminal}
 
-% Feature 10: Block Diagrams Environment
-\problem{Demonstrate the hwblocks environment for creating control system diagrams.}
+% Feature 10: Block Diagrams Environment with Blox Package
+\problem{Demonstrate the hwblocks environment and blox package features for control system diagrams.}
 
 \subproblem
-Basic block diagram with feedback:
+Classic PID feedback control system:
 
-\begin{hwblocks}
-\bXInput{Input}
-\bXCompSum{Sum}{Input}{+}{-}{+}{}
-\bXBlocL{Controller}{$K_p + \frac{K_i}{s} + K_d s$}{Sum}
-\bXBlocL{Plant}{$\frac{1}{s(s+1)}$}{Controller}
-\bXOutput{Output}{Plant}
-\bXLink{Input}{Sum}
-\bXLink{Sum}{Controller}
-\bXLink{Controller}{Plant}
-\bXLink{Plant}{Output}
-\bXReturn{Plant-Output}{Sum}{}
+\begin{hwblocks}[scale=0.9]
+\bXInput[r(s)]{R}
+\bXComp{E}{R}
+\bXBlocL{PID}{PID Controller}{E}
+\bXBlocL{Plant}{$\frac{10}{s(s+2)}$}{PID}
+\bXOutput{Y}{Plant}
+\bXLink[$r(s)$]{R}{E}
+\bXLink[$e(s)$]{E}{PID}
+\bXLink[$u(s)$]{PID}{Plant}
+\bXLink[$y(s)$]{Plant}{Y}
+\bXReturn{Plant-Y}{E}{Sensor}
 \end{hwblocks}
 
 \subproblem
-More complex system with multiple elements:
+Multi-input system with disturbance and noise using chains:
 
-\begin{hwblocks}[scale=0.8, transform shape]
-\bXInput{R}
-\bXCompSum[3]{E}{R}{+}{-}{}{}
-\bXBlocL[2]{Gc}{$G_c(s)$}{E}
-\bXBlocL[2]{Gp}{$G_p(s)$}{Gc}
-\bXBlocL[2]{H}{$H(s)$}{Gp}
-\bXOutput[2]{Y}{Gp}
-\bXLink{R}{E}
-\bXLink{E}{Gc}
-\bXLink{Gc}{Gp}
-\bXLink{Gp}{Y}
-\bXReturn{H}{E}{H}
+\begin{hwblocks}[scale=0.75]
+\bXInput[r]{R}
+\bXCompSum{Sum1}{R}{+}{-}{+}{}
+\bXChain[1.2]{Sum1}{C1/$G_c(s)$,P1/$G_p(s)$}
+\bXOutput{Y}{P1}
+\bXLink[$r$]{R}{Sum1}
+\bXLink[$y$]{P1}{Y}
+\bXReturn{P1-Y}{Sum1}{}
+% Add disturbance input
+\bXBranchy[-2.5]{Sum1}{D1}
+\bXInput[d]{D}
+\bXLink{D}{C1}
+\bXLinkName[0.3]{D}{d}
+% Add noise path
+\bXBranchy[-4]{P1-Y}{N1}
+\bXBlocL{Noise}{Noise}{N1}
+\bXLinkyx{Noise}{Sum1}
 \end{hwblocks}
 
 \subproblem
-Simple signal flow with scaling:
+Advanced system with multiple branches and custom styling:
 
-\begin{hwblocks}[scale=0.85, transform shape]
-\bXInput{A} 
-\bXBlocL{B}{$G(s)$}{A} 
-\bXOutput{C}{B}
-\bXLink{A}{B} 
-\bXLink{B}{C}
+\begin{hwblocks}[scale=0.65]
+\bXLineStyle{thick}
+\bXInput[r]{A}
+\bXCompSum{B}{A}{+}{-}{+}{}
+\bXBlocL{C}{$G_1(s)$}{B}
+\bXBlocL{D}{$G_2(s)$}{C}
+\bXOutput{E}{D}
+\bXLink{D}{E}
+\bXReturn{D-E}{B}{$H(s)$}
+% Upper branch
+\bXBranchx[2]{C}{F}
+\bXBlocL{G}{$G_3(s)$}{F}
+\bXLinkyx{C}{G}
+\bXLinkxy{G}{D}
+% Lower branch with different styling
+\bXLineStyle{red, dashed}
+\bXStyleBloc{fill=blue!20, rounded corners}
+\bXBranchy[-3]{A}{H}
+\bXBlocL{I}{Feedforward}{H}
+\bXLinkyx{I}{C}
+\bXDefaultLineStyle
+\bXStyleBlocDefault
+\end{hwblocks}
+
+\subproblem
+Demonstrating blox loop command for rapid prototyping:
+
+\begin{hwblocks}[scale=0.8]
+\bXInput[Input]{Start}
+\bXLoop[1.5]{Start}{A/$K$,B/$\frac{1}{s}$,C/$G_p(s)$}
+\bXLinkName[0.5]{Start}{Input}
 \end{hwblocks}
 
 % Feature 11: Appendices
