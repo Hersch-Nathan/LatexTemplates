@@ -16,7 +16,7 @@ Two LaTeX classes for coursework:
 
 ## Overview
 
-This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions and consistent capstone progress reports. The homework class includes preloaded tikz and blox packages for creating block diagrams, math alignment shortcuts for comparison operators, and boxed example environments.
+This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions and consistent capstone progress reports. The homework class includes preloaded tikz and blox packages for creating block diagrams, extensive math alignment shortcuts for comparison operators (=, >, <, ≥, ≤, ≠, ≈, etc.), and boxed example environments.
 
 ## Quick Start
 

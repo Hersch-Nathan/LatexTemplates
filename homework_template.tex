@@ -68,7 +68,11 @@ f(x) \gt 0 \text{ for all } x \\
 f(1) \gt f(0) \\
 f(2) \ggt f(1) \\
 0 \lt f(x) \\
-f(-1) \llt f(2)
+f(-1) \llt f(2) \\
+\omega_c \geqq 10 \text{ rad/s} \\
+\text{Error} \leqq 5\% \\
+K_p \neqq 0 \\
+G(s) \approxx H(s)
 \end{hwmath}
 
 \problem{Example Boxes}
@@ -93,14 +97,36 @@ Find the eigenvalues and determine system stability.
 
 \problem{Block Diagrams}
 
-Create centered block diagrams using the hwblocks environment:
+Create centered block diagrams using the hwblocks environment with blox package commands:
 
-\begin{hwblocks}
-\bXInput{A} 
-\bXBlocL{B}{$G(s)$}{A} 
-\bXOutput{C}{B}
-\bXLink{A}{B} 
-\bXLink{B}{C}
+\subproblem
+Simple feedback control system:
+
+\begin{hwblocks}[scale=0.85]
+\bXInput[r(s)]{A}
+\bXComp{B}{A}
+\bXBlocL{C}{$G_c(s)$}{B}
+\bXBlocL{D}{$G_p(s)$}{C}
+\bXOutput{E}{D}
+\bXLink[$r(s)$]{A}{B}
+\bXLink[$u(s)$]{C}{D}
+\bXLink[$y(s)$]{D}{E}
+\bXReturn{D-E}{B}{$H(s)$}
+\end{hwblocks}
+
+\subproblem
+Multi-input system with summing junction:
+
+\begin{hwblocks}[scale=0.8]
+\bXInput[r]{A}
+\bXCompSum{B}{A}{+}{-}{+}{}
+\bXChain[1.5]{B}{C/$K$,D/$G(s)$}
+\bXOutput{E}{D}
+\bXReturn{D-E}{B}{}
+\bXBranchy[-2]{A}{F}
+\bXInput[d]{G}
+\bXLinkyx{G}{C}
+\bXLinkName[0.3]{G}{d}
 \end{hwblocks}
 
 \end{document}

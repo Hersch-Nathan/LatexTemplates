@@ -46,6 +46,10 @@ Use the provided math environments to align at equals signs and comparison opera
 - `\lt` for `&<` (less than)
 - `\ggt` for `&>>` (much greater than)
 - `\llt` for `&<<` (much less than)
+- `\geqq` for `&≥` (greater than or equal)
+- `\leqq` for `&≤` (less than or equal)
+- `\neqq` for `&≠` (not equal)
+- `\approxx` for `&≈` (approximately equal)
 
 Math environments:
 - Unnumbered: `hwmath`
@@ -56,7 +60,12 @@ Math environments:
 G_{ol}(s) \eq G_c(s) G_p(s) \\
 \eq \frac{10(K_d s^2 + K_p s + K_i)}{s^2(s+2)} \\
 |G(j\omega)| \gt 1 \text{ for } \omega < 2 \\
-|G(j\omega)| \llt 1 \text{ for } \omega \ggt 10
+|G(j\omega)| \llt 1 \text{ for } \omega \ggt 10 \\
+\omega_c \geqq 5 \text{ rad/s} \\
+\text{PM} \geqq 45° \\
+\text{Error} \leqq 2\% \\
+K_p \neqq 0 \\
+G(s) \approxx H(s) \text{ for high frequencies}
 \end{hwmath}
 
 \begin{hwmathnumbered}
@@ -128,11 +137,17 @@ Center images with optional title and scale.
 \hwgraphic{figures/plot.pdf}[Response Plot][0.7]
 ```
 
-## Block Diagrams
+## Block Diagrams with Blox Package
 
-The `hwblocks` environment provides a centered wrapper around `tikzpicture` for creating block diagrams. It automatically loads tikz and blox packages, so you can use blox commands directly without extra `\usepackage` lines.
+The `hwblocks` environment provides a centered wrapper around `tikzpicture` for creating block diagrams using the blox package. It automatically loads tikz and blox packages, so you can use blox commands directly without extra `\usepackage` lines.
 
-### Basic usage
+The blox package is designed for creating control system block diagrams and algorithm flowcharts. It builds diagrams linearly from left to right, starting with an input and ending with an output.
+
+### Design Philosophy
+
+Block diagrams are built by creating nodes first, then connecting them with links. The order is important: you must create both endpoints before making the connecting line. This follows the pattern: "make block, make block, make connecting link" rather than "make block, make link, make block."
+
+### Basic Usage
 
 ```latex
 \begin{hwblocks}
@@ -142,32 +157,249 @@ The `hwblocks` environment provides a centered wrapper around `tikzpicture` for 
 \end{hwblocks}
 ```
 
-### With blox commands
+### Input and Output Nodes
+
+Every block diagram starts with an input and ends with an output:
 
 ```latex
 \begin{hwblocks}
-\bXInput{A} 
-\bXBlocL{B}{$G(s)$}{A} 
+\bXInput[Input Label]{A}    % Creates input node named A
+\bXOutput[2]{B}{A}          % Creates output B at distance 2 from A
+\bXLink{A}{B}               % Links A to B
+\end{hwblocks}
+```
+
+- `\bXInput[label]{Name}` - Creates an input node. Label is optional (can be blank or omitted entirely)
+- `\bXOutput[distance]{Name}{PreviousNode}` - Creates an output node at specified distance (default: 2 em units)
+
+### Block Creation Commands
+
+The blox package provides several block types:
+
+#### Basic Blocks
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBloc[2]{B}{$G_p(s)$}{A}          % Basic block
+\bXBlocL[2]{C}{$G_c(s)$}{B}         % Block with automatic link from previous
+\bXOutput{D}{C}
+\bXLink{A}{B}                        % Manual link needed for \bXBloc
+\bXLink{C}{D}                        % Manual link for output
+\end{hwblocks}
+```
+
+- `\bXBloc[distance]{Name}{Contents}{PreviousNode}` - Creates a rectangular block
+- `\bXBlocL[distance]{Name}{Contents}{PreviousNode}` - Block with automatic link from previous node
+
+#### Feedback/Return Blocks
+
+For blocks on feedback paths:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
 \bXOutput{C}{B}
-\bXLink{A}{B} 
+\bXBlocr[2]{D}{$H(s)$}{A}           % Return/feedback block (goes left)
+\bXBlocrL[3]{E}{$K$}{D}             % Return block with automatic link
+\end{hwblocks}
+```
+
+- `\bXBlocr[distance]{Name}{Contents}{PreviousNode}` - Block for feedback path (placed to the left)
+- `\bXBlocrL[distance]{Name}{Contents}{PreviousNode}` - Feedback block with automatic link
+
+#### Special Block Shapes
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocPotato[2]{B}{Nonlinear}{A}   % Creates oval/"potato" shaped block
+\bXOutput{C}{B}
+\bXLink{A}{B}
 \bXLink{B}{C}
 \end{hwblocks}
 ```
 
-### With options (forwarded to tikzpicture)
+### Comparators and Summing Junctions
+
+Blox provides several commands for creating comparison and summing nodes:
+
+#### Simple Comparators
 
 ```latex
-\begin{hwblocks}[scale=0.85, transform shape]
-\bXInput{A} 
-\bXBlocL{B}{$G(s)$}{A} 
+\begin{hwblocks}
+\bXInput{A}
+\bXComp{B}{A}                       % Standard comparator (+ input, - feedback)
+\bXBlocL{C}{$G(s)$}{B}
+\bXOutput{D}{C}
+\bXReturn{C-D}{B}{$H(s)$}           % Feedback path
+\end{hwblocks}
+```
+
+#### Summing Junctions
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXSuma{B}{A}                       % Sum with input from above
+\bXSumb{C}{B}                       % Sum with input from below
+\bXOutput{D}{C}
+\end{hwblocks}
+```
+
+#### General Comparator/Summer
+
+For custom configurations:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXCompSum{B}{A}{+}{-}{+}{}         % General: North, South, West, East labels
+\bXBlocL{C}{$G(s)$}{B}
+\bXOutput{D}{C}
+\end{hwblocks}
+```
+
+- Arguments: `{Name}{PreviousNode}{North}{South}{West}{East}`
+- Use `\bXCompSum*` for labels outside the circle (cleaner appearance)
+
+### Linking Nodes
+
+Various link types for different connection patterns:
+
+#### Basic Links
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G_1(s)$}{A}
+\bXBlocL{C}{$G_2(s)$}{B}
+\bXOutput{D}{C}
+\bXLink[Signal]{A}{B}               % Link with label
+\end{hwblocks}
+```
+
+#### Right-Angle Links
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
+\bXBranchy[-3]{B}{E}                % Create branch point below B
+\bXBlocL{F}{$H(s)$}{E}
+\bXLinkxy{B}{F}                     % Horizontal then vertical link
+\bXLinkyx{F}{A}                     % Vertical then horizontal link
+\end{hwblocks}
+```
+
+#### Specialized Links
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
+\bXBranchy[-2]{B}{C}
+\bXLinktyx{B}{C}                    % Top-center to horizontal connection
+\bXLinktb{A}{C}                     % Top-to-bottom straight line
+\end{hwblocks}
+```
+
+### Return/Feedback Paths
+
+Create feedback loops with the return command:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXComp{B}{A}
+\bXBlocL{C}{$G(s)$}{B}
+\bXOutput{D}{C}
+\bXReturn[2]{C-D}{B}{$H(s)$}        % Creates feedback with block
+\end{hwblocks}
+```
+
+- `\bXReturn[distance]{StartNode}{EndNode}{Label}`
+- Distance controls how far down the return line goes before going left
+- Creates a node `StartNode-EndNode` at the junction point
+
+### Chains and Automation
+
+For multiple blocks in series:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXChain[1.5]{A}{B/$G_1(s)$,C/$G_2(s)$,D/$G_3(s)$}
+\bXOutput{E}{D}
+\bXLink{D}{E}
+\end{hwblocks}
+```
+
+Chain for feedback systems:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXLoop[2]{A}{B/$G_c(s)$,C/$G_p(s)$}  % Creates comparator + chain + feedback
+\end{hwblocks}
+```
+
+### Branching and Multi-Path Diagrams
+
+Create new branches for complex diagrams:
+
+```latex
+\begin{hwblocks}
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
 \bXOutput{C}{B}
-\bXLink{A}{B} 
-\bXLink{B}{C}
+\bXBranchx[3]{B}{D}                 % Horizontal branch from B
+\bXBranchy[-2]{B}{E}                % Vertical branch from B
+\bXBlocL{F}{$H_1(s)$}{D}
+\bXBlocL{G}{$H_2(s)$}{E}
+\end{hwblocks}
+```
+
+### Styling and Customization
+
+Customize appearance using tikz styling:
+
+```latex
+\begin{hwblocks}
+\bXLineStyle{red, thick}            % Change line style
+\bXStyleBloc{fill=blue!20, rounded corners}  % Change block style
+\bXInput{A}
+\bXBlocL{B}{$G(s)$}{A}
+\bXDefaultLineStyle                 % Reset to default line style
+\bXStyleBlocDefault                 % Reset to default block style
+\bXOutput{C}{B}
+\end{hwblocks}
+```
+
+### Complete Example: PID Control System
+
+```latex
+\begin{hwblocks}[scale=0.8]
+\bXInput[r(s)]{A}
+\bXCompSum{B}{A}{}{-}{+}{}
+\bXLink[$r(s)$]{A}{B}
+\bXBlocL{C}{PID}{B}
+\bXBlocL{D}{Plant}{C}
+\bXOutput[3]{E}{D}
+\bXLink[$u(s)$]{C}{D}
+\bXLink[$y(s)$]{D}{E}
+\bXReturn{D-E}{B}{Sensor}
 \end{hwblocks}
 ```
 
 ### Troubleshooting
 
+- **Order matters**: Create all nodes before linking them
+- **Node naming**: Use descriptive names for complex diagrams
+- **Spacing**: Default spacing is 2em between blocks; adjust with optional `[distance]` parameter
+- **Links not connecting**: Ensure both nodes exist before creating the link
+- **Complex diagrams**: Sketch with pen and paper first to plan node placement and connections
 - The environment automatically centers content with proper spacing (0.5em before and after)
 - All tikz and blox commands work inside `hwblocks` without additional package imports
 - Options in `[]` are passed directly to the underlying `tikzpicture` environment

@@ -61,6 +61,10 @@
 \newcommand{\lt}{&<}
 \newcommand{\llt}{&<<}
 \newcommand{\ggt}{&>>}
+\newcommand{\geqq}{&\geq}
+\newcommand{\leqq}{&\leq}
+\newcommand{\neqq}{&\neq}
+\newcommand{\approxx}{&\approx}
 
 
 % Alternative numbered environment 
