@@ -1,9 +1,10 @@
-# LaTeX Templates: Homework and Capstone Classes
+# LaTeX Templates: Academic and Professional Classes
 
-Two LaTeX classes for coursework:
+Three LaTeX classes for academic and professional work:
 
 - `homework.cls` — Feature-rich homework class (problems, sub-problems, aligned math with comparison operators, example boxes, code blocks, terminal output, graphics, block diagrams, appendices).
 - `capstone_report.cls` — Weekly/biweekly capstone progress reports with consistent headers, sections, figures, and listings.
+- `designreport.cls` — Professional design reports with comprehensive PDR support (title pages, engineering requirements, impact statements, code environments, project management sections).
 
 ## Table of Contents
 
@@ -42,16 +43,32 @@ Capstone report:
 \end{document}
 ```
 
+Design report (PDR):
+```latex
+\documentclass[final]{designreport}
+\addbibresource{references.bib}
+\documentname{Preliminary Design Report}
+\teamname{Team 8 - PlayPal}
+\university{University of Kentucky}
+\teammembers{\teammember{John Smith}{john@uky.edu}}
+\begin{document}
+\maketitle
+\makefrontmatter
+% ... sections with engineering requirements, impact statements ...
+\end{document}
+```
+
 ## Guides
 
 - Homework: see [docs/homework-guide.md](docs/homework-guide.md)
 - Capstone report: see [docs/capstone-guide.md](docs/capstone-guide.md)
+- Design report: see [docs/designreport-guide.md](docs/designreport-guide.md)
 
 ## Examples
 
 - Usage patterns and snippets: [docs/examples.md](docs/examples.md)
-- Starter templates in repo root: `homework_template.tex`, `capstone_template.tex`
-- Full demos: `homeworktest.tex`, `capstonereporttest.tex`
+- Starter templates in repo root: `homework_template.tex`, `capstone_template.tex`, `designreport_template.tex`
+- Full demos: `homeworktest.tex`, `capstonereporttest.tex`, `designreport.tex`
 
 ## Build
 
@@ -76,7 +93,8 @@ latexmk -c
 ## Repo Files
 
 - `homework.cls` — Homework class
-- `capstone_report.cls` — Capstone report class
+- `capstone_report.cls` — Capstone report class  
+- `designreport.cls` — Design report class
 - Templates and example .tex files
 
 Contributions welcome. Please update docs alongside any changes.
