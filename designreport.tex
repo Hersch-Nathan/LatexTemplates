@@ -1,0 +1,354 @@
+\documentclass[final]{designreport}
+
+% Bibliography file (we'll create a simple one)
+\addbibresource{references.bib}
+
+% Title page information
+\documentname{Preliminary Design Report}
+\teamname{Team 8 - PlayPal}
+% \teamlogo{} % No logo for test - commented out
+\university{University of Kentucky}
+\department{Department of Electrical and Computer Engineering}
+\course{Senior Design}
+
+% Team members (using the helper commands)
+\teammembers{%
+    \teammember{John Smith}{john.smith@uky.edu}
+    \teammember{Jane Doe}{jane.doe@uky.edu}
+    \teammember{Bob Johnson}{bob.johnson@uky.edu}
+    \teammember{Alice Wilson}{alice.wilson@uky.edu}
+}
+
+% Class advisors
+\classadvisors{%
+    \advisor{Dr. Professor Name}{professor@uky.edu}
+    \advisor{Dr. Another Advisor}{advisor@uky.edu}
+}
+
+% Sponsors
+\sponsors{%
+    \sponsor{Industry Sponsor}{sponsor@company.com}
+    \sponsor{Another Sponsor}{sponsor2@company.com}
+}
+
+\reportdate{October 3, 2025}
+
+\title{PlayPal Interactive Learning System}
+\author{Team 8}
+
+\begin{document}
+
+% Create title page
+\maketitle
+
+% Generate front matter (TOC, List of Figures, List of Tables)
+\makefrontmatter
+
+% Abstract
+\begin{abstract}
+This preliminary design report presents the initial design solution for the PlayPal Interactive Learning System, an innovative educational toy designed to enhance early childhood development through interactive play. The system incorporates modern sensor technology, engaging visual feedback, and adaptive learning algorithms to create a personalized learning experience for children aged 3-6 years. This report details our engineering requirements, functional decomposition, behavioral models, and project management plan based on feedback received from our initial proposal.
+\end{abstract}
+
+% Comment and Response
+\commentresponse
+The primary feedback from our initial proposal focused on three key areas: (1) clarifying the target age range and specific learning objectives, (2) providing more detailed technical specifications for the sensor systems, and (3) expanding the safety analysis. In response, we have narrowed our target demographic to children aged 3-6 years, specified the use of capacitive touch sensors and RGB LED arrays, and conducted a comprehensive safety analysis including material selection and electrical safety considerations.
+
+% Problem Statement
+\needsstatement
+Traditional educational toys often lack the adaptability to grow with a child's learning pace and fail to provide meaningful feedback to parents and educators. Current market solutions are typically static, offering limited interaction patterns that quickly become repetitive and lose the child's interest. There is a clear need for an intelligent learning system that can adapt to individual learning styles while maintaining engagement through dynamic, responsive play experiences.
+
+\background
+Existing educational toys in the market can be categorized into three main types: passive toys (blocks, puzzles), electronic toys with fixed responses, and app-based learning systems. While each category has merits, none successfully combines the tactile benefits of physical play with the adaptability of digital learning systems. Recent advances in embedded systems, sensor technology, and machine learning algorithms present an opportunity to create a hybrid solution that addresses these limitations.
+
+\objective
+The objective of this project is to design and prototype an interactive learning system that combines physical play with intelligent digital feedback. The system shall adapt to individual learning patterns, provide engaging multi-sensory feedback, and offer progress tracking capabilities for parents and educators.
+
+% Requirements Specification
+\requirementsspec
+
+\marketingreqs
+\begin{itemize}
+    \item The system shall be suitable for children aged 3-6 years
+    \item The system should be priced competitively with premium educational toys (\$150-\$300)
+    \item The system shall operate for at least 8 hours on a single battery charge
+    \item The system should be easily cleanable and durable for daily use
+    \item The system shall comply with all relevant child safety standards
+\end{itemize}
+
+\objectivetree
+The primary objective of creating an adaptive learning system breaks down into three main sub-objectives:
+\begin{enumerate}
+    \item Hardware Development: Create robust, safe, and responsive physical interface
+    \item Software Development: Implement adaptive algorithms and user interface
+    \item Integration and Testing: Ensure seamless operation and validate learning outcomes
+\end{enumerate}
+
+\engineeringreqs
+
+\begin{engineeringreq}{1}{Touch Response Time}{Children require immediate feedback to maintain engagement and associate actions with outcomes}
+    \item Response time shall be less than 100ms from touch detection to visual feedback
+    \item System shall detect touch pressure variations of at least 3 distinct levels
+\end{engineeringreq}
+
+\begin{engineeringreq}{2}{Battery Life}{Extended play sessions are essential for meaningful learning experiences}
+    \item System shall operate for minimum 8 hours of continuous use on single charge
+    \item Battery level indicator shall provide clear status to users
+    \item Low battery warning shall activate when 15\% capacity remains
+\end{engineeringreq}
+
+\begin{engineeringreq}{3}{Safety Standards}{Child safety is paramount in all design decisions}
+    \item All materials shall be non-toxic and comply with CPSIA standards
+    \item Electrical components shall be fully enclosed and inaccessible
+    \item Surface temperature shall not exceed 104°F (40°C) during operation
+\end{engineeringreq}
+
+\impactstatements
+
+\begin{impactstatement}{Standards}
+The PlayPal system must comply with multiple safety and regulatory standards including CPSIA (Consumer Product Safety Improvement Act), FCC Part 15 for electromagnetic emissions, and ASTM F963 for toy safety. The design incorporates these requirements from the ground up, with material selection, electrical design, and mechanical construction all following relevant guidelines. Regular testing and validation will ensure continued compliance throughout the development process.
+\end{impactstatement}
+
+\begin{impactstatement}{Economic}
+The economic impact of this project extends beyond the immediate development costs. By creating an adaptive learning system, we address a growing market demand for intelligent educational tools, potentially generating significant revenue. The modular design approach allows for cost-effective manufacturing scaling and future product variations. Additionally, the system's durability and adaptability provide long-term value to consumers, justifying premium pricing in the educational toy market.
+\end{impactstatement}
+
+\begin{impactstatement}{Environmental}
+Environmental considerations have been integrated into our design approach through material selection and energy efficiency optimization. The system uses rechargeable batteries to minimize waste, and all plastic components are selected from recyclable materials where possible. The long operational life and adaptable software reduce the need for replacement products, contributing to reduced electronic waste in the educational toy sector.
+\end{impactstatement}
+
+% Design Section
+\designsection
+
+\designsummary
+The PlayPal system consists of three main subsystems: the Interactive Playmat, the Smart Toys, and the Parent/Educator Dashboard. The Interactive Playmat serves as the central hub, featuring a grid of capacitive touch sensors beneath a durable, washable surface. Smart Toys contain embedded RFID tags and LED indicators that interact with the playmat to create dynamic learning scenarios. The dashboard provides real-time progress tracking and learning analytics.
+
+\functionaldecomp
+
+\subsection{Level 0: System Overview}
+% \reportfigure[0.8\textwidth]{example-figure.png}{Level 0 Functional Block Diagram}
+
+The top-level system accepts user inputs through touch interactions and toy placement, processes these through the central controller, and provides multi-modal feedback through visual, audio, and haptic channels. [Figure placeholder - Level 0 Functional Block Diagram would be inserted here]
+
+\subsection{Level 1: Subsystem Breakdown}
+The system decomposes into five major subsystems:
+\begin{itemize}
+    \item Sensor Array Subsystem
+    \item Processing and Control Subsystem  
+    \item Feedback Generation Subsystem
+    \item Power Management Subsystem
+    \item Communication Subsystem
+\end{itemize}
+
+\subsection{Level 2: Component Level}
+Each subsystem further breaks down into specific components:
+
+\textbf{Playmat Components:}
+\begin{itemize}
+    \item 64-element capacitive sensor array
+    \item RGB LED matrix (8x8)
+    \item Embedded microcontroller (ARM Cortex-M4)
+    \item Wireless communication module
+\end{itemize}
+
+\textbf{Smart Toy Components:}
+\begin{itemize}
+    \item RFID tags for identification
+    \item Integrated LED indicators
+    \item Accelerometer for motion detection
+\end{itemize}
+
+\behavioralmodels
+
+\subsection{Overall Behavioral Model}
+The system operates in two primary modes: Active Learning Mode and Free Play Mode. In Active Learning Mode, the system presents structured challenges and tracks progress. In Free Play Mode, the system responds to user actions without specific objectives, encouraging creative exploration.
+
+\subsection{Stop Mode Behavior}
+When in Stop Mode, the system maintains minimal power consumption while monitoring for wake-up conditions:
+\begin{itemize}
+    \item Touch sensor monitoring at reduced frequency
+    \item Status LED breathing pattern
+    \item Wireless connectivity maintained for remote wake-up
+\end{itemize}
+
+\subsection{Go Mode Behavior}
+In Go Mode, the system provides full functionality:
+\begin{itemize}
+    \item Real-time sensor monitoring
+    \item Dynamic LED feedback
+    \item Audio feedback generation
+    \item Data logging and transmission
+\end{itemize}
+
+% Project Plan
+\projectplan
+
+\workbreakdown
+
+\begin{subproject}{Hardware Development}{John Smith}
+    \item PCB design and fabrication
+    \item Sensor integration and testing
+    \item Enclosure design and 3D printing
+    \item Hardware validation testing
+\end{subproject}
+
+\begin{subproject}{Firmware Development}{Jane Doe}
+    \item Microcontroller programming
+    \item Sensor driver development
+    \item Communication protocol implementation
+    \item Real-time system optimization
+\end{subproject}
+
+\begin{subproject}{Software Application}{Bob Johnson}
+    \item Mobile application development
+    \item User interface design
+    \item Database design and implementation
+    \item Cloud integration services
+\end{subproject}
+
+\begin{subproject}{Learning Algorithm Development}{Alice Wilson}
+    \item Adaptive learning algorithm design
+    \item Data analysis and machine learning implementation
+    \item Progress tracking system
+    \item Educational content development
+\end{subproject}
+
+\ganttchart
+The project timeline spans 16 weeks with four major phases:
+\begin{enumerate}
+    \item \textbf{Phase 1 (Weeks 1-4):} Requirements finalization and initial prototyping
+    \item \textbf{Phase 2 (Weeks 5-8):} Hardware development and firmware implementation
+    \item \textbf{Phase 3 (Weeks 9-12):} Software development and algorithm implementation
+    \item \textbf{Phase 4 (Weeks 13-16):} Integration, testing, and validation
+\end{enumerate}
+
+Critical path activities include PCB fabrication (3 weeks), firmware development (4 weeks), and final integration testing (2 weeks).
+
+\costanalysis
+
+\begin{table}[htbp]
+\centering
+\caption{Project Cost Breakdown}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Category & Estimated Cost & Actual Cost \\
+\midrule
+Electronic Components & \$450 & \$487 \\
+PCB Fabrication & \$200 & \$195 \\
+Enclosure Materials & \$150 & \$142 \\
+Development Tools & \$300 & \$300 \\
+Testing Equipment & \$100 & \$95 \\
+\midrule
+Total & \$1,200 & \$1,219 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The total project cost remains within the allocated budget of \$1,500, providing a 23\% buffer for unexpected expenses.
+
+% Code Examples
+\section{Implementation Examples}
+
+\subsection{Python Algorithm Implementation}
+
+\begin{reportpython}[caption={Adaptive Learning Algorithm}]
+class AdaptiveLearningEngine:
+    def __init__(self):
+        self.difficulty_level = 1
+        self.success_rate = 0.0
+        self.attempt_history = []
+    
+    def update_difficulty(self, success):
+        self.attempt_history.append(success)
+        if len(self.attempt_history) >= 5:
+            recent_success_rate = sum(self.attempt_history[-5:]) / 5
+            
+            if recent_success_rate > 0.8:
+                self.difficulty_level = min(10, self.difficulty_level + 1)
+            elif recent_success_rate < 0.4:
+                self.difficulty_level = max(1, self.difficulty_level - 1)
+    
+    def generate_challenge(self):
+        return f"Challenge level {self.difficulty_level}"
+\end{reportpython}
+
+\subsection{MATLAB Signal Processing}
+
+\begin{reportmatlab}[caption={Touch Sensor Signal Processing}]
+function filtered_signal = process_touch_data(raw_data, fs)
+    % Apply low-pass filter to remove noise
+    fc = 10; % Cutoff frequency (Hz)
+    [b, a] = butter(4, fc/(fs/2), 'low');
+    filtered_signal = filtfilt(b, a, raw_data);
+    
+    % Threshold detection
+    threshold = 0.1;
+    touch_detected = filtered_signal > threshold;
+    
+    % Debouncing
+    min_touch_duration = 0.05; % 50ms
+    touch_events = find_touch_events(touch_detected, fs, min_touch_duration);
+end
+\end{reportmatlab}
+
+\subsection{System Configuration}
+
+\begin{reportterminal}[caption={System Setup Commands}]
+$ sudo apt-get update
+$ sudo apt-get install python3-pip
+$ pip3 install numpy matplotlib scipy
+$ git clone https://github.com/team8/playpal-firmware.git
+$ cd playpal-firmware
+$ make all
+$ make flash
+Device programmed successfully!
+System ready for testing.
+\end{reportterminal}
+
+% Conclusion
+\conclusionoutlook
+The preliminary design presented in this report demonstrates a comprehensive approach to creating an adaptive learning system that addresses identified market needs. Our engineering requirements provide clear, measurable objectives, while the functional decomposition ensures systematic development. The project plan establishes realistic timelines and resource allocation within budget constraints.
+
+Moving forward, the next phase will focus on detailed hardware design and initial prototype fabrication. Key milestones include completing the PCB design by week 4, achieving first sensor readings by week 6, and demonstrating basic adaptive behavior by week 10. Risk mitigation strategies have been developed for critical components, including backup suppliers for key sensors and alternative algorithms for learning adaptation.
+
+The team is confident that this design approach will result in a successful product that advances the state of educational technology while providing meaningful learning experiences for children.
+
+% References
+\printbibliography
+
+% Appendix
+\makeappendix
+
+\subsection{Additional Technical Specifications}
+
+\subsubsection{Sensor Specifications}
+The capacitive touch sensors operate at 100kHz with 12-bit resolution, providing sensitivity down to 0.1pF changes. The sensor array covers a 400mm x 400mm active area with 50mm pitch between sensing elements.
+
+\subsubsection{Communication Protocols}
+The system implements multiple communication protocols:
+\begin{itemize}
+    \item I2C for internal sensor communication
+    \item SPI for LED matrix control  
+    \item WiFi 802.11n for cloud connectivity
+    \item Bluetooth LE for mobile device pairing
+\end{itemize}
+
+\subsubsection{Power Consumption Analysis}
+\begin{table}[htbp]
+\centering
+\caption{Power Consumption by Subsystem}
+\begin{tabular}{@{}lr@{}}
+\toprule
+Subsystem & Power (mW) \\
+\midrule
+Microcontroller & 45 \\
+Sensor Array & 120 \\
+LED Matrix & 200 \\
+Wireless Module & 80 \\
+Audio System & 150 \\
+\midrule
+Total & 595 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

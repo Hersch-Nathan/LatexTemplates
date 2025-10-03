@@ -1,0 +1,361 @@
+\documentclass[final]{designreport}
+
+% Bibliography file
+\addbibresource{references.bib}
+
+% Title page information
+\documentname{Preliminary Design Report}
+\teamname{Team [Number] - [Project Name]}
+\university{University Name}
+\department{Department Name}
+\course{Course Name}
+
+% Team members - add as many as needed
+\teammembers{%
+    \teammember{First Last}{email1@university.edu}
+    \teammember{First Last}{email2@university.edu}
+    \teammember{First Last}{email3@university.edu}
+    \teammember{First Last}{email4@university.edu}
+}
+
+% Class advisors
+\classadvisors{%
+    \advisor{Dr. Advisor Name}{advisor@university.edu}
+    \advisor{TA Name}{ta@university.edu}
+}
+
+% Sponsors (if applicable)
+\sponsors{%
+    \sponsor{Sponsor Name}{sponsor@company.com}
+}
+
+% Optional: Team logo
+% \teamlogo{path/to/logo.png}
+
+% Document metadata
+\title{Your Project Title Here}
+\author{Team [Number]}
+\reportdate{\today}
+
+\begin{document}
+
+% Generate title page
+\maketitle
+
+% Generate table of contents, list of figures, and list of tables
+\makefrontmatter
+
+% Abstract section
+\begin{abstract}
+This preliminary design report presents the initial design solution for [Project Name], an innovative [brief description]. The system incorporates [key technologies/approaches] to create [main functionality]. This report details our engineering requirements, functional decomposition, behavioral models, and project management plan based on feedback received from our initial proposal.
+
+[Brief summary of key findings, approach, and expected outcomes - typically 150-200 words]
+\end{abstract}
+
+% Comment and Response section
+\commentresponse
+The primary feedback from our initial proposal focused on [key areas of feedback]. In response, we have [specific changes made]. Additional concerns about [other areas] have been addressed through [solutions implemented].
+
+% Problem Statement
+\needsstatement
+[Describe the problem your project addresses. Explain why this problem is important and what current solutions are lacking.]
+
+\background
+[Provide context about existing solutions, technologies, and approaches. Discuss what has been tried before and why current solutions are insufficient.]
+
+\objective
+[Clearly state the project objectives. What will your system do? What are the key goals and success criteria?]
+
+% Requirements Specification
+\requirementsspec
+
+\marketingreqs
+\begin{itemize}
+    \item The system shall [requirement 1]
+    \item The system should [optional requirement 1]
+    \item The system shall [requirement 2]
+    \item The system should [optional requirement 2]
+\end{itemize}
+
+\objectivetree
+[Include a visual or textual breakdown of your main objective into sub-objectives. This helps show the logical structure of your project goals.]
+
+\engineeringreqs
+
+\begin{engineeringreq}{1}{Requirement Title}{Explanation of why this requirement is important}
+    \item Specific measurable criterion 1
+    \item Specific measurable criterion 2
+    \item Verification method description
+\end{engineeringreq}
+
+\begin{engineeringreq}{2}{Performance Requirement}{Justification for performance needs}
+    \item Performance metric with specific values
+    \item Testing methodology
+    \item Acceptance criteria
+\end{engineeringreq}
+
+\begin{engineeringreq}{3}{Safety Requirement}{Safety rationale and importance}
+    \item Safety standard compliance
+    \item Risk mitigation measures
+    \item Verification procedures
+\end{engineeringreq}
+
+\impactstatements
+
+\begin{impactstatement}{Standards}
+[Required - Discuss relevant standards (ASTM, IEEE, FCC, etc.) that apply to your project. Explain how you will ensure compliance and what testing/verification will be needed. Minimum 150 words.]
+\end{impactstatement}
+
+\begin{impactstatement}{Economic}
+[Discuss the economic implications of your project - development costs, potential market value, cost savings, economic benefits to users or society. Minimum 150 words.]
+\end{impactstatement}
+
+\begin{impactstatement}{Environmental}
+[Analyze environmental impacts - materials used, energy consumption, waste generation, sustainability considerations, end-of-life disposal. Minimum 150 words.]
+\end{impactstatement}
+
+\begin{impactstatement}{Health and Safety}
+[Examine health and safety considerations for users, developers, and society. Include risk assessment and mitigation strategies. Minimum 150 words.]
+\end{impactstatement}
+
+\begin{impactstatement}{Social}
+[Consider social implications - who benefits, potential for misuse, accessibility, cultural considerations. Minimum 150 words.]
+\end{impactstatement}
+
+% Design Section
+\designsection
+
+\designsummary
+[Provide a high-level overview of your design approach. What is your solution and how does it address the identified problems?]
+
+\functionaldecomp
+
+\subsection{Level 0: System Overview}
+[Describe the overall system function. What inputs does it take? What outputs does it produce? What is the main transformation or process?]
+
+% Uncomment when you have actual figures
+% \reportfigure[0.8\textwidth]{level0-diagram.png}{Level 0 Functional Block Diagram}
+
+\subsection{Level 1: Subsystem Breakdown}
+[Break down your system into major subsystems. Typically 3-7 major components.]
+
+\begin{itemize}
+    \item \textbf{Subsystem 1}: [Description and function]
+    \item \textbf{Subsystem 2}: [Description and function]  
+    \item \textbf{Subsystem 3}: [Description and function]
+    \item \textbf{Subsystem 4}: [Description and function]
+\end{itemize}
+
+\subsection{Level 2: Component Details}
+[Further break down each subsystem into specific components, modules, or parts.]
+
+\textbf{Subsystem 1 Components:}
+\begin{itemize}
+    \item Component A: [Specifications]
+    \item Component B: [Specifications]
+\end{itemize}
+
+\textbf{Subsystem 2 Components:}
+\begin{itemize}
+    \item Component C: [Specifications]
+    \item Component D: [Specifications]
+\end{itemize}
+
+\behavioralmodels
+
+\subsection{Overall System Behavior}
+[Describe how your system behaves in different states or modes. What are the main operational modes?]
+
+\subsection{State Descriptions}
+[Detail the behavior in each operational state]
+
+\textbf{Initialization State:}
+\begin{itemize}
+    \item System startup procedures
+    \item Self-test operations
+    \item Calibration processes
+\end{itemize}
+
+\textbf{Normal Operation State:}
+\begin{itemize}
+    \item Primary functions
+    \item User interactions
+    \item Data processing
+\end{itemize}
+
+\textbf{Error/Emergency State:}
+\begin{itemize}
+    \item Error detection
+    \item Recovery procedures
+    \item Safe shutdown processes
+\end{itemize}
+
+% Project Plan
+\projectplan
+
+\workbreakdown
+
+\begin{subproject}{Hardware Development}{Lead Name}
+    \item PCB design and schematic creation
+    \item Component selection and procurement
+    \item Prototype assembly and testing
+    \item Hardware validation and verification
+\end{subproject}
+
+\begin{subproject}{Software Development}{Lead Name}
+    \item Algorithm development and implementation
+    \item User interface design
+    \item Testing framework creation
+    \item Integration with hardware systems
+\end{subproject}
+
+\begin{subproject}{System Integration}{Lead Name}
+    \item Hardware-software integration
+    \item System-level testing
+    \item Performance optimization
+    \item Documentation and user guides
+\end{subproject}
+
+\begin{subproject}{Validation and Testing}{Lead Name}
+    \item Test plan development
+    \item Requirement verification testing
+    \item User acceptance testing
+    \item Final system validation
+\end{subproject}
+
+\ganttchart
+[Create a visual timeline of your project. You can include this as a figure or describe the timeline textually.]
+
+The project timeline spans [number] weeks with [number] major phases:
+
+\begin{enumerate}
+    \item \textbf{Phase 1 (Weeks 1-X):} [Phase description and deliverables]
+    \item \textbf{Phase 2 (Weeks X-Y):} [Phase description and deliverables]
+    \item \textbf{Phase 3 (Weeks Y-Z):} [Phase description and deliverables]
+    \item \textbf{Phase 4 (Weeks Z-End):} [Phase description and deliverables]
+\end{enumerate}
+
+Critical path activities include [list key dependencies and timeline-critical tasks].
+
+\costanalysis
+
+\begin{table}[htbp]
+\centering
+\caption{Project Cost Breakdown}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Category & Estimated Cost & Actual Cost \\
+\midrule
+Electronic Components & \$XXX & \$XXX \\
+Mechanical Parts & \$XXX & \$XXX \\
+Software/Licenses & \$XXX & \$XXX \\
+Testing Equipment & \$XXX & \$XXX \\
+Miscellaneous & \$XXX & \$XXX \\
+\midrule
+Total & \$XXX & \$XXX \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+[Include explanation of cost estimates, any cost-saving measures, and budget management strategy.]
+
+% Optional: Implementation Examples Section
+\section{Implementation Examples}
+
+\subsection{Algorithm Development}
+
+\begin{reportpython}[caption={Core Algorithm Implementation}]
+# Example Python code for your project
+class SystemController:
+    def __init__(self):
+        self.state = "idle"
+        self.parameters = {}
+    
+    def process_input(self, data):
+        # Main processing logic
+        if self.validate_input(data):
+            result = self.core_algorithm(data)
+            return self.format_output(result)
+        else:
+            return self.handle_error("Invalid input")
+    
+    def core_algorithm(self, data):
+        # Your algorithm implementation here
+        return processed_data
+\end{reportpython}
+
+\subsection{Hardware Interface}
+
+\begin{reportmatlab}[caption={Signal Processing Functions}]
+function processed_signal = filter_data(raw_data, sampling_freq)
+    % Design filter parameters
+    cutoff_freq = 50; % Hz
+    filter_order = 4;
+    
+    % Create Butterworth filter
+    [b, a] = butter(filter_order, cutoff_freq/(sampling_freq/2), 'low');
+    
+    % Apply filter
+    processed_signal = filtfilt(b, a, raw_data);
+    
+    % Additional processing
+    processed_signal = remove_offset(processed_signal);
+end
+\end{reportmatlab}
+
+\subsection{System Configuration}
+
+\begin{reportterminal}[caption={Development Environment Setup}]
+$ git clone https://github.com/yourteam/project-repo.git
+$ cd project-repo
+$ pip install -r requirements.txt
+$ python setup.py install
+Installing dependencies...
+Setup complete!
+$ python main.py --test
+Running system tests...
+All tests passed successfully!
+\end{reportterminal}
+
+% Conclusion
+\conclusionoutlook
+[Summarize the current state of your project, key achievements so far, and what you expect to accomplish in the remaining project timeline. Discuss any risks or challenges you've identified and how you plan to address them.]
+
+The preliminary design presented in this report demonstrates [summary of approach]. Our engineering requirements provide [what they accomplish], while the functional decomposition ensures [what it ensures]. The project plan establishes [what it establishes].
+
+Moving forward, the next phase will focus on [next steps]. Key milestones include [important milestones with dates]. Risk mitigation strategies have been developed for [key risks].
+
+The team is confident that this design approach will result in [expected outcomes].
+
+% References - will be automatically formatted in IEEE style
+\printbibliography
+
+% Appendix - add supplementary materials
+\makeappendix
+
+\subsection{Additional Technical Specifications}
+
+\subsubsection{Detailed Component Specifications}
+[Include detailed specs, datasheets, calculations, or other supporting technical information]
+
+\subsubsection{Risk Analysis}
+[Detailed risk assessment with mitigation strategies]
+
+\begin{table}[htbp]
+\centering
+\caption{Risk Assessment Matrix}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Risk & Probability & Impact & Mitigation \\
+\midrule
+Component shortage & Medium & High & Multiple suppliers \\
+Schedule delays & Low & Medium & Buffer time included \\
+Technical challenges & Medium & Medium & Prototype early \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{Compliance Documentation}
+[Any additional compliance or regulatory information]
+
+\end{document}
