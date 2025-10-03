@@ -386,8 +386,6 @@
 %% PREDEFINED SECTIONS FOR DESIGN REPORTS
 %% ============================================================================
 
-% ...existing code...
-
 % Comment and Response section
 \newcommand{\commentresponse}{%
     \section{Comment and Response}
@@ -508,6 +506,19 @@
     \end{itemize}
     \par\vspace{1em}
 }
+
+% Appendices with lettered sections
+\renewcommand{\appendix}{%
+    \par\newpage
+    \setcounter{section}{0}% Reset section counter
+    \renewcommand{\thesection}{\Alph{section}}% Lettered sections
+    \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}% Subsections as A.1, A.2, etc.
+    \renewcommand{\section}{\clearpage\secdef\@appendix\@sappendix}% Clear page before each appendix
+}
+
+% Internal commands for appendix formatting
+\newcommand{\@appendix}[2][default]{\refstepcounter{section}\addcontentsline{toc}{section}{Appendix~\thesection: #1}\sectionmark{#1}\noindent\textbf{Appendix~\thesection: #1}\par\vspace{1em}#2}
+\newcommand{\@sappendix}[1]{\@appendix[default]{#1}}
 
 %% ============================================================================
 %% HELPER COMMANDS
