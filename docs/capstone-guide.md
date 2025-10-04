@@ -2,6 +2,28 @@
 
 The `capstone_report` class standardizes weekly/biweekly individual progress reports with consistent headers, sections, figures, and code listings.
 
+**Location**: `templates/capstone_report.cls`  
+**Template**: `templates/capstone_template.tex`  
+**Full Example**: `examples/capstonereporttest.tex`
+
+## Class Overview
+
+The capstone report class provides:
+- Automatic headers with report metadata
+- Standardized section commands
+- Code environments (Python, MATLAB, C++, terminal)
+- Figure support with customizable abbreviations
+- Consistent formatting with 1-inch margins
+- Page headers/footers with report info and page numbers
+- Optional course line in header
+
+**Class Options**:
+- `weekly` / `biweekly` (default: biweekly)
+- `uppercase` / `titlecase` (default: titlecase) — controls section heading style
+- `figabbrev` — use "Fig." instead of "Figure" in references
+
+**Required Packages**: geometry, xparse, environ, graphicx, xcolor, listings, fancyhdr, hyperref, titlesec, enumitem, lastpage
+
 ## Quick start
 
 ```latex

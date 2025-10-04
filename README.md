@@ -9,19 +9,45 @@ Three LaTeX classes for academic and professional work:
 ## Table of Contents
 
 - [Overview](#overview)
+- [Repository Structure](#repository-structure)
 - [Quick Start](#quick-start)
 - [Guides](#guides)
-- [Examples](#examples)
-- [Repo Files](#repo-files)
-- [Adding a New Class](#adding-a-new-class)
+- [Building Documents](#building-documents)
+- [Contributing](#contributing)
 
 ## Overview
 
-This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions and consistent capstone progress reports. The homework class includes preloaded tikz and blox packages for creating block diagrams, extensive math alignment shortcuts for comparison operators (=, >, <, ≥, ≤, ≠, ≈, etc.), and boxed example environments.
+This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions, consistent capstone progress reports, and professional design documents. The homework class includes preloaded tikz and blox packages for creating block diagrams, extensive math alignment shortcuts for comparison operators (=, >, <, ≥, ≤, ≠, ≈, etc.), and boxed example environments.
+
+## Repository Structure
+
+```
+LatexTemplates/
+├── docs/               # Documentation for each class
+│   ├── homework-guide.md
+│   ├── capstone-guide.md
+│   ├── designreport-guide.md
+│   └── examples.md
+├── templates/          # LaTeX class files and starter templates
+│   ├── homework.cls
+│   ├── homework_template.tex
+│   ├── capstone_report.cls
+│   ├── capstone_template.tex
+│   ├── designreport.cls
+│   └── designreport_template.tex
+├── examples/           # Full working examples and test files
+│   ├── homeworktest.tex
+│   ├── capstonereporttest.tex
+│   ├── designreporttest.tex
+│   ├── create_diagram.tex
+│   └── references.bib
+└── figures/            # Place your figures here for design reports
+```
 
 ## Quick Start
 
-Homework (uses implemented commands):
+### Homework
+
 ```latex
 \documentclass{homework}
 \begin{document}
@@ -31,7 +57,8 @@ Homework (uses implemented commands):
 \end{document}
 ```
 
-Capstone report:
+### Capstone Report
+
 ```latex
 \documentclass[titlecase]{capstone_report}
 \begin{document}
@@ -43,7 +70,8 @@ Capstone report:
 \end{document}
 ```
 
-Design report (PDR):
+### Design Report (PDR)
+
 ```latex
 \documentclass[final]{designreport}
 \addbibresource{references.bib}
@@ -60,44 +88,51 @@ Design report (PDR):
 
 ## Guides
 
-- Homework: see [docs/homework-guide.md](docs/homework-guide.md)
-- Capstone report: see [docs/capstone-guide.md](docs/capstone-guide.md)
-- Design report: see [docs/designreport-guide.md](docs/designreport-guide.md)
+Comprehensive documentation for each class:
 
-## Examples
+- **Homework**: [docs/homework-guide.md](docs/homework-guide.md) — Complete reference for all homework class commands and environments
+- **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
+- **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
+- **Examples**: [docs/examples.md](docs/examples.md) — Usage patterns and code snippets
 
-- Usage patterns and snippets: [docs/examples.md](docs/examples.md)
-- Starter templates in repo root: `homework_template.tex`, `capstone_template.tex`, `designreport_template.tex`
-- Full demos: `homeworktest.tex`, `capstonereporttest.tex`, `designreport.tex`
+## Building Documents
 
-## Build
+To use these templates in your own documents:
 
-To compile any `.tex` file in this repo:
-
-```bash
-latexmk -pdf filename.tex
-```
-
-For continuous compilation (rebuilds on file changes):
+1. **Copy the class file** from `templates/` to your project directory
+2. **Copy the template** (e.g., `homework_template.tex`) as a starting point
+3. **For design reports**: Place figures in a `figures/` subdirectory
+4. **Compile with LaTeX**:
 
 ```bash
-latexmk -pdf -pvc filename.tex
+# Basic compilation
+pdflatex yourdocument.tex
+
+# Using latexmk (recommended)
+latexmk -pdf yourdocument.tex
+
+# Continuous compilation (rebuilds on file changes)
+latexmk -pdf -pvc yourdocument.tex
+
+# With bibliography (for design reports)
+latexmk -pdf yourdocument.tex
 ```
 
-Clean build artifacts:
+To clean build artifacts:
 
 ```bash
 latexmk -c
 ```
 
-## Repo Files
+## Contributing
 
-- `homework.cls` — Homework class
-- `capstone_report.cls` — Capstone report class  
-- `designreport.cls` — Design report class
-- Templates and example .tex files
+Contributions welcome! When adding features:
 
-Contributions welcome. Please update docs alongside any changes.
+1. Update the relevant class file in `templates/`
+2. Update the corresponding guide in `docs/`
+3. Add examples to `examples/` if demonstrating new features
+4. Test compilation to ensure everything works
+5. Update this README if adding new classes or major features
 
 ## Adding a New Class
 

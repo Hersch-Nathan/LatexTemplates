@@ -1,8 +1,14 @@
 # Design Report Class Guide
 
+**Location**: `templates/designreport.cls`  
+**Template**: `templates/designreport_template.tex`  
+**Full Example**: `examples/designreporttest.tex`
+
 ## Overview
 
 The `designreport.cls` is a comprehensive LaTeX class designed for creating professional design reports, particularly Preliminary Design Reports (PDR) for engineering and design projects. This class provides a structured framework that meets academic and industry standards while maintaining flexibility for various project types.
+
+**Important**: Place all figures in a `figures/` subdirectory. The class automatically prepends `figures/` to image paths.
 
 ## Features
 
@@ -10,22 +16,25 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
 - Professional title page with team information
 - Automatic table of contents, list of figures, and list of tables generation
 - Custom headers and footers with team branding
-- IEEE-style bibliography integration
+- IEEE-style bibliography integration (biber/biblatex)
 - Times New Roman typography (12pt headings, 11pt body text)
 - Proper spacing (1.5 between paragraphs, single line spacing)
+- Automatic figure path management (figures/ folder)
 
 ### 📝 **Specialized Environments**
 - Engineering Requirements with rationale and verification
 - Impact Statement sections
 - Sub-project management sections
-- Code environments (Python, MATLAB, Terminal)
+- Code environments (Python, MATLAB, C++, Terminal)
 - Figure insertion helpers
 
 ### 🔧 **Class Options**
-- `draft` / `final`: Draft mode with watermarks and overfull box highlighting
-- `twocolumn` / `onecolumn`: Layout options
+- `draft` / `final` (default: final): Draft mode with watermarks and overfull box highlighting
+- `twocolumn` / `onecolumn` (default: onecolumn): Layout options
 - `linenumbers`: Add line numbers for review
 - `figabbrev`: Use "Fig." instead of "Figure" in references
+
+**Required Packages**: geometry, xparse, environ, graphicx, xcolor, amsmath, listings, fancyhdr, caption, hyperref, tocloft, biblatex (IEEE style), titlesec, setspace, array, booktabs, multirow, multicol, mathptmx (Times fonts)
 
 ## Quick Start
 
