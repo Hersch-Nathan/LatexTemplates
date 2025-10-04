@@ -1,10 +1,10 @@
 # LaTeX Templates: Academic and Professional Classes
 
-Three LaTeX classes for academic and professional work:
+This repository provides three robust LaTeX classes for academic and professional writing:
 
-- `homework.cls` — Feature-rich homework class (problems, sub-problems, aligned math with comparison operators, example boxes, code blocks, terminal output, graphics, block diagrams, appendices).
-- `capstone_report.cls` — Weekly/biweekly capstone progress reports with consistent headers, sections, figures, and listings.
-- `designreport.cls` — Professional design reports with comprehensive PDR support (title pages, engineering requirements, impact statements, code environments, project management sections).
+- **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering, aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
+- **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
+- **`designreport.cls`** — Professional design reports (PDR): title pages, engineering requirements, impact statements, code environments, project management, and more.
 
 ## Table of Contents
 
@@ -14,10 +14,11 @@ Three LaTeX classes for academic and professional work:
 - [Guides](#guides)
 - [Building Documents](#building-documents)
 - [Contributing](#contributing)
+- [Troubleshooting](#troubleshooting)
 
 ## Overview
 
-This repository provides polished LaTeX classes and minimal templates to help you write clean homework solutions, consistent capstone progress reports, and professional design documents. The homework class includes preloaded tikz and blox packages for creating block diagrams, extensive math alignment shortcuts for comparison operators (=, >, <, ≥, ≤, ≠, ≈, etc.), and boxed example environments.
+These LaTeX classes and templates help you write clean homework solutions, consistent capstone progress reports, and professional design documents. The homework class includes preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
 
 ## Repository Structure
 
@@ -136,30 +137,36 @@ Contributions welcome! When adding features:
 
 ## Adding a New Class
 
-If you want to add another LaTeX class (for example, a lab report class), follow this pattern so the repo stays consistent and discoverable.
+If you want to add another LaTeX class (for example, a lab report class), follow this pattern so the repo stays consistent and discoverable:
 
-1) Create the class file
-- Add a `your_class_name.cls` at the repo root.
-- Include metadata with `\ProvidesClass{your_class_name}[YYYY/MM/DD vX.Y Description]`.
-- Implement user-facing commands with `xparse` (e.g., `\NewDocumentCommand{...}{...}{...}`) and keep options documented in comments.
+1. **Create the class file**
+   - Add a `your_class_name.cls` at the repo root.
+   - Include metadata with `\ProvidesClass{your_class_name}[YYYY/MM/DD vX.Y Description]`.
+   - Implement user-facing commands with `xparse` (e.g., `\NewDocumentCommand{...}{...}{...}`) and keep options documented in comments.
+2. **Provide docs in `docs/`**
+   - Create `docs/your-class-guide.md` with:
+     - Quick Start snippet (`\documentclass{your_class_name}` … minimal compile-able example)
+     - Options and defaults (e.g., `uppercase|titlecase`)
+     - Public commands and environments (syntax, purpose, short examples)
+     - Figures/listings helpers if any
+     - Troubleshooting section for common LaTeX errors
+3. **Add templates and tests at the repo root**
+   - Minimal template: `your_class_template.tex` showing only the essential flow (metadata + a couple of sections/environments).
+   - Full demo: `yourclasstest.tex` that exercises all features (sections, figures, code listings, special options). Keep it compile-ready.
+4. **Update README and examples**
+   - Add a bullet in README under “Repo Files” for the new class.
+   - Link the guide from the README “Guides” section.
+   - Optionally add a snippet in `docs/examples.md` if there’s reusable patterns.
+5. **Keep docs in sync**
+   - When you change public behavior in the class, update both `docs/your-class-guide.md` and the template/test files in the same PR.
+   - Run a quick compile to ensure templates/demos still build cleanly.
 
-2) Provide docs in `docs/`
-- Create `docs/your-class-guide.md` with:
-	- Quick Start snippet (`\documentclass{your_class_name}` … minimal compile-able example)
-	- Options and defaults (e.g., `uppercase|titlecase`)
-	- Public commands and environments (syntax, purpose, short examples)
-	- Figures/listings helpers if any
-	- Troubleshooting section for common LaTeX errors
+## Troubleshooting
 
-3) Add templates and tests at the repo root
-- Minimal template: `your_class_template.tex` showing only the essential flow (metadata + a couple of sections/environments).
-- Full demo: `yourclasstest.tex` that exercises all features (sections, figures, code listings, special options). Keep it compile-ready.
+If you encounter issues:
 
-4) Update README and examples
-- Add a bullet in README under “Repo Files” for the new class.
-- Link the guide from the README “Guides” section.
-- Optionally add a snippet in `docs/examples.md` if there’s reusable patterns.
-
-5) Keep docs in sync
-- When you change public behavior in the class, update both `docs/your-class-guide.md` and the template/test files in the same PR.
-- Run a quick compile to ensure templates/demos still build cleanly.
+- Ensure all required LaTeX packages are installed (see each guide for details)
+- For bibliography issues, check `.bib` file paths and run `biber` if needed
+- For figure errors, confirm file paths and extensions
+- Run `pdflatex` twice for cross-references
+- See each class guide for more troubleshooting tips

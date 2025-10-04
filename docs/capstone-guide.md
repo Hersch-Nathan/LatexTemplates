@@ -24,7 +24,9 @@ The capstone report class provides:
 
 **Required Packages**: geometry, xparse, environ, graphicx, xcolor, listings, fancyhdr, hyperref, titlesec, enumitem, lastpage
 
-## Quick start
+## Quick Start
+
+### Basic Document Structure
 
 ```latex
 \documentclass[titlecase]{capstone_report}
@@ -48,10 +50,15 @@ The capstone report class provides:
 \end{document}
 ```
 
-- Options: `weekly`/`biweekly` (default biweekly), `uppercase`/`titlecase` (default titlecase), `figabbrev` (use Fig. instead of Figure)
-- Use `\progressreport` once, then `\makeheader` to render the top matter.
+### Options
 
-## Standard sections
+- `weekly`/`biweekly` (default biweekly)
+- `uppercase`/`titlecase` (default titlecase)
+- `figabbrev` (use Fig. instead of Figure)
+
+Use `\progressreport` once, then `\makeheader` to render the top matter.
+
+## Standard Sections
 
 Use section helpers to keep structure consistent:
 - `\reportIntroduction`
@@ -107,7 +114,7 @@ Create an appendix with a title using:
 
 Note: Appendices are not auto-lettered in the current class; the heading is “Appendix: <Title>”. If you need lettered appendices (A, B, C...), add lettering manually in titles or use a counter in the class.
 
-## Code listings
+## Code Listings
 
 Environments powered by `listings` with sensible defaults:
 
@@ -123,12 +130,52 @@ print(np.mean([1,2,3]))
 \end{reportpython}
 ```
 
-## Headers/footers & metadata
+## Headers/Footers & Metadata
 
 - Header shows report number and period; footer shows "Page X of Y".
 - Hyperlinks are enabled via `hyperref` and PDF metadata is set from `\progressreport`.
 
-## Example files
+## Example Files
 
 - `capstone_template.tex` — Minimal starter
 - `capstonereporttest.tex` — Full, compile-ready demo
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Missing Bibliography**: Ensure `.bib` file exists and `\addbibresource{}` is called
+2. **Figure Not Found**: Check file paths and extensions
+3. **Cross-references**: Run pdflatex twice for proper references
+4. **Font Issues**: Ensure Times fonts are installed
+
+### Class Options Conflicts
+
+- Use only one layout option: `onecolumn` OR `twocolumn`
+- Use only one mode: `draft` OR `final`
+
+## Best Practices
+
+### Organization
+- Use consistent section ordering
+- Include all required sections
+- Maintain professional formatting
+
+### Content
+- Write clear, concise requirements
+- Include proper verification methods
+- Use professional language throughout
+
+### Technical
+- Keep figures at appropriate resolution
+- Use vector graphics when possible
+- Maintain consistent naming conventions
+
+## Support
+
+For additional help:
+- Check existing template files in the repository
+- Review the class source code for advanced customization
+- Consult LaTeX documentation for standard commands
+
+The `capstone_report.cls` provides a solid foundation for professional progress reports while maintaining the flexibility needed for diverse project requirements.
