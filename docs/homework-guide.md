@@ -2,7 +2,7 @@
 
 The `homework` class extends `article` with commands and environments for clean, consistent homework writeups: headers, problems/sub-problems, aligned math, code listings, notes, graphics, and appendices.
 
-**Location**: `templates/homework.cls`  
+**Location**: `homework.cls` (root directory)  
 **Template**: `templates/homework_template.tex`  
 **Full Example**: `examples/homeworktest.tex`
 

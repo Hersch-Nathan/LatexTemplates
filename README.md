@@ -28,12 +28,9 @@ LatexTemplates/
 │   ├── capstone-guide.md
 │   ├── designreport-guide.md
 │   └── examples.md
-├── templates/          # LaTeX class files and starter templates
-│   ├── homework.cls
+├── templates/          # Starter templates
 │   ├── homework_template.tex
-│   ├── capstone_report.cls
 │   ├── capstone_template.tex
-│   ├── designreport.cls
 │   └── designreport_template.tex
 ├── examples/           # Full working examples and test files
 │   ├── homeworktest.tex
@@ -41,7 +38,10 @@ LatexTemplates/
 │   ├── designreporttest.tex
 │   ├── create_diagram.tex
 │   └── references.bib
-└── figures/            # Place your figures here for design reports
+├── figures/            # Place your figures here for design reports
+├── homework.cls        # Homework LaTeX class
+├── capstone_report.cls # Capstone report LaTeX class
+└── designreport.cls    # Design report LaTeX class
 ```
 
 ## Quick Start
@@ -99,8 +99,8 @@ Comprehensive documentation for each class:
 
 To use these templates in your own documents:
 
-1. **Copy the class file** from `templates/` to your project directory
-2. **Copy the template** (e.g., `homework_template.tex`) as a starting point
+1. **Copy the class file** (e.g., `homework.cls`) to your project directory
+2. **Copy a starter template** from `templates/` (e.g., `homework_template.tex`) as a starting point
 3. **For design reports**: Place figures in a `figures/` subdirectory
 4. **Compile with LaTeX**:
 
@@ -128,7 +128,7 @@ latexmk -c
 
 Contributions welcome! When adding features:
 
-1. Update the relevant class file in `templates/`
+1. Update the relevant class file in the root directory
 2. Update the corresponding guide in `docs/`
 3. Add examples to `examples/` if demonstrating new features
 4. Test compilation to ensure everything works
