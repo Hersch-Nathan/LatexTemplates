@@ -20,7 +20,7 @@ The homework class provides:
 
 **Required Packages**: amsmath, listings, xparse, geometry, fix-cm, environ, xcolor, graphicx, tikz, blox, tcolorbox
 
-## Quick start
+## Quick Start
 
 ```latex
 \documentclass{homework}
@@ -37,7 +37,7 @@ Write your solution here.
 - Header: `\hwheader{Course}{AssignmentNumber}{Date}{Student Name}`
 - Problems auto-number; add a title with `\problem{Title}` or custom label `\problem[2.5]{Title}`
 
-## Problems and sub-problems
+## Problems and Sub-problems
 
 - Problem: `\problem{Problem title}` or `\problem[custom]{Problem title}` (title is optional)
 - Sub-problem label: `\subproblem` or `\subproblem[iii]` (label only) — write the part statement as normal text after the macro
@@ -55,7 +55,7 @@ Evaluate at x=2
 Discuss stability
 ```
 
-## Math environments
+## Math Environments
 
 Use the provided math environments to align at equals signs and comparison operators. Inside them, you can use alignment shortcuts:
 
@@ -92,7 +92,7 @@ f(x) \gt 0 \text{ for all } x \gt -1
 \end{hwmathnumbered}
 ```
 
-## Code listings
+## Code Listings
 
 These are wrappers over `listings` with sensible defaults. Pass any `listings` options via `[]`.
 
@@ -118,7 +118,7 @@ Collecting control
 \end{hwterminal}
 ```
 
-## Notes and highlights
+## Notes and Highlights
 
 Emphasize important points:
 ```latex
@@ -126,7 +126,7 @@ Emphasize important points:
 \note  % prints "NOTE"
 ```
 
-## Example boxes
+## Example Boxes
 
 Create highlighted example boxes with custom headers for important worked examples:
 
@@ -146,7 +146,7 @@ Solution: Using root locus design...
 
 The example environment creates a lightly shaded box with a bold header, perfect for highlighting worked examples, case studies, or important derivations.
 
-## Graphics helper
+## Graphics Helper
 
 Center images with optional title and scale.
 
@@ -405,41 +405,48 @@ Customize appearance using tikz styling:
 \bXBlocL{C}{PID}{B}
 \bXBlocL{D}{Plant}{C}
 \bXOutput[3]{E}{D}
-\bXLink[$u(s)$]{C}{D}
-\bXLink[$y(s)$]{D}{E}
-\bXReturn{D-E}{B}{Sensor}
+\bXLink[$u$]{C}{D}
+\bXLink[$y$]{D}{E}
+\bXReturn{D-E}{B}{$H(s)$}
 \end{hwblocks}
-```
-
-### Troubleshooting
-
-- **Order matters**: Create all nodes before linking them
-- **Node naming**: Use descriptive names for complex diagrams
-- **Spacing**: Default spacing is 2em between blocks; adjust with optional `[distance]` parameter
-- **Links not connecting**: Ensure both nodes exist before creating the link
-- **Complex diagrams**: Sketch with pen and paper first to plan node placement and connections
-- The environment automatically centers content with proper spacing (0.5em before and after)
-- All tikz and blox commands work inside `hwblocks` without additional package imports
-- Options in `[]` are passed directly to the underlying `tikzpicture` environment
-
-## Appendices
-
-Start auto-lettered appendices, optionally with a title:
-```latex
-\hwappendix
-Additional derivations...
-
-\hwappendix[Reference Tables]
-Useful constants and tables...
 ```
 
 ## Troubleshooting
 
-- Misplaced alignment tab character `&`: Only use `\eq` (which expands to `&=`) inside alignment-capable math environments like `hwmath`, `hwmathnumbered`, or `align`.
-- Code environment errors: Ensure you closed `\begin{...}`/`\end{...}` and used `hwmatlab`, `hwpython`, `hwterminal` (not `matlab`/`python`/`terminal`).
-- Spacing: Avoid manual `\vspace`; the class manages spacing around sections and math.
+### Common Issues
 
-## Files to explore
+1. **Missing Packages**: Ensure all required LaTeX packages are installed.
+2. **Figure Not Found**: Check file paths and extensions.
+3. **Cross-references**: Run pdflatex twice for proper references.
+4. **Font Issues**: Ensure Times fonts are installed.
 
-- `homework_template.tex` — Minimal starter
-- `homeworktest.tex` — Full feature demo
+### Class Options Conflicts
+
+- Use only one layout option: `onecolumn` OR `twocolumn`
+- Use only one mode: `draft` OR `final`
+
+## Best Practices
+
+### Organization
+- Use consistent section ordering.
+- Include all required sections.
+- Maintain professional formatting.
+
+### Content
+- Write clear, concise problem statements.
+- Include proper derivations and solutions.
+- Use professional language throughout.
+
+### Technical
+- Keep figures at appropriate resolution.
+- Use vector graphics when possible.
+- Maintain consistent naming conventions.
+
+## Support
+
+For additional help:
+- Check existing template files in the repository.
+- Review the class source code for advanced customization.
+- Consult LaTeX documentation for standard commands.
+
+The `homework.cls` provides a solid foundation for professional homework submissions while maintaining the flexibility needed for diverse academic requirements.

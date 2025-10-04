@@ -15,13 +15,13 @@ This page links to working examples and shows common patterns for all three clas
   - `designreporttest.tex` — Complete feature demonstration for design reports
   - `create_diagram.tex` — Block diagram examples
 
-## Homework examples
+## Homework Examples
 
 Starter template: `templates/homework_template.tex`
 
 Full feature demo: `examples/homeworktest.tex`
 
-### Problem sets with math
+### Problem Sets with Math
 ```latex
 \problem{Analyze the system}
 \begin{hwmath}
@@ -32,7 +32,7 @@ f(x) \ggt 0 \text{ for all } x
 \end{hwmath}
 ```
 
-### Example boxes
+### Example Boxes
 ```latex
 \begin{example}{Example 3-2: Frequency Analysis}
 For $H(s) = \frac{1}{s+1}$, find the magnitude at $\omega = 1$:
@@ -40,7 +40,7 @@ $$|H(j1)| = \frac{1}{\sqrt{2}} \approx 0.707$$
 \end{example}
 ```
 
-### Code blocks
+### Code Blocks
 ```latex
 \begin{hwpython}[caption=Computation]
 import numpy as np
@@ -48,7 +48,7 @@ x = np.linspace(0,1,5)
 \end{hwpython}
 ```
 
-### Terminal output
+### Terminal Output
 ```latex
 \begin{hwterminal}[caption=Solver Output]
 $ python solve.py
@@ -56,44 +56,23 @@ Converged in 12 iterations
 \end{hwterminal}
 ```
 
-### Block diagrams
+### Block Diagrams
 
-Simple feedback system:
 ```latex
-\begin{hwblocks}[scale=0.8]
-\bXInput[r]{A} 
-\bXComp{B}{A}
-\bXBlocL{C}{$G_c(s)$}{B}
-\bXBlocL{D}{$G_p(s)$}{C}
-\bXOutput[3]{E}{D}
-\bXLink[$r$]{A}{B}
-\bXLink[$u$]{C}{D}
-\bXLink[$y$]{D}{E}
-\bXReturn{D-E}{B}{$H(s)$}
+\begin{hwblocks}
+\node (a) at (0,0) {A}; 
+\node (b) at (2,0) {B}; 
+\draw[->] (a)--(b);
 \end{hwblocks}
 ```
 
-Complex multi-input system with branches:
-```latex
-\begin{hwblocks}[scale=0.7]
-\bXInput[r]{A}
-\bXCompSum{B}{A}{+}{-}{+}{}
-\bXChain[1.5]{B}{C/$G_1(s)$,D/$G_2(s)$}
-\bXOutput{E}{D}
-\bXReturn{D-E}{B}{}
-\bXBranchy[-3]{A}{F}
-\bXBlocL{G}{Disturbance}{F}
-\bXLinkyx{G}{C}
-\end{hwblocks}
-```
-
-## Capstone report examples
+## Capstone Report Examples
 
 Starter template: `capstone_template.tex`
 
 Full demo: `capstonereporttest.tex`
 
-### Section flow
+### Section Flow
 ```latex
 \reportIntroduction
 Provide a brief summary of the reporting period objectives.
@@ -113,9 +92,66 @@ List blockers and mitigation steps.
 See \figref{\ref{fig:arch}} for details.
 ```
 
+## Design Report Examples
+
+Starter template: `designreport_template.tex`
+
+Full demo: `designreporttest.tex`
+
+### Title Page Setup
+```latex
+\documentname{Preliminary Design Report}
+\teamname{Team 8 - PlayPal}
+\university{University of Kentucky}
+\department{Department of Electrical and Computer Engineering}
+\course{Senior Design}
+\teammembers{%
+    \teammember{John Smith}{john.smith@uky.edu}
+    \teammember{Jane Doe}{jane.doe@uky.edu}
+}
+```
+
+### Engineering Requirements
+```latex
+\begin{engineeringreq}{1}{Touch Response Time}{Children require immediate feedback}
+    \item Response time shall be less than 100ms
+    \item System shall detect 3 distinct pressure levels
+\end{engineeringreq}
+```
+
+### Impact Statements
+```latex
+\begin{impactstatement}{Economic}
+The economic impact extends beyond immediate development costs...
+\end{impactstatement}
+```
+
+### Sub-projects
+```latex
+\begin{subproject}{Hardware Development}{John Smith}
+    \item PCB design and fabrication
+    \item Sensor integration and testing
+    \item Hardware validation
+\end{subproject}
+```
+
 ## Tips
 
 - Keep problem statements concise; use sub-problems to break down tasks.
 - Prefer the provided math environments for aligned derivations.
 - Use captions on listings when you need to reference them in text.
 - For capstone reports, keep section order consistent week over week.
+- For design reports, ensure all required sections are included and properly formatted.
+
+## Troubleshooting
+
+- **Missing Figures**: Ensure all figure paths are correct and files are in the `figures/` directory.
+- **Bibliography Issues**: Ensure `.bib` file is included and `\addbibresource{}` is used.
+- **Compilation Errors**: Run `pdflatex` twice for proper cross-references.
+
+## Support
+
+For additional help:
+- Refer to the class-specific guides in the `docs/` directory.
+- Review the example files in the `examples/` directory.
+- Consult LaTeX documentation for advanced usage.

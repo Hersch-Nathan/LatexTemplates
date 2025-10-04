@@ -67,9 +67,6 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
     \sponsor{Industry Sponsor}{sponsor@company.com}
 }
 
-\title{Your Project Title}
-\author{Your Team}
-
 \begin{document}
 
 % Generate title page
@@ -256,10 +253,10 @@ As shown in \figref{fig:results}.
 \toprule
 Category & Estimated & Actual \\
 \midrule
-Components & \$450 & \$487 \\
-Fabrication & \$200 & \$195 \\
+Components & $450 & $487 \\
+Fabrication & $200 & $195 \\
 \midrule
-Total & \$650 & \$682 \\
+Total & $650 & $682 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -395,7 +392,9 @@ pdflatex document.tex
 % Title page setup
 \documentname{Preliminary Design Report}
 \teamname{Team 8 - PlayPal}
-% ... other setup commands
+\university{University of Kentucky}
+\department{Department of Electrical and Computer Engineering}
+\course{Senior Design}
 
 \begin{document}
 \maketitle
