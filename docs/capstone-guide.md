@@ -2,7 +2,7 @@
 
 The `capstone_report` class standardizes weekly/biweekly individual progress reports with consistent headers, sections, figures, and code listings.
 
-**Location**: `templates/capstone_report.cls`  
+**Location**: `capstone_report.cls` (root directory)  
 **Template**: `templates/capstone_template.tex`  
 **Full Example**: `examples/capstonereporttest.tex`
 

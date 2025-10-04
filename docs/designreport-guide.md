@@ -1,6 +1,6 @@
 # Design Report Class Guide
 
-**Location**: `templates/designreport.cls`  
+**Location**: `designreport.cls` (root directory)  
 **Template**: `templates/designreport_template.tex`  
 **Full Example**: `examples/designreporttest.tex`
 
