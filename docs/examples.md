@@ -1,12 +1,25 @@
 # Examples and Tutorials
 
-This page links to working examples and shows common patterns for both classes.
+This page links to working examples and shows common patterns for all three classes.
+
+## File Locations
+
+- **Templates**: Located in `templates/` directory
+  - `homework_template.tex` — Basic homework starter
+  - `capstone_template.tex` — Basic capstone report starter
+  - `designreport_template.tex` — Basic design report starter
+  
+- **Full Examples**: Located in `examples/` directory
+  - `homeworktest.tex` — Complete feature demonstration for homework class
+  - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
+  - `designreporttest.tex` — Complete feature demonstration for design reports
+  - `create_diagram.tex` — Block diagram examples
 
 ## Homework examples
 
-Starter template: `homework_template.tex`
+Starter template: `templates/homework_template.tex`
 
-Full feature demo: `homeworktest.tex`
+Full feature demo: `examples/homeworktest.tex`
 
 ### Problem sets with math
 ```latex

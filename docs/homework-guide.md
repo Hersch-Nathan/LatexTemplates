@@ -2,6 +2,24 @@
 
 The `homework` class extends `article` with commands and environments for clean, consistent homework writeups: headers, problems/sub-problems, aligned math, code listings, notes, graphics, and appendices.
 
+**Location**: `templates/homework.cls`  
+**Template**: `templates/homework_template.tex`  
+**Full Example**: `examples/homeworktest.tex`
+
+## Class Overview
+
+The homework class provides:
+- Automatic problem and sub-problem numbering
+- Math alignment shortcuts for equations
+- Code environments (Python, MATLAB, terminal)
+- Boxed example environments
+- Block diagram support with TikZ and Blox
+- Graphics insertion helpers
+- Appendix formatting
+- Compact margins and spacing optimized for homework
+
+**Required Packages**: amsmath, listings, xparse, geometry, fix-cm, environ, xcolor, graphicx, tikz, blox, tcolorbox
+
 ## Quick start
 
 ```latex
