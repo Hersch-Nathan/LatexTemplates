@@ -12,7 +12,7 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
 
 ## Features
 
-### 🎯 **Core Capabilities**
+### **Core Capabilities**
 - Professional title page with team information
 - Automatic table of contents, list of figures, and list of tables generation
 - Custom headers and footers with team branding
@@ -21,13 +21,13 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
 - Proper spacing (1.5 between paragraphs, single line spacing)
 - Automatic figure path management (figures/ folder)
 
-### 📝 **Specialized Environments**
+### **Specialized Environments**
 - Engineering Requirements with rationale and verification
 - Sub-project management sections
 - Code environments (Python, MATLAB, C++, Terminal)
 - Figure insertion helpers
 
-### 🔧 **Class Options**
+### **Class Options**
 - `draft` / `final` (default: final): Draft mode with watermarks and overfull box highlighting
 - `twocolumn` / `onecolumn` (default: onecolumn): Layout options
 - `linenumbers`: Add line numbers for review
