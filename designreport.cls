@@ -439,18 +439,20 @@
 %% SPECIALIZED ENVIRONMENTS
 %% ============================================================================
 
-% Engineering Requirements environment
-\newenvironment{engineeringreq}[3]{%
+% Engineering Requirements environment - Table format
+% Usage: \begin{engineeringreq}{ER Number}{Rationale}{MR(s)}{Verification}...\end{engineeringreq}
+\newenvironment{engineeringreq}[4]{%
     \par\vspace{1em}
-    \noindent\textbf{ER #1: #2}
-    \par\vspace{0.5em}
-    \noindent\textbf{Rationale:} #3
-    \par\vspace{0.5em}
-    \noindent\textbf{Verification:}
-    \begin{itemize}
+    \noindent
+    \begin{tabular}{|p{0.15\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.35\textwidth}|}
+    \hline
+    \textbf{ER Number} & \textbf{Rationale} & \textbf{MR(s)} & \textbf{Verification} \\
+    \hline
+    #1 & #2 & #3 & #4 \\
+    \hline
+    \end{tabular}
+    \par\vspace{1em}
 }{%
-    \end{itemize}
-    \par\vspace{1em}
 }
 
 % Sub-project environment
