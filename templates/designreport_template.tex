@@ -37,6 +37,32 @@
 \author{Team [Number]}
 \reportdate{\today}
 
+% Define section commands (optional - use these or create your own)
+\newcommand{\commentresponse}{%
+    \section{Comment and Response}
+    This section summarizes major instructor comments and changes made based on feedback.
+}
+\newcommand{\needsstatement}{%
+    \section{Problem Statement}
+    \subsection{Need}
+}
+\newcommand{\background}{\subsection{Background}}
+\newcommand{\objective}{\subsection{Objective}}
+\newcommand{\requirementsspec}{\section{Requirements Specification}}
+\newcommand{\marketingreqs}{\subsection{Marketing Requirements}}
+\newcommand{\objectivetree}{\subsection{Objective Tree}}
+\newcommand{\engineeringreqs}{\subsection{Engineering Requirements}}
+\newcommand{\impactstatements}{\subsection{Impact Statements}}
+\newcommand{\designsection}{\section{Design}}
+\newcommand{\designsummary}{\subsection{Design Summary}}
+\newcommand{\functionaldecomp}{\subsection{Functional Decomposition}}
+\newcommand{\behavioralmodels}{\subsection{Behavioral Models}}
+\newcommand{\projectplan}{\section{Project Plan}}
+\newcommand{\workbreakdown}{\subsection{Work Breakdown Structure (WBS)}}
+\newcommand{\ganttchart}{\subsection{Gantt Chart}}
+\newcommand{\costanalysis}{\subsection{Cost Analysis}}
+\newcommand{\conclusionoutlook}{\section{Conclusion/Outlook}}
+
 \begin{document}
 
 % Generate title page
@@ -99,6 +125,44 @@ The primary feedback from our initial proposal focused on [key areas of feedback
     \item Risk mitigation measures
     \item Verification procedures
 \end{engineeringreq}
+
+% Example table with improved formatting (recommended approach)
+\begin{table}[htbp]
+\centering
+\caption{Engineering Requirements Summary}
+% Use improved table formatting with proper spacing
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|c|p{4cm}|c|p{4cm}|}
+\hline
+ER\# & Engineering Requirement & MR & Justification \\
+\hline
+1 & [Requirement description] & 1 & [Why this requirement is important] \\
+\hline
+2 & [Performance specification] & 2 & [Performance justification] \\
+\hline
+3 & [Safety specification] & 3 & [Safety rationale] \\
+\hline
+\end{tabular}
+\end{table}
+
+% Example using professional table style with booktabs
+\begin{table}[htbp]
+\centering
+\caption{System Specifications}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{lcc}
+\toprule
+Parameter & Value & Units \\
+\midrule
+Operating Voltage & [X.X] & V \\
+Power Consumption & [X.X] & W \\
+Operating Temperature & [X to Y] & °C \\
+Response Time & [$<$ X] & ms \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \impactstatements
 
@@ -302,6 +366,33 @@ function processed_signal = filter_data(raw_data, sampling_freq)
     processed_signal = remove_offset(processed_signal);
 end
 \end{reportmatlab}
+
+\subsection{Software Implementation}
+
+\begin{reportpython}[caption={Data Processing Algorithm}]
+import numpy as np
+import matplotlib.pyplot as plt
+
+def process_sensor_data(raw_data, threshold=0.5):
+    """
+    Process sensor data with filtering and threshold detection
+    """
+    # Apply moving average filter
+    window_size = 5
+    filtered_data = np.convolve(raw_data, 
+                               np.ones(window_size)/window_size, 
+                               mode='valid')
+    
+    # Threshold detection
+    events = filtered_data > threshold
+    
+    return filtered_data, events
+
+# Example usage
+sensor_reading = np.random.rand(100)
+processed, events = process_sensor_data(sensor_reading)
+print(f"Detected {np.sum(events)} events")
+\end{reportpython}
 
 \subsection{System Configuration}
 
