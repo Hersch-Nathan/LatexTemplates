@@ -1,22 +1,24 @@
+# LaTeX auxiliary files
 *.aux
+*.bbl
+*.bcf
+*.blg
 *.fdb_latexmk
 *.fls
 *.log
+*.lof
+*.lot
+*.out
 *.run.xml
 *.synctex.gz
 *.synctex
-update.md
-*.out
 *.toc
-*.bbl
-*.blg
-*.bcf
-*.dvi
-*.lof
-*.lot
 *.nav
 *.snm
 *.vrb
-comments.md
-requirements.md
+*.dvi
+*.idx
+*.mst
+
+# Temporary files
 active_tasks.md

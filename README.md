@@ -4,7 +4,7 @@ This repository provides three robust LaTeX classes for academic and professiona
 
 - **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering, aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
 - **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
-- **`designreport.cls`** — Professional design reports (PDR): title pages, engineering requirements, impact statements, code environments, project management, and more.
+- **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
 
 ## Table of Contents
 
@@ -24,25 +24,30 @@ These LaTeX classes and templates help you write clean homework solutions, consi
 
 ```
 LatexTemplates/
-├── docs/               # Documentation for each class
+├── docs/                    # Documentation for each class
 │   ├── homework-guide.md
 │   ├── capstone-guide.md
 │   ├── designreport-guide.md
-│   └── examples.md
-├── templates/          # Starter templates
+│   ├── examples.md
+│   └── requirements/        # System requirements for each class
+│       ├── homework-requirements.md
+│       ├── capstone-requirements.md
+│       └── designreport-requirements.md
+├── templates/               # Starter templates
 │   ├── homework_template.tex
 │   ├── capstone_template.tex
 │   └── designreport_template.tex
-├── examples/           # Full working examples and test files
+├── examples/                # Full working examples and test files
 │   ├── homeworktest.tex
 │   ├── capstonereporttest.tex
 │   ├── designreporttest.tex
 │   ├── create_diagram.tex
 │   └── references.bib
-├── figures/            # Place your figures here for design reports
-├── homework.cls        # Homework LaTeX class
-├── capstone_report.cls # Capstone report LaTeX class
-└── designreport.cls    # Design report LaTeX class
+├── figures/                 # Place your figures here for design reports
+├── homework.cls             # Homework LaTeX class
+├── capstone_report.cls      # Capstone report LaTeX class
+├── designreport.cls         # Design report LaTeX class
+└── .gitignore              # Excludes LaTeX auxiliary files
 ```
 
 ## Quick Start
@@ -95,6 +100,7 @@ Comprehensive documentation for each class:
 - **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
 - **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
 - **Examples**: [docs/examples.md](docs/examples.md) — Usage patterns and code snippets
+- **Requirements**: [docs/requirements/](docs/requirements/) — System requirements, package dependencies, and compatibility information for each class
 
 ## Building Documents
 
