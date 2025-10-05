@@ -128,11 +128,138 @@ The economic impact extends beyond immediate development costs...
 
 ### Sub-projects
 ```latex
-\begin{subproject}{Hardware Development}{John Smith}
+\begin{subproject}{Hardware Development}{Team Member Name}
     \item PCB design and fabrication
     \item Sensor integration and testing
     \item Hardware validation
 \end{subproject}
+```
+
+### Predefined Section Commands (Optional)
+
+The following commands can be added to your document preamble to create consistent section structures. These are examples that should be customized for your specific project:
+
+```latex
+% Comment and Response section
+\newcommand{\commentresponse}{%
+    \section{Comment and Response}
+    This section summarizes major instructor comments and changes made based on feedback.
+}
+
+% Problem Statement sections
+\newcommand{\needsstatement}{%
+    \section{Problem Statement}
+    \subsection{Need}
+}
+
+\newcommand{\background}{%
+    \subsection{Background}
+}
+
+\newcommand{\objective}{%
+    \subsection{Objective}
+}
+
+% Requirements sections
+\newcommand{\requirementsspec}{%
+    \section{Requirements Specification}
+}
+
+\newcommand{\marketingreqs}{%
+    \subsection{Marketing Requirements}
+}
+
+\newcommand{\objectivetree}{%
+    \subsection{Objective Tree}
+}
+
+\newcommand{\engineeringreqs}{%
+    \subsection{Engineering Requirements}
+}
+
+\newcommand{\impactstatements}{%
+    \subsection{Impact Statements}
+}
+
+% Design sections
+\newcommand{\designsection}{%
+    \section{Design}
+}
+
+\newcommand{\designsummary}{%
+    \subsection{Design Summary}
+}
+
+\newcommand{\functionaldecomp}{%
+    \subsection{Functional Decomposition}
+}
+
+\newcommand{\behavioralmodels}{%
+    \subsection{Behavioral Models}
+}
+
+% Project Plan sections
+\newcommand{\projectplan}{%
+    \section{Project Plan}
+}
+
+\newcommand{\workbreakdown}{%
+    \subsection{Work Breakdown Structure (WBS)}
+}
+
+\newcommand{\ganttchart}{%
+    \subsection{Gantt Chart}
+}
+
+\newcommand{\costanalysis}{%
+    \subsection{Cost Analysis}
+}
+
+% Conclusion section
+\newcommand{\conclusionoutlook}{%
+    \section{Conclusion/Outlook}
+}
+```
+
+### Table Formatting Examples
+
+#### Professional Table with Proper Spacing
+```latex
+\begin{table}[htbp]
+\centering
+\caption{Engineering Requirements}
+% Increase row height and column padding for better readability
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|c|p{3.5cm}|c|p{3.5cm}|}
+\hline
+ER\# & Engineering Requirement & MR & Justification \\
+\hline
+1 & Response time $<$ 100ms & 1 & Children require immediate feedback \\
+\hline
+2 & Battery life $\geq$ 8 hours & 3 & Extended play sessions needed \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+#### Professional Table with Booktabs (Recommended)
+```latex
+\begin{table}[htbp]
+\centering
+\caption{System Specifications}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{lcc}
+\toprule
+Component & Value & Units \\
+\midrule
+Operating Voltage & 5.0 & V \\
+Current Draw & 2.5 & A \\
+Operating Temperature & -10 to 60 & °C \\
+\bottomrule
+\end{tabular}
+\end{table}
 ```
 
 ## Tips

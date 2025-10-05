@@ -23,7 +23,6 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
 
 ### 📝 **Specialized Environments**
 - Engineering Requirements with rationale and verification
-- Impact Statement sections
 - Sub-project management sections
 - Code environments (Python, MATLAB, C++, Terminal)
 - Figure insertion helpers
@@ -48,19 +47,19 @@ The `designreport.cls` is a comprehensive LaTeX class designed for creating prof
 
 % Title page setup
 \documentname{Preliminary Design Report}
-\teamname{Team 8 - PlayPal}
-\university{University of Kentucky}
-\department{Department of Electrical and Computer Engineering}
-\course{Senior Design}
+\teamname{Team X - Project Name}
+\university{University Name}
+\department{Department Name}
+\course{Course Name}
 
 % Team information
 \teammembers{%
-    \teammember{John Smith}{john.smith@uky.edu}
-    \teammember{Jane Doe}{jane.doe@uky.edu}
+    \teammember{Student Name 1}{student1@university.edu}
+    \teammember{Student Name 2}{student2@university.edu}
 }
 
 \classadvisors{%
-    \advisor{Dr. Professor Name}{professor@uky.edu}
+    \advisor{Dr. Advisor Name}{advisor@university.edu}
 }
 
 \sponsors{%
@@ -124,30 +123,34 @@ Use helper commands to format team member information in two columns:
 
 ## Document Sections
 
-### Predefined Section Commands
+### Section Structure
 
-The class provides commands for standard PDR sections:
+The class no longer includes predefined section commands to improve modularity and customization. Instead, you can define your own section commands in your document preamble or use standard LaTeX sectioning commands directly.
+
+#### Optional Section Commands (Add to Document Preamble)
+
+You can add these command definitions to your document for convenience:
 
 ```latex
-% Problem Statement
-\needsstatement          % Creates "Problem Statement" section
-\background             % Creates "Background" subsection
-\objective              % Creates "Objective" subsection
+% Define section commands (optional - customize as needed)
+\newcommand{\needsstatement}{%
+    \section{Problem Statement}
+    \subsection{Need}
+}
+\newcommand{\background}{\subsection{Background}}
+\newcommand{\objective}{\subsection{Objective}}
+\newcommand{\requirementsspec}{\section{Requirements Specification}}
+\newcommand{\marketingreqs}{\subsection{Marketing Requirements}}
+\newcommand{\engineeringreqs}{\subsection{Engineering Requirements}}
 
-% Requirements
-\requirementsspec       % Creates "Requirements Specification"
-\marketingreqs         % Creates "Marketing Requirements" subsection
-\engineeringreqs       % Creates "Engineering Requirements" subsection
-\impactstatements      % Creates "Impact Statements" subsection
+\newcommand{\designsection}{\section{Design}}
+\newcommand{\designsummary}{\subsection{Design Summary}}
+\newcommand{\functionaldecomp}{\subsection{Functional Decomposition}}
+\newcommand{\projectplan}{\section{Project Plan}}
+\newcommand{\workbreakdown}{\subsection{Work Breakdown Structure}}
+```
 
-% Design
-\designsection         % Creates "Design" section
-\designsummary         % Creates "Design Summary" subsection
-\functionaldecomp      % Creates "Functional Decomposition" subsection
-
-% Project Management
-\projectplan           % Creates "Project Plan" section
-\workbreakdown         % Creates "Work Breakdown Structure" subsection
+This approach allows you to customize section titles and structure according to your specific project requirements.
 \ganttchart           % Creates "Gantt Chart" subsection
 \costanalysis         % Creates "Cost Analysis" subsection
 ```
@@ -163,14 +166,6 @@ The class provides commands for standard PDR sections:
 \end{engineeringreq}
 ```
 
-### Impact Statements
-
-```latex
-\begin{impactstatement}{Economic}
-The economic impact extends beyond immediate development costs...
-\end{impactstatement}
-```
-
 ### Sub-projects
 
 ```latex
@@ -183,26 +178,36 @@ The economic impact extends beyond immediate development costs...
 
 ## Code Environments
 
+The class provides specialized environments for displaying code with syntax highlighting. All code environments are labeled as "Code" for consistency (rather than "Listing").
+
 ### Python Code
 
 ```latex
-\begin{reportpython}[caption={Algorithm Implementation}]
-def adaptive_learning(success_rate):
-    if success_rate > 0.8:
-        difficulty += 1
-    elif success_rate < 0.4:
-        difficulty -= 1
-    return difficulty
+\begin{reportpython}[caption={Data Processing Algorithm}]
+import numpy as np
+
+def process_sensor_data(raw_data, threshold=0.5):
+    """Process sensor data with filtering"""
+    filtered_data = np.convolve(raw_data, 
+                               np.ones(5)/5, 
+                               mode='valid')
+    events = filtered_data > threshold
+    return filtered_data, events
 \end{reportpython}
 ```
 
 ### MATLAB Code
 
 ```latex
-\begin{reportmatlab}[caption={Signal Processing}]
-function filtered = process_signal(raw_data, fs)
-    [b, a] = butter(4, 10/(fs/2), 'low');
-    filtered = filtfilt(b, a, raw_data);
+\begin{reportmatlab}[caption={Signal Processing Functions}]
+function processed_signal = filter_data(raw_data, sampling_freq)
+    % Design filter parameters
+    cutoff_freq = 50; % Hz
+    filter_order = 4;
+    
+    % Create Butterworth filter
+    [b, a] = butter(filter_order, cutoff_freq/(sampling_freq/2), 'low');
+    processed_signal = filtfilt(b, a, raw_data);
 end
 \end{reportmatlab}
 ```
@@ -210,12 +215,30 @@ end
 ### Terminal Output
 
 ```latex
-\begin{reportterminal}[caption={System Installation}]
-$ sudo apt-get install python3-pip
-$ pip3 install numpy matplotlib
-$ python3 main.py
-System initialized successfully!
+\begin{reportterminal}[caption={Development Environment Setup}]
+$ git clone https://github.com/yourteam/project-repo.git
+$ cd project-repo
+$ pip install -r requirements.txt
+$ python setup.py install
+Installing dependencies...
+Setup complete!
+$ python main.py --test
+All tests passed successfully!
 \end{reportterminal}
+```
+
+### General Code Block
+
+```latex
+\begin{codeblock}[caption={Configuration File}]
+{
+  "system": {
+    "debug": true,
+    "timeout": 5000,
+    "retries": 3
+  }
+}
+\end{codeblock}
 ```
 
 ## Figures and Tables
@@ -245,22 +268,51 @@ As shown in \figref{fig:results}.
 
 ### Professional Tables
 
+The class provides enhanced table formatting with proper spacing and professional appearance.
+
+#### Recommended Table Formatting
 ```latex
 \begin{table}[htbp]
 \centering
-\caption{Cost Breakdown Analysis}
-\begin{tabular}{@{}lrr@{}}
+\caption{Engineering Requirements Summary}
+% Add proper spacing for better readability
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{|c|p{4cm}|c|p{4cm}|}
+\hline
+ER\# & Engineering Requirement & MR & Justification \\
+\hline
+1 & Response time $<$ 100ms & 1 & Users require immediate feedback \\
+\hline
+2 & Battery life $\geq$ 8 hours & 3 & Extended operation needed \\
+\hline
+\end{tabular}
+\end{table}
+```
+
+#### Professional Style with Booktabs (Recommended)
+```latex
+\begin{table}[htbp]
+\centering
+\caption{System Specifications}
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{lcc}
 \toprule
-Category & Estimated & Actual \\
+Parameter & Value & Units \\
 \midrule
-Components & $450 & $487 \\
-Fabrication & $200 & $195 \\
-\midrule
-Total & $650 & $682 \\
+Operating Voltage & 5.0 & V \\
+Power Consumption & 2.5 & W \\
+Operating Temperature & -10 to 60 & °C \\
 \bottomrule
 \end{tabular}
 \end{table}
 ```
+
+#### Table Formatting Commands
+- `\renewcommand{\arraystretch}{1.5}` - Increases row height for better readability
+- `\setlength{\tabcolsep}{8pt}` - Adds padding between text and table lines
+- Use `booktabs` package commands (`\toprule`, `\midrule`, `\bottomrule`) for professional appearance
 
 ## Front Matter Generation
 

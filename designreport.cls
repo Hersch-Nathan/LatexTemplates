@@ -10,21 +10,21 @@
 %% ============================================================================
 
 % Initialize boolean flags for class options
-\newif\if@draft\@draftfalse
-\newif\if@final\@finaltrue
-\newif\if@twocolumn\@twocolumnfalse
-\newif\if@onecolumn\@onecolumntrue
-\newif\if@linenumbers\@linenumbersfalse
-\newif\if@watermark\@watermarkfalse
-\newif\if@figabbrev\@figabbrevfalse
+\newif\if@draft\@draftfalse        % Draft mode flag (default: false)
+\newif\if@final\@finaltrue         % Final mode flag (default: true)
+\newif\if@twocolumn\@twocolumnfalse % Two-column layout flag (default: false)
+\newif\if@onecolumn\@onecolumntrue  % One-column layout flag (default: true)
+\newif\if@linenumbers\@linenumbersfalse % Line numbering flag (default: false)
+\newif\if@watermark\@watermarkfalse % Watermark flag (default: false)
+\newif\if@figabbrev\@figabbrevfalse % Figure abbreviation flag (default: false)
 
 % Class option declarations
-\DeclareOption{draft}{\@drafttrue\@finalfalse\@watermarktrue}
-\DeclareOption{final}{\@finaltrue\@draftfalse\@watermarkfalse}
-\DeclareOption{twocolumn}{\@twocolumntrue\@onecolumnfalse}
-\DeclareOption{onecolumn}{\@onecolumntrue\@twocolumnfalse}
-\DeclareOption{linenumbers}{\@linenumberstrue}
-\DeclareOption{figabbrev}{\@figabbrevtrue}
+\DeclareOption{draft}{\@drafttrue\@finalfalse\@watermarktrue}      % Enable draft mode with watermark and overfull box highlighting
+\DeclareOption{final}{\@finaltrue\@draftfalse\@watermarkfalse}     % Enable final mode (default, clean output)
+\DeclareOption{twocolumn}{\@twocolumntrue\@onecolumnfalse}         % Use two-column layout for compact presentation
+\DeclareOption{onecolumn}{\@onecolumntrue\@twocolumnfalse}         % Use single-column layout (default)
+\DeclareOption{linenumbers}{\@linenumberstrue}                     % Add line numbers for reviewing and editing
+\DeclareOption{figabbrev}{\@figabbrevtrue}                         % Abbreviate "Figure" to "Fig." in references
 
 % Pass unknown options to article class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -38,26 +38,34 @@
 %% ============================================================================
 
 % Core packages
-\RequirePackage[margin=1in]{geometry}     % Standard margins
-\RequirePackage{xparse}                   % Modern command definitions
-\RequirePackage{environ}                  % Environment creation
-\RequirePackage{graphicx}                 % Image inclusion
-\RequirePackage{xcolor}                   % Colors
-\RequirePackage{amsmath}                  % Advanced math environments
-\RequirePackage{listings}                 % Code listings
-\RequirePackage{iftex}                    % Engine detection
-\RequirePackage{lastpage}                 % For page X of Y
-\RequirePackage{fancyhdr}                 % Headers and footers
-\RequirePackage{caption}                  % Consistent captions
-\RequirePackage{hyperref}                 % Hyperlinks and bookmarks
-\RequirePackage{tocloft}                  % Table of contents formatting
-\RequirePackage[backend=biber,style=ieee]{biblatex}  % IEEE bibliography style
-\RequirePackage{titlesec}                 % Section title formatting
-\RequirePackage{setspace}                 % Line spacing control
-\RequirePackage{array}                    % Enhanced array environments
-\RequirePackage{booktabs}                 % Professional tables
-\RequirePackage{multirow}                 % Multi-row table cells
-\RequirePackage{multicol}                 % Multi-column layouts
+\RequirePackage[margin=1in]{geometry}     % Sets 1-inch margins on all sides for professional document formatting
+\RequirePackage{xparse}                   % Enables modern command definitions with flexible argument handling
+\RequirePackage{environ}                  % Supports creation of custom environments with advanced processing capabilities
+\RequirePackage{graphicx}                 % Allows image inclusion with scaling, rotation, and positioning options
+\RequirePackage{xcolor}                   % Provides comprehensive color support for text, backgrounds, and graphics
+\RequirePackage{amsmath}                  % Enables advanced mathematical environments and equation formatting
+\RequirePackage{listings}                 % Formats code listings with syntax highlighting and customizable styling
+\RequirePackage{iftex}                    % Detects the LaTeX engine (pdfLaTeX, XeLaTeX, LuaLaTeX) for conditional compilation
+\RequirePackage{lastpage}                 % Adds page numbering functionality (e.g., "Page X of Y") by referencing the last page
+\RequirePackage{fancyhdr}                 % Customizes headers and footers with flexible positioning and content control
+\RequirePackage{caption}                  % Ensures consistent figure and table captions with customizable formatting
+
+% Configure caption formatting - labels underneath for better readability
+\captionsetup{
+    position=bottom,        % Place captions below figures and tables
+    labelsep=period,        % Use period after label (e.g., "Figure 1.")
+    font=small,             % Use smaller font for captions
+    justification=centering % Center-align captions
+}
+\RequirePackage{hyperref}                 % Adds hyperlinks, bookmarks, and PDF metadata for enhanced document navigation
+\RequirePackage{tocloft}                  % Customizes the table of contents, list of figures, and list of tables formatting
+\RequirePackage[backend=biber,style=ieee]{biblatex}  % Manages references using IEEE citation style with modern bibliography processing
+\RequirePackage{titlesec}                 % Formats section titles with custom spacing, fonts, and numbering schemes
+\RequirePackage{setspace}                 % Controls line spacing throughout the document (single, double, custom spacing)
+\RequirePackage{array}                    % Enhances array and tabular environments with additional column types and formatting
+\RequirePackage{booktabs}                 % Creates professional-quality tables with proper spacing and horizontal rules
+\RequirePackage{multirow}                 % Supports multi-row table cells for complex table layouts and data presentation
+\RequirePackage{multicol}                 % Enables multi-column layouts for text, lists, and other content elements
 
 % Font setup - Times New Roman
 \RequirePackage[T1]{fontenc}
@@ -292,6 +300,7 @@
         breaklines=true,
         frame=single,
         captionpos=b,
+        title=Code,
         #1
     }%
 }{}
@@ -309,6 +318,7 @@
         breaklines=true,
         frame=single,
         captionpos=b,
+        title=Code,
         #1
     }%
 }{}
@@ -333,13 +343,14 @@
         keywordstyle=\color{blue},
         commentstyle=\color{green!50!black},
         stringstyle=\color{purple},
+        title=Code,
         #1
     }%
 }{}
 
 % General code block environment
 \lstnewenvironment{codeblock}[1][]{%
-    \lstset{basicstyle=\ttfamily,frame=single,#1}%
+    \lstset{basicstyle=\ttfamily,frame=single,captionpos=b,title=Code,#1}%
 }{}
 
 %% ============================================================================
@@ -383,87 +394,45 @@
 }
 
 %% ============================================================================
-%% PREDEFINED SECTIONS FOR DESIGN REPORTS
+%% PREDEFINED SECTIONS REMOVED
+%% ============================================================================
+%% Predefined sections have been moved to docs/examples.md for better modularity.
+%% Users can add these commands to their document preamble as needed.
+%% This approach allows for greater customization and prevents cluttering the class file.
+
+%% ============================================================================
+%% TABLE FORMATTING OPTIONS
 %% ============================================================================
 
-% Comment and Response section
-\newcommand{\commentresponse}{%
-    \section{Comment and Response}
-    This section summarizes major instructor comments and changes made based on feedback.
+% Define default table colors
+\definecolor{tableheader}{RGB}{70,130,180}      % Steel blue for headers
+\definecolor{tablealt}{RGB}{245,245,245}        % Light gray for alternating rows
+
+% Commands to set custom table colors
+\newcommand{\settableheadercolor}[1]{\colorlet{tableheader}{#1}}
+\newcommand{\settablealtcolor}[1]{\colorlet{tablealt}{#1}}
+
+% Table formatting commands
+\newcommand{\tablepadding}{%
+    \renewcommand{\arraystretch}{1.5}%
+    \setlength{\tabcolsep}{8pt}%
 }
 
-% Problem Statement sections
-\newcommand{\needsstatement}{%
-    \section{Problem Statement}
-    \subsection{Need}
+% Colored table environment with header and alternating rows
+\newenvironment{reporttable}[1][]{%
+    \tablepadding%
+    \rowcolors{2}{tablealt}{white}%
+    \begin{tabular}{#1}%
+}{%
+    \end{tabular}%
 }
 
-\newcommand{\background}{%
-    \subsection{Background}
-}
-
-\newcommand{\objective}{%
-    \subsection{Objective}
-}
-
-% Requirements sections
-\newcommand{\requirementsspec}{%
-    \section{Requirements Specification}
-}
-
-\newcommand{\marketingreqs}{%
-    \subsection{Marketing Requirements}
-}
-
-\newcommand{\objectivetree}{%
-    \subsection{Objective Tree}
-}
-
-\newcommand{\engineeringreqs}{%
-    \subsection{Engineering Requirements}
-}
-
-\newcommand{\impactstatements}{%
-    \subsection{Impact Statements}
-}
-
-% Design sections
-\newcommand{\designsection}{%
-    \section{Design}
-}
-
-\newcommand{\designsummary}{%
-    \subsection{Design Summary}
-}
-
-\newcommand{\functionaldecomp}{%
-    \subsection{Functional Decomposition}
-}
-
-\newcommand{\behavioralmodels}{%
-    \subsection{Behavioral Models}
-}
-
-% Project Plan sections
-\newcommand{\projectplan}{%
-    \section{Project Plan}
-}
-
-\newcommand{\workbreakdown}{%
-    \subsection{Work Breakdown Structure (WBS)}
-}
-
-\newcommand{\ganttchart}{%
-    \subsection{Gantt Chart}
-}
-
-\newcommand{\costanalysis}{%
-    \subsection{Cost Analysis}
-}
-
-% Conclusion section
-\newcommand{\conclusionoutlook}{%
-    \section{Conclusion/Outlook}
+% Professional table environment using booktabs
+\newenvironment{professionaltable}[1][]{%
+    \tablepadding%
+    \begin{tabular}{#1}%
+}{%
+    \end{tabular}%
 }
 
 %% ============================================================================
@@ -481,15 +450,6 @@
     \begin{itemize}
 }{%
     \end{itemize}
-    \par\vspace{1em}
-}
-
-% Impact Statement environment
-\newenvironment{impactstatement}[1]{%
-    \par\vspace{1em}
-    \noindent\textbf{#1 Impact}
-    \par\vspace{0.5em}
-}{%
     \par\vspace{1em}
 }
 
