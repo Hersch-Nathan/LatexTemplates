@@ -66,10 +66,39 @@ The following packages must be available in your LaTeX distribution:
 - `linenumbers` - Add line numbers for review
 - `figabbrev` - Use "Fig." instead of "Figure" in references
 
-## Font Requirements
-- **Headings**: 12pt Times New Roman (bold)
-- **Body Text**: 11pt Times New Roman
-- **Spacing**: 1.5 spacing between paragraphs, single line spacing
+## Formatting Requirements
+
+### Font and Spacing
+- **Headings**: 12pt Times New Roman (bold).
+- **Body Text**: 11pt Times New Roman.
+- **Spacing**: 1.5 spacing between paragraphs, single line spacing.
+
+### Title Page Elements
+- **Required**:
+  - Team names.
+  - Team emails.
+  - Course professor and TA names/emails.
+  - Project team information.
+- **Optional**:
+  - Team logo.
+  - University and department information.
+  - Sponsors.
+  - Report date.
+
+### Header/Footer
+- **Header/Footer Content**:
+  - Team name.
+  - Team number.
+  - Page number.
+
+### Document Structure
+- **Table of Contents**: Must be present and complete.
+- **List of Figures**: Must be present and complete.
+- **List of Tables**: Must be present and complete.
+- **References**: IEEE citation style enforced.
+
+### Abstract
+- Should adequately introduce the project and shift focus from requirements to PDR.
 
 ## Document Structure Requirements
 
