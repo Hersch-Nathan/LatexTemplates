@@ -80,7 +80,7 @@
 \if@watermark
     \RequirePackage{draftwatermark}
     \SetWatermarkText{DRAFT}
-    \SetWatermarkScale{3}
+    \SetWatermarkScale{1.5}
     \SetWatermarkColor{gray!30}
 \fi
 
