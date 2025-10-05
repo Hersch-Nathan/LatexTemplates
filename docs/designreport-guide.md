@@ -159,12 +159,36 @@ This approach allows you to customize section titles and structure according to 
 
 ### Engineering Requirements
 
+The class now supports long tables that can span multiple pages using the `longtable` package. This is ideal for engineering requirements tables that may be extensive.
+
 ```latex
-\begin{engineeringreq}{1}{Touch Response Time}{Children require immediate feedback}
-    \item Response time shall be less than 100ms
-    \item System shall detect 3 distinct pressure levels
-\end{engineeringreq}
+\begin{longtable}{|p{1cm}|p{4cm}|p{1cm}|p{4cm}|p{4cm}|}
+\caption{Engineering Requirements Table} \label{tab:engineering-requirements} \\
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+1 & System shall control primary functionality & 1 & Core objective of the project & Test each control mechanism individually \\
+\hline
+2 & Device shall fit within specified dimensions & 2 & Physical constraints of the application & Verify using dimensional measurements \\
+\hline
+% Add more requirements as needed...
+\end{longtable}
 ```
+
+Key features of longtable:
+- Automatically splits across multiple pages
+- Maintains consistent headers and footers
+- Supports captions and labels for cross-referencing
+- Column widths can be customized using `p{width}` specifications
 
 ### Sub-projects
 
@@ -473,9 +497,25 @@ Project objectives...
 Marketing requirements...
 
 \engineeringreqs
-\begin{engineeringreq}{1}{Performance}{Rationale}
-    \item Verification criteria
-\end{engineeringreq}
+
+% Use longtable for engineering requirements
+\begin{longtable}{|p{1cm}|p{4cm}|p{1cm}|p{4cm}|p{4cm}|}
+\caption{Engineering Requirements} \label{tab:engineering-reqs} \\
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+1 & Performance requirement & 1 & Rationale for requirement & Verification criteria \\
+\hline
+\end{longtable}
 
 % ... continue with other sections
 

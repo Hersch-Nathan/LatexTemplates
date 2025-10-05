@@ -135,7 +135,7 @@ The following packages must be available in your LaTeX distribution:
 ## Feature Support
 
 ### Specialized Environments
-- Engineering Requirements (`engineeringreq`)
+- Long tables for engineering requirements (using `longtable` package)
 - Sub-project management (`subproject`)
 - Code environments with syntax highlighting
 - Custom list environments

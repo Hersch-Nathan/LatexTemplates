@@ -111,12 +111,27 @@ Full demo: `designreporttest.tex`
 }
 ```
 
-### Engineering Requirements
+### Engineering Requirements (Using Longtable)
 ```latex
-\begin{engineeringreq}{1}{Touch Response Time}{Children require immediate feedback}
-    \item Response time shall be less than 100ms
-    \item System shall detect 3 distinct pressure levels
-\end{engineeringreq}
+\begin{longtable}{|p{1cm}|p{4cm}|p{1cm}|p{4cm}|p{4cm}|}
+\caption{Engineering Requirements Table} \label{tab:engineering-requirements} \\
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+1 & Touch response time < 100ms & 1 & Children require immediate feedback & Test response time under various conditions \\
+\hline
+2 & System detects 3 pressure levels & 1 & Provides tactile variety for users & Calibrate sensors and verify distinct levels \\
+\hline
+\end{longtable}
 ```
 
 ### Impact Statements
