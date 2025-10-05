@@ -41,8 +41,58 @@ This is a subsection with some text content.
 
 This is a subsubsection to test the formatting hierarchy.
 
+\section{Engineering Requirements}
+
+The following table demonstrates the longtable functionality for engineering requirements that can span multiple pages:
+
+\begin{longtable}{|p{1cm}|p{4cm}|p{1cm}|p{4cm}|p{4cm}|}
+\caption{Engineering Requirements Table} \label{tab:engineering-requirements} \\
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endfirsthead
+\hline
+\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
+\hline
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+1 & System shall control primary functionality & 1 & Core objective of the project & Test each control mechanism individually \\
+\hline
+2 & Device shall fit within specified dimensions & 2 & Physical constraints of the application & Verify using dimensional measurements \\
+\hline
+3 & System shall have independent power supply & 3 & Operational independence requirement & Confirm electrical isolation using multimeter \\
+\hline
+4 & Device shall sense motion and orientation & 1,5 & Required for state monitoring & Perform sensor accuracy and repeatability tests \\
+\hline
+5 & System shall operate for required duration & 1,3 & Must function throughout operation period & Test under simulated conditions \\
+\hline
+6 & Device shall use standard components & 3 & Standardization and availability & Verify component specifications \\
+\hline
+7 & System shall not cause interference & 4 & Compatibility with other systems & Perform electromagnetic compatibility testing \\
+\hline
+8 & Device shall withstand operational forces & 5 & Structural integrity under normal loads & Conduct force testing per specifications \\
+\hline
+9 & System shall tolerate vibrations & 5 & Environmental durability requirement & Perform vibration testing at specified levels \\
+\hline
+10 & Device shall handle impact loads & 5 & Shock resistance capability & Execute impact testing per mission profile \\
+\hline
+11 & System shall operate in thermal range & 5 & Temperature tolerance requirement & Test across expected temperature range \\
+\hline
+12 & Development cost shall stay within budget & 7 & Financial constraint & Track expenses against allocated budget \\
+\hline
+13 & Design shall comply with regulations & 2 & Legal and regulatory compliance & Review against applicable standards \\
+\hline
+14 & System shall provide real-time response & 6 & Performance timing requirement & Verify response time under test conditions \\
+\hline
+15 & Device shall not interfere with operations & 6 & Non-interference requirement & Test activation scenarios and verify non-operation \\
+\hline
+\end{longtable}
+
 \section{Conclusion}
 
-The design report class file appears to be working correctly.
+The design report class file appears to be working correctly with longtable support.
 
 \end{document}

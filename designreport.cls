@@ -66,6 +66,7 @@
 \RequirePackage{booktabs}                 % Creates professional-quality tables with proper spacing and horizontal rules
 \RequirePackage{multirow}                 % Supports multi-row table cells for complex table layouts and data presentation
 \RequirePackage{multicol}                 % Enables multi-column layouts for text, lists, and other content elements
+\RequirePackage{longtable}                % Enables tables that can span multiple pages with automatic page breaks
 
 % Font setup - Times New Roman
 \RequirePackage[T1]{fontenc}
@@ -438,22 +439,6 @@
 %% ============================================================================
 %% SPECIALIZED ENVIRONMENTS
 %% ============================================================================
-
-% Engineering Requirements environment - Table format
-% Usage: \begin{engineeringreq}{ER Number}{Rationale}{MR(s)}{Verification}...\end{engineeringreq}
-\newenvironment{engineeringreq}[4]{%
-    \par\vspace{1em}
-    \noindent
-    \begin{tabular}{|p{0.15\textwidth}|p{0.25\textwidth}|p{0.15\textwidth}|p{0.35\textwidth}|}
-    \hline
-    \textbf{ER Number} & \textbf{Rationale} & \textbf{MR(s)} & \textbf{Verification} \\
-    \hline
-    #1 & #2 & #3 & #4 \\
-    \hline
-    \end{tabular}
-    \par\vspace{1em}
-}{%
-}
 
 % Sub-project environment
 \newenvironment{subproject}[2]{%
