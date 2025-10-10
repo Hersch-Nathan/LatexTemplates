@@ -1,4 +1,4 @@
-\documentclass{designreport}
+\documentclass{../designreport}
 
 % Required packages for bibliography
 \addbibresource{references.bib}
@@ -8,13 +8,31 @@
 \author{Test Author}
 \documentname{Design Report}
 \teamname{Test Team}
+\teamlogo{../figures/logo.png}  
 \university{University of Kentucky}
 \department{Department of Engineering}
 \course{Test Course}
 \teammembers{
-    Test Member 1 \\
-    Test Member 2 \\
-    Test Member 3
+    \teammember{person 1}{person1@uni.edu}
+    \teammember{person 2}{person2@uni.edu}
+    \teammember{person 3}{person3@uni.edu}
+    \teammember{person 4}{person4@uni.edu}
+}
+
+% Class advisors
+\classadvisors{%
+    \advisor{person 5}{person5@uni.edu}
+    \advisor{person 6}{person6@uni.edu}
+    \advisor{person 7}{person7@uni.edu}
+    \advisor{person 8}{person8@uni.edu}
+    \advisor{person 9}{person9@uni.edu}
+    \advisor{person 10}{person10@uni.edu}
+
+}
+
+\sponsors{%
+    \sponsor{person 11}{person11@uni.edu}
+    \sponsor{person 12}{person12@uni.edu}
 }
 \reportdate{\today}
 

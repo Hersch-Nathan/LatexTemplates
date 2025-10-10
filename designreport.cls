@@ -41,7 +41,7 @@
 \RequirePackage[margin=1in]{geometry}     % Sets 1-inch margins on all sides for professional document formatting
 \RequirePackage{xparse}                   % Enables modern command definitions with flexible argument handling
 \RequirePackage{environ}                  % Supports creation of custom environments with advanced processing capabilities
-\RequirePackage{graphicx}                 % Allows image inclusion with scaling, rotation, and positioning options
+\RequirePackage[final]{graphicx}          % Allows image inclusion with scaling, rotation, and positioning options (final ensures images always display)
 \RequirePackage{xcolor}                   % Provides comprehensive color support for text, backgrounds, and graphics
 \RequirePackage{amsmath}                  % Enables advanced mathematical environments and equation formatting
 \RequirePackage{listings}                 % Formats code listings with syntax highlighting and customizable styling
@@ -163,59 +163,58 @@
 \renewcommand{\maketitle}{%
     \begin{titlepage}
         \centering
-        \vspace*{1cm}
         
-        % Document Name
-        {\LARGE\bfseries \@documentname \par}
-        \vspace{1cm}
+        % Document Name - larger font, closer to top
+        {\huge\bfseries \@documentname \par}
+        \vspace{0.3cm}
         
         % Team Name
-        {\Large\bfseries \@teamname \par}
-        \vspace{1cm}
+        {\LARGE\bfseries \@teamname \par}
+        \vspace{0.3cm}
         
         % Team Logo (if provided)
         \if@haslogo
             \includegraphics[width=0.3\textwidth]{\@teamlogo}
-            \vspace{1cm}
+            \vspace{0.3cm}
         \fi
         
         % University and Department
         {\large \@university \par}
         {\large \@department \par}
-        \vspace{0.5cm}
+        \vspace{0.3cm}
         
         % Course
         {\large \@course \par}
-        \vspace{1.5cm}
+        \vspace{0.4cm}
         
         % Team Members
         \if@hasmembers
-            {\large\bfseries Team Members \par}
-            \vspace{0.5cm}
+            {\Large\bfseries Team Members \par}
+            \vspace{0.3cm}
             \begin{multicols}{2}
                 \@teammembers
             \end{multicols}
-            \vspace{1cm}
+            \vspace{0.5cm}
         \fi
         
         % Class Advisors
         \if@hasadvisors
-            {\large\bfseries Class Advisors \par}
-            \vspace{0.5cm}
+            {\Large\bfseries Class Advisors \par}
+            \vspace{0.3cm}
             \begin{multicols}{2}
                 \@classadvisors
             \end{multicols}
-            \vspace{1cm}
+            \vspace{0.5cm}
         \fi
         
         % Sponsors
         \if@hassponsor
-            {\large\bfseries Sponsors \par}
-            \vspace{0.5cm}
+            {\Large\bfseries Sponsors \par}
+            \vspace{0.3cm}
             \begin{multicols}{2}
                 \@sponsors
             \end{multicols}
-            \vspace{1cm}
+            \vspace{0.5cm}
         \fi
         
         \vfill
