@@ -70,15 +70,16 @@
 }
 
 % 3. Homework sub-problem command
-\newcommand{\subproblem}[1][\empty]{%
+\newcommand{\subproblem}[2][\empty]{%
 	\refstepcounter{hwsubproblem}%
 	\par\vspace{0.5em}
 	\if@partnumbering
-		\noindent\textbf{\ifx\empty#1\empty\thehwsubproblem\else#1\fi.}
+		\noindent\textbf{\ifx\empty#1\empty\thehwsubproblem\else#1\fi.}\ifx\empty#2\empty\else~#2\fi
+		\par\vspace{0.25em}
 	\else
 		\noindent\textbf{(\ifx\empty#1\empty\alph{hwsubproblem}\else#1\fi)}
+		\par\vspace{0.25em}
 	\fi
-	\par\vspace{0.25em}
 }
 
 % 4. Custom math environment for homework solutions

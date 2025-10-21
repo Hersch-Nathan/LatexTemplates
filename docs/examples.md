@@ -47,11 +47,11 @@ f(x) \ggt 0 \text{ for all } x
 \problem{General Shallow Network Analysis}
 Consider a network with inputs and hidden units...
 
-\subproblem
-Parameter Count: Calculate the total parameters.
+\subproblem{Parameter Count}
+Calculate the total parameters.
 
-\subproblem
-Network Visualization: Draw the architecture.
+\subproblem{Network Visualization}
+Draw the architecture.
 
 \problem{Exploring Linear Regions}
 Analyze the piecewise linear behavior...

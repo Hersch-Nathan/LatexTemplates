@@ -77,8 +77,8 @@ LatexTemplates/
 \problem{General Shallow Network Analysis}
 % Problems numbered as 1.1, 1.2, etc.
 
-\subproblem
-% Subproblems formatted as A., B., etc.
+\subproblem{Parameter Count}
+% Subproblems formatted as A., B., etc. with title text inline
 
 \hwpart{Deep Networks}
 
