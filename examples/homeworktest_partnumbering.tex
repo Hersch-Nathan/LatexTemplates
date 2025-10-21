@@ -1,0 +1,173 @@
+% Homework Test - Part Numbering Mode
+% This file tests the partnumbering option functionality
+% Expected output: Problems numbered 1.1, 1.2, 2.1, etc. with Parts and uppercase subproblems
+
+\documentclass[partnumbering]{../homework}
+
+\begin{document}
+
+\hwheader{EE599/699 Deep Learning Fundamentals}{1}{Test Student}{Fall 2025}
+
+\hwpart{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+Consider a general shallow network designed for a complex task with $D_i$ inputs, 
+$D$ hidden units, and $D_o$ outputs.
+
+\subproblem{Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)}
+Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)
+in this network. Calculate $N_{\text{params}}$ if $D_i = 5$, $D = 100$, and $D_o = 3$. 
+Provide the calculation using both methods of reasoning discussed in the lecture slides 
+(weights/biases and layer-by-layer).
+
+\textbf{Solution:}
+
+The total number of parameters is:
+\begin{hwmath}
+N_{\text{params}} \eq (D_i \times D + D) + (D \times D_o + D_o) \\
+N_{\text{params}} \eq D_i \cdot D + D + D \cdot D_o + D_o
+\end{hwmath}
+
+For $D_i = 5$, $D = 100$, and $D_o = 3$:
+\begin{hwmath}
+N_{\text{params}} \eq 5 \times 100 + 100 + 100 \times 3 + 3 \\
+N_{\text{params}} \eq 500 + 100 + 300 + 3 \\
+N_{\text{params}} \eq 903
+\end{hwmath}
+
+\subproblem
+Network Visualization and Structure: For a simplified version of this network where 
+$D_i = 2$, $D = 3$, and $D_o = 1$, state the dimensions of the weight matrices ($\Omega$) 
+and bias vectors ($\beta$) used for the hidden layer and the output layer.
+
+\textbf{Solution:}
+
+\begin{itemize}
+\item Hidden layer: $\Omega_1 \in \mathbb{R}^{3 \times 2}$, $\beta_1 \in \mathbb{R}^{3 \times 1}$
+\item Output layer: $\Omega_2 \in \mathbb{R}^{1 \times 3}$, $\beta_2 \in \mathbb{R}^{1 \times 1}$
+\end{itemize}
+
+\subproblem
+Piecewise Linearity: Recall the four-step process (Linear $\rightarrow$ Activation 
+$\rightarrow$ Weight $\rightarrow$ Sum) that creates the output of the shallow network. 
+Why is the output of this ReLU-based shallow network always piecewise linear? How does 
+the number of hidden units ($D$) relate to the maximum number of linear segments/regions 
+created when the input dimension $D_i = 1$?
+
+\textbf{Solution:}
+
+The output is piecewise linear because:
+\begin{enumerate}
+\item Each hidden unit applies a linear transformation followed by ReLU
+\item ReLU creates a piecewise linear function (0 or identity)
+\item The output is a weighted sum of these piecewise linear functions
+\item A weighted sum of piecewise linear functions is piecewise linear
+\end{enumerate}
+
+For $D_i = 1$, the maximum number of linear segments is $D + 1$.
+
+\problem{Exploring Linear Regions}
+
+\subproblem
+The maximum number of linear regions created by $D$ hyperplanes (corresponding to $D$ 
+hidden units) in a $D_i$-dimensional input space ($D > D_i$) is given by Zaslavsky (1975). 
+Write down the mathematical formula for this maximum number of regions based on the 
+lecture material, and then calculate it for $D_i = 2$ and $D = 4$.
+
+\textbf{Solution:}
+
+The Zaslavsky formula is:
+\begin{hwmath}
+R(D, D_i) \eq \sum_{k=0}^{D_i} \binom{D}{k}
+\end{hwmath}
+
+For $D_i = 2$ and $D = 4$:
+\begin{hwmath}
+R(4, 2) \eq \binom{4}{0} + \binom{4}{1} + \binom{4}{2} \\
+R(4, 2) \eq 1 + 4 + 6 \\
+R(4, 2) \eq 11
+\end{hwmath}
+
+\hwpart{Loss Functions and Training}
+
+\problem{Cross-Entropy Loss}
+Derive the gradient of the cross-entropy loss function for binary classification.
+
+\subproblem
+Write the cross-entropy loss function for a single example.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\mathcal{L}(y, \hat{y}) \eq -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
+\end{hwmath}
+
+\subproblem
+Compute the derivative with respect to the predicted value $\hat{y}$.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\frac{\partial \mathcal{L}}{\partial \hat{y}} \eq -\left[\frac{y}{\hat{y}} - \frac{1-y}{1-\hat{y}}\right] \\
+\frac{\partial \mathcal{L}}{\partial \hat{y}} \eq \frac{\hat{y} - y}{\hat{y}(1-\hat{y})}
+\end{hwmath}
+
+\problem{Regularization Techniques}
+
+\subproblem
+Explain L1 and L2 regularization and their effects on model weights.
+
+\textbf{Solution:}
+
+\begin{itemize}
+\item \textbf{L2 Regularization} (Ridge): Adds $\lambda \sum_i w_i^2$ to the loss. 
+  Encourages small weights but rarely exactly zero. Equivalent to Gaussian prior.
+\item \textbf{L1 Regularization} (Lasso): Adds $\lambda \sum_i |w_i|$ to the loss. 
+  Encourages sparse solutions with many weights exactly zero. Equivalent to Laplace prior.
+\end{itemize}
+
+\subproblem
+When would you prefer L1 over L2 regularization?
+
+\textbf{Solution:}
+
+Prefer L1 when:
+\begin{enumerate}
+\item You want automatic feature selection
+\item You believe only a few features are truly relevant
+\item Interpretability is important (sparse models are easier to interpret)
+\item Storage/computation efficiency is critical (sparse weights can be efficiently stored)
+\end{enumerate}
+
+\hwpart{Backpropagation}
+
+\problem{Chain Rule Application}
+Consider a simple network with one hidden layer. Derive the backpropagation equations.
+
+\subproblem
+Write the forward pass equations.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+z^{[1]} \eq W^{[1]} x + b^{[1]} \\
+a^{[1]} \eq \sigma(z^{[1]}) \\
+z^{[2]} \eq W^{[2]} a^{[1]} + b^{[2]} \\
+\hat{y} \eq \sigma(z^{[2]})
+\end{hwmath}
+
+\subproblem
+Derive the gradient for the output layer weights.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z^{[2]}} \cdot \frac{\partial z^{[2]}}{\partial W^{[2]}} \\
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \delta^{[2]} \cdot (a^{[1]})^T
+\end{hwmath}
+
+where $\delta^{[2]} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \sigma'(z^{[2]})$.
+
+\note[This test demonstrates all three parts with hierarchical numbering: 1.1, 1.2, 2.1, 2.2, 3.1]
+
+\end{document}

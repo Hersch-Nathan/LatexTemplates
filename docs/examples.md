@@ -5,23 +5,29 @@ This page links to working examples and shows common patterns for all three clas
 ## File Locations
 
 - **Templates**: Located in `templates/` directory
-  - `homework_template.tex` — Basic homework starter
+  - `homework_template.tex` — Basic homework starter (standard mode)
+  - `homework_partnumbering_template.tex` — Part numbering mode template
   - `capstone_template.tex` — Basic capstone report starter
   - `designreport_template.tex` — Basic design report starter
   
 - **Full Examples**: Located in `examples/` directory
-  - `homeworktest.tex` — Complete feature demonstration for homework class
+  - `homeworktest.tex` — Complete feature demonstration for homework class (standard mode)
+  - `homeworktest_partnumbering.tex` — Part numbering mode demonstration
   - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
   - `designreporttest.tex` — Complete feature demonstration for design reports
   - `create_diagram.tex` — Block diagram examples
 
 ## Homework Examples
 
-Starter template: `templates/homework_template.tex`
+Starter template (standard mode): `templates/homework_template.tex`
 
-Full feature demo: `examples/homeworktest.tex`
+Part numbering template: `templates/homework_partnumbering_template.tex`
 
-### Problem Sets with Math
+Full feature demo (standard): `examples/homeworktest.tex`
+
+Part numbering demo: `examples/homeworktest_partnumbering.tex`
+
+### Problem Sets with Math (Standard Mode)
 ```latex
 \problem{Analyze the system}
 \begin{hwmath}
@@ -30,6 +36,30 @@ G(s) \eq \frac{10}{s(s+2)} \\
 |G(j\omega)| \gt 1 \text{ for } \omega \lt 2 \\
 f(x) \ggt 0 \text{ for all } x
 \end{hwmath}
+```
+
+### Problem Sets with Parts (Part Numbering Mode)
+```latex
+\documentclass[partnumbering]{homework}
+
+\hwpart{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+Consider a network with inputs and hidden units...
+
+\subproblem
+Parameter Count: Calculate the total parameters.
+
+\subproblem
+Network Visualization: Draw the architecture.
+
+\problem{Exploring Linear Regions}
+Analyze the piecewise linear behavior...
+
+\hwpart{Deep Networks}
+
+\problem{Depth vs Width}
+Compare shallow vs deep networks...
 ```
 
 ### Example Boxes

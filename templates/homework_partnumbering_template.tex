@@ -1,0 +1,87 @@
+% Homework Template - Part Numbering Mode
+% This template demonstrates the partnumbering option for homework.cls
+% Use this when your homework is divided into major parts with hierarchical numbering
+
+\documentclass[partnumbering]{../homework}
+
+\begin{document}
+
+\hwheader{EE599/699}{1}{Your Name}{Fall 2025}
+
+\hwpart{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+Consider a general shallow network designed for a complex task with $D_i$ inputs, 
+$D$ hidden units, and $D_o$ outputs.
+
+\subproblem
+Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)
+in this network. Calculate $N_{\text{params}}$ if $D_i = 5$, $D = 100$, and $D_o = 3$.
+
+Solution goes here...
+
+\subproblem
+Network Visualization and Structure: For a simplified version of this network
+where $D_i = 2$, $D = 3$, and $D_o = 1$, state the dimensions of the weight matrices 
+($\Omega$) and bias vectors ($\beta$) used for the hidden layer and the output layer.
+
+Solution goes here...
+
+\subproblem
+Piecewise Linearity: Why is the output of this ReLU-based shallow network always
+piecewise linear? How does the number of hidden units ($D$) relate to the maximum 
+number of linear segments when $D_i = 1$?
+
+Solution goes here...
+
+\problem{Exploring Linear Regions}
+
+\subproblem
+The maximum number of linear regions created by $D$ hyperplanes (corresponding to $D$
+hidden units) in a $D_i$-dimensional input space ($D > D_i$) is given by Zaslavsky (1975).
+Write down the formula and calculate it for $D_i = 2$ and $D = 4$.
+
+Solution goes here...
+
+\hwpart{Deep Networks}
+
+\problem{Depth vs Width Trade-offs}
+Analyze the computational and expressive power trade-offs between deep and wide networks.
+
+\subproblem
+Compare a shallow network with $D = 1000$ hidden units to a deep network with 
+5 layers of 10 hidden units each.
+
+Solution goes here...
+
+\subproblem
+Discuss the vanishing gradient problem in deep networks.
+
+Solution goes here...
+
+\problem{Residual Connections}
+
+\subproblem
+Explain how skip connections help training in very deep networks.
+
+Solution goes here...
+
+\hwpart{Optimization Techniques}
+
+\problem{Gradient Descent Variants}
+Compare SGD, Momentum, and Adam optimizers.
+
+\subproblem
+Derive the update rule for momentum-based gradient descent.
+
+\begin{hwmath}
+v_t \eq \beta v_{t-1} + \nabla_\theta J(\theta) \\
+\theta_t \eq \theta_{t-1} - \alpha v_t
+\end{hwmath}
+
+\subproblem
+When would you prefer Adam over standard SGD?
+
+Solution goes here...
+
+\end{document}
