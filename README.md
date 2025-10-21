@@ -2,7 +2,7 @@
 
 This repository provides three robust LaTeX classes for academic and professional writing:
 
-- **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering, aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
+- **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering (with standard and part-based modes), aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
 - **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
 - **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
 
@@ -35,10 +35,12 @@ LatexTemplates/
 │       └── designreport-requirements.md
 ├── templates/               # Starter templates
 │   ├── homework_template.tex
+│   ├── homework_partnumbering_template.tex
 │   ├── capstone_template.tex
 │   └── designreport_template.tex
 ├── examples/                # Full working examples and test files
 │   ├── homeworktest.tex
+│   ├── homeworktest_partnumbering.tex
 │   ├── capstonereporttest.tex
 │   ├── designreporttest.tex
 │   ├── create_diagram.tex
@@ -52,7 +54,7 @@ LatexTemplates/
 
 ## Quick Start
 
-### Homework
+### Homework (Standard Mode)
 
 ```latex
 \documentclass{homework}
@@ -60,6 +62,28 @@ LatexTemplates/
 \hwheader{EE571}{3}{2025-09-01}{Jane Smith}
 \problem{Design a PID controller}
 % ...
+\end{document}
+```
+
+### Homework (Part Numbering Mode)
+
+```latex
+\documentclass[partnumbering]{homework}
+\begin{document}
+\hwheader{EE599/699}{1}{Fall 2025}{Jane Smith}
+
+\hwpart{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+% Problems numbered as 1.1, 1.2, etc.
+
+\subproblem
+% Subproblems formatted as A., B., etc.
+
+\hwpart{Deep Networks}
+
+\problem{Depth vs Width}
+% Numbered as 2.1, 2.2, etc.
 \end{document}
 ```
 
