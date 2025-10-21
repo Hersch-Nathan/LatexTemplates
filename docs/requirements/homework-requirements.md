@@ -75,7 +75,7 @@ The `\hwheader{}{}{}{}}` command requires:
   - Supports nested problem parts
 
 #### Part Numbering Mode
-- **Part Command**: `\part{title}`
+- **Part Command**: `\hwpart{title}`
   - Creates numbered part section (Part 1, Part 2, ...)
   - Resets problem counter to start at 1 for each new part
   - Only available when `partnumbering` option is used
@@ -83,9 +83,10 @@ The `\hwheader{}{}{}{}}` command requires:
   - Automatic numbering as `<part>.<problem>` (e.g., 1.1, 1.2, 2.1)
   - Optional override not recommended in this mode
   - Optional problem title/description
-- **Sub-problem Command**: `\subproblem[optional_letter]`
+- **Sub-problem Command**: `\subproblem{title text}` or `\subproblem[optional_letter]{title text}`
   - Automatic lettering (A, B, C, ...) unless override provided
-  - Format: A., B., C., ... (uppercase with period)
+  - Format: A. Title text, B. Title text, ... (uppercase with period, inline with title)
+  - Required argument for title text
   - Supports nested problem parts
 
 ### Mathematical Environments
@@ -173,15 +174,15 @@ Sub-problem work...
 \problem{General Shallow Network Analysis}
 Consider a general shallow network...
 
-\subproblem
-Parameter Count: State the formula...
+\subproblem{Parameter Count}
+State the formula...
 
-\subproblem
-Network Visualization and Structure...
+\subproblem{Network Visualization and Structure}
+...
 
 \problem{Exploring Linear Regions}
 
-\subproblem
+\subproblem{Linear Regions Analysis}
 The maximum number of linear regions...
 
 \part{Deep Networks}

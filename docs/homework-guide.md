@@ -64,25 +64,25 @@ Write your solution here.
 \documentclass[partnumbering]{homework}
 
 \begin{document}
-\hwheader{EE599/699}{1}{Fall 2025}{Jane Smith}
+\hwheader{COURSE 101}{1}{Fall 2025}{Jane Smith}
 
-\hwpart{Shallow Networks \& Expressive Power}
+\hwpart{Mathematical Foundations}
 
-\problem{General Shallow Network Analysis}
+\problem{Function Analysis}
 Write your solution here.
 
-\subproblem
-Parameter Count: State the formula...
+\subproblem{Parameter Count}
+State the formula...
 
-\subproblem
-Network Visualization...
+\subproblem{System Visualization}
+Describe the structure...
 
-\problem{Exploring Linear Regions}
+\problem{Regional Analysis}
 Another problem in Part 1.
 
-\hwpart{Deep Networks}
+\hwpart{Optimization Methods}
 
-\problem{Depth vs Width}
+\problem{Cost Function Analysis}
 First problem in Part 2.
 
 \end{document}
@@ -117,27 +117,27 @@ Discuss stability
 
 - Part: `\hwpart{Part title}` — creates a new major section (Part 1, Part 2, ...)
 - Problem: `\problem{Problem title}` — automatically numbered as `<part>.<problem>` (e.g., 1.1, 1.2)
-- Sub-problem: `\subproblem` or `\subproblem[custom]` — formatted as A., B., C., ...
+- Sub-problem: `\subproblem{Title text}` or `\subproblem[custom]{Title text}` — formatted as A., B., C., ... with inline title
 
 Example:
 ```latex
-\hwpart{Shallow Networks}
+\hwpart{Mathematical Foundations}
 
-\problem{General Analysis}
-Consider a shallow network...
+\problem{Function Analysis}
+Consider a general function...
 
-\subproblem
-Parameter Count
+\subproblem{Parameter Count}
+State the formula for the parameters.
 
-\subproblem
-Network Visualization
+\subproblem{System Visualization}
+Describe the structure of the system.
 
-\problem{Linear Regions}
+\problem{Regional Analysis}
 Another problem in the same part.
 
-\hwpart{Deep Networks}
+\hwpart{Optimization Methods}
 
-\problem{Depth vs Width}
+\problem{Cost Function Analysis}
 First problem in Part 2, numbered as 2.1
 ```
 

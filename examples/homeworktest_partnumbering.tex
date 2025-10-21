@@ -13,8 +13,8 @@
 \problem{Function Analysis}
 Consider a general function with multiple inputs and outputs for analysis.
 
-\subproblem
-Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)
+\subproblem{Parameter Count}
+State the formula for the total number of parameters ($N_{\text{params}}$)
 in a system with $m$ inputs, $n$ processing units, and $p$ outputs. Calculate 
 $N_{\text{params}}$ if $m = 5$, $n = 100$, and $p = 3$.
 
@@ -33,8 +33,8 @@ N_{\text{params}} \eq 500 + 100 + 300 + 3 \\
 N_{\text{params}} \eq 903
 \end{hwmath}
 
-\subproblem
-System Structure: For a simplified version where $m = 2$, $n = 3$, and $p = 1$, 
+\subproblem{System Structure}
+For a simplified version where $m = 2$, $n = 3$, and $p = 1$, 
 state the dimensions of the weight matrices ($W$) and bias vectors ($b$) for each layer.
 
 \textbf{Solution:}
@@ -44,8 +44,8 @@ state the dimensions of the weight matrices ($W$) and bias vectors ($b$) for eac
 \item Second layer: $W_2 \in \mathbb{R}^{1 \times 3}$, $b_2 \in \mathbb{R}^{1 \times 1}$
 \end{itemize}
 
-\subproblem
-Theoretical Properties: Explain the mathematical properties of the composition of 
+\subproblem{Theoretical Properties}
+Explain the mathematical properties of the composition of 
 piecewise linear functions.
 
 \textbf{Solution:}
@@ -60,7 +60,7 @@ A composition of piecewise linear functions remains piecewise linear because:
 
 \problem{Regional Analysis}
 
-\subproblem
+\subproblem{Calculate Maximum Regions}
 Calculate the maximum number of regions in a space based on the formula for $k$ 
 hyperplanes in an $m$-dimensional space ($k > m$).
 
@@ -83,7 +83,7 @@ R(4, 2) \eq 11
 \problem{Cost Function Analysis}
 Derive properties of a general cost function for classification problems.
 
-\subproblem
+\subproblem{General Entropy Form}
 Write the general form of an entropy-based cost function for a binary problem.
 
 \textbf{Solution:}
@@ -92,7 +92,7 @@ Write the general form of an entropy-based cost function for a binary problem.
 \mathcal{L}(y, \hat{y}) \eq -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
 \end{hwmath}
 
-\subproblem
+\subproblem{Derivative Calculation}
 Compute the derivative with respect to the predicted value $\hat{y}$.
 
 \textbf{Solution:}
@@ -104,7 +104,7 @@ Compute the derivative with respect to the predicted value $\hat{y}$.
 
 \problem{Regularization Methods}
 
-\subproblem
+\subproblem{Common Regularization Approaches}
 Explain two common regularization approaches and their effects on model parameters.
 
 \textbf{Solution:}
@@ -116,7 +116,7 @@ Explain two common regularization approaches and their effects on model paramete
   Encourages sparse solutions with many weights exactly zero. Useful for feature selection.
 \end{itemize}
 
-\subproblem
+\subproblem{Method Selection}
 When would you prefer one regularization method over another?
 
 \textbf{Solution:}
@@ -142,7 +142,7 @@ Prefer L2 when:
 \problem{Gradient-Based Methods}
 Consider a system with layered structure. Derive the update equations.
 
-\subproblem
+\subproblem{Forward Propagation}
 Write the forward propagation equations for a two-layer system.
 
 \textbf{Solution:}
@@ -154,7 +154,7 @@ z^{[2]} \eq W^{[2]} a^{[1]} + b^{[2]} \\
 \hat{y} \eq \sigma(z^{[2]})
 \end{hwmath}
 
-\subproblem
+\subproblem{Gradient Derivation}
 Derive the gradient for the second layer weights using the chain rule.
 
 \textbf{Solution:}
