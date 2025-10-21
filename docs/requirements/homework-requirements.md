@@ -6,6 +6,22 @@
 - **Purpose**: LaTeX class for Homework Assignments
 - **Base Class**: article (default font size)
 
+## Class Options
+
+### Standard Mode (Default)
+- Problems numbered sequentially (1, 2, 3, ...)
+- Sub-problems lettered in parentheses ((a), (b), (c), ...)
+- No part divisions
+
+### Part Numbering Mode
+- **Option**: `partnumbering`
+- **Usage**: `\documentclass[partnumbering]{homework}`
+- **Features**:
+  - Enables `\part{title}` command for dividing homework into major sections
+  - Problems numbered as `<part>.<problem>` (e.g., 1.1, 1.2, 2.1, ...)
+  - Sub-problems formatted as uppercase letters with periods (A., B., C., ...)
+  - Part counter automatically resets problem counter
+
 ## System Requirements
 
 ### LaTeX Distribution
@@ -17,6 +33,7 @@ The following packages must be available in your LaTeX distribution:
 
 #### Core Mathematics and Layout
 - `amsmath` - Advanced mathematical environments and equation formatting
+- `amssymb` - Extended mathematical symbols (including \mathbb)
 - `geometry` - Page layout with 0.5-inch margins
 - `fix-cm` - Computer Modern font size adjustments
 - `xparse` - Modern command definitions with flexible arguments
@@ -47,11 +64,28 @@ The `\hwheader{}{}{}{}}` command requires:
 4. **Date/Info** - Due date or other relevant information
 
 ### Problem Structure
+
+#### Standard Mode (Default)
 - **Problem Command**: `\problem[optional_number]{title}`
   - Automatic numbering unless override provided
   - Optional problem title/description
 - **Sub-problem Command**: `\subproblem[optional_letter]`
   - Automatic lettering (a, b, c, ...) unless override provided
+  - Format: (a), (b), (c), ...
+  - Supports nested problem parts
+
+#### Part Numbering Mode
+- **Part Command**: `\part{title}`
+  - Creates numbered part section (Part 1, Part 2, ...)
+  - Resets problem counter to start at 1 for each new part
+  - Only available when `partnumbering` option is used
+- **Problem Command**: `\problem{title}`
+  - Automatic numbering as `<part>.<problem>` (e.g., 1.1, 1.2, 2.1)
+  - Optional override not recommended in this mode
+  - Optional problem title/description
+- **Sub-problem Command**: `\subproblem[optional_letter]`
+  - Automatic lettering (A, B, C, ...) unless override provided
+  - Format: A., B., C., ... (uppercase with period)
   - Supports nested problem parts
 
 ### Mathematical Environments
@@ -122,6 +156,38 @@ x \eq 8
 
 \subproblem
 Sub-problem work...
+
+\end{document}
+```
+
+### Part Numbering Mode Document
+```latex
+\documentclass[partnumbering]{homework}
+
+\begin{document}
+
+\hwheader{EE599/699}{1}{Student Name}{Fall 2025}
+
+\part{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+Consider a general shallow network...
+
+\subproblem
+Parameter Count: State the formula...
+
+\subproblem
+Network Visualization and Structure...
+
+\problem{Exploring Linear Regions}
+
+\subproblem
+The maximum number of linear regions...
+
+\part{Deep Networks}
+
+\problem{Depth vs Width}
+Analyze the trade-offs...
 
 \end{document}
 ```

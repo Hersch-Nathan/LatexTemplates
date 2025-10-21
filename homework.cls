@@ -2,11 +2,19 @@
 
 \ProvidesClass{homework}[2025-09-01]
 
+% Class options
+\newif\if@partnumbering
+\@partnumberingfalse
+\DeclareOption{partnumbering}{\@partnumberingtrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessOptions\relax
+
 % Load base class
 \LoadClass{article}
 
 % Required packages
 \RequirePackage{amsmath}
+\RequirePackage{amssymb}
 \RequirePackage{listings}
 \RequirePackage{xparse}
 \RequirePackage[margin=0.5in]{geometry}
@@ -27,13 +35,37 @@
 	\end{center}
 }
 
+% 1a. Part command (for partnumbering mode)
+\newcounter{hwpart}
+\newcommand{\hwpart}[1]{%
+	\if@partnumbering
+		\refstepcounter{hwpart}%
+		\setcounter{hwproblem}{0}%
+		\par\vspace{1.5em}
+		\noindent{\large\textbf{Part~\thehwpart: #1}}
+		\par\vspace{1em}
+	\else
+		\PackageWarning{homework}{\noexpand\hwpart command requires partnumbering option}
+	\fi
+}
+
 % 2. Homework problem command
 \newcounter{hwproblem}
 \newcounter{hwsubproblem}[hwproblem]
+
+\if@partnumbering
+	\renewcommand{\thehwproblem}{\thehwpart.\arabic{hwproblem}}
+	\renewcommand{\thehwsubproblem}{\Alph{hwsubproblem}}
+\fi
+
 \newcommand{\problem}[2][\empty]{%
 	\refstepcounter{hwproblem}%
 	\par\vspace{1em}
-	\noindent\textbf{Problem~\ifx\empty#1\empty\thehwproblem\else#1\fi}\ifx\empty#2\empty\else: #2\fi
+	\if@partnumbering
+		\noindent\textbf{Problem~\thehwproblem}\ifx\empty#2\empty\else: #2\fi
+	\else
+		\noindent\textbf{Problem~\ifx\empty#1\empty\thehwproblem\else#1\fi}\ifx\empty#2\empty\else: #2\fi
+	\fi
 	\par\vspace{1em}
 }
 
@@ -41,7 +73,11 @@
 \newcommand{\subproblem}[1][\empty]{%
 	\refstepcounter{hwsubproblem}%
 	\par\vspace{0.5em}
-	\noindent\textbf{(\ifx\empty#1\empty\alph{hwsubproblem}\else#1\fi)}
+	\if@partnumbering
+		\noindent\textbf{\ifx\empty#1\empty\thehwsubproblem\else#1\fi.}
+	\else
+		\noindent\textbf{(\ifx\empty#1\empty\alph{hwsubproblem}\else#1\fi)}
+	\fi
 	\par\vspace{0.25em}
 }
 
@@ -61,8 +97,8 @@
 \newcommand{\lt}{&<}
 \newcommand{\llt}{&<<}
 \newcommand{\ggt}{&>>}
-\newcommand{\geqq}{&\geq}
-\newcommand{\leqq}{&\leq}
+\renewcommand{\geqq}{&\geq}
+\renewcommand{\leqq}{&\leq}
 \newcommand{\neqq}{&\neq}
 \newcommand{\approxx}{&\approx}
 

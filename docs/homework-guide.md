@@ -9,7 +9,7 @@ The `homework` class extends `article` with commands and environments for clean,
 ## Class Overview
 
 The homework class provides:
-- Automatic problem and sub-problem numbering
+- Automatic problem and sub-problem numbering (with two modes: standard and part-based)
 - Math alignment shortcuts for equations
 - Code environments (Python, MATLAB, terminal)
 - Boxed example environments
@@ -18,9 +18,33 @@ The homework class provides:
 - Appendix formatting
 - Compact margins and spacing optimized for homework
 
-**Required Packages**: amsmath, listings, xparse, geometry, fix-cm, environ, xcolor, graphicx, tikz, blox, tcolorbox
+**Required Packages**: amsmath, amssymb, listings, xparse, geometry, fix-cm, environ, xcolor, graphicx, tikz, blox, tcolorbox
+
+## Class Options
+
+### Standard Mode (Default)
+Problems are numbered sequentially (1, 2, 3, ...) and sub-problems are lettered in parentheses ((a), (b), (c), ...).
+
+```latex
+\documentclass{homework}
+```
+
+### Part Numbering Mode
+Enable hierarchical numbering with major parts dividing the homework:
+
+```latex
+\documentclass[partnumbering]{homework}
+```
+
+**Features of Part Numbering Mode**:
+- Use `\hwpart{title}` to create major sections (Part 1, Part 2, ...)
+- Problems are numbered as `<part>.<problem>` (e.g., 1.1, 1.2, 2.1, ...)
+- Sub-problems are formatted as uppercase letters with periods (A., B., C., ...)
+- Each new part automatically resets the problem counter
 
 ## Quick Start
+
+### Standard Mode
 
 ```latex
 \documentclass{homework}
@@ -34,13 +58,47 @@ Write your solution here.
 \end{document}
 ```
 
+### Part Numbering Mode
+
+```latex
+\documentclass[partnumbering]{homework}
+
+\begin{document}
+\hwheader{EE599/699}{1}{Fall 2025}{Jane Smith}
+
+\hwpart{Shallow Networks \& Expressive Power}
+
+\problem{General Shallow Network Analysis}
+Write your solution here.
+
+\subproblem
+Parameter Count: State the formula...
+
+\subproblem
+Network Visualization...
+
+\problem{Exploring Linear Regions}
+Another problem in Part 1.
+
+\hwpart{Deep Networks}
+
+\problem{Depth vs Width}
+First problem in Part 2.
+
+\end{document}
+```
+
 - Header: `\hwheader{Course}{AssignmentNumber}{Date}{Student Name}`
-- Problems auto-number; add a title with `\problem{Title}` or custom label `\problem[2.5]{Title}`
+- Problems auto-number; add a title with `\problem{Title}` or custom label `\problem[2.5]{Title}` (custom labels only work in standard mode)
+- Parts (partnumbering mode only): `\hwpart{Part Title}` to create major sections
 
 ## Problems and Sub-problems
 
+### Standard Mode (Default)
+
 - Problem: `\problem{Problem title}` or `\problem[custom]{Problem title}` (title is optional)
 - Sub-problem label: `\subproblem` or `\subproblem[iii]` (label only) — write the part statement as normal text after the macro
+- Sub-problems are formatted as (a), (b), (c), ...
 
 Example:
 ```latex
@@ -53,6 +111,34 @@ Evaluate at x=2
 
 \subproblem[iii]
 Discuss stability
+```
+
+### Part Numbering Mode
+
+- Part: `\hwpart{Part title}` — creates a new major section (Part 1, Part 2, ...)
+- Problem: `\problem{Problem title}` — automatically numbered as `<part>.<problem>` (e.g., 1.1, 1.2)
+- Sub-problem: `\subproblem` or `\subproblem[custom]` — formatted as A., B., C., ...
+
+Example:
+```latex
+\hwpart{Shallow Networks}
+
+\problem{General Analysis}
+Consider a shallow network...
+
+\subproblem
+Parameter Count
+
+\subproblem
+Network Visualization
+
+\problem{Linear Regions}
+Another problem in the same part.
+
+\hwpart{Deep Networks}
+
+\problem{Depth vs Width}
+First problem in Part 2, numbered as 2.1
 ```
 
 ## Math Environments
