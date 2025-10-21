@@ -1,0 +1,171 @@
+% Homework Test - Part Numbering Mode
+% This file tests the partnumbering option functionality
+% Expected output: Problems numbered 1.1, 1.2, 2.1, etc. with Parts and uppercase subproblems
+
+\documentclass[partnumbering]{../homework}
+
+\begin{document}
+
+\hwheader{COURSE 101}{1}{Test Student}{Fall 2025}
+
+\hwpart{Mathematical Foundations}
+
+\problem{Function Analysis}
+Consider a general function with multiple inputs and outputs for analysis.
+
+\subproblem
+Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)
+in a system with $m$ inputs, $n$ processing units, and $p$ outputs. Calculate 
+$N_{\text{params}}$ if $m = 5$, $n = 100$, and $p = 3$.
+
+\textbf{Solution:}
+
+The total number of parameters is:
+\begin{hwmath}
+N_{\text{params}} \eq (m \times n + n) + (n \times p + p) \\
+N_{\text{params}} \eq m \cdot n + n + n \cdot p + p
+\end{hwmath}
+
+For $m = 5$, $n = 100$, and $p = 3$:
+\begin{hwmath}
+N_{\text{params}} \eq 5 \times 100 + 100 + 100 \times 3 + 3 \\
+N_{\text{params}} \eq 500 + 100 + 300 + 3 \\
+N_{\text{params}} \eq 903
+\end{hwmath}
+
+\subproblem
+System Structure: For a simplified version where $m = 2$, $n = 3$, and $p = 1$, 
+state the dimensions of the weight matrices ($W$) and bias vectors ($b$) for each layer.
+
+\textbf{Solution:}
+
+\begin{itemize}
+\item First layer: $W_1 \in \mathbb{R}^{3 \times 2}$, $b_1 \in \mathbb{R}^{3 \times 1}$
+\item Second layer: $W_2 \in \mathbb{R}^{1 \times 3}$, $b_2 \in \mathbb{R}^{1 \times 1}$
+\end{itemize}
+
+\subproblem
+Theoretical Properties: Explain the mathematical properties of the composition of 
+piecewise linear functions.
+
+\textbf{Solution:}
+
+A composition of piecewise linear functions remains piecewise linear because:
+\begin{enumerate}
+\item Each component applies a linear transformation
+\item The composition preserves the piecewise structure
+\item The total number of linear segments depends on the number of components
+\item For one-dimensional input, the maximum segments is $n + 1$ for $n$ components
+\end{enumerate}
+
+\problem{Regional Analysis}
+
+\subproblem
+Calculate the maximum number of regions in a space based on the formula for $k$ 
+hyperplanes in an $m$-dimensional space ($k > m$).
+
+\textbf{Solution:}
+
+The formula is:
+\begin{hwmath}
+R(k, m) \eq \sum_{i=0}^{m} \binom{k}{i}
+\end{hwmath}
+
+For $m = 2$ and $k = 4$:
+\begin{hwmath}
+R(4, 2) \eq \binom{4}{0} + \binom{4}{1} + \binom{4}{2} \\
+R(4, 2) \eq 1 + 4 + 6 \\
+R(4, 2) \eq 11
+\end{hwmath}
+
+\hwpart{Optimization Methods}
+
+\problem{Cost Function Analysis}
+Derive properties of a general cost function for classification problems.
+
+\subproblem
+Write the general form of an entropy-based cost function for a binary problem.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\mathcal{L}(y, \hat{y}) \eq -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
+\end{hwmath}
+
+\subproblem
+Compute the derivative with respect to the predicted value $\hat{y}$.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\frac{\partial \mathcal{L}}{\partial \hat{y}} \eq -\left[\frac{y}{\hat{y}} - \frac{1-y}{1-\hat{y}}\right] \\
+\frac{\partial \mathcal{L}}{\partial \hat{y}} \eq \frac{\hat{y} - y}{\hat{y}(1-\hat{y})}
+\end{hwmath}
+
+\problem{Regularization Methods}
+
+\subproblem
+Explain two common regularization approaches and their effects on model parameters.
+
+\textbf{Solution:}
+
+\begin{itemize}
+\item \textbf{L2 Regularization}: Adds $\lambda \sum_i w_i^2$ to the loss. 
+  Encourages small weights but rarely exactly zero. Provides smooth parameter distributions.
+\item \textbf{L1 Regularization}: Adds $\lambda \sum_i |w_i|$ to the loss. 
+  Encourages sparse solutions with many weights exactly zero. Useful for feature selection.
+\end{itemize}
+
+\subproblem
+When would you prefer one regularization method over another?
+
+\textbf{Solution:}
+
+Prefer L1 when:
+\begin{enumerate}
+\item You want automatic feature selection
+\item You believe only a few features are truly relevant
+\item Interpretability is important (sparse models are easier to interpret)
+\item Storage/computation efficiency is critical
+\end{enumerate}
+
+Prefer L2 when:
+\begin{enumerate}
+\item All features contribute somewhat to the prediction
+\item You want smooth parameter distributions
+\item Numerical stability is a concern
+\item You're dealing with correlated features
+\end{enumerate}
+
+\hwpart{Algorithm Analysis}
+
+\problem{Gradient-Based Methods}
+Consider a system with layered structure. Derive the update equations.
+
+\subproblem
+Write the forward propagation equations for a two-layer system.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+z^{[1]} \eq W^{[1]} x + b^{[1]} \\
+a^{[1]} \eq \sigma(z^{[1]}) \\
+z^{[2]} \eq W^{[2]} a^{[1]} + b^{[2]} \\
+\hat{y} \eq \sigma(z^{[2]})
+\end{hwmath}
+
+\subproblem
+Derive the gradient for the second layer weights using the chain rule.
+
+\textbf{Solution:}
+
+\begin{hwmath}
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z^{[2]}} \cdot \frac{\partial z^{[2]}}{\partial W^{[2]}} \\
+\frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \delta^{[2]} \cdot (a^{[1]})^T
+\end{hwmath}
+
+where $\delta^{[2]} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \sigma'(z^{[2]})$.
+
+\note[This test demonstrates all three parts with hierarchical numbering: 1.1, 1.2, 2.1, 2.2, 3.1]
+
+\end{document}
