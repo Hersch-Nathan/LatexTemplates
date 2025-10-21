@@ -6,81 +6,72 @@
 
 \begin{document}
 
-\hwheader{EE599/699}{1}{Your Name}{Fall 2025}
+\hwheader{COURSE 101}{1}{Your Name}{Fall 2025}
 
-\hwpart{Shallow Networks \& Expressive Power}
+\hwpart{Mathematical Analysis}
 
-\problem{General Shallow Network Analysis}
-Consider a general shallow network designed for a complex task with $D_i$ inputs, 
-$D$ hidden units, and $D_o$ outputs.
+\problem{Function Properties}
+Consider a general mathematical function with multiple parameters for analysis.
 
 \subproblem
-Parameter Count: State the formula for the total number of parameters ($N_{\text{params}}$)
-in this network. Calculate $N_{\text{params}}$ if $D_i = 5$, $D = 100$, and $D_o = 3$.
+Parameter Analysis: Determine the key parameters and their relationships.
 
 Solution goes here...
 
 \subproblem
-Network Visualization and Structure: For a simplified version of this network
-where $D_i = 2$, $D = 3$, and $D_o = 1$, state the dimensions of the weight matrices 
-($\Omega$) and bias vectors ($\beta$) used for the hidden layer and the output layer.
+System Visualization: Describe the structure and organization of the system.
 
 Solution goes here...
 
 \subproblem
-Piecewise Linearity: Why is the output of this ReLU-based shallow network always
-piecewise linear? How does the number of hidden units ($D$) relate to the maximum 
-number of linear segments when $D_i = 1$?
+Theoretical Properties: Explain the mathematical properties that govern this system.
 
 Solution goes here...
 
-\problem{Exploring Linear Regions}
+\problem{Advanced Topics}
 
 \subproblem
-The maximum number of linear regions created by $D$ hyperplanes (corresponding to $D$
-hidden units) in a $D_i$-dimensional input space ($D > D_i$) is given by Zaslavsky (1975).
-Write down the formula and calculate it for $D_i = 2$ and $D = 4$.
+Calculate relevant metrics based on the given formulas and parameters.
 
 Solution goes here...
 
-\hwpart{Deep Networks}
+\hwpart{Applied Methods}
 
-\problem{Depth vs Width Trade-offs}
-Analyze the computational and expressive power trade-offs between deep and wide networks.
+\problem{Algorithm Design}
+Analyze computational approaches and their trade-offs.
 
 \subproblem
-Compare a shallow network with $D = 1000$ hidden units to a deep network with 
-5 layers of 10 hidden units each.
+Compare different algorithmic strategies for solving the problem.
 
 Solution goes here...
 
 \subproblem
-Discuss the vanishing gradient problem in deep networks.
+Discuss efficiency considerations and optimization techniques.
 
 Solution goes here...
 
-\problem{Residual Connections}
+\problem{Implementation Details}
 
 \subproblem
-Explain how skip connections help training in very deep networks.
+Explain key implementation concepts and best practices.
 
 Solution goes here...
 
-\hwpart{Optimization Techniques}
+\hwpart{Theoretical Foundations}
 
-\problem{Gradient Descent Variants}
-Compare SGD, Momentum, and Adam optimizers.
+\problem{Core Principles}
+Examine the underlying theoretical framework.
 
 \subproblem
-Derive the update rule for momentum-based gradient descent.
+Derive fundamental equations using standard methods.
 
 \begin{hwmath}
-v_t \eq \beta v_{t-1} + \nabla_\theta J(\theta) \\
-\theta_t \eq \theta_{t-1} - \alpha v_t
+f(x) \eq g(x) + h(x) \\
+f'(x) \eq g'(x) + h'(x)
 \end{hwmath}
 
 \subproblem
-When would you prefer Adam over standard SGD?
+Discuss when specific approaches are most appropriate.
 
 Solution goes here...
 
