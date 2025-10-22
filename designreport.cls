@@ -166,31 +166,31 @@
         
         % Document Name - larger font, closer to top
         {\huge\bfseries \@documentname \par}
-        \vspace{0.3cm}
+        \vspace{0.2cm}
         
         % Team Name
         {\LARGE\bfseries \@teamname \par}
-        \vspace{0.3cm}
+        \vspace{0.2cm}
         
         % Team Logo (if provided)
         \if@haslogo
             \includegraphics[width=0.3\textwidth]{\@teamlogo}
-            \vspace{0.3cm}
+            \vspace{0.2cm}
         \fi
         
         % University and Department
         {\large \@university \par}
         {\large \@department \par}
-        \vspace{0.3cm}
+        \vspace{0.2cm}
         
         % Course
         {\large \@course \par}
-        \vspace{0.4cm}
+        \vspace{0.2cm}
         
         % Team Members
         \if@hasmembers
             {\Large\bfseries Team Members \par}
-            \vspace{0.3cm}
+            \vspace{0.2cm}
             \begin{multicols}{2}
                 \@teammembers
             \end{multicols}
@@ -200,21 +200,21 @@
         % Class Advisors
         \if@hasadvisors
             {\Large\bfseries Class Advisors \par}
-            \vspace{0.3cm}
+            \vspace{0.2cm}
             \begin{multicols}{2}
                 \@classadvisors
             \end{multicols}
-            \vspace{0.5cm}
+            \vspace{0.3cm}
         \fi
         
         % Sponsors
         \if@hassponsor
             {\Large\bfseries Sponsors \par}
-            \vspace{0.3cm}
+            \vspace{0.2cm}
             \begin{multicols}{2}
                 \@sponsors
             \end{multicols}
-            \vspace{0.5cm}
+            \vspace{0.3cm}
         \fi
         
         \vfill
@@ -261,6 +261,9 @@
 
 % Create command to generate all front matter
 \newcommand{\makefrontmatter}{%
+    %Title Page
+    \maketitle
+
     % Table of Contents
     \clearpage
     \tableofcontents
