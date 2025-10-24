@@ -307,6 +307,39 @@ Operating Temperature & -10 to 60 & °C \\
 \end{table}
 ```
 
+### Figure Insertion Examples
+
+#### Single Figure with Label
+```latex
+% Basic figure with caption and label
+\reportfigure[0.8\textwidth]{system-diagram.png}{System Architecture}{fig:architecture}
+
+% Using default width (0.6\textwidth)
+\reportfigure{prototype.jpg}{Final Prototype}{fig:prototype}
+
+% Reference the figure in text
+As shown in Figure~\ref{fig:architecture}, the system consists of three main components.
+```
+
+#### Side-by-Side Figures
+```latex
+% Two related figures displayed side by side
+\reportdualfigure[0.45\textwidth]
+    {before-control.jpg}{System Behavior Without Control}{fig:before}
+    {after-control.jpg}{System Behavior With Control}{fig:after}
+
+% Reference both figures
+Figure~\ref{fig:before} shows the unstable behavior, while 
+Figure~\ref{fig:after} demonstrates the improved stability.
+
+% Another example with different sizes
+\reportdualfigure[0.4\textwidth]
+    {schematic.pdf}{Circuit Schematic}{fig:schematic}
+    {pcb-layout.pdf}{PCB Layout}{fig:pcb}
+```
+
+**Note**: All figure paths are automatically prefixed with `figures/`, so place your images in a `figures/` subdirectory.
+
 ## Tips
 
 - Keep problem statements concise; use sub-problems to break down tasks.

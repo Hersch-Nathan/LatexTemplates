@@ -269,14 +269,66 @@ All tests passed successfully!
 
 ### Figure Insertion
 
+The class provides convenient commands for inserting figures with proper formatting and cross-referencing.
+
+#### Single Figure with Label
+
 ```latex
-% Simple figure with caption
-\reportfigure[0.8\textwidth]{image.png}{Caption text}
+% Figure with caption and label for referencing
+\reportfigure[0.8\textwidth]{image.png}{Caption text}{fig:mylabel}
 
 % Figure with custom width
-\reportfigure[0.5\textwidth]{diagram.pdf}{System Architecture}
+\reportfigure[0.5\textwidth]{diagram.pdf}{System Architecture}{fig:architecture}
 
-% Legacy compatibility
+% Using default width (0.6\textwidth)
+\reportfigure{photo.jpg}{Prototype Photo}{fig:prototype}
+```
+
+**Usage**: `\reportfigure[width]{filename}{caption}{label}`
+- `width` (optional): Figure width, defaults to `0.6\textwidth`
+- `filename`: Image file in the `figures/` directory (path is added automatically)
+- `caption`: Figure caption text
+- `label`: Label for cross-referencing (e.g., `fig:myimage`)
+
+#### Side-by-Side Figures
+
+For displaying two related figures next to each other with individual captions and labels:
+
+```latex
+% Two figures side by side with equal width
+\reportdualfigure[0.45\textwidth]
+    {left-image.jpg}{Left Figure Caption}{fig:left}
+    {right-image.jpg}{Right Figure Caption}{fig:right}
+
+% Adjust width as needed (both figures use same width)
+\reportdualfigure[0.4\textwidth]
+    {before.png}{System Before Modification}{fig:before}
+    {after.png}{System After Modification}{fig:after}
+```
+
+**Usage**: `\reportdualfigure[width]{file1}{caption1}{label1}{file2}{caption2}{label2}`
+- `width` (optional): Width for each figure, defaults to `0.45\textwidth`
+- `file1`, `file2`: Image files in the `figures/` directory
+- `caption1`, `caption2`: Individual captions for each figure
+- `label1`, `label2`: Individual labels for cross-referencing
+
+**Example with References**:
+```latex
+% In document
+\reportdualfigure[0.45\textwidth]
+    {user-story-before.jpg}{User Story without Control}{fig:user-before}
+    {user-story-after.jpg}{User Story with Control}{fig:user-after}
+
+% Reference later in text
+As shown in Figure~\ref{fig:user-before}, the system exhibits instability.
+After implementing the control system (Figure~\ref{fig:user-after}), 
+stability is achieved.
+```
+
+#### Legacy Compatibility
+
+```latex
+% Old style without label (not recommended for new documents)
 \insertFigure{0.6\textwidth}{photo.jpg}{Prototype Photo}
 ```
 
