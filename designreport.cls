@@ -378,12 +378,36 @@
     \end{center}%
 }
 
-% Figure environment with caption (figures folder enforced)
-\NewDocumentCommand{\reportfigure}{O{0.6\textwidth} m m}{%
+% Figure environment with caption and optional label (figures folder enforced)
+% Usage: \reportfigure[width]{filename}{caption}{label}
+% Example: \reportfigure[0.8\textwidth]{myimage.png}{My Caption}{fig:mylabel}
+\NewDocumentCommand{\reportfigure}{O{0.6\textwidth} m m m}{%
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=#1]{figures/#2}
         \caption{#3}
+        \label{#4}
+    \end{figure}
+}
+
+% Side-by-side figures with captions and labels (figures folder enforced)
+% Usage: \reportdualfigure[width]{file1}{caption1}{label1}{file2}{caption2}{label2}
+% Example: \reportdualfigure[0.45\textwidth]{img1.jpg}{Left Caption}{fig:left}{img2.jpg}{Right Caption}{fig:right}
+\NewDocumentCommand{\reportdualfigure}{O{0.45\textwidth} m m m m m m}{%
+    \begin{figure}[htbp]
+        \centering
+        \begin{minipage}{#1}
+            \centering
+            \includegraphics[width=\textwidth]{figures/#2}
+            \caption{#3}
+            \label{#4}
+        \end{minipage}\hfill
+        \begin{minipage}{#1}
+            \centering
+            \includegraphics[width=\textwidth]{figures/#5}
+            \caption{#6}
+            \label{#7}
+        \end{minipage}
     \end{figure}
 }
 
