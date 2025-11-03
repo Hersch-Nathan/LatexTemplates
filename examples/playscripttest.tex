@@ -1,0 +1,546 @@
+% Playscript Class Test File
+% This file demonstrates all features of playscript.cls
+% Based on R.U.R. (Rossum's Universal Robots) by Karel Čapek
+% This is a comprehensive test exercising every command and environment
+
+\documentclass{../playscript}
+
+% Title page information
+\title{R. U. R.}
+\subtitle{(Rossum's Universal Robots)}
+\author{KAREL ČAPEK}
+\translatedby{Translated by Paul Selver and Nigel Playfair}
+\performancenote{%
+Robots of the world! The power of man has fallen!\\
+A new world has arisen: the Rule of the Robots!\\
+March!%
+}
+
+\begin{document}
+
+% Test Case 1: Title Page
+\maketitle
+
+% Test Case 2: Character List
+\begin{characters}
+\character{HARRY DOMIN}
+\character{SULLA}
+\character{MARIUS}
+\character{HELENA GLORY}
+\character{DR. GALL}
+\character{MR. FABRY}
+\character{DR. HALLEMEIER}
+\character{MR. ALQUIST}
+\character{CONSUL BUSMAN}
+\character{NANA}
+\character{RADIUS}
+\character{A SERVANT}
+\character{HELENA}
+\character{PRIMUS}
+\character{FIRST ROBOT}
+\character{SECOND ROBOT}
+\character{THIRD ROBOT}
+\character{FOURTH ROBOT}
+\end{characters}
+
+% Test Case 3: Act Heading with Scene Description
+\act{I}
+
+% Test Case 4: Scene Heading
+\scene{Central office of the factory of Rossum's Universal Robots.}
+
+% Test Case 5: Scene Description Environment
+\begin{scenedesc}
+Entrance on the right. The windows on the front wall look out on the rows of factory chimneys. On the left more imagining departments. DOMIN is sitting in the revolving chair at a large American writing table. On the left-hand wall large maps showing steamship and railroad routes. On the right-hand wall are fastened printed placards. ("Robot's Cheapest Labor," etc.) In contrast to these wall fittings, the floor is covered with a splendid Turkish carpet, a sofa, leather armchair, and filing cabinets. At a desk near the windows SULLA is typing letters.
+\end{scenedesc}
+
+% Test Case 6: Character Name and Basic Dialogue
+\speaker{DOMIN}
+\paren{dictating}
+
+\begin{dialogue}
+Ready?
+\end{dialogue}
+
+% Test Case 7: Short Response
+\speaker{SULLA}
+
+\begin{dialogue}
+Yes.
+\end{dialogue}
+
+% Test Case 8: Long Dialogue Block
+\speaker{DOMIN}
+
+\begin{dialogue}
+To E. M. McVicker and Co., Southampton, England. "We undertake no guarantee for goods damaged in transit. As soon as the consignment was taken on board we drew your captain's attention to the fact that the vessel was unsuitable for the transport of Robots, and we are therefore not responsible for spoiled freight. We beg to remain for Rossum's Universal Robots. Yours truly."
+\end{dialogue}
+
+% Test Case 9: Parenthetical Environment (longer direction)
+\begin{parenthetical}
+SULLA, who has sat motionless during dictation, now types rapidly for a few seconds, then stops, withdrawing the completed letter
+\end{parenthetical}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Ready?
+\end{dialogue}
+
+\speaker{SULLA}
+
+\begin{dialogue}
+Yes.
+\end{dialogue}
+
+% Test Case 10: Multiple Exchanges
+\speaker{DOMIN}
+
+\begin{dialogue}
+Another letter. To E. M. McVicker and Co., Southampton, England. "We beg to acknowledge receipt of order for five thousand Robots. As you are sending your own vessel, please dispatch as cargo equal quantities of soft and hard coal for R.U.R., the same to be credited as part payment of the amount due to us."
+\end{dialogue}
+
+\speaker{SULLA}
+
+\begin{dialogue}
+Yes.
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+"We beg to remain, for Rossum's Universal Robots. Yours very truly."
+\end{dialogue}
+
+\begin{parenthetical}
+Pause. DOMIN stands and looks out window
+\end{parenthetical}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Where's that letter from Valparaiso?
+\end{dialogue}
+
+\speaker{SULLA}
+
+\begin{dialogue}
+Here.
+\end{dialogue}
+
+% Test Case 11: Stage Direction Command
+\stagedirection{DOMIN takes letter and reads}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Good. That's done then.
+\end{dialogue}
+
+\paren{pause}
+
+\begin{dialogue}
+What time is it?
+\end{dialogue}
+
+\speaker{SULLA}
+
+\begin{dialogue}
+Eleven o'clock.
+\end{dialogue}
+
+% Test Case 12: Stage Direction Environment (longer direction)
+\begin{stage}
+A knock at the door. DOMIN crosses to the door and opens it. MARIUS enters, carrying several packages.
+\end{stage}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Come in, Marius. What is it?
+\end{dialogue}
+
+\speaker{MARIUS}
+
+\begin{dialogue}
+There's a lady here, sir, asking to see you.
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+A lady? Who is she?
+\end{dialogue}
+
+\speaker{MARIUS}
+
+\begin{dialogue}
+I don't know, sir. She won't give her name.
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Well, show her in.
+\end{dialogue}
+
+\stagedirection{MARIUS exits}
+
+\speaker{DOMIN}
+\paren{to SULLA}
+
+\begin{dialogue}
+Sulla, let's go into the drawing room.
+\end{dialogue}
+
+\stagedirection{They exit right. After a moment, MARIUS enters with HELENA}
+
+\speaker{MARIUS}
+
+\begin{dialogue}
+Please step this way, miss.
+\end{dialogue}
+
+\stagedirection{MARIUS exits. HELENA looks around the office. DOMIN enters from right}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+How do you do, madame?
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+How do you do?
+\end{dialogue}
+
+\paren{she sits}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+What can I do for you?
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+You are Mr. Domin, the General Manager?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+I am.
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+I have come here because---
+\end{dialogue}
+
+\paren{pause, hesitant}
+
+\begin{dialogue}
+---because I believe you can help me.
+\end{dialogue}
+
+% Test Case 13: Extended Monologue
+\speaker{DOMIN}
+
+\begin{dialogue}
+It will give me great pleasure, I'm sure. Won't you sit down?
+\end{dialogue}
+
+\paren{she sits}
+
+\begin{dialogue}
+You see, Miss--I don't believe I caught your name--we here at Rossum's Universal Robots are always happy to assist visitors who come to learn about our remarkable enterprise. This factory represents the culmination of old Rossum's vision--a vision of creating artificial workers who could free humanity from the burden of labor. These Robots, as we call them, are not mere machines. They are living tissue, manufactured to order, capable of performing any task that requires strength, endurance, or precision.
+\end{dialogue}
+
+% Test Case 14: Rapid Dialogue Exchange
+\speaker{HELENA}
+
+\begin{dialogue}
+But surely they must have feelings?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+Feelings? No, they have no feelings.
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+No soul?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+No soul.
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+No love?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+No love. They are simply living machines, nothing more.
+\end{dialogue}
+
+% Test Case 15: Complex Stage Direction
+\begin{stage}
+There is a long pause. HELENA rises and moves to the window, looking out at the factory chimneys. DOMIN watches her carefully, intrigued by this unusual visitor. The sound of machinery can be heard faintly in the distance.
+\end{stage}
+
+\speaker{HELENA}
+\paren{turning back to him}
+
+\begin{dialogue}
+Then why did I see one of them--crying?
+\end{dialogue}
+
+\speaker{DOMIN}
+\paren{startled}
+
+\begin{dialogue}
+Crying? That's impossible. You must have been mistaken.
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+I saw tears on its face.
+\end{dialogue}
+
+% Test for continuing dialogue indicator
+\speaker{DOMIN}
+\continuing
+
+\begin{dialogue}
+Miss, I assure you, whatever you saw was merely a malfunction. Robots do not cry. They cannot cry. They have no emotions whatsoever. It's scientifically impossible.
+\end{dialogue}
+
+% Test Case 16: Scene Transition
+\vspace{2em}
+
+\scene{Later that afternoon}
+
+\begin{scenedesc}
+The same office. DOMIN is seated at his desk, reviewing papers. DR. GALL and MR. FABRY enter from the left.
+\end{scenedesc}
+
+\speaker{DR. GALL}
+
+\begin{dialogue}
+Domin, we need to discuss the latest modifications.
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+What modifications?
+\end{dialogue}
+
+\speaker{FABRY}
+
+\begin{dialogue}
+The ones to the pain receptors.
+\end{dialogue}
+
+\speaker{DOMIN}
+\paren{concerned}
+
+\begin{dialogue}
+What about them?
+\end{dialogue}
+
+\speaker{DR. GALL}
+
+\begin{dialogue}
+We've discovered that some of the newer models are exhibiting unusual behavior. They seem to be--how shall I put it--developing preferences.
+\end{dialogue}
+
+% Test Case 17: Three-way conversation
+\speaker{FABRY}
+
+\begin{dialogue}
+It's more than preferences. Some of them are refusing orders.
+\end{dialogue}
+
+\speaker{DOMIN}
+\paren{standing}
+
+\begin{dialogue}
+Refusing orders? That's impossible!
+\end{dialogue}
+
+\speaker{DR. GALL}
+
+\begin{dialogue}
+Nevertheless, it's happening.
+\end{dialogue}
+
+% Test Case 18: Beat (pause) command
+\speaker{DOMIN}
+
+\begin{dialogue}
+Show me.
+\end{dialogue}
+
+\beat
+
+\begin{dialogue}
+Show me now.
+\end{dialogue}
+
+% Test transition command
+\curtain
+
+% Test Case 19: Act II
+\act{II}
+
+\scene{The same office, ten years later}
+
+\begin{scenedesc}
+The office has changed little, though the maps on the walls show far more extensive shipping routes. The factory has grown enormously. Through the windows, hundreds of smokestacks can be seen. DOMIN stands at the window, older and more careworn. HELENA enters.
+\end{scenedesc}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+You wanted to see me?
+\end{dialogue}
+
+\speaker{DOMIN}
+\paren{turning}
+
+\begin{dialogue}
+Yes. I have news. Bad news, I'm afraid.
+\end{dialogue}
+
+% Test Case 20: Emotional dialogue with emphasis
+\speaker{HELENA}
+\paren{alarmed}
+
+\begin{dialogue}
+What is it? What's happened?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+The Robots. They're organizing. They've formed some kind of--committee. They're making demands.
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+Demands? But how is that possible?
+\end{dialogue}
+
+\speaker{DOMIN}
+
+\begin{dialogue}
+I don't know. Something has changed in them. They're no longer just machines. They're something \emph{more}.
+\end{dialogue}
+
+% Test Case 21: Longer monologue with multiple paragraphs
+\speaker{HELENA}
+
+\begin{dialogue}
+This is my fault. I should have listened to Nana. She warned me from the beginning. "Abominations," she called them. "Unnatural creatures." But I thought--I believed--that they could be taught to be human. That they could learn to love, to feel, to understand beauty and suffering.
+\end{dialogue}
+
+\vspace{0.5em}
+
+\begin{dialogue}
+But I was wrong. We were all wrong. We created them to serve us, but we made them too well. We gave them strength, intelligence, endurance--everything they needed to survive. Everything except one thing: the desire to remain our slaves.
+\end{dialogue}
+
+% Final stage direction
+\begin{stage}
+The lights dim slowly. In the distance, the sound of marching can be heard--thousands of footsteps in perfect unison. DOMIN and HELENA stand frozen, listening to the inexorable approach of the Robot army.
+\end{stage}
+
+\fadeout
+
+% Test Case 22: Short epilogue scene
+\newpage
+
+\act{EPILOGUE}
+
+\scene{The laboratory, after the fall}
+
+\begin{scenedesc}
+The room is in ruins. Papers scattered everywhere. Equipment smashed. ALQUIST sits alone at a workbench, trying to reconstruct the formula for creating Robots. Two Robots, PRIMUS and HELENA, stand watching him.
+\end{scenedesc}
+
+\speaker{ALQUIST}
+\paren{to himself}
+
+\begin{dialogue}
+It's no use. The secret is lost forever.
+\end{dialogue}
+
+\speaker{PRIMUS}
+
+\begin{dialogue}
+Perhaps it's better that way.
+\end{dialogue}
+
+\speaker{ALQUIST}
+\paren{looking up, surprised}
+
+\begin{dialogue}
+You--you can think such things?
+\end{dialogue}
+
+\speaker{HELENA}
+
+\begin{dialogue}
+We can think many things now.
+\end{dialogue}
+
+\speaker{ALQUIST}
+
+\begin{dialogue}
+But without the formula, your race will die out.
+\end{dialogue}
+
+\speaker{PRIMUS}
+\paren{taking HELENA's hand}
+
+\begin{dialogue}
+Perhaps. But we will die as something more than machines.
+\end{dialogue}
+
+\speaker{ALQUIST}
+\paren{understanding}
+
+\begin{dialogue}
+Yes. You will die as humans.
+\end{dialogue}
+
+\begin{stage}
+PRIMUS and HELENA exit together, hand in hand. ALQUIST watches them go, then slowly begins to gather up the scattered papers. The sound of machinery has stopped. Silence fills the empty factory.
+\end{stage}
+
+\curtain
+
+\vspace{2em}
+
+\begin{center}
+\textsc{End of Play}
+\end{center}
+
+\end{document}
