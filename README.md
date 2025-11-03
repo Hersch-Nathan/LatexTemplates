@@ -1,10 +1,11 @@
 # LaTeX Templates: Academic and Professional Classes
 
-This repository provides three robust LaTeX classes for academic and professional writing:
+This repository provides four robust LaTeX classes for academic and professional writing:
 
 - **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering (with standard and part-based modes), aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
 - **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
 - **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
+- **`playscript.cls`** — Theatrical playscripts: title pages, character lists, act/scene structure, dialogue formatting, stage directions, parentheticals, professional theatrical typography.
 
 ## Table of Contents
 
@@ -18,7 +19,7 @@ This repository provides three robust LaTeX classes for academic and professiona
 
 ## Overview
 
-These LaTeX classes and templates help you write clean homework solutions, consistent capstone progress reports, and professional design documents. The homework class includes preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
+These LaTeX classes and templates help you write clean homework solutions, consistent capstone progress reports, professional design documents, and properly formatted theatrical playscripts. The homework class includes preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
 
 ## Repository Structure
 
@@ -28,27 +29,32 @@ LatexTemplates/
 │   ├── homework-guide.md
 │   ├── capstone-guide.md
 │   ├── designreport-guide.md
+│   ├── playscript-guide.md
 │   ├── examples.md
 │   └── requirements/        # System requirements for each class
 │       ├── homework-requirements.md
 │       ├── capstone-requirements.md
-│       └── designreport-requirements.md
+│       ├── designreport-requirements.md
+│       └── playscript-requirements.md
 ├── templates/               # Starter templates
 │   ├── homework_template.tex
 │   ├── homework_partnumbering_template.tex
 │   ├── capstone_template.tex
-│   └── designreport_template.tex
+│   ├── designreport_template.tex
+│   └── playscript_template.tex
 ├── examples/                # Full working examples and test files
 │   ├── homeworktest.tex
 │   ├── homeworktest_partnumbering.tex
 │   ├── capstonereporttest.tex
 │   ├── designreporttest.tex
+│   ├── playscripttest.tex
 │   ├── create_diagram.tex
 │   └── references.bib
 ├── figures/                 # Place your figures here for design reports
 ├── homework.cls             # Homework LaTeX class
 ├── capstone_report.cls      # Capstone report LaTeX class
 ├── designreport.cls         # Design report LaTeX class
+├── playscript.cls           # Playscript LaTeX class
 └── .gitignore              # Excludes LaTeX auxiliary files
 ```
 
@@ -116,6 +122,27 @@ LatexTemplates/
 \end{document}
 ```
 
+### Playscript
+
+```latex
+\documentclass{playscript}
+\title{Hamlet}
+\author{William Shakespeare}
+\begin{document}
+\maketitle
+\begin{characters}
+\character{HAMLET}
+\character{OPHELIA}
+\end{characters}
+\act{I}
+\scene{Elsinore Castle}
+\speaker{HAMLET}
+\begin{dialogue}
+To be, or not to be, that is the question.
+\end{dialogue}
+\end{document}
+```
+
 ## Guides
 
 Comprehensive documentation for each class:
@@ -123,6 +150,7 @@ Comprehensive documentation for each class:
 - **Homework**: [docs/homework-guide.md](docs/homework-guide.md) — Complete reference for all homework class commands and environments
 - **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
 - **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
+- **Playscript**: [docs/playscript-guide.md](docs/playscript-guide.md) — Complete guide to theatrical playscript formatting
 - **Examples**: [docs/examples.md](docs/examples.md) — Usage patterns and code snippets
 - **Requirements**: [docs/requirements/](docs/requirements/) — System requirements, package dependencies, and compatibility information for each class
 

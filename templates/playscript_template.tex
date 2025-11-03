@@ -1,0 +1,321 @@
+% Playscript Template - Basic Structure
+% This is a minimal template to get you started with playscript.cls
+% For a complete feature demonstration, see examples/playscripttest.tex
+
+\documentclass{../playscript}
+
+% Optional class options:
+% \documentclass[font=sans]{playscript}      % Use sans-serif font
+% \documentclass[a4paper]{playscript}        % Use A4 paper size
+% \documentclass[draft]{playscript}          % Draft mode with overfull box markers
+
+% ============================================================================
+% TITLE PAGE INFORMATION
+% ============================================================================
+
+\title{Your Play Title}
+\subtitle{(Optional Subtitle)}                    % Optional
+\author{Your Name}
+\translatedby{Translated by...}                   % Optional - for translations
+\performancenote{Optional performance note}       % Optional - epigraph or note
+
+\begin{document}
+
+% ============================================================================
+% FRONT MATTER
+% ============================================================================
+
+% Title page
+\maketitle
+
+% Character list
+\begin{characters}
+\character{FIRST CHARACTER}
+\character{SECOND CHARACTER}
+\character{THIRD CHARACTER}
+% Add more characters as needed
+\end{characters}
+
+% ============================================================================
+% ACT I
+% ============================================================================
+
+\act{I}
+
+% Scene heading (optional - for scene location)
+\scene{A room in the house}
+
+% Scene description (optional - for detailed scene setting)
+\begin{scenedesc}
+The scene is set in a comfortable living room. A sofa sits center stage,
+with a coffee table in front of it. Large windows at the back look out
+onto a garden. The lighting is warm and inviting.
+\end{scenedesc}
+
+% ----------------------------------------------------------------------------
+% BASIC DIALOGUE PATTERN
+% ----------------------------------------------------------------------------
+
+% Character name followed by dialogue
+\speaker{FIRST CHARACTER}
+
+\begin{dialogue}
+This is how you write dialogue. The character's name appears centered
+above the dialogue block, and the dialogue itself is left-justified
+with appropriate margins for a traditional playscript appearance.
+\end{dialogue}
+
+% Character responding
+\speaker{SECOND CHARACTER}
+
+\begin{dialogue}
+And this is how another character responds. Each new speaker gets
+their name displayed before their dialogue.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% DIALOGUE WITH PARENTHETICAL (CHARACTER DIRECTION)
+% ----------------------------------------------------------------------------
+
+\speaker{FIRST CHARACTER}
+\paren{standing, excited}
+
+\begin{dialogue}
+Parentheticals are used for brief character actions or delivery notes.
+They appear in italics with extra indentation.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% LONGER PARENTHETICAL USING ENVIRONMENT
+% ----------------------------------------------------------------------------
+
+\begin{parenthetical}
+For longer character directions that need more space, use the
+parenthetical environment. This is useful for complex actions
+or detailed delivery instructions.
+\end{parenthetical}
+
+\speaker{SECOND CHARACTER}
+
+\begin{dialogue}
+I understand completely.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% STAGE DIRECTIONS
+% ----------------------------------------------------------------------------
+
+% Short stage direction (centered)
+\stagedirection{THIRD CHARACTER enters from stage left}
+
+% Longer stage direction using environment (left-justified block)
+\begin{stage}
+FIRST CHARACTER crosses to the window and looks out at the garden.
+The lights dim slightly, creating a more intimate atmosphere.
+A clock chimes in the distance.
+\end{stage}
+
+% ----------------------------------------------------------------------------
+% THREE-WAY CONVERSATION
+% ----------------------------------------------------------------------------
+
+\speaker{THIRD CHARACTER}
+
+\begin{dialogue}
+I hope I'm not interrupting.
+\end{dialogue}
+
+\speaker{FIRST CHARACTER}
+\paren{turning from window}
+
+\begin{dialogue}
+Not at all. Please, join us.
+\end{dialogue}
+
+\speaker{SECOND CHARACTER}
+
+\begin{dialogue}
+We were just discussing the matter.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% LONGER MONOLOGUE
+% ----------------------------------------------------------------------------
+
+\speaker{THIRD CHARACTER}
+
+\begin{dialogue}
+I've been thinking about this for some time now, and I believe
+I've come to understand what's really happening here. It's not
+just about the surface issues--there's something deeper at work.
+Something that connects us all in ways we haven't fully recognized.
+\end{dialogue}
+
+\vspace{0.5em}
+
+\begin{dialogue}
+And that's why I've come here today. To share what I've learned,
+and to ask for your help in moving forward.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% USING BEAT (PAUSE)
+% ----------------------------------------------------------------------------
+
+\speaker{FIRST CHARACTER}
+
+\begin{dialogue}
+I see.
+\end{dialogue}
+
+\beat
+
+\begin{dialogue}
+What exactly do you propose?
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% EMOTIONAL DIALOGUE WITH EMPHASIS
+% ----------------------------------------------------------------------------
+
+\speaker{THIRD CHARACTER}
+\paren{earnestly}
+
+\begin{dialogue}
+We need to work together. Not as separate individuals, but as
+a \emph{united} group. Only then can we hope to succeed.
+\end{dialogue}
+
+% ----------------------------------------------------------------------------
+% COMPLEX STAGE DIRECTION
+% ----------------------------------------------------------------------------
+
+\begin{stage}
+There is a long pause. The three characters look at one another,
+each weighing the implications of what has been said. SECOND CHARACTER
+rises and moves center stage, as if to speak, then hesitates.
+Finally, they make their decision.
+\end{stage}
+
+\speaker{SECOND CHARACTER}
+
+\begin{dialogue}
+Very well. I'm with you.
+\end{dialogue}
+
+\speaker{FIRST CHARACTER}
+\paren{relieved}
+
+\begin{dialogue}
+As am I. When do we begin?
+\end{dialogue}
+
+\speaker{THIRD CHARACTER}
+\paren{smiling}
+
+\begin{dialogue}
+Now. We begin now.
+\end{dialogue}
+
+% End of act curtain
+\curtain
+
+% ============================================================================
+% ACT II (if needed)
+% ============================================================================
+
+\act{II}
+
+\scene{The same room, later that evening}
+
+\begin{scenedesc}
+The room is now lit only by lamplight. The atmosphere is more intimate
+and shadowy. The characters have gathered around the coffee table.
+\end{scenedesc}
+
+\speaker{FIRST CHARACTER}
+
+\begin{dialogue}
+So we're agreed then?
+\end{dialogue}
+
+\speaker{SECOND CHARACTER}
+
+\begin{dialogue}
+We are.
+\end{dialogue}
+
+% Add more dialogue and scenes as needed...
+
+% ----------------------------------------------------------------------------
+% SCENE TRANSITION WITHIN ACT
+% ----------------------------------------------------------------------------
+
+\vspace{2em}
+
+\scene{A different location, simultaneous}
+
+\begin{scenedesc}
+A stark contrast to the previous scene. This space is cold and
+impersonal, suggesting danger or opposition to our protagonists.
+\end{scenedesc}
+
+% Continue with more dialogue...
+
+% ----------------------------------------------------------------------------
+% CONTINUING DIALOGUE INDICATOR
+% ----------------------------------------------------------------------------
+% Use when a character's dialogue continues from a previous page
+
+\speaker{FIRST CHARACTER}
+\continuing
+
+\begin{dialogue}
+As I was saying before we were interrupted...
+\end{dialogue}
+
+% End of play
+\fadeout
+
+\vspace{2em}
+
+\begin{center}
+\textsc{End of Play}
+\end{center}
+
+\end{document}
+
+% ============================================================================
+% QUICK REFERENCE
+% ============================================================================
+%
+% STRUCTURE COMMANDS:
+%   \act{I}                          - Act heading with page break
+%   \scene{description}              - Scene location/description
+%   \begin{scenedesc}...\end{...}    - Detailed scene description
+%
+% CHARACTER AND DIALOGUE:
+%   \speaker{NAME}                   - Character name (centered, caps)
+%   \character{NAME}                 - Alias for \speaker
+%   \begin{dialogue}...\end{...}     - Dialogue block
+%
+% DIRECTIONS:
+%   \paren{text}                     - Brief parenthetical direction
+%   \begin{parenthetical}...\end{...}- Longer character direction
+%   \stagedirection{text}            - Short stage direction
+%   \begin{stage}...\end{...}        - Longer stage direction block
+%
+% SPECIAL COMMANDS:
+%   \beat                            - Pause in dialogue
+%   \continuing                      - Dialogue continues from prev page
+%   \emph{text}                      - Emphasis within dialogue
+%   \curtain                         - End of act curtain
+%   \fadein                          - Fade in transition
+%   \fadeout                         - Fade out transition
+%
+% COMPILATION:
+%   pdflatex yourscript.tex
+%   or
+%   latexmk -pdf yourscript.tex
+%
+% ============================================================================
