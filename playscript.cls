@@ -185,29 +185,22 @@
 }
 
 % Scene command - creates centered scene location/description
+% Normal text (no italics) for readability
 \newcommand{\scene}[1]{%
     \vspace{1em}
     \begin{center}
-        {\itshape #1\par}
+        #1\par
     \end{center}
     \vspace{1em}
 }
 
 % Scene description environment - detailed scene setting
+% Normal text (no italics) for readability
 \newenvironment{scenedesc}{%
-    % Close dialogue if active
-    \if@indialogue
-        \end{singlespace}
-        \end{minipage}
-        \end{center}
-        \@indialoguefalse
-    \fi
     \vspace{0.5em}
-    \begin{singlespace}
-    \itshape
     \noindent
 }{%
-    \end{singlespace}
+    \par
     \vspace{1em}
 }
 
@@ -215,55 +208,28 @@
 %% CHARACTER NAMES AND DIALOGUE
 %% ============================================================================
 
-% Internal flag to track if we're in dialogue mode
-\newif\if@indialogue\@indialoguefalse
-
 % Speaker/character name command - centered, all-caps
-% Automatically starts dialogue mode after speaker name
+% After speaker name, use \dialogue{text} macro for the dialogue
 \newcommand{\speaker}[1]{%
-    % End previous dialogue if active
-    \if@indialogue
-        \end{singlespace}
-        \end{minipage}
-        \end{center}
-        \vspace{0.5em}
-        \@indialoguefalse
-    \fi
-    % Speaker name
+    \par
     \vspace{1em}
     \begin{center}
         \MakeUppercase{#1}
     \end{center}
     \vspace{0.3em}
-    % Start dialogue mode
-    \@indialogutrue
-    \begin{center}
-    \begin{minipage}{0.6\textwidth}
-    \begin{singlespace}
-    \setlength{\parindent}{0pt}
 }
 
-% Dialogue environment - for backward compatibility
-% Now just a wrapper that centers content
-\newenvironment{dialogue}{%
+% Dialogue macro - takes dialogue text as an argument
+% Centers text in a 60% width column
+\newcommand{\dialogue}[1]{%
     \begin{center}
     \begin{minipage}{0.6\textwidth}
-    \begin{singlespace}
     \setlength{\parindent}{0pt}
-}{%
-    \end{singlespace}
+    #1
     \end{minipage}
     \end{center}
+    \par
     \vspace{0.5em}
-}
-
-% Hook to close dialogue at end of document or before certain commands
-\AtEndDocument{%
-    \if@indialogue
-        \end{singlespace}
-        \end{minipage}
-        \end{center}
-    \fi
 }
 
 %% ============================================================================
@@ -271,25 +237,24 @@
 %% ============================================================================
 
 % Inline parenthetical command - brief character direction
-% Normal text, additional indentation
+% Normal text (no italics), additional indentation, stays within dialogue
 \newcommand{\paren}[1]{%
     \par
     \vspace{0.2em}
-    \hspace{1em}(#1)
+    \hspace{2em}(#1)
     \par
     \vspace{0.2em}
 }
 
 % Parenthetical environment - for longer character directions
+% Normal text (no italics), indented
 \newenvironment{parenthetical}{%
     \par
     \vspace{0.2em}
-    \begin{singlespace}
-    \setlength{\leftskip}{1em}
-    \setlength{\rightskip}{1em}
+    \setlength{\leftskip}{2em}
+    \setlength{\rightskip}{2em}
     \noindent
 }{%
-    \end{singlespace}
     \par
     \vspace{0.2em}
 }
@@ -298,40 +263,24 @@
 %% STAGE DIRECTIONS
 %% ============================================================================
 
-% Short stage direction command - centered or left-aligned
+% Short stage direction command - centered
+% Normal text (no italics) for readability
 \newcommand{\stagedirection}[1]{%
-    % Close dialogue if active
-    \if@indialogue
-        \end{singlespace}
-        \end{minipage}
-        \end{center}
-        \@indialoguefalse
-    \fi
     \par
     \vspace{0.5em}
     \begin{center}
-        \itshape #1
+        #1
     \end{center}
     \vspace{0.5em}
 }
 
 % Stage direction environment - for longer stage directions
-% Left-justified, italic block
+% Left-justified block, normal text (no italics)
 \newenvironment{stage}{%
-    % Close dialogue if active
-    \if@indialogue
-        \end{singlespace}
-        \end{minipage}
-        \end{center}
-        \@indialoguefalse
-    \fi
     \par
     \vspace{0.5em}
-    \begin{singlespace}
-    \itshape
     \noindent
 }{%
-    \end{singlespace}
     \par
     \vspace{0.5em}
 }

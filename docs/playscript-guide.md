@@ -72,9 +72,7 @@ Draft mode highlights overfull boxes with black bars in the margin, useful for d
 \scene{Elsinore Castle}
 
 \speaker{HAMLET}
-\begin{dialogue}
-To be, or not to be, that is the question.
-\end{dialogue}
+\dialogue{To be, or not to be, that is the question.}
 
 \end{document}
 ```
@@ -224,37 +222,31 @@ Two equivalent commands for character names:
 
 ### Dialogue Blocks
 
+Use the `\dialogue{}` command for character dialogue:
+
 ```latex
-\begin{dialogue}
-Your dialogue text goes here. It will be formatted with
+\dialogue{Your dialogue text goes here. It will be formatted with
 appropriate margins and spacing for traditional playscript
-appearance.
-\end{dialogue}
+appearance.}
 ```
 
-- Left-justified with playscript margins
-- Line width narrower than full page (right margin set to 2 inches)
+- Centered on the page in a narrower column (60% width)
 - Single-spaced within dialogue
 - Proper spacing between speakers
+- Simple one-command syntax for easy writing
 
 **Example:**
 
 ```latex
 \speaker{HAMLET}
-
-\begin{dialogue}
-To be, or not to be, that is the question:
+\dialogue{To be, or not to be, that is the question:
 Whether 'tis nobler in the mind to suffer
 The slings and arrows of outrageous fortune,
-Or to take arms against a sea of troubles.
-\end{dialogue}
+Or to take arms against a sea of troubles.}
 
 \speaker{OPHELIA}
-
-\begin{dialogue}
-My lord, I have remembrances of yours
-That I have longed long to re-deliver.
-\end{dialogue}
+\dialogue{My lord, I have remembrances of yours
+That I have longed long to re-deliver.}
 ```
 
 ## Parentheticals (Character Directions)
@@ -270,7 +262,7 @@ For short character actions or delivery notes:
 \paren{laughing}
 ```
 
-- Italic formatting
+- Plain text formatting (no italics for readability)
 - Additional indentation
 - Brief action or delivery note
 - Placed between speaker and dialogue, or within dialogue
@@ -280,11 +272,8 @@ For short character actions or delivery notes:
 ```latex
 \speaker{MACBETH}
 \paren{aside}
-
-\begin{dialogue}
-If chance will have me king, why, chance may crown me
-Without my stir.
-\end{dialogue}
+\dialogue{If chance will have me king, why, chance may crown me
+Without my stir.}
 ```
 
 ### Longer Parenthetical
@@ -298,7 +287,7 @@ He is deep in thought, barely noticing the others present.
 \end{parenthetical}
 ```
 
-- Italic formatting
+- Plain text formatting (no italics for readability)
 - Indented block
 - Used for complex actions or detailed delivery instructions
 
@@ -306,10 +295,7 @@ He is deep in thought, barely noticing the others present.
 
 ```latex
 \speaker{DOMIN}
-
-\begin{dialogue}
-Ready?
-\end{dialogue}
+\dialogue{Ready?}
 
 \begin{parenthetical}
 SULLA, who has sat motionless during dictation, now types
@@ -317,10 +303,7 @@ rapidly for a few seconds, then stops, withdrawing the completed letter
 \end{parenthetical}
 
 \speaker{SULLA}
-
-\begin{dialogue}
-Yes.
-\end{dialogue}
+\dialogue{Yes.}
 ```
 
 ## Stage Directions
@@ -336,7 +319,7 @@ For brief actions or entrances:
 ```
 
 - Centered
-- Italic formatting
+- Plain text formatting (no italics for readability)
 - Brief action or technical cue
 
 ### Long Stage Directions
@@ -351,7 +334,7 @@ Thunder rumbles in the distance. The torches flicker.
 \end{stage}
 ```
 
-- Italic formatting
+- Plain text formatting (no italics for readability)
 - Left-justified block
 - Detailed actions, movements, or technical cues
 - Proper spacing from dialogue
@@ -360,10 +343,7 @@ Thunder rumbles in the distance. The torches flicker.
 
 ```latex
 \speaker{JULIET}
-
-\begin{dialogue}
-O Romeo, Romeo! Wherefore art thou Romeo?
-\end{dialogue}
+\dialogue{O Romeo, Romeo! Wherefore art thou Romeo?}
 
 \begin{stage}
 ROMEO steps out from the shadows below. JULIET does not
@@ -372,10 +352,7 @@ yet see him. He watches her, captivated.
 
 \speaker{ROMEO}
 \paren{aside}
-
-\begin{dialogue}
-She speaks!
-\end{dialogue}
+\dialogue{She speaks!}
 ```
 
 ## Special Commands
@@ -386,19 +363,14 @@ Indicate a pause in dialogue:
 
 ```latex
 \speaker{HAMLET}
-
-\begin{dialogue}
-I must be cruel only to be kind.
-\end{dialogue}
+\dialogue{I must be cruel only to be kind.}
 
 \beat
 
-\begin{dialogue}
-Thus bad begins, and worse remains behind.
-\end{dialogue}
+\dialogue{Thus bad begins, and worse remains behind.}
 ```
 
-Creates an italic "(beat)" parenthetical.
+Creates a "(beat)" parenthetical.
 
 ### Continuing Dialogue
 
@@ -407,10 +379,7 @@ When dialogue continues from a previous page:
 ```latex
 \speaker{HAMLET}
 \continuing
-
-\begin{dialogue}
-As I was saying...
-\end{dialogue}
+\dialogue{As I was saying...}
 ```
 
 Displays "(CONT'D)" below character name.
@@ -418,9 +387,7 @@ Displays "(CONT'D)" below character name.
 ### Emphasis in Dialogue
 
 ```latex
-\begin{dialogue}
-I am \emph{not} going to accept this!
-\end{dialogue}
+\dialogue{I am \emph{not} going to accept this!}
 ```
 
 Use `\emph{text}` for italic emphasis within dialogue.
@@ -457,43 +424,29 @@ Standard transition commands:
 
 ```latex
 \speaker{ROMEO}
-\begin{dialogue}
-What shall I swear by?
-\end{dialogue}
+\dialogue{What shall I swear by?}
 
 \speaker{JULIET}
-\begin{dialogue}
-Do not swear at all.
-\end{dialogue}
+\dialogue{Do not swear at all.}
 
 \speaker{ROMEO}
-\begin{dialogue}
-If my heart's dear love---
-\end{dialogue}
+\dialogue{If my heart's dear love---}
 
 \speaker{JULIET}
-\begin{dialogue}
-Well, do not swear.
-\end{dialogue}
+\dialogue{Well, do not swear.}
 ```
 
 ### Three-Way Conversation
 
 ```latex
 \speaker{FIRST}
-\begin{dialogue}
-What do you think?
-\end{dialogue}
+\dialogue{What do you think?}
 
 \speaker{SECOND}
-\begin{dialogue}
-I agree with Third.
-\end{dialogue}
+\dialogue{I agree with Third.}
 
 \speaker{THIRD}
-\begin{dialogue}
-Then it's settled.
-\end{dialogue}
+\dialogue{Then it's settled.}
 ```
 
 ## Extended Monologues
@@ -502,36 +455,28 @@ Then it's settled.
 
 ```latex
 \speaker{HAMLET}
-
-\begin{dialogue}
-To be, or not to be, that is the question:
+\dialogue{To be, or not to be, that is the question:
 Whether 'tis nobler in the mind to suffer
 The slings and arrows of outrageous fortune,
 Or to take arms against a sea of troubles
-And by opposing end them.
-\end{dialogue}
+And by opposing end them.}
 ```
 
 ### Multiple Paragraphs
 
-For very long speeches, use multiple dialogue blocks with spacing:
+For very long speeches, use multiple dialogue commands with spacing:
 
 ```latex
 \speaker{HAMLET}
-
-\begin{dialogue}
-Thus conscience does make cowards of us all,
+\dialogue{Thus conscience does make cowards of us all,
 And thus the native hue of resolution
-Is sicklied o'er with the pale cast of thought.
-\end{dialogue}
+Is sicklied o'er with the pale cast of thought.}
 
 \vspace{0.5em}
 
-\begin{dialogue}
-And enterprises of great pitch and moment
+\dialogue{And enterprises of great pitch and moment
 With this regard their currents turn awry
-And lose the name of action.
-\end{dialogue}
+And lose the name of action.}
 ```
 
 ## Page Layout Details
@@ -545,8 +490,8 @@ And lose the name of action.
 
 ### Dialogue Margins
 
-- **Left**: Flush with page left margin
-- **Right**: 2 inches from right edge (creates traditional dialogue width)
+- **Width**: 60% of text width, centered on page
+- **Formatting**: Dialogue appears in a centered column for traditional playscript appearance
 
 ### Spacing
 
@@ -616,17 +561,11 @@ morning light. JANE sits at a corner table, reading.
 
 \speaker{JOHN}
 \paren{spotting JANE}
-
-\begin{dialogue}
-Jane! I didn't expect to see you here.
-\end{dialogue}
+\dialogue{Jane! I didn't expect to see you here.}
 
 \speaker{JANE}
 \paren{looking up from book}
-
-\begin{dialogue}
-John. What a surprise.
-\end{dialogue}
+\dialogue{John. What a surprise.}
 
 \begin{stage}
 JOHN crosses to her table. An awkward moment passes.
@@ -634,31 +573,19 @@ JANE gestures to the empty chair.
 \end{stage}
 
 \speaker{JANE}
-
-\begin{dialogue}
-Would you like to sit?
-\end{dialogue}
+\dialogue{Would you like to sit?}
 
 \speaker{JOHN}
 \paren{sitting}
-
-\begin{dialogue}
-Thanks. I was hoping we could talk.
-\end{dialogue}
+\dialogue{Thanks. I was hoping we could talk.}
 
 \beat
 
 \speaker{JANE}
-
-\begin{dialogue}
-About what happened?
-\end{dialogue}
+\dialogue{About what happened?}
 
 \speaker{JOHN}
-
-\begin{dialogue}
-Yes. About what happened.
-\end{dialogue}
+\dialogue{Yes. About what happened.}
 
 \curtain
 
@@ -698,7 +625,7 @@ Yes. About what happened.
 
 **Dialogue too wide:**
 - This is controlled by the class; check for manual `\setlength` commands
-- Verify you're using the `dialogue` environment
+- Verify you're using the `\dialogue{}` command
 
 **Awkward page breaks:**
 - Use `\newpage` to force breaks at better locations

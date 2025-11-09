@@ -1,0 +1,37 @@
+% Simple test of new playscript syntax
+\documentclass{../playscript}
+
+\title{Simple Test}
+\author{Test Author}
+
+\begin{document}
+
+\maketitle
+
+\act{I}
+
+\scene{A room}
+
+\begin{scenedesc}
+The stage is bare except for two chairs.
+\end{scenedesc}
+
+\speaker{ALICE}
+\dialogue{Hello, how are you?}
+
+\speaker{BOB}
+\dialogue{I'm doing well, thank you for asking.}
+
+\speaker{ALICE}
+\paren{sitting down}
+\dialogue{That's good to hear.}
+
+\stagedirection{BOB crosses to the window}
+
+\speaker{BOB}
+\dialogue{It's a beautiful day outside.}
+
+\speaker{ALICE}
+\dialogue{Yes, it certainly is.}
+
+\end{document}

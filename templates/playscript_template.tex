@@ -53,25 +53,19 @@ onto a garden. The lighting is warm and inviting.
 \end{scenedesc}
 
 % ----------------------------------------------------------------------------
-% BASIC DIALOGUE PATTERN
+% BASIC DIALOGUE PATTERN (SIMPLIFIED SYNTAX)
 % ----------------------------------------------------------------------------
 
-% Character name followed by dialogue
+% Character name followed by dialogue using \dialogue{} command
 \speaker{FIRST CHARACTER}
-
-\begin{dialogue}
-This is how you write dialogue. The character's name appears centered
-above the dialogue block, and the dialogue itself is left-justified
-with appropriate margins for a traditional playscript appearance.
-\end{dialogue}
+\dialogue{This is how you write dialogue. The character's name appears centered
+above the dialogue block, and the dialogue itself is centered on the page
+in a narrower column for traditional playscript appearance.}
 
 % Character responding
 \speaker{SECOND CHARACTER}
-
-\begin{dialogue}
-And this is how another character responds. Each new speaker gets
-their name displayed before their dialogue.
-\end{dialogue}
+\dialogue{And this is how another character responds. Each new speaker gets
+their name displayed before their dialogue.}
 
 % ----------------------------------------------------------------------------
 % DIALOGUE WITH PARENTHETICAL (CHARACTER DIRECTION)
@@ -79,11 +73,8 @@ their name displayed before their dialogue.
 
 \speaker{FIRST CHARACTER}
 \paren{standing, excited}
-
-\begin{dialogue}
-Parentheticals are used for brief character actions or delivery notes.
-They appear in italics with extra indentation.
-\end{dialogue}
+\dialogue{Parentheticals are used for brief character actions or delivery notes.
+They appear with extra indentation.}
 
 % ----------------------------------------------------------------------------
 % LONGER PARENTHETICAL USING ENVIRONMENT
@@ -96,10 +87,7 @@ or detailed delivery instructions.
 \end{parenthetical}
 
 \speaker{SECOND CHARACTER}
-
-\begin{dialogue}
-I understand completely.
-\end{dialogue}
+\dialogue{I understand completely.}
 
 % ----------------------------------------------------------------------------
 % STAGE DIRECTIONS
@@ -120,59 +108,40 @@ A clock chimes in the distance.
 % ----------------------------------------------------------------------------
 
 \speaker{THIRD CHARACTER}
-
-\begin{dialogue}
-I hope I'm not interrupting.
-\end{dialogue}
+\dialogue{I hope I'm not interrupting.}
 
 \speaker{FIRST CHARACTER}
 \paren{turning from window}
-
-\begin{dialogue}
-Not at all. Please, join us.
-\end{dialogue}
+\dialogue{Not at all. Please, join us.}
 
 \speaker{SECOND CHARACTER}
-
-\begin{dialogue}
-We were just discussing the matter.
-\end{dialogue}
+\dialogue{We were just discussing the matter.}
 
 % ----------------------------------------------------------------------------
 % LONGER MONOLOGUE
 % ----------------------------------------------------------------------------
 
 \speaker{THIRD CHARACTER}
-
-\begin{dialogue}
-I've been thinking about this for some time now, and I believe
+\dialogue{I've been thinking about this for some time now, and I believe
 I've come to understand what's really happening here. It's not
 just about the surface issues--there's something deeper at work.
-Something that connects us all in ways we haven't fully recognized.
-\end{dialogue}
+Something that connects us all in ways we haven't fully recognized.}
 
 \vspace{0.5em}
 
-\begin{dialogue}
-And that's why I've come here today. To share what I've learned,
-and to ask for your help in moving forward.
-\end{dialogue}
+\dialogue{And that's why I've come here today. To share what I've learned,
+and to ask for your help in moving forward.}
 
 % ----------------------------------------------------------------------------
 % USING BEAT (PAUSE)
 % ----------------------------------------------------------------------------
 
 \speaker{FIRST CHARACTER}
-
-\begin{dialogue}
-I see.
-\end{dialogue}
+\dialogue{I see.}
 
 \beat
 
-\begin{dialogue}
-What exactly do you propose?
-\end{dialogue}
+\dialogue{What exactly do you propose?}
 
 % ----------------------------------------------------------------------------
 % EMOTIONAL DIALOGUE WITH EMPHASIS
@@ -180,11 +149,8 @@ What exactly do you propose?
 
 \speaker{THIRD CHARACTER}
 \paren{earnestly}
-
-\begin{dialogue}
-We need to work together. Not as separate individuals, but as
-a \emph{united} group. Only then can we hope to succeed.
-\end{dialogue}
+\dialogue{We need to work together. Not as separate individuals, but as
+a \emph{united} group. Only then can we hope to succeed.}
 
 % ----------------------------------------------------------------------------
 % COMPLEX STAGE DIRECTION
@@ -198,24 +164,15 @@ Finally, they make their decision.
 \end{stage}
 
 \speaker{SECOND CHARACTER}
-
-\begin{dialogue}
-Very well. I'm with you.
-\end{dialogue}
+\dialogue{Very well. I'm with you.}
 
 \speaker{FIRST CHARACTER}
 \paren{relieved}
-
-\begin{dialogue}
-As am I. When do we begin?
-\end{dialogue}
+\dialogue{As am I. When do we begin?}
 
 \speaker{THIRD CHARACTER}
 \paren{smiling}
-
-\begin{dialogue}
-Now. We begin now.
-\end{dialogue}
+\dialogue{Now. We begin now.}
 
 % End of act curtain
 \curtain
@@ -234,16 +191,10 @@ and shadowy. The characters have gathered around the coffee table.
 \end{scenedesc}
 
 \speaker{FIRST CHARACTER}
-
-\begin{dialogue}
-So we're agreed then?
-\end{dialogue}
+\dialogue{So we're agreed then?}
 
 \speaker{SECOND CHARACTER}
-
-\begin{dialogue}
-We are.
-\end{dialogue}
+\dialogue{We are.}
 
 % Add more dialogue and scenes as needed...
 
@@ -269,10 +220,7 @@ impersonal, suggesting danger or opposition to our protagonists.
 
 \speaker{FIRST CHARACTER}
 \continuing
-
-\begin{dialogue}
-As I was saying before we were interrupted...
-\end{dialogue}
+\dialogue{As I was saying before we were interrupted...}
 
 % End of play
 \fadeout
@@ -296,8 +244,8 @@ As I was saying before we were interrupted...
 %
 % CHARACTER AND DIALOGUE:
 %   \speaker{NAME}                   - Character name (centered, caps)
-%   \character{NAME}                 - Alias for \speaker
-%   \begin{dialogue}...\end{...}     - Dialogue block
+%   \character{NAME}                 - Alias for \speaker (in character list)
+%   \dialogue{text}                  - Dialogue text (centered, narrower column)
 %
 % DIRECTIONS:
 %   \paren{text}                     - Brief parenthetical direction
