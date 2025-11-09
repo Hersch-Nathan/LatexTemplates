@@ -9,12 +9,15 @@ This page links to working examples and shows common patterns for all three clas
   - `homework_partnumbering_template.tex` — Part numbering mode template
   - `capstone_template.tex` — Basic capstone report starter
   - `designreport_template.tex` — Basic design report starter
+  - `playscript_template.tex` — Basic playscript starter
   
 - **Full Examples**: Located in `examples/` directory
   - `homeworktest.tex` — Complete feature demonstration for homework class (standard mode)
   - `homeworktest_partnumbering.tex` — Part numbering mode demonstration
   - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
   - `designreporttest.tex` — Complete feature demonstration for design reports
+  - `playscripttest.tex` — Complete feature demonstration for playscripts
+  - `playscript_simple_test.tex` — Minimal playscript example
   - `create_diagram.tex` — Block diagram examples
 
 ## Homework Examples
@@ -340,6 +343,95 @@ Figure~\ref{fig:after} demonstrates the improved stability.
 
 **Note**: All figure paths are automatically prefixed with `figures/`, so place your images in a `figures/` subdirectory.
 
+## Playscript Examples
+
+Starter template: `playscript_template.tex`
+
+Full demo: `playscripttest.tex`
+
+Simple demo: `playscript_simple_test.tex`
+
+### Basic Dialogue Structure
+```latex
+\speaker{HAMLET}
+\dialogue{To be, or not to be, that is the question.}
+
+\speaker{OPHELIA}
+\dialogue{Good my lord, how does your honor for this many a day?}
+```
+
+### Dialogue with Parentheticals
+```latex
+\speaker{MACBETH}
+\paren{aside}
+\dialogue{If chance will have me king, why, chance may crown me
+Without my stir.}
+```
+
+### Stage Directions
+```latex
+% Short stage direction (centered)
+\stagedirection{Enter HAMLET carrying a skull}
+
+% Long stage direction block
+\begin{stage}
+HAMLET crosses to the window and looks out over the battlements.
+The ghost appears behind him, visible only to the audience.
+Thunder rumbles in the distance.
+\end{stage}
+```
+
+### Scene Structure
+```latex
+\act{I}
+
+\scene{A room in the castle}
+
+\begin{scenedesc}
+The room is dimly lit by torches. A large table sits center stage
+with chairs around it. Heavy curtains cover the windows.
+\end{scenedesc}
+
+\speaker{FIRST CHARACTER}
+\dialogue{The scene is set for our discussion.}
+```
+
+### Multiple Speakers
+```latex
+\speaker{ROMEO}
+\dialogue{What shall I swear by?}
+
+\speaker{JULIET}
+\dialogue{Do not swear at all.}
+
+\speaker{ROMEO}
+\dialogue{If my heart's dear love---}
+
+\speaker{JULIET}
+\dialogue{Well, do not swear.}
+```
+
+### Special Commands
+```latex
+% Pause in dialogue
+\speaker{HAMLET}
+\dialogue{I must be cruel only to be kind.}
+
+\beat
+
+\dialogue{Thus bad begins, and worse remains behind.}
+
+% Continuing dialogue from previous page
+\speaker{HAMLET}
+\continuing
+\dialogue{As I was saying before we were interrupted...}
+
+% Transitions
+\fadein     % Start of play
+\curtain    % End of act
+\fadeout    % End of play
+```
+
 ## Tips
 
 - Keep problem statements concise; use sub-problems to break down tasks.
@@ -347,6 +439,7 @@ Figure~\ref{fig:after} demonstrates the improved stability.
 - Use captions on listings when you need to reference them in text.
 - For capstone reports, keep section order consistent week over week.
 - For design reports, ensure all required sections are included and properly formatted.
+- For playscripts, use the simplified `\dialogue{text}` syntax for easy writing.
 
 ## Troubleshooting
 
