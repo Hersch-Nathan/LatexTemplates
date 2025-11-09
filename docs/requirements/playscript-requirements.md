@@ -234,23 +234,14 @@ on the rows of factory chimneys.
 
 \character{DOMIN}
 \paren{dictating}
-
-\begin{dialogue}
-Ready?
-\end{dialogue}
+\dialogue{Ready?}
 
 \character{SULLA}
-
-\begin{dialogue}
-Yes.
-\end{dialogue}
+\dialogue{Yes.}
 
 \character{DOMIN}
-
-\begin{dialogue}
-To E. M. McVicker and Co., Southampton, England. "We undertake 
-no guarantee for goods damaged in transit."
-\end{dialogue}
+\dialogue{To E. M. McVicker and Co., Southampton, England. "We undertake 
+no guarantee for goods damaged in transit."}
 
 \begin{parenthetical}
 SULLA, who has sat motionless during dictation, now types 
@@ -258,10 +249,7 @@ rapidly for a few seconds, then stops, withdrawing the completed letter
 \end{parenthetical}
 
 \character{SULLA}
-
-\begin{dialogue}
-Yes.
-\end{dialogue}
+\dialogue{Yes.}
 
 \stagedirection{Enter MARIUS}
 
@@ -289,13 +277,14 @@ Yes.
 
 ### 4. Dialogue Block Formatting
 - Centered on the page with appropriate left and right margins
-- Line width narrower than full page (centered dialog column)
+- Line width narrower than full page (60% width, centered column)
 - Single-spaced lines
 - Proper spacing before next speaker
 - Normal roman (non-italic) text for readability
+- Simple `\dialogue{text}` macro syntax for easy writing
 
 ### 5. Parentheticals (Inline Directions)
-- Italic formatting
+- Plain text formatting (no italics for readability)
 - Additional indentation beyond dialogue
 - Inline or standalone positioning
 - Clear visual distinction from dialogue
