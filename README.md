@@ -137,9 +137,7 @@ LatexTemplates/
 \act{I}
 \scene{Elsinore Castle}
 \speaker{HAMLET}
-\begin{dialogue}
-To be, or not to be, that is the question.
-\end{dialogue}
+\dialogue{To be, or not to be, that is the question.}
 \end{document}
 ```
 

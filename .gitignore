@@ -20,8 +20,16 @@
 *.idx
 *.mst
 
+# Backup files
+*.bak
+*.bak2
+*.backup
+*.old
+*.beforefix
+
 # Temporary files
 active_tasks.md
+texput.log
 
-#Mac 
+# Mac 
 .DS_Store
