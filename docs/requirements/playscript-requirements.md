@@ -135,10 +135,12 @@ DOMIN is sitting in the revolving chair at a large American writing table.
 ```
 
 #### Dialogue Blocks
-- **Environment**: `dialogue`
-- **Format**: Left-justified, indented from left margin
-- **Line Width**: Narrower than full page width for traditional playscript appearance
+- **Environment**: `dialogue` (deprecated - use simplified syntax)
+- **Simplified Syntax**: Text following `\speaker{NAME}` is automatically formatted as dialogue
+- **Format**: Centered with appropriate margins
+- **Line Width**: Narrower than full page for traditional playscript appearance
 - **Spacing**: Single-spaced within dialogue, space between speakers
+- **Text**: Normal roman text (not italic) for easy reading
 
 ```latex
 \begin{dialogue}
@@ -286,10 +288,11 @@ Yes.
 - Consistent font weight
 
 ### 4. Dialogue Block Formatting
-- Left-justified with appropriate indentation
-- Line width narrower than full page (approximately 4" from left margin)
+- Centered on the page with appropriate left and right margins
+- Line width narrower than full page (centered dialog column)
 - Single-spaced lines
 - Proper spacing before next speaker
+- Normal roman (non-italic) text for readability
 
 ### 5. Parentheticals (Inline Directions)
 - Italic formatting
@@ -430,10 +433,11 @@ Yes.
 
 **Input**:
 ```latex
-\character{HAMLET}
-\begin{dialogue}
+\speaker{HAMLET}
 To be, or not to be, that is the question.
-\end{dialogue}
+
+\speaker{OPHELIA}
+My lord, I have remembrances of yours.
 ```
 
 **Expected Output**:
