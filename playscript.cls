@@ -45,8 +45,8 @@
 \RequirePackage[
     top=1in,
     bottom=1in,
-    left=1.5in,     % Extra space for binding
-    right=1in
+    left=0.75in,     % Extra space for binding
+    right=0.75in
 ]{geometry}
 
 % Font selection based on class options
