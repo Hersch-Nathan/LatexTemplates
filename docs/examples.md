@@ -1,10 +1,13 @@
 # Examples and Tutorials
 
-This page links to working examples and shows common patterns for all three classes.
+**Last Updated: December 2025**
+
+This page links to working examples and shows common patterns for all five classes.
 
 ## File Locations
 
 - **Templates**: Located in `templates/` directory
+  - `coursenotes_template.tex` — Basic course notes starter with embedded problems
   - `homework_template.tex` — Basic homework starter (standard mode)
   - `homework_partnumbering_template.tex` — Part numbering mode template
   - `capstone_template.tex` — Basic capstone report starter
@@ -12,6 +15,7 @@ This page links to working examples and shows common patterns for all three clas
   - `playscript_template.tex` — Basic playscript starter
   
 - **Full Examples**: Located in `examples/` directory
+  - `coursenotestest.tex` — Complete feature demonstration for course notes class
   - `homeworktest.tex` — Complete feature demonstration for homework class (standard mode)
   - `homeworktest_partnumbering.tex` — Part numbering mode demonstration
   - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
@@ -19,6 +23,75 @@ This page links to working examples and shows common patterns for all three clas
   - `playscripttest.tex` — Complete feature demonstration for playscripts
   - `playscript_simple_test.tex` — Minimal playscript example
   - `create_diagram.tex` — Block diagram examples
+
+## Course Notes Examples
+
+Starter template: `templates/coursenotes_template.tex`
+
+Full feature demo: `examples/coursenotestest.tex`
+
+### Complete Chapter with Problems and Inline Solutions
+```latex
+\documentclass{coursenotes}
+\begin{document}
+
+\courseheader{EE 571}{Control Systems}{Fall 2025}{Your Name}
+\makealllists  % Generate TOC, LOF, LOT
+
+\chapter{Time Domain Analysis}
+\section{First-Order Systems}
+
+Content here... Reference: \lectureref{3a}, \textbookref{§2.3}
+
+\problem{System Response}
+
+\subproblem{Calculate the time constant.}
+\begin{solution}
+The time constant is $\tau = RC = 0.1$ seconds.
+\end{solution}
+
+\subproblem{Find the settling time.}
+\begin{solution}
+The settling time is $t_s = 4\tau = 0.4$ seconds.
+\end{solution}
+
+\end{document}
+```
+
+### Math with Lecture References
+```latex
+\section{Transfer Functions}
+
+The standard form is:
+\begin{hwmath}
+G(s) \eq \frac{K}{\tau s + 1} \\
+\tau \gt 0 \text{ for stability}
+\end{hwmath}
+
+Reference: \lectureref{4b}, \textbookref{pp. 87-92}
+```
+
+### Flexible Sub-problem Numbering
+```latex
+\problem{First Problem}
+% Default: (a), (b), (c)
+\subproblem{Part a}
+\begin{solution}
+Solution...
+\end{solution}
+
+\setsubproblemstyle{roman}
+
+\problem{Second Problem}
+% Now uses: (i), (ii), (iii)
+\subproblem{Part i}
+\begin{solution}
+Solution...
+\end{solution}
+
+\setsubproblemstyle{arabic}
+% Now uses: (1), (2), (3)
+```
 
 ## Homework Examples
 
