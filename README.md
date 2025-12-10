@@ -1,7 +1,8 @@
 # LaTeX Templates: Academic and Professional Classes
 
-This repository provides four robust LaTeX classes for academic and professional writing:
+This repository provides five robust LaTeX classes for academic and professional writing:
 
+- **`coursenotes.cls`** — Comprehensive course notes class: chapter organization, embedded problems with inline solutions, aligned math, code environments, block diagrams, lecture/textbook references, automatic TOC/LOF/LOT generation.
 - **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering (with standard and part-based modes), aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
 - **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
 - **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
@@ -19,30 +20,34 @@ This repository provides four robust LaTeX classes for academic and professional
 
 ## Overview
 
-These LaTeX classes and templates help you write clean homework solutions, consistent capstone progress reports, professional design documents, and properly formatted theatrical playscripts. The homework class includes preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
+These LaTeX classes and templates help you create comprehensive course notes for studying, write clean homework solutions, produce consistent capstone progress reports, generate professional design documents, and format theatrical playscripts. The course notes and homework classes include preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
 
 ## Repository Structure
 
 ```
 LatexTemplates/
 ├── docs/                    # Documentation for each class
+│   ├── coursenotes-guide.md
 │   ├── homework-guide.md
 │   ├── capstone-guide.md
 │   ├── designreport-guide.md
 │   ├── playscript-guide.md
 │   ├── examples.md
 │   └── requirements/        # System requirements for each class
+│       ├── coursenotes-requirements.md
 │       ├── homework-requirements.md
 │       ├── capstone-requirements.md
 │       ├── designreport-requirements.md
 │       └── playscript-requirements.md
 ├── templates/               # Starter templates
+│   ├── coursenotes_template.tex
 │   ├── homework_template.tex
 │   ├── homework_partnumbering_template.tex
 │   ├── capstone_template.tex
 │   ├── designreport_template.tex
 │   └── playscript_template.tex
 ├── examples/                # Full working examples and test files
+│   ├── coursenotestest.tex
 │   ├── homeworktest.tex
 │   ├── homeworktest_partnumbering.tex
 │   ├── capstonereporttest.tex
@@ -51,6 +56,7 @@ LatexTemplates/
 │   ├── create_diagram.tex
 │   └── references.bib
 ├── figures/                 # Place your figures here for design reports
+├── coursenotes.cls          # Course notes LaTeX class
 ├── homework.cls             # Homework LaTeX class
 ├── capstone_report.cls      # Capstone report LaTeX class
 ├── designreport.cls         # Design report LaTeX class
@@ -59,6 +65,26 @@ LatexTemplates/
 ```
 
 ## Quick Start
+
+### Course Notes
+
+```latex
+\documentclass{coursenotes}
+\begin{document}
+\courseheader{EE 571}{Control Systems}{Fall 2025}{Your Name}
+\makealllists  % Generate TOC, LOF, LOT
+
+\chapter{Time Domain Analysis}
+\section{First-Order Systems}
+% Lecture content with math, code, diagrams...
+
+\problem{System Response}
+\subproblem{Calculate the time constant.}
+\begin{solution}
+The time constant is $\tau = 0.1$ seconds.
+\end{solution}
+\end{document}
+```
 
 ### Homework (Standard Mode)
 
@@ -145,6 +171,7 @@ LatexTemplates/
 
 Comprehensive documentation for each class:
 
+- **Course Notes**: [docs/coursenotes-guide.md](docs/coursenotes-guide.md) — Complete guide for semester-long course notes with embedded problems and solutions
 - **Homework**: [docs/homework-guide.md](docs/homework-guide.md) — Complete reference for all homework class commands and environments
 - **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
 - **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
