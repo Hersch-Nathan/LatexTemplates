@@ -1,0 +1,406 @@
+\documentclass{coursenotes}
+
+\begin{document}
+
+% ============================================================================
+% COURSE HEADER
+% ============================================================================
+\courseheader{EE 571}{Control Systems}{Fall 2025}{Student Name}
+
+% ============================================================================
+% FRONT MATTER - Table of Contents, List of Figures, List of Tables
+% ============================================================================
+\makealllists
+
+% ============================================================================
+% CHAPTER 1: TIME DOMAIN ANALYSIS
+% ============================================================================
+\chapter{Time Domain Analysis} \label{chap:time}
+
+\section{First-Order Systems} \label{sec:firstorder}
+
+A first-order system has the general transfer function:
+
+\begin{hwmath}
+G(s) \eq \frac{K}{\tau s + 1}
+\end{hwmath}
+
+where $K$ is the DC gain and $\tau$ is the time constant. The step response of a first-order system is characterized by:
+
+\begin{itemize}
+\item Time constant $\tau$ - time to reach 63.2\% of final value
+\item Settling time $t_s \approx 4\tau$ - time to reach within 2\% of final value
+\item Rise time $t_r \approx 2.2\tau$ - time from 10\% to 90\%
+\end{itemize}
+
+\note[IMPORTANT: First-order systems are always stable if $\tau > 0$]
+
+\begin{example}{Example 1-1: RC Circuit Analysis}
+Consider an RC circuit with $R = 10k\Omega$ and $C = 10\mu F$. Find the time constant and settling time.
+
+\textbf{Solution:}
+
+The time constant is:
+\begin{hwmath}
+\tau \eq RC \\
+\eq (10 \times 10^3)(10 \times 10^{-6}) \\
+\eq 0.1 \text{ seconds}
+\end{hwmath}
+
+The settling time is:
+\begin{hwmath}
+t_s \eq 4\tau \\
+\eq 4(0.1) \\
+\eq 0.4 \text{ seconds}
+\end{hwmath}
+\end{example}
+
+Reference: \lectureref{3a}, \textbookref{§2.3}
+
+\subsection{MATLAB Simulation}
+
+We can simulate the step response using MATLAB:
+
+\begin{hwmatlab}[caption=First-Order System Simulation]
+% Define system parameters
+K = 5;
+tau = 0.1;
+
+% Create transfer function
+s = tf('s');
+G = K/(tau*s + 1);
+
+% Plot step response
+step(G);
+grid on;
+title('Step Response of First-Order System');
+\end{hwmatlab}
+
+\subsection{Python Implementation}
+
+Alternatively, use Python with the control package:
+
+\begin{hwpython}[caption=Python Control System Analysis]
+import control as ct
+import numpy as np
+import matplotlib.pyplot as plt
+
+# System parameters
+K = 5
+tau = 0.1
+
+# Create transfer function
+num = [K]
+den = [tau, 1]
+G = ct.tf(num, den)
+
+# Step response
+t, y = ct.step_response(G)
+plt.plot(t, y)
+plt.grid(True)
+plt.xlabel('Time (s)')
+plt.ylabel('Output')
+plt.title('Step Response')
+plt.show()
+\end{hwpython}
+
+\section{Second-Order Systems} \label{sec:secondorder}
+
+Second-order systems have the standard form:
+
+\begin{hwmathnumbered}
+G(s) \eq \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \label{eq:secondorder}
+\end{hwmathnumbered}
+
+where $\omega_n$ is the natural frequency and $\zeta$ is the damping ratio.
+
+The system behavior depends on the damping ratio:
+\begin{itemize}
+\item $\zeta \gt 1$: Overdamped
+\item $\zeta \eq 1$: Critically damped
+\item $0 \lt \zeta \lt 1$: Underdamped
+\item $\zeta \eq 0$: Undamped
+\end{itemize}
+
+As shown in \secref{sec:firstorder}, first-order systems are simpler, but second-order systems (Equation~\ref{eq:secondorder}) are more common in practice.
+
+Reference: \lectureref{4b}, \textbookref{pp. 87-92}
+
+% ============================================================================
+% PROBLEM SET 1
+% ============================================================================
+
+\problem{First-Order System Analysis} \label{prob:first}
+
+Consider a first-order system with transfer function $G(s) = \frac{5}{0.2s + 1}$.
+
+\subproblem{Calculate the time constant.}
+\begin{solution}
+Comparing with the standard form $G(s) = \frac{K}{\tau s + 1}$, we have $\tau = 0.2$ seconds.
+\end{solution}
+
+\subproblem{Find the DC gain.}
+\begin{solution}
+The DC gain is $K = 5$, found by evaluating $G(0) = \frac{5}{1} = 5$.
+\end{solution}
+
+\subproblem{Determine the settling time.}
+\begin{solution}
+The settling time is:
+\begin{hwmath}
+t_s \eq 4\tau \\
+\eq 4(0.2) \\
+\eq 0.8 \text{ seconds}
+\end{hwmath}
+\end{solution}
+
+\problem{Second-Order System Parameters}
+
+A second-order system has $\omega_n = 10$ rad/s and $\zeta = 0.5$.
+
+\subproblem{Write the transfer function.}
+\begin{solution}
+Using the standard form:
+\begin{hwmath}
+G(s) \eq \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \\
+\eq \frac{100}{s^2 + 10s + 100}
+\end{hwmath}
+\end{solution}
+
+\subproblem{Find the damped natural frequency.}
+\begin{solution}
+The damped natural frequency is:
+\begin{hwmath}
+\omega_d \eq \omega_n\sqrt{1 - \zeta^2} \\
+\eq 10\sqrt{1 - 0.5^2} \\
+\eq 10\sqrt{0.75} \\
+\approxx 8.66 \text{ rad/s}
+\end{hwmath}
+\end{solution}
+
+% Change sub-problem style to roman numerals for next problem
+\setsubproblemstyle{roman}
+
+\problem{System Stability Analysis}
+
+\subproblem{What condition ensures stability?}
+\begin{solution}
+For stability, all poles must have negative real parts (located in the left half-plane).
+\end{solution}
+
+\subproblem{How does damping ratio affect stability?}
+\begin{solution}
+Systems with $\zeta > 0$ are stable. As $\zeta$ increases from 0 to 1, the system transitions from oscillatory to smooth response.
+\end{solution}
+
+% ============================================================================
+% CHAPTER 2: FREQUENCY DOMAIN ANALYSIS
+% ============================================================================
+\chapter{Frequency Domain Analysis} \label{chap:frequency}
+
+\section{Bode Plots} \label{sec:bode}
+
+Bode plots are graphical representations of system frequency response, consisting of:
+\begin{itemize}
+\item Magnitude plot: $20\log_{10}|G(j\omega)|$ vs $\omega$
+\item Phase plot: $\angle G(j\omega)$ vs $\omega$
+\end{itemize}
+
+Reference: \lectureref{7}, \textbookref{Chapter 4}
+
+\subsection{Stability Margins}
+
+From Bode plots, we can determine:
+
+\begin{hwmath}
+\text{Gain Margin (GM)} \eq \frac{1}{|G(j\omega_{pc})|}
+\end{hwmath}
+
+where $\omega_{pc}$ is the phase crossover frequency ($\angle G(j\omega_{pc}) = -180°$).
+
+\begin{hwmath}
+\text{Phase Margin (PM)} \eq 180° + \angle G(j\omega_{gc})
+\end{hwmath}
+
+where $\omega_{gc}$ is the gain crossover frequency ($|G(j\omega_{gc})| = 1$).
+
+For stable systems:
+\begin{hwmath}
+\text{GM} \ggt 1 \text{ (or GM} \ggt 6 \text{ dB)} \\
+\text{PM} \ggt 30°
+\end{hwmath}
+
+\section{Block Diagrams} \label{sec:blockdiagrams}
+
+Consider a unity feedback control system:
+
+\begin{hwblocks}[scale=0.75]
+\bXInput[r(s)]{A}
+\bXComp{B}{A}
+\bXBlocL[2]{C}{$G_c(s)$}{B}
+\bXBlocL[2]{D}{$G_p(s)$}{C}
+\bXOutput[3]{E}{D}
+\bXLink[$r$]{A}{B}
+\bXLink[$e$]{B}{C}
+\bXLink[$u$]{C}{D}
+\bXLink[$y$]{D}{E}
+\bXReturn{D-E}{B}{}
+\end{hwblocks}
+
+The closed-loop transfer function is:
+
+\begin{hwmath}
+T(s) \eq \frac{G_c(s)G_p(s)}{1 + G_c(s)G_p(s)}
+\end{hwmath}
+
+As discussed in \chapref{chap:time}, time domain characteristics can be related to frequency domain properties. The relationship between damping ratio and phase margin is approximately:
+
+\begin{hwmath}
+\zeta \approxx \frac{\text{PM}}{100}
+\end{hwmath}
+
+for phase margins between 0° and 60°.
+
+Reference: \lectureref{8a}, \textbookref{§4.5}
+
+% ============================================================================
+% PROBLEM SET 2
+% ============================================================================
+
+% Reset to letter style for new chapter
+\setsubproblemstyle{alph}
+
+\problem{Bode Plot Analysis} \label{prob:bode}
+
+Given a system with transfer function $G(s) = \frac{100}{s(s+10)}$.
+
+\subproblem{Find the gain crossover frequency.}
+\begin{solution}
+At the gain crossover frequency, $|G(j\omega_{gc})| = 1$. Solving:
+\begin{hwmath}
+\left|\frac{100}{j\omega_{gc}(j\omega_{gc}+10)}\right| \eq 1 \\
+\frac{100}{\omega_{gc}\sqrt{\omega_{gc}^2 + 100}} \eq 1 \\
+\omega_{gc} \approxx 3.01 \text{ rad/s}
+\end{hwmath}
+\end{solution}
+
+\subproblem{Calculate the phase margin.}
+\begin{solution}
+The phase at $\omega_{gc}$ is:
+\begin{hwmath}
+\angle G(j\omega_{gc}) \eq -90° - \arctan\left(\frac{\omega_{gc}}{10}\right) \\
+\approxx -90° - 16.7° \\
+\eq -106.7°
+\end{hwmath}
+
+Therefore, the phase margin is:
+\begin{hwmath}
+\text{PM} \eq 180° + \angle G(j\omega_{gc}) \\
+\eq 180° - 106.7° \\
+\eq 73.3°
+\end{hwmath}
+\end{solution}
+
+\subproblem{Is the system stable?}
+\begin{solution}
+Yes, the system is stable because:
+\begin{itemize}
+\item All poles are in the left half-plane
+\item Phase margin is positive (73.3° $>$ 0°)
+\item Phase margin exceeds the recommended minimum (73.3° $>$ 30°)
+\end{itemize}
+\end{solution}
+
+\problem{PID Controller Design}
+
+Design a PID controller for the plant $G_p(s) = \frac{10}{s(s+2)}$ to meet:
+\begin{itemize}
+\item Settling time $t_s < 2$ seconds
+\item Zero steady-state error for step input
+\item Phase margin $>$ 45°
+\end{itemize}
+
+\subproblem{Why is the integral term necessary?}
+\begin{solution}
+The integral term is necessary to eliminate steady-state error for step inputs. Since the plant already has one integrator ($1/s$ term), we need to maintain at least one integrator in the overall loop to ensure zero steady-state error.
+\end{solution}
+
+\subproblem{What is the role of the derivative term?}
+\begin{solution}
+The derivative term provides phase lead, which increases the phase margin and improves transient response. It adds damping to the system, reducing overshoot and oscillations.
+\end{solution}
+
+\subproblem{Propose initial PID gains.}
+\begin{solution}
+Starting with Ziegler-Nichols tuning or trial-and-error:
+\begin{itemize}
+\item $K_p = 5$ (proportional gain)
+\item $K_i = 10$ (integral gain) 
+\item $K_d = 1$ (derivative gain)
+\end{itemize}
+
+The PID controller is:
+\begin{hwmath}
+G_c(s) \eq K_p + \frac{K_i}{s} + K_d s \\
+\eq 5 + \frac{10}{s} + s \\
+\eq \frac{s^2 + 5s + 10}{s}
+\end{hwmath}
+
+These gains should be refined using simulation and frequency response analysis.
+\end{solution}
+
+\problem{Root Locus Application}
+
+This problem demonstrates how to use root locus for controller design. Refer to Problem~\ref{prob:first} in \chapref{chap:time} for background on system parameters.
+
+\subproblem{Sketch the root locus for $G(s) = \frac{K}{s(s+2)}$.}
+\begin{solution}
+The root locus has:
+\begin{itemize}
+\item Two poles at $s = 0$ and $s = -2$
+\item No finite zeros
+\item Two branches to infinity at angles $\pm 90°$
+\item Breakaway point at $s = -1$
+\end{itemize}
+
+For stability, we require $K > 0$. The system is stable for all positive $K$ values.
+\end{solution}
+
+\subproblem{What gain gives $\zeta = 0.707$?}
+\begin{solution}
+For $\zeta = 0.707$, the closed-loop poles should be at $45°$ angles from the real axis. From the root locus, this occurs at approximately $K = 2$.
+
+The closed-loop poles are at:
+\begin{hwmath}
+s \eq -1 \pm j
+\end{hwmath}
+
+which corresponds to $\omega_n = \sqrt{2}$ rad/s and $\zeta = 0.707$.
+\end{solution}
+
+% ============================================================================
+% SUMMARY AND CROSS-REFERENCES
+% ============================================================================
+
+\section{Summary}
+
+This chapter covered frequency domain analysis methods including:
+\begin{itemize}
+\item Bode plots (\secref{sec:bode})
+\item Stability margins and their interpretation
+\item Block diagram analysis (\secref{sec:blockdiagrams})
+\item Relationship to time domain properties from \chapref{chap:time}
+\end{itemize}
+
+Key takeaways:
+\begin{enumerate}
+\item Phase margin $\ggt$ 45° ensures good transient response
+\item Gain margin $\ggt$ 6 dB provides robustness
+\item Frequency domain and time domain are linked through system parameters
+\end{enumerate}
+
+\note[Remember: Always verify stability margins in frequency domain analysis]
+
+Reference: \lectureref{9}, \textbookref{Chapter 4 Summary}
+
+\end{document}
