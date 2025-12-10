@@ -1,5 +1,7 @@
 # Design Report Class Guide
 
+**Last Updated: December 2025**
+
 **Location**: `designreport.cls` (root directory)  
 **Template**: `templates/designreport_template.tex`  
 **Full Example**: `examples/designreporttest.tex`

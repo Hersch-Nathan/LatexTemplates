@@ -1,5 +1,7 @@
 # Homework Class Guide (`homework.cls`)
 
+**Last Updated: December 2025**
+
 The `homework` class extends `article` with commands and environments for clean, consistent homework writeups: headers, problems/sub-problems, aligned math, code listings, notes, graphics, and appendices.
 
 **Location**: `homework.cls` (root directory)  

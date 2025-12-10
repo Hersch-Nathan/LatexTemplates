@@ -1,5 +1,7 @@
 # Capstone Report Class Guide (`capstone_report.cls`)
 
+**Last Updated: December 2025**
+
 The `capstone_report` class standardizes weekly/biweekly individual progress reports with consistent headers, sections, figures, and code listings.
 
 **Location**: `capstone_report.cls` (root directory)  

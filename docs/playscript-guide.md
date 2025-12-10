@@ -1,5 +1,7 @@
 # Playscript Class Guide (`playscript.cls`)
 
+**Last Updated: December 2025**
+
 The `playscript` class extends `article` with commands and environments for professional theatrical playscript formatting: title pages, character lists, act/scene structure, dialogue blocks, stage directions, and parentheticals.
 
 **Location**: `playscript.cls` (root directory)  
