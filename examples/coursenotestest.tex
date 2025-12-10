@@ -116,10 +116,10 @@ where $\omega_n$ is the natural frequency and $\zeta$ is the damping ratio.
 
 The system behavior depends on the damping ratio:
 \begin{itemize}
-\item $\zeta \gt 1$: Overdamped
-\item $\zeta \eq 1$: Critically damped
-\item $0 \lt \zeta \lt 1$: Underdamped
-\item $\zeta \eq 0$: Undamped
+\item $\zeta > 1$: Overdamped
+\item $\zeta = 1$: Critically damped
+\item $0 < \zeta < 1$: Underdamped
+\item $\zeta = 0$: Undamped
 \end{itemize}
 
 As shown in \secref{sec:firstorder}, first-order systems are simpler, but second-order systems (Equation~\ref{eq:secondorder}) are more common in practice.
@@ -216,10 +216,10 @@ From Bode plots, we can determine:
 \text{Gain Margin (GM)} \eq \frac{1}{|G(j\omega_{pc})|}
 \end{hwmath}
 
-where $\omega_{pc}$ is the phase crossover frequency ($\angle G(j\omega_{pc}) = -180°$).
+where $\omega_{pc}$ is the phase crossover frequency ($\angle G(j\omega_{pc}) = -180^\circ$).
 
 \begin{hwmath}
-\text{Phase Margin (PM)} \eq 180° + \angle G(j\omega_{gc})
+\text{Phase Margin (PM)} \eq 180^\circ + \angle G(j\omega_{gc})
 \end{hwmath}
 
 where $\omega_{gc}$ is the gain crossover frequency ($|G(j\omega_{gc})| = 1$).
@@ -227,7 +227,7 @@ where $\omega_{gc}$ is the gain crossover frequency ($|G(j\omega_{gc})| = 1$).
 For stable systems:
 \begin{hwmath}
 \text{GM} \ggt 1 \text{ (or GM} \ggt 6 \text{ dB)} \\
-\text{PM} \ggt 30°
+\text{PM} \ggt 30^\circ
 \end{hwmath}
 
 \section{Block Diagrams} \label{sec:blockdiagrams}
@@ -259,7 +259,7 @@ As discussed in \chapref{chap:time}, time domain characteristics can be related 
 \zeta \approxx \frac{\text{PM}}{100}
 \end{hwmath}
 
-for phase margins between 0° and 60°.
+for phase margins between $0^\circ$ and $60^\circ$.
 
 Reference: \lectureref{8a}, \textbookref{§4.5}
 
@@ -288,16 +288,16 @@ At the gain crossover frequency, $|G(j\omega_{gc})| = 1$. Solving:
 \begin{solution}
 The phase at $\omega_{gc}$ is:
 \begin{hwmath}
-\angle G(j\omega_{gc}) \eq -90° - \arctan\left(\frac{\omega_{gc}}{10}\right) \\
-\approxx -90° - 16.7° \\
-\eq -106.7°
+\angle G(j\omega_{gc}) \eq -90^\circ - \arctan\left(\frac{\omega_{gc}}{10}\right) \\
+\approxx -90^\circ - 16.7^\circ \\
+\eq -106.7^\circ
 \end{hwmath}
 
 Therefore, the phase margin is:
 \begin{hwmath}
-\text{PM} \eq 180° + \angle G(j\omega_{gc}) \\
-\eq 180° - 106.7° \\
-\eq 73.3°
+\text{PM} \eq 180^\circ + \angle G(j\omega_{gc}) \\
+\eq 180^\circ - 106.7^\circ \\
+\eq 73.3^\circ
 \end{hwmath}
 \end{solution}
 
@@ -306,8 +306,8 @@ Therefore, the phase margin is:
 Yes, the system is stable because:
 \begin{itemize}
 \item All poles are in the left half-plane
-\item Phase margin is positive (73.3° $>$ 0°)
-\item Phase margin exceeds the recommended minimum (73.3° $>$ 30°)
+\item Phase margin is positive ($73.3^\circ > 0^\circ$)
+\item Phase margin exceeds the recommended minimum ($73.3^\circ > 30^\circ$)
 \end{itemize}
 \end{solution}
 
@@ -317,7 +317,7 @@ Design a PID controller for the plant $G_p(s) = \frac{10}{s(s+2)}$ to meet:
 \begin{itemize}
 \item Settling time $t_s < 2$ seconds
 \item Zero steady-state error for step input
-\item Phase margin $>$ 45°
+\item Phase margin $> 45^\circ$
 \end{itemize}
 
 \subproblem{Why is the integral term necessary?}
@@ -359,7 +359,7 @@ The root locus has:
 \begin{itemize}
 \item Two poles at $s = 0$ and $s = -2$
 \item No finite zeros
-\item Two branches to infinity at angles $\pm 90°$
+\item Two branches to infinity at angles $\pm 90^\circ$
 \item Breakaway point at $s = -1$
 \end{itemize}
 
@@ -368,7 +368,7 @@ For stability, we require $K > 0$. The system is stable for all positive $K$ val
 
 \subproblem{What gain gives $\zeta = 0.707$?}
 \begin{solution}
-For $\zeta = 0.707$, the closed-loop poles should be at $45°$ angles from the real axis. From the root locus, this occurs at approximately $K = 2$.
+For $\zeta = 0.707$, the closed-loop poles should be at $45^\circ$ angles from the real axis. From the root locus, this occurs at approximately $K = 2$.
 
 The closed-loop poles are at:
 \begin{hwmath}
@@ -394,8 +394,8 @@ This chapter covered frequency domain analysis methods including:
 
 Key takeaways:
 \begin{enumerate}
-\item Phase margin $\ggt$ 45° ensures good transient response
-\item Gain margin $\ggt$ 6 dB provides robustness
+\item Phase margin $>$ 45$^\circ$ ensures good transient response
+\item Gain margin $>$ 6 dB provides robustness
 \item Frequency domain and time domain are linked through system parameters
 \end{enumerate}
 

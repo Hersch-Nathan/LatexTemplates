@@ -207,8 +207,8 @@
     \renewcommand{\@cnsubproblemstyle}{#1}%
 }
 
-% Format sub-problem label based on current style
-\newcommand{\thecnsubproblem}{%
+% Format sub-problem label based on current style (override default counter format)
+\renewcommand{\thecnsubproblem}{%
     \ifnum\pdfstrcmp{\@cnsubproblemstyle}{alph}=0
         (\alph{cnsubproblem})%
     \else\ifnum\pdfstrcmp{\@cnsubproblemstyle}{roman}=0
