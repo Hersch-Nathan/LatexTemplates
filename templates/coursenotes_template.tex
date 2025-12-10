@@ -1,0 +1,269 @@
+\documentclass{coursenotes}
+
+\begin{document}
+
+% ============================================================================
+% COURSE HEADER
+% Replace with your course information
+% ============================================================================
+\courseheader{COURSE CODE}{Course Name}{Semester Year}{Your Name}
+
+% ============================================================================
+% GENERATE FRONT MATTER
+% Automatically creates Table of Contents, List of Figures, List of Tables
+% Comment out any you don't need
+% ============================================================================
+\makealllists
+
+% Or generate individually:
+% \maketoc  % Table of Contents only
+% \makelof  % List of Figures only
+% \makelot  % List of Tables only
+
+% ============================================================================
+% CHAPTER 1
+% Use \label{chap:uniquename} to reference this chapter later
+% ============================================================================
+\chapter{Chapter Title Here} \label{chap:chapter1}
+
+% Add lecture and textbook references at the start of each chapter/section
+% Reference: \lectureref{1}, \textbookref{Chapter 1}
+
+\section{Section Title} \label{sec:section1}
+
+Write your lecture notes content here. You can include:
+\begin{itemize}
+\item Bullet points for key concepts
+\item Mathematical derivations
+\item Code examples
+\item Block diagrams
+\item Figures and graphs
+\end{itemize}
+
+% Reference: \lectureref{1a}, \textbookref{§1.2}
+
+\subsection{Subsection Title}
+
+More detailed content...
+
+% ----------------------------------------------------------------------------
+% MATH ENVIRONMENT EXAMPLE
+% ----------------------------------------------------------------------------
+
+Use the hwmath environment for unnumbered aligned equations:
+
+\begin{hwmath}
+y(t) \eq Ax(t) + Bu(t) \\
+\eq \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} x(t) + \begin{bmatrix} b_1 \\ b_2 \end{bmatrix} u(t)
+\end{hwmath}
+
+For numbered equations (can be labeled and referenced):
+
+\begin{hwmathnumbered}
+G(s) \eq \frac{Y(s)}{U(s)} \label{eq:transfer}
+\end{hwmathnumbered}
+
+Later reference it as: See Equation~\ref{eq:transfer} for the transfer function.
+
+% Math shortcuts available: \eq (=), \gt (>), \lt (<), \ggt (>>), \llt (<<),
+% \geqq (≥), \leqq (≤), \neqq (≠), \approxx (≈)
+
+% ----------------------------------------------------------------------------
+% NOTE COMMAND EXAMPLE
+% ----------------------------------------------------------------------------
+
+\note[IMPORTANT: Always check stability conditions]
+
+% Or just: \note
+
+% ----------------------------------------------------------------------------
+% EXAMPLE BOX
+% ----------------------------------------------------------------------------
+
+\begin{example}{Example 1-1: Problem Title}
+State the problem here...
+
+\textbf{Solution:}
+
+Work through the solution step by step...
+
+\begin{hwmath}
+\text{Result} \eq \text{Final Answer}
+\end{hwmath}
+\end{example}
+
+% ----------------------------------------------------------------------------
+% CODE ENVIRONMENT EXAMPLES
+% ----------------------------------------------------------------------------
+
+\subsection{MATLAB Code}
+
+\begin{hwmatlab}[caption=Description of Code]
+% Your MATLAB code here
+s = tf('s');
+G = 1/(s+1);
+step(G);
+\end{hwmatlab}
+
+\subsection{Python Code}
+
+\begin{hwpython}[caption=Python Implementation]
+# Your Python code here
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+plt.plot(x, y)
+plt.show()
+\end{hwpython}
+
+\subsection{Terminal Output}
+
+\begin{hwterminal}[caption=Command Line Example]
+$ pip install package-name
+Collecting package-name
+Installing...
+Successfully installed package-name
+\end{hwterminal}
+
+% ----------------------------------------------------------------------------
+% GRAPHICS EXAMPLES
+% ----------------------------------------------------------------------------
+
+\section{Figures and Graphics}
+
+% Single figure with title and scale
+% \hwgraphic{path/to/image.pdf}[Figure Title][0.7]
+
+% Side-by-side figures
+% \hwdualfigure{image1.pdf}{image2.pdf}[0.45\textwidth][0.45\textwidth]{Caption 1}{Caption 2}
+
+% ----------------------------------------------------------------------------
+% BLOCK DIAGRAM EXAMPLE
+% ----------------------------------------------------------------------------
+
+\section{Block Diagrams}
+
+\begin{hwblocks}[scale=0.8]
+% Simple feedback system example
+\bXInput[r(s)]{A}
+\bXComp{B}{A}
+\bXBlocL[2]{C}{$G_c(s)$}{B}
+\bXBlocL[2]{D}{$G_p(s)$}{C}
+\bXOutput[3]{E}{D}
+\bXLink[$r$]{A}{B}
+\bXLink[$e$]{B}{C}
+\bXLink[$u$]{C}{D}
+\bXLink[$y$]{D}{E}
+\bXReturn{D-E}{B}{}
+\end{hwblocks}
+
+% See coursenotes-guide.md or homework-guide.md for complete blox documentation
+
+% ============================================================================
+% PROBLEM SET FOR CHAPTER 1
+% Add problems at the end of each chapter
+% ============================================================================
+
+\problem{Problem Title Here} \label{prob:problem1}
+
+State the problem...
+
+\subproblem{Part (a) question here}
+\begin{solution}
+Write your solution to part (a) here. It will display inline after the problem statement.
+
+You can include math:
+\begin{hwmath}
+\text{Answer} \eq \text{Value}
+\end{hwmath}
+\end{solution}
+
+\subproblem{Part (b) question here}
+\begin{solution}
+Write your solution to part (b) here.
+\end{solution}
+
+\subproblem{Part (c) question here}
+\begin{solution}
+Write your solution to part (c) here.
+\end{solution}
+
+% ----------------------------------------------------------------------------
+% ADDITIONAL PROBLEMS
+% ----------------------------------------------------------------------------
+
+\problem{Another Problem Title}
+
+Another problem statement...
+
+\subproblem{First part}
+\begin{solution}
+Solution here...
+\end{solution}
+
+\subproblem{Second part}
+\begin{solution}
+Solution here...
+\end{solution}
+
+% To change sub-problem style (default is letters: a, b, c)
+% \setsubproblemstyle{roman}  % for (i), (ii), (iii)
+% \setsubproblemstyle{arabic} % for (1), (2), (3)
+% \setsubproblemstyle{alph}   % back to (a), (b), (c)
+
+% ============================================================================
+% CHAPTER 2
+% ============================================================================
+\chapter{Second Chapter Title} \label{chap:chapter2}
+
+% Reference: \lectureref{5}, \textbookref{Chapter 2}
+
+\section{Section in Chapter 2}
+
+Content for second chapter...
+
+You can reference earlier chapters: As discussed in \chapref{chap:chapter1}, ...
+
+You can reference earlier sections: See \secref{sec:section1} for background.
+
+You can reference earlier problems: As solved in Problem~\ref{prob:problem1}, ...
+
+% ----------------------------------------------------------------------------
+% MORE PROBLEMS
+% Problems automatically number as 2.1, 2.2, etc. in Chapter 2
+% ----------------------------------------------------------------------------
+
+\problem{Chapter 2 Problem}
+
+\subproblem{Question}
+\begin{solution}
+Answer...
+\end{solution}
+
+% ============================================================================
+% ADD MORE CHAPTERS AS NEEDED
+% ============================================================================
+
+% \chapter{Third Chapter Title} \label{chap:chapter3}
+% ... content ...
+
+% ============================================================================
+% TIPS FOR USING THIS TEMPLATE
+% ============================================================================
+% 
+% 1. Replace all placeholder text with your actual content
+% 2. Add \label{} to chapters, sections, equations, problems you want to reference
+% 3. Use descriptive label names: chap:name, sec:name, eq:name, prob:name, fig:name
+% 4. Add \lectureref{} and \textbookref{} to track source material
+% 5. Compile with pdflatex at least twice for proper cross-references
+% 6. Use \chapref{}, \secref{}, \ref{} for cross-references
+% 7. Sub-problems default to (a), (b), (c) - use \setsubproblemstyle{} to change
+% 8. Solutions display inline immediately after each sub-problem
+% 9. See coursenotes-guide.md for complete documentation
+% 10. See coursenotestest.tex for comprehensive examples
+%
+% ============================================================================
+
+\end{document}
