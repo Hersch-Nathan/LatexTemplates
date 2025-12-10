@@ -279,17 +279,17 @@
 % Commands to generate front matter
 \newcommand{\maketoc}{%
     \tableofcontents
-    \cleardoublepage
+    \clearpage
 }
 
 \newcommand{\makelof}{%
     \listoffigures
-    \cleardoublepage
+    \clearpage
 }
 
 \newcommand{\makelot}{%
     \listoftables
-    \cleardoublepage
+    \clearpage
 }
 
 % Combined command to generate all lists
