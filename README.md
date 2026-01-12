@@ -11,6 +11,7 @@ This repository provides five robust LaTeX classes for academic and professional
 ## Table of Contents
 
 - [Overview](#overview)
+- [Architecture](#architecture)
 - [Repository Structure](#repository-structure)
 - [Quick Start](#quick-start)
 - [Guides](#guides)
@@ -20,12 +21,42 @@ This repository provides five robust LaTeX classes for academic and professional
 
 ## Overview
 
-These LaTeX classes and templates help you create comprehensive course notes for studying, write clean homework solutions, produce consistent capstone progress reports, generate professional design documents, and format theatrical playscripts. The course notes and homework classes include preloaded TikZ and Blox for block diagrams, extensive math alignment shortcuts (e.g., =, >, <, ≥, ≤, ≠, ≈), and boxed example environments.
+These LaTeX classes and templates help you create comprehensive course notes for studying, write clean homework solutions, produce consistent capstone progress reports, generate professional design documents, and format theatrical playscripts. 
+
+**New (v2.0):** The course notes and homework classes now share a unified base package (`hwcoursebase.sty`) that provides common math environments, code listing environments, graphics helpers, and shared macros. Design reports use `reportbase.cls` for similar shared functionality.
+
+## Architecture
+
+**Two-Tier Base System:**
+- **`hwcoursebase.sty`** — Shared package for homework and course notes classes
+- **`reportbase.cls`** — Shared base class for design reports
+- **`homework.cls`, `coursenotes.cls`** — Load article/book + require hwcoursebase
+- **`designreport.cls`** — Loads reportbase with design-specific extensions
+- **`playscript.cls`, `capstone_report.cls`** — Standalone classes
+
+**New Shared Environments:**
+- Math: `mmath`, `mathnumbered`
+- Code: `python`, `matlab`, `terminal`, `codeblock`
+- Graphics: `\graphic`, `\dualfigure`
+- Shared macros: `\der`, `\laplace`, `\norm`, `\conj`, `\arr`, `\Arr`, `\inner`, `\Real`, `\Complex`
+- Alignment shortcuts: `\eq`, `\gt`, `\lt`, `\llt`, `\ggt`, `\geqq`, `\leqq`, `\neqq`, `\approxx`
+
+See [MIGRATION.md](MIGRATION.md) for refactoring changes and [TEXINPUTS_GUIDE.md](TEXINPUTS_GUIDE.md) for compilation from subdirectories.
 
 ## Repository Structure
 
 ```
 LatexTemplates/
+├── hwcoursebase.sty         # ← NEW: Shared base package
+├── reportbase.cls           # ← NEW: Shared report base class
+├── homework.cls
+├── coursenotes.cls
+├── designreport.cls
+├── capstone_report.cls
+├── playscript.cls
+├── MIGRATION.md             # ← NEW: Refactoring and upgrade guide
+├── TEXINPUTS_GUIDE.md       # ← NEW: File path resolution for compilation
+├── README.md
 ├── docs/                    # Documentation for each class
 │   ├── coursenotes-guide.md
 │   ├── homework-guide.md
@@ -56,11 +87,6 @@ LatexTemplates/
 │   ├── create_diagram.tex
 │   └── references.bib
 ├── figures/                 # Place your figures here for design reports
-├── coursenotes.cls          # Course notes LaTeX class
-├── homework.cls             # Homework LaTeX class
-├── capstone_report.cls      # Capstone report LaTeX class
-├── designreport.cls         # Design report LaTeX class
-├── playscript.cls           # Playscript LaTeX class
 └── .gitignore              # Excludes LaTeX auxiliary files
 ```
 
