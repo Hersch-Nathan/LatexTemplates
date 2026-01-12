@@ -1,78 +1,60 @@
 %% designreport.cls
 %% LaTeX class for Design Reports
 %% Generic, course-agnostic class suitable for publishing
+%% Loads reportbase.cls as base class, which provides:
+%%   - Code environments (python, matlab, terminal, cpp, codeblock)
+%%   - Figure commands (\figref, \graphic, \figure, \dualfigure)
+%%   - Custom math macros (\der, \laplace, \norm, etc.)
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{designreport}[2025/10/03 v1.0 Design Report Class]
+\ProvidesClass{designreport}[2026/01/12 Design Report Class]
 
 %% ============================================================================
 %% CLASS OPTIONS
 %% ============================================================================
 
 % Initialize boolean flags for class options
-\newif\if@draft\@draftfalse        % Draft mode flag (default: false)
-\newif\if@final\@finaltrue         % Final mode flag (default: true)
-\newif\if@twocolumn\@twocolumnfalse % Two-column layout flag (default: false)
-\newif\if@onecolumn\@onecolumntrue  % One-column layout flag (default: true)
-\newif\if@linenumbers\@linenumbersfalse % Line numbering flag (default: false)
-\newif\if@watermark\@watermarkfalse % Watermark flag (default: false)
-\newif\if@figabbrev\@figabbrevfalse % Figure abbreviation flag (default: false)
+\newif\if@draft\@draftfalse
+\newif\if@final\@finaltrue
+\newif\if@twocolumn\@twocolumnfalse
+\newif\if@onecolumn\@onecolumntrue
+\newif\if@linenumbers\@linenumbersfalse
+\newif\if@watermark\@watermarkfalse
+\newif\if@figabbrev\@figabbrevfalse
 
 % Class option declarations
-\DeclareOption{draft}{\@drafttrue\@finalfalse\@watermarktrue}      % Enable draft mode with watermark and overfull box highlighting
-\DeclareOption{final}{\@finaltrue\@draftfalse\@watermarkfalse}     % Enable final mode (default, clean output)
-\DeclareOption{twocolumn}{\@twocolumntrue\@onecolumnfalse}         % Use two-column layout for compact presentation
-\DeclareOption{onecolumn}{\@onecolumntrue\@twocolumnfalse}         % Use single-column layout (default)
-\DeclareOption{linenumbers}{\@linenumberstrue}                     % Add line numbers for reviewing and editing
-\DeclareOption{figabbrev}{\@figabbrevtrue}                         % Abbreviate "Figure" to "Fig." in references
+\DeclareOption{draft}{\@drafttrue\@finalfalse\@watermarktrue}
+\DeclareOption{final}{\@finaltrue\@draftfalse\@watermarkfalse}
+\DeclareOption{twocolumn}{\@twocolumntrue\@onecolumnfalse}
+\DeclareOption{onecolumn}{\@onecolumntrue\@twocolumnfalse}
+\DeclareOption{linenumbers}{\@linenumberstrue}
+\DeclareOption{figabbrev}{\@figabbrevtrue}
 
-% Pass unknown options to article class
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+% Pass unknown options to reportbase
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{reportbase}}
 
-% Process options and load base class with 12pt default
+% Process options and load base class
 \ProcessOptions\relax
-\LoadClass[12pt]{article}
+\LoadClass[12pt]{reportbase}
 
 %% ============================================================================
-%% REQUIRED PACKAGES
+%% ADDITIONAL PACKAGES FOR DESIGN REPORTS
 %% ============================================================================
+%% These packages provide features unique to design reports and are not
+%% included in reportbase.cls
 
-% Core packages
-\RequirePackage[margin=1in]{geometry}     % Sets 1-inch margins on all sides for professional document formatting
-\RequirePackage{xparse}                   % Enables modern command definitions with flexible argument handling
-\RequirePackage{environ}                  % Supports creation of custom environments with advanced processing capabilities
-\RequirePackage[final]{graphicx}          % Allows image inclusion with scaling, rotation, and positioning options (final ensures images always display)
-\RequirePackage{xcolor}                   % Provides comprehensive color support for text, backgrounds, and graphics
-\RequirePackage{amsmath}                  % Enables advanced mathematical environments and equation formatting
-\RequirePackage{listings}                 % Formats code listings with syntax highlighting and customizable styling
-\RequirePackage{iftex}                    % Detects the LaTeX engine (pdfLaTeX, XeLaTeX, LuaLaTeX) for conditional compilation
-\RequirePackage{lastpage}                 % Adds page numbering functionality (e.g., "Page X of Y") by referencing the last page
-\RequirePackage{fancyhdr}                 % Customizes headers and footers with flexible positioning and content control
-\RequirePackage{caption}                  % Ensures consistent figure and table captions with customizable formatting
+\RequirePackage{tocloft}         % Customize TOC
+\RequirePackage{titlesec}        % Section formatting
+\RequirePackage{setspace}        % Line spacing
+\RequirePackage{array}           % Array enhancements
+\RequirePackage{booktabs}        % Professional tables
+\RequirePackage{multirow}        % Multi-row cells
+\RequirePackage{multicol}        % Multi-column layouts
+\RequirePackage{longtable}       % Tables spanning pages
+\RequirePackage{mathptmx}        % Times New Roman math
+\RequirePackage[T1]{fontenc}     % Font encoding
 
-% Configure caption formatting - labels underneath for better readability
-\captionsetup{
-    position=bottom,        % Place captions below figures and tables
-    labelsep=period,        % Use period after label (e.g., "Figure 1.")
-    font=small,             % Use smaller font for captions
-    justification=centering % Center-align captions
-}
-\RequirePackage{hyperref}                 % Adds hyperlinks, bookmarks, and PDF metadata for enhanced document navigation
-\RequirePackage{tocloft}                  % Customizes the table of contents, list of figures, and list of tables formatting
-\RequirePackage[backend=biber,style=ieee]{biblatex}  % Manages references using IEEE citation style with modern bibliography processing
-\RequirePackage{titlesec}                 % Formats section titles with custom spacing, fonts, and numbering schemes
-\RequirePackage{setspace}                 % Controls line spacing throughout the document (single, double, custom spacing)
-\RequirePackage{array}                    % Enhances array and tabular environments with additional column types and formatting
-\RequirePackage{booktabs}                 % Creates professional-quality tables with proper spacing and horizontal rules
-\RequirePackage{multirow}                 % Supports multi-row table cells for complex table layouts and data presentation
-\RequirePackage{multicol}                 % Enables multi-column layouts for text, lists, and other content elements
-\RequirePackage{longtable}                % Enables tables that can span multiple pages with automatic page breaks
-
-% Font setup - Times New Roman
-\RequirePackage[T1]{fontenc}
-\RequirePackage{mathptmx}                 % Times fonts for text and math
-
-% Optional packages based on options
+% Optional packages based on class options
 \if@linenumbers
     \RequirePackage{lineno}
     \linenumbers
@@ -95,10 +77,6 @@
 %% ============================================================================
 
 % Set font sizes according to requirements
-% 12pt Times New Roman for headings (bold)
-% 11pt Times New Roman for text
-% 1.5 spacing between paragraphs, single spacing between lines
-
 \renewcommand{\normalsize}{\fontsize{11pt}{11pt}\selectfont}
 \renewcommand{\large}{\fontsize{12pt}{12pt}\selectfont}
 \renewcommand{\Large}{\fontsize{14pt}{14pt}\selectfont}
@@ -117,8 +95,13 @@
     {\normalsize\bfseries}{\thesubsubsection}{1em}{}
 
 %% ============================================================================
-%% TITLE PAGE VARIABLES
+%% TITLE PAGE VARIABLES AND COMMANDS
 %% ============================================================================
+%% Features unique to design reports:
+%%   - Team-based document structure (team name, members, advisors, sponsors)
+%%   - Customizable document naming
+%%   - Logo support
+%%   - University/department/course information
 
 % Define variables for title page content
 \newcommand{\@documentname}{Design Report}
@@ -159,6 +142,7 @@
 %% ============================================================================
 %% TITLE PAGE CREATION
 %% ============================================================================
+%% Custom maketitle for design reports with team-based layout
 
 \renewcommand{\maketitle}{%
     \begin{titlepage}
@@ -229,22 +213,22 @@
 %% ============================================================================
 %% HEADERS AND FOOTERS
 %% ============================================================================
+%% Custom header/footer setup for design reports
 
 \pagestyle{fancy}
 \fancyhf{} % Clear all header and footer fields
 
-
-% Remove team info from header, only in footer
+% Header setup
 \fancyhead[L]{}
 \fancyhead[C]{}
 \fancyhead[R]{\thepage}
 
-% Footer setup (for all pages except first)
+% Footer setup (displays team name and course)
 \fancyfoot[L]{\@teamname}
 \fancyfoot[C]{\@course}
 \fancyfoot[R]{\thepage}
 
-% Special formatting for first page
+% Special formatting for first page (no header/footer)
 \fancypagestyle{plain}{%
     \fancyhf{}
     \renewcommand{\headrulewidth}{0pt}
@@ -258,10 +242,10 @@
 %% ============================================================================
 %% TABLE OF CONTENTS AND LISTS
 %% ============================================================================
+%% Front matter generation for design reports
 
-% Create command to generate all front matter
 \newcommand{\makefrontmatter}{%
-    %Title Page
+    % Title Page
     \maketitle
 
     % Table of Contents
@@ -279,91 +263,18 @@
 }
 
 %% ============================================================================
-%% CODE ENVIRONMENTS
+%% FIGURE REFERENCE OVERRIDE
 %% ============================================================================
+%% Override reportbase's \figref to support figabbrev option
 
-% Define colors for syntax highlighting
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-
-% Python Code Environment
-\lstnewenvironment{reportpython}[1][]{%
-    \lstset{
-        language=Python,
-        basicstyle=\ttfamily\footnotesize,
-        keywordstyle=\color{blue},
-        commentstyle=\color{green!50!black},
-        stringstyle=\color{purple},
-        identifierstyle=\color{black},
-        numberstyle=\tiny\color{gray},
-        emphstyle=\color{orange},
-        showstringspaces=false,
-        breaklines=true,
-        frame=single,
-        captionpos=b,
-        title=Code,
-        #1
-    }%
-}{}
-
-% MATLAB Code Environment
-\lstnewenvironment{reportmatlab}[1][]{%
-    \lstset{
-        language=Matlab,
-        basicstyle=\ttfamily\footnotesize,
-        keywordstyle=\color{blue},
-        commentstyle=\color{green!50!black},
-        stringstyle=\color{magenta},
-        emphstyle=\color{red},
-        showstringspaces=false,
-        breaklines=true,
-        frame=single,
-        captionpos=b,
-        title=Code,
-        #1
-    }%
-}{}
-
-% Terminal Output Environment
-\lstnewenvironment{reportterminal}[1][]{%
-    \lstset{
-        language=bash,
-        basicstyle=\ttfamily\footnotesize\color{black},
-        backgroundcolor=\color{white},
-        frame=single,
-        framerule=1pt,
-        rulecolor=\color{gray},
-        breaklines=true,
-        breakatwhitespace=false,
-        showstringspaces=false,
-        tabsize=4,
-        captionpos=b,
-        numbers=none,
-        xleftmargin=0pt,
-        xrightmargin=0pt,
-        keywordstyle=\color{blue},
-        commentstyle=\color{green!50!black},
-        stringstyle=\color{purple},
-        title=Code,
-        #1
-    }%
-}{}
-
-% General code block environment
-\lstnewenvironment{codeblock}[1][]{%
-    \lstset{basicstyle=\ttfamily,frame=single,captionpos=b,title=Code,#1}%
-}{}
-
-%% ============================================================================
-%% FIGURE COMMANDS AND ENVIRONMENTS
-%% ============================================================================
-
-% Figure reference command
-\NewDocumentCommand{\figref}{m}{%
+\renewcommand{\figref}[1]{%
     \if@figabbrev Fig.~#1\else Figure~#1\fi
 }
+
+%% ============================================================================
+%% DESIGN REPORT FIGURE COMMANDS
+%% ============================================================================
+%% Design report-specific figure helpers with figures folder enforcement
 
 % Graphic inclusion command (figures folder enforced)
 \NewDocumentCommand{\reportgraphic}{m o o}{%
@@ -421,15 +332,9 @@
 }
 
 %% ============================================================================
-%% PREDEFINED SECTIONS REMOVED
-%% ============================================================================
-%% Predefined sections have been moved to docs/examples.md for better modularity.
-%% Users can add these commands to their document preamble as needed.
-%% This approach allows for greater customization and prevents cluttering the class file.
-
-%% ============================================================================
 %% TABLE FORMATTING OPTIONS
 %% ============================================================================
+%% Design report-specific table styling features
 
 % Define default table colors
 \definecolor{tableheader}{RGB}{70,130,180}      % Steel blue for headers
@@ -465,6 +370,7 @@
 %% ============================================================================
 %% SPECIALIZED ENVIRONMENTS
 %% ============================================================================
+%% Design report-specific environments for organizing content
 
 % Sub-project environment
 \newenvironment{subproject}[2]{%
@@ -494,8 +400,9 @@
 \newcommand{\@sappendix}[1]{\@appendix[default]{#1}}
 
 %% ============================================================================
-%% HELPER COMMANDS
+%% TEAM ENTRY HELPERS
 %% ============================================================================
+%% Commands for formatting team member, advisor, and sponsor entries
 
 % Team member entry helper
 \newcommand{\teammember}[2]{%
@@ -524,8 +431,8 @@
 %% ============================================================================
 %% HYPERLINK SETUP
 %% ============================================================================
+%% Configure hyperref for interactive PDFs
 
-% Configure hyperref for clickable table of contents
 \hypersetup{
     colorlinks=true,
     linkcolor=black,
@@ -541,3 +448,20 @@
 %% ============================================================================
 %% END OF CLASS FILE
 %% ============================================================================
+%% 
+%% Summary of inherited features from reportbase.cls:
+%%   - Code environments: python, matlab, terminal, cpp, codeblock
+%%   - Figure commands: \figref (overridden), \graphic, \figure, \dualfigure
+%%   - Math macros: \der, \laplace, \norm, \conj, \arr, \Arr, \inner, \Real, \Complex
+%%   - Geometry: 1-inch margins
+%%   - Packages: graphicx, xcolor, listings, xparse, environ, hyperref, caption
+%%
+%% Design report-specific features (not in reportbase):
+%%   - Draft/final mode with watermarking
+%%   - Team-based title page with multiple sections
+%%   - Custom header/footer with team name and course
+%%   - Table formatting with colors and padding
+%%   - Sub-project environment
+%%   - Appendix lettering system
+%%   - Figure abbreviation toggle (figabbrev option)
+%%   - Team member/advisor/sponsor entry helpers

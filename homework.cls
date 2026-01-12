@@ -1,33 +1,22 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{homework}[2025-09-01]
+\ProvidesClass{homework}[2026-01-12 Homework Class]
 
-% Class options
+% Class options for problem numbering modes
 \newif\if@partnumbering
 \@partnumberingfalse
 \DeclareOption{partnumbering}{\@partnumberingtrue}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{hwcoursebase}}
 \ProcessOptions\relax
 
-% Load base class
-\LoadClass{article}
+% Load shared base class
+\LoadClass{hwcoursebase}
 
-% Required packages
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{listings}
-\RequirePackage{xparse}
-\RequirePackage[margin=0.5in]{geometry}
-\RequirePackage{fix-cm}
-\RequirePackage{environ}
-\RequirePackage{xcolor}
-\RequirePackage{graphicx}
-\RequirePackage{tikz}
-\RequirePackage{blox}
-\RequirePackage{tcolorbox}
+%% ============================================================================
+%% HOMEWORK-SPECIFIC PROBLEM NUMBERING
+%% ============================================================================
 
-
-% 1. Header command
+% Header command for homework
 \newcommand{\hwheader}[4]{%
 	\begin{center}
 		{\fontsize{20pt}{24pt}\selectfont\textbf{#1~HW~#2}}\\[0.5em]
@@ -35,8 +24,10 @@
 	\end{center}
 }
 
-% 1a. Part command (for partnumbering mode)
+% Part counter (for partnumbering mode)
 \newcounter{hwpart}
+
+% Part command (for partnumbering mode only)
 \newcommand{\hwpart}[1]{%
 	\if@partnumbering
 		\refstepcounter{hwpart}%
@@ -49,15 +40,17 @@
 	\fi
 }
 
-% 2. Homework problem command
+% Problem counter
 \newcounter{hwproblem}
 \newcounter{hwsubproblem}[hwproblem]
 
+% Adjust problem counter format based on partnumbering mode
 \if@partnumbering
 	\renewcommand{\thehwproblem}{\thehwpart.\arabic{hwproblem}}
 	\renewcommand{\thehwsubproblem}{\Alph{hwsubproblem}}
 \fi
 
+% Problem command
 \newcommand{\problem}[2][\empty]{%
 	\refstepcounter{hwproblem}%
 	\par\vspace{1em}
@@ -69,7 +62,7 @@
 	\par\vspace{1em}
 }
 
-% 3. Homework sub-problem command
+% Subproblem command
 \newcommand{\subproblem}[2][\empty]{%
 	\refstepcounter{hwsubproblem}%
 	\par\vspace{0.5em}
@@ -82,123 +75,13 @@
 	\fi
 }
 
-% 4. Custom math environment for homework solutions
-% Left-justified math with equal sign alignment
-\NewEnviron{hwmath}{%
-	\par\vspace{0.5em}%
-	\begin{align*}%
-	\BODY%
-	\end{align*}%
-	\vspace{0.5em}%
-}
+%% ============================================================================
+%% APPENDIX COMMAND
+%% ============================================================================
 
-% Shorthand for aligned equals and comparison operators
-\newcommand{\eq}{&=}
-\newcommand{\gt}{&>}
-\newcommand{\lt}{&<}
-\newcommand{\llt}{&<<}
-\newcommand{\ggt}{&>>}
-\renewcommand{\geqq}{&\geq}
-\renewcommand{\leqq}{&\leq}
-\newcommand{\neqq}{&\neq}
-\newcommand{\approxx}{&\approx}
-
-
-% Alternative numbered environment 
-\NewEnviron{hwmathnumbered}{%
-	\par\vspace{0.5em}%
-	\begin{align}%
-	\BODY%
-	\end{align}%
-	\vspace{0.5em}%
-}
-
-% Note command for highlighting important text in bold, red, and large font
-\NewDocumentCommand{\note}{o}{%
-	\IfValueTF{#1}{%
-		{\Large\textbf{\textcolor{red}{#1}}}%
-	}{%
-		{\Large\textbf{\textcolor{red}{NOTE}}}%
-	}%
-}
-
-% Example environment - creates a framed box with a header
-\NewDocumentEnvironment{example}{m}{%
-	\par\vspace{1em}%
-	\begin{tcolorbox}[
-		colback=gray!5,
-		colframe=black,
-		boxrule=1pt,
-		arc=2pt,
-		left=6pt,
-		right=6pt,
-		top=6pt,
-		bottom=6pt,
-		title=\textbf{#1},
-		fonttitle=\bfseries
-	]%
-}{%
-	\end{tcolorbox}%
-	\par\vspace{1em}%
-}
-
-% Graphic inclusion command with automatic centering, optional title, and optional scale
-\NewDocumentCommand{\hwgraphic}{m o o}{%
-	\begin{center}%
-		\IfValueT{#2}{\textbf{#2}\\[0.5em]}%
-		\IfValueTF{#3}{%
-			\includegraphics[scale=#3]{#1}%
-		}{%
-			\includegraphics[width=0.8\textwidth]{#1}%
-		}%
-		\IfValueT{#2}{\\[0.5em]}%
-	\end{center}%
-}
-
-% MATLAB code environment with caption
-\lstnewenvironment{hwmatlab}[1][]{%
-	\lstset{language=Matlab, #1}%
-}{}
-
-% Python code environment with caption
-\lstnewenvironment{hwpython}[1][]{%
-	\lstset{language=Python, #1}%
-}{}
-
-% Terminal output environment with caption
-\lstnewenvironment{hwterminal}[1][]{%
-	\lstset{
-		language=bash,
-		basicstyle=\ttfamily\footnotesize\color{black},
-		backgroundcolor=\color{white},
-		frame=single,
-		framerule=1pt,
-		rulecolor=\color{gray},
-		breaklines=true,
-		breakatwhitespace=false,
-		showstringspaces=false,
-		tabsize=4,
-		captionpos=b,
-		numbers=none,
-		xleftmargin=0pt,
-		xrightmargin=0pt,
-		#1
-	}%
-}{}
-
-% Block diagram environment for centered tikzpicture with blox support
-\NewEnviron{hwblocks}[1][]{%
-	\par\vspace{0.5em}%
-	\begin{center}%
-		\begin{tikzpicture}[#1]%
-			\BODY%
-		\end{tikzpicture}%
-	\end{center}%
-	\vspace{0.5em}%
-}
-
-% Appendix counter and command
 \newcounter{hwappendix}
+
+% Appendix command
 \newcommand{\hwappendix}[1][\empty]{%
 	\newpage%
 	\refstepcounter{hwappendix}%
@@ -207,4 +90,8 @@
 		\ifx\empty#1\empty\else{: #1}\fi\\[1em]
 	\end{center}
 }
+
+%% ============================================================================
+%% END OF CLASS FILE
+%% ============================================================================
 

@@ -1,39 +1,77 @@
 \NeedsTeXFormat{LaTeX2e}
 
-\ProvidesClass{coursenotes}[2025-12-10 Course Notes Class]
+\ProvidesClass{coursenotes}[2026-01-12 Course Notes Class]
 
-% Load base class - using book for chapter support
+% Load shared base class (but override to use book instead of article)
+\LoadClass[]{hwcoursebase}
+
+% Switch to book class for chapter support
 \LoadClass{book}
 
-% Required packages
-\RequirePackage{amsmath}          % Advanced math environments
-\RequirePackage{amssymb}          % Math symbols
-\RequirePackage{listings}         % Code listings
-\RequirePackage{xparse}           % Advanced command definitions
-\RequirePackage[margin=0.5in]{geometry}  % Compact margins like homework.cls
-\RequirePackage{fix-cm}           % Fix computer modern font sizes
-\RequirePackage{environ}          % Environment creation
-\RequirePackage{xcolor}           % Color support
-\RequirePackage{graphicx}         % Graphics inclusion
-\RequirePackage{tikz}             % Drawing package
-\RequirePackage{blox}             % Block diagram package
-\RequirePackage{tcolorbox}        % Colored boxes for examples
-\RequirePackage{hyperref}         % Hyperlinks and cross-references
-\RequirePackage{subcaption}       % For side-by-side figures
+% Re-load required packages from hwcoursebase manually since we're using book
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{listings}
+\RequirePackage{xparse}
+\RequirePackage[margin=0.5in]{geometry}
+\RequirePackage{fix-cm}
+\RequirePackage{environ}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{blox}
+\RequirePackage{tcolorbox}
+\RequirePackage{hyperref}
+\RequirePackage{subcaption}
 
-% Configure hyperref for better PDF output
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue,
-    bookmarksnumbered=true,
-    pdfstartview=FitH
-}
+% Import custom math macros from hwcoursebase concept
+\newcommand{\der}{\mathop{}\!\mathrm{d}}
+\newcommand{\laplace}{\mathcal{L}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\arr}[1]{\xrightarrow{#1}}
+\newcommand{\Arr}[1]{\Longrightarrow\,#1\,\Longrightarrow}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Complex}{\mathbb{C}}
 
-% =============================================================================
-% HEADER COMMAND
-% =============================================================================
+% Import math environments from hwcoursebase concept
+\NewEnviron{mmath}{\par\vspace{0.5em}\begin{align*}\BODY\end{align*}\vspace{0.5em}}
+\NewEnviron{mathnumbered}{\par\vspace{0.5em}\begin{align}\BODY\end{align}\vspace{0.5em}}
+
+% Alignment shortcuts
+\newcommand{\eq}{&=}
+\newcommand{\gt}{&>}
+\newcommand{\lt}{&<}
+\newcommand{\llt}{&<<}
+\newcommand{\ggt}{&>>}
+\newcommand{\geqq}{&\geq}
+\newcommand{\leqq}{&\leq}
+\newcommand{\neqq}{&\neq}
+\newcommand{\approxx}{&\approx}
+
+% Code environments
+\lstnewenvironment{python}[1][]{\lstset{language=Python, #1}}{}
+\lstnewenvironment{matlab}[1][]{\lstset{language=Matlab, #1}}{}
+\lstnewenvironment{terminal}[1][]{\lstset{language=bash, basicstyle=\ttfamily\footnotesize\color{black}, backgroundcolor=\color{white}, frame=single, framerule=1pt, rulecolor=\color{gray}, breaklines=true, breakatwhitespace=false, showstringspaces=false, tabsize=4, captionpos=b, numbers=none, xleftmargin=0pt, xrightmargin=0pt, #1}}{}
+
+% Graphics helpers
+\NewDocumentCommand{\graphic}{m o o}{\begin{center}\IfValueT{#2}{\textbf{#2}\\[0.5em]}\IfValueTF{#3}{\includegraphics[scale=#3]{#1}}{\includegraphics[width=0.8\textwidth]{#1}}\IfValueT{#2}{\\[0.5em]}\end{center}}
+\NewDocumentCommand{\dualfigure}{m m o o m m}{\begin{figure}[htbp]\centering\begin{subfigure}[b]{\IfValueTF{#3}{#3}{0.45\textwidth}}\centering\includegraphics[width=\textwidth]{#1}\caption{#5}\end{subfigure}\hfill\begin{subfigure}[b]{\IfValueTF{#4}{#4}{0.45\textwidth}}\centering\includegraphics[width=\textwidth]{#2}\caption{#6}\end{subfigure}\end{figure}}
+
+% Example and note
+\NewDocumentEnvironment{example}{m}{\par\vspace{1em}\begin{tcolorbox}[colback=gray!5, colframe=black, boxrule=1pt, arc=2pt, left=6pt, right=6pt, top=6pt, bottom=6pt, title=\textbf{#1}, fonttitle=\bfseries]}{\end{tcolorbox}\par\vspace{1em}}
+\newcommand{\note}[1]{\textcolor{red}{\textbf{#1}}}
+
+% Diagram/block environment
+\NewEnviron{diagram}{\par\vspace{0.5em}\begin{center}\begin{tikzpicture}\BODY\end{tikzpicture}\end{center}\vspace{0.5em}}
+
+% Configure hyperref
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue, bookmarksnumbered=true, pdfstartview=FitH}
+
+%% ============================================================================
+%% HEADER COMMAND
+%% ============================================================================
 
 \newcommand{\courseheader}[4]{%
     \begin{center}
@@ -43,156 +81,9 @@
     \end{center}
 }
 
-% =============================================================================
-% MATH ENVIRONMENTS (inherited from homework.cls)
-% =============================================================================
-
-% Custom math environment with left-justified equals alignment
-\NewEnviron{hwmath}{%
-    \par\vspace{0.5em}%
-    \begin{align*}%
-    \BODY%
-    \end{align*}%
-    \vspace{0.5em}%
-}
-
-% Numbered math environment
-\NewEnviron{hwmathnumbered}{%
-    \par\vspace{0.5em}%
-    \begin{align}%
-    \BODY%
-    \end{align}%
-    \vspace{0.5em}%
-}
-
-% Math alignment shortcuts
-\newcommand{\eq}{&=}
-\newcommand{\gt}{&>}
-\newcommand{\lt}{&<}
-\newcommand{\llt}{&<<}
-\newcommand{\ggt}{&>>}
-\renewcommand{\geqq}{&\geq}
-\renewcommand{\leqq}{&\leq}
-\newcommand{\neqq}{&\neq}
-\newcommand{\approxx}{&\approx}
-
-% =============================================================================
-% CODE ENVIRONMENTS (inherited from homework.cls)
-% =============================================================================
-
-% MATLAB code environment
-\lstnewenvironment{hwmatlab}[1][]{%
-    \lstset{language=Matlab, #1}%
-}{}
-
-% Python code environment
-\lstnewenvironment{hwpython}[1][]{%
-    \lstset{language=Python, #1}%
-}{}
-
-% Terminal output environment
-\lstnewenvironment{hwterminal}[1][]{%
-    \lstset{
-        language=bash,
-        basicstyle=\ttfamily\footnotesize\color{black},
-        backgroundcolor=\color{white},
-        frame=single,
-        framerule=1pt,
-        rulecolor=\color{gray},
-        breaklines=true,
-        breakatwhitespace=false,
-        showstringspaces=false,
-        tabsize=4,
-        captionpos=b,
-        numbers=none,
-        xleftmargin=0pt,
-        xrightmargin=0pt,
-        #1
-    }%
-}{}
-
-% =============================================================================
-% GRAPHICS AND EXAMPLES (inherited from homework.cls)
-% =============================================================================
-
-% Graphics inclusion with optional title and scale
-\NewDocumentCommand{\hwgraphic}{m o o}{%
-    \begin{center}%
-        \IfValueT{#2}{\textbf{#2}\\[0.5em]}%
-        \IfValueTF{#3}{%
-            \includegraphics[scale=#3]{#1}%
-        }{%
-            \includegraphics[width=0.8\textwidth]{#1}%
-        }%
-        \IfValueT{#2}{\\[0.5em]}%
-    \end{center}%
-}
-
-% Dual figure helper for side-by-side images
-\NewDocumentCommand{\hwdualfigure}{m m o o m m}{%
-    \begin{figure}[htbp]
-        \centering
-        \begin{subfigure}[b]{\IfValueTF{#3}{#3}{0.45\textwidth}}
-            \centering
-            \includegraphics[width=\textwidth]{#1}
-            \caption{#5}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{\IfValueTF{#4}{#4}{0.45\textwidth}}
-            \centering
-            \includegraphics[width=\textwidth]{#2}
-            \caption{#6}
-        \end{subfigure}
-    \end{figure}
-}
-
-% Note command for highlighting
-\NewDocumentCommand{\note}{o}{%
-    \IfValueTF{#1}{%
-        {\Large\textbf{\textcolor{red}{#1}}}%
-    }{%
-        {\Large\textbf{\textcolor{red}{NOTE}}}%
-    }%
-}
-
-% Example environment with colored box
-\NewDocumentEnvironment{example}{m}{%
-    \par\vspace{1em}%
-    \begin{tcolorbox}[
-        colback=gray!5,
-        colframe=black,
-        boxrule=1pt,
-        arc=2pt,
-        left=6pt,
-        right=6pt,
-        top=6pt,
-        bottom=6pt,
-        title=\textbf{#1},
-        fonttitle=\bfseries
-    ]%
-}{%
-    \end{tcolorbox}%
-    \par\vspace{1em}%
-}
-
-% =============================================================================
-% BLOCK DIAGRAMS (inherited from homework.cls)
-% =============================================================================
-
-% Block diagram environment with centered tikzpicture
-\NewEnviron{hwblocks}[1][]{%
-    \par\vspace{0.5em}%
-    \begin{center}%
-        \begin{tikzpicture}[#1]%
-            \BODY%
-        \end{tikzpicture}%
-    \end{center}%
-    \vspace{0.5em}%
-}
-
-% =============================================================================
-% PROBLEM AND SOLUTION SYSTEM
-% =============================================================================
+%% ============================================================================
+%% COURSENOTES-SPECIFIC PROBLEM AND SOLUTION SYSTEM
+%% ============================================================================
 
 % Problem counter - resets with each chapter
 \newcounter{cnproblem}[chapter]
@@ -207,7 +98,7 @@
     \renewcommand{\@cnsubproblemstyle}{#1}%
 }
 
-% Format sub-problem label based on current style (override default counter format)
+% Format sub-problem label based on current style
 \renewcommand{\thecnsubproblem}{%
     \ifnum\pdfstrcmp{\@cnsubproblemstyle}{alph}=0
         (\alph{cnsubproblem})%
@@ -236,7 +127,7 @@
     \par\vspace{0.25em}%
 }
 
-% Solution environment - displays inline after problem parts
+% Solution environment
 \NewDocumentEnvironment{solution}{}{%
     \par\vspace{0.25em}%
     \noindent\textit{Solution:}~%
@@ -244,16 +135,16 @@
     \par\vspace{0.5em}%
 }
 
-% =============================================================================
-% REFERENCE COMMANDS
-% =============================================================================
+%% ============================================================================
+%% REFERENCE COMMANDS
+%% ============================================================================
 
 % Lecture reference command
 \newcommand{\lectureref}[1]{%
     Lecture~#1%
 }
 
-% Textbook reference command with smart parsing
+% Textbook reference command
 \NewDocumentCommand{\textbookref}{m}{%
     \textit{Textbook}~#1%
 }
@@ -268,13 +159,13 @@
     Section~\ref{#1}%
 }
 
-% =============================================================================
-% TABLE OF CONTENTS CONFIGURATION
-% =============================================================================
+%% ============================================================================
+%% TABLE OF CONTENTS CONFIGURATION
+%% ============================================================================
 
 % Customize chapter and section entries in TOC
-\setcounter{tocdepth}{2}  % Show chapters, sections, and subsections
-\setcounter{secnumdepth}{3}  % Number up to subsubsections
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
 
 % Commands to generate front matter
 \newcommand{\maketoc}{%
@@ -298,3 +189,7 @@
     \makelof
     \makelot
 }
+
+%% ============================================================================
+%% END OF CLASS FILE
+%% ============================================================================
