@@ -6,11 +6,17 @@
 \newif\if@partnumbering
 \@partnumberingfalse
 \DeclareOption{partnumbering}{\@partnumberingtrue}
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{hwcoursebase}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 
-% Load shared base class
-\LoadClass{hwcoursebase}
+% Load article class first
+\LoadClass{article}
+
+% Set compact margins
+\RequirePackage[margin=0.5in]{geometry}
+
+% Load shared base package
+\RequirePackage{hwcoursebase}
 
 %% ============================================================================
 %% HOMEWORK-SPECIFIC PROBLEM NUMBERING

@@ -272,12 +272,12 @@
 }
 
 %% ============================================================================
-%% DESIGN REPORT FIGURE COMMANDS
+%% OVERRIDE BASE FIGURE COMMANDS (enforce figures/ folder)
 %% ============================================================================
-%% Design report-specific figure helpers with figures folder enforcement
+%% These override the base reportbase.cls versions to enforce the figures/ subfolder
 
-% Graphic inclusion command (figures folder enforced)
-\NewDocumentCommand{\reportgraphic}{m o o}{%
+% Override \graphic to use figures/ folder
+\renewcommand{\graphic}[3][]{%
     \begin{center}%
         \IfValueT{#2}{\textbf{#2}\\[0.5em]}%
         \IfValueTF{#3}{%
@@ -289,10 +289,25 @@
     \end{center}%
 }
 
-% Figure environment with caption and optional label (figures folder enforced)
-% Usage: \reportfigure[width]{filename}{caption}{label}
-% Example: \reportfigure[0.8\textwidth]{myimage.png}{My Caption}{fig:mylabel}
-\NewDocumentCommand{\reportfigure}{O{0.6\textwidth} m m m}{%
+% Override \dualfigure to use figures/ folder
+\renewcommand{\dualfigure}[4]{%
+    \begin{figure}[htbp]
+        \centering
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/#1}
+            \caption{#2}
+        \end{minipage}\hfill
+        \begin{minipage}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{figures/#3}
+            \caption{#4}
+        \end{minipage}
+    \end{figure}
+}
+
+% Add \figure environment with caption (enforces figures/)
+\NewDocumentCommand{\figure}{O{0.6\textwidth} m m m}{%
     \begin{figure}[htbp]
         \centering
         \includegraphics[width=#1]{figures/#2}
@@ -301,28 +316,7 @@
     \end{figure}
 }
 
-% Side-by-side figures with captions and labels (figures folder enforced)
-% Usage: \reportdualfigure[width]{file1}{caption1}{label1}{file2}{caption2}{label2}
-% Example: \reportdualfigure[0.45\textwidth]{img1.jpg}{Left Caption}{fig:left}{img2.jpg}{Right Caption}{fig:right}
-\NewDocumentCommand{\reportdualfigure}{O{0.45\textwidth} m m m m m m}{%
-    \begin{figure}[htbp]
-        \centering
-        \begin{minipage}{#1}
-            \centering
-            \includegraphics[width=\textwidth]{figures/#2}
-            \caption{#3}
-            \label{#4}
-        \end{minipage}\hfill
-        \begin{minipage}{#1}
-            \centering
-            \includegraphics[width=\textwidth]{figures/#5}
-            \caption{#6}
-            \label{#7}
-        \end{minipage}
-    \end{figure}
-}
-
-% Helper command for inserting figures (legacy compatibility, figures folder enforced)
+% Legacy compatibility: insertFigure with figures/ folder
 \newcommand{\insertFigure}[3]{%
     \begin{figure}[ht]
         \centering
