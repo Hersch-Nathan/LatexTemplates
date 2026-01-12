@@ -50,18 +50,18 @@ More detailed content...
 % MATH ENVIRONMENT EXAMPLE
 % ----------------------------------------------------------------------------
 
-Use the hwmath environment for unnumbered aligned equations:
+Use the mmath environment for unnumbered aligned equations:
 
-\begin{hwmath}
+\begin{mmath}
 y(t) \eq Ax(t) + Bu(t) \\
 \eq \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} x(t) + \begin{bmatrix} b_1 \\ b_2 \end{bmatrix} u(t)
-\end{hwmath}
+\end{mmath}
 
 For numbered equations (can be labeled and referenced):
 
-\begin{hwmathnumbered}
+\begin{mathnumbered}
 G(s) \eq \frac{Y(s)}{U(s)} \label{eq:transfer}
-\end{hwmathnumbered}
+\end{mathnumbered}
 
 Later reference it as: See Equation~\ref{eq:transfer} for the transfer function.
 
@@ -87,9 +87,9 @@ State the problem here...
 
 Work through the solution step by step...
 
-\begin{hwmath}
+\begin{mmath}
 \text{Result} \eq \text{Final Answer}
-\end{hwmath}
+\end{mmath}
 \end{example}
 
 % ----------------------------------------------------------------------------
@@ -98,16 +98,16 @@ Work through the solution step by step...
 
 \subsection{MATLAB Code}
 
-\begin{hwmatlab}[caption=Description of Code]
+\begin{matlab}[caption=Description of Code]
 % Your MATLAB code here
 s = tf('s');
 G = 1/(s+1);
 step(G);
-\end{hwmatlab}
+\end{matlab}
 
 \subsection{Python Code}
 
-\begin{hwpython}[caption=Python Implementation]
+\begin{python}[caption=Python Implementation]
 # Your Python code here
 import numpy as np
 import matplotlib.pyplot as plt
@@ -116,16 +116,16 @@ x = np.linspace(0, 10, 100)
 y = np.sin(x)
 plt.plot(x, y)
 plt.show()
-\end{hwpython}
+\end{python}
 
 \subsection{Terminal Output}
 
-\begin{hwterminal}[caption=Command Line Example]
+\begin{terminal}[caption=Command Line Example]
 $ pip install package-name
 Collecting package-name
 Installing...
 Successfully installed package-name
-\end{hwterminal}
+\end{terminal}
 
 % ----------------------------------------------------------------------------
 % GRAPHICS EXAMPLES
@@ -134,10 +134,10 @@ Successfully installed package-name
 \section{Figures and Graphics}
 
 % Single figure with title and scale
-% \hwgraphic{path/to/image.pdf}[Figure Title][0.7]
+% \graphic{path/to/image.pdf}[Figure Title][0.7]
 
 % Side-by-side figures
-% \hwdualfigure{image1.pdf}{image2.pdf}[0.45\textwidth][0.45\textwidth]{Caption 1}{Caption 2}
+% \dualfigure{image1.pdf}{image2.pdf}[0.45\textwidth][0.45\textwidth]{Caption 1}{Caption 2}
 
 % ----------------------------------------------------------------------------
 % BLOCK DIAGRAM EXAMPLE
@@ -145,7 +145,7 @@ Successfully installed package-name
 
 \section{Block Diagrams}
 
-\begin{hwblocks}[scale=0.8]
+\begin{diagram}[scale=0.8]
 % Simple feedback system example
 \bXInput[r(s)]{A}
 \bXComp{B}{A}
@@ -157,7 +157,7 @@ Successfully installed package-name
 \bXLink[$u$]{C}{D}
 \bXLink[$y$]{D}{E}
 \bXReturn{D-E}{B}{}
-\end{hwblocks}
+\end{diagram}
 
 % See coursenotes-guide.md or homework-guide.md for complete blox documentation
 
@@ -175,9 +175,9 @@ State the problem...
 Write your solution to part (a) here. It will display inline after the problem statement.
 
 You can include math:
-\begin{hwmath}
+\begin{mmath}
 \text{Answer} \eq \text{Value}
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 \subproblem{Part (b) question here}

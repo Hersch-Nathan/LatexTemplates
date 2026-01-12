@@ -26,24 +26,24 @@ Another sub-problem solution here.
 
 You can include code using the provided environments:
 
-\begin{hwmatlab}
+\begin{matlab}
 % MATLAB code example
 x = linspace(0, 2*pi, 100);
 y = sin(x);
 plot(x, y);
-\end{hwmatlab}
+\end{matlab}
 
-\begin{hwpython}
+\begin{python}
 # Python code example
 import numpy as np
 x = np.linspace(0, 2*np.pi, 100)
 y = np.sin(x)
-\end{hwpython}
+\end{python}
 
-\begin{hwterminal}
+\begin{terminal}
 $ python script.py
 Output appears here
-\end{hwterminal}
+\end{terminal}
 
 \problem{Including Graphics}
 
@@ -62,7 +62,7 @@ You can include figures and reference them:
 
 Use the new comparison shorthand commands in aligned math:
 
-\begin{hwmath}
+\begin{mmath}
 f(x) \eq x^2 + 1 \\
 f(x) \gt 0 \text{ for all } x \\
 f(1) \gt f(0) \\
@@ -73,7 +73,7 @@ f(-1) \llt f(2) \\
 \text{Error} \leqq 5\% \\
 K_p \neqq 0 \\
 G(s) \approxx H(s)
-\end{hwmath}
+\end{mmath}
 
 \problem{Example Boxes}
 
@@ -97,12 +97,12 @@ Find the eigenvalues and determine system stability.
 
 \problem{Block Diagrams}
 
-Create centered block diagrams using the hwblocks environment with blox package commands:
+Create centered block diagrams using the diagram environment with blox package commands:
 
 \subproblem
 Simple feedback control system:
 
-\begin{hwblocks}[scale=0.85]
+\begin{diagram}[scale=0.85]
 \bXInput[r(s)]{A}
 \bXComp{B}{A}
 \bXBlocL{C}{$G_c(s)$}{B}
@@ -112,12 +112,12 @@ Simple feedback control system:
 \bXLink[$u(s)$]{C}{D}
 \bXLink[$y(s)$]{D}{E}
 \bXReturn{D-E}{B}{$H(s)$}
-\end{hwblocks}
+\end{diagram}
 
 \subproblem
 Multi-input system with summing junction:
 
-\begin{hwblocks}[scale=0.8]
+\begin{diagram}[scale=0.8]
 \bXInput[r]{A}
 \bXCompSum{B}{A}{+}{-}{+}{}
 \bXChain[1.5]{B}{C/$K$,D/$G(s)$}
@@ -127,6 +127,6 @@ Multi-input system with summing junction:
 \bXInput[d]{G}
 \bXLinkyx{G}{C}
 \bXLinkName[0.3]{G}{d}
-\end{hwblocks}
+\end{diagram}
 
 \end{document}

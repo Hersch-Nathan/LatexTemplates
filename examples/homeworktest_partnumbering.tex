@@ -21,17 +21,17 @@ $N_{\text{params}}$ if $m = 5$, $n = 100$, and $p = 3$.
 \textbf{Solution:}
 
 The total number of parameters is:
-\begin{hwmath}
+\begin{mmath}
 N_{\text{params}} \eq (m \times n + n) + (n \times p + p) \\
 N_{\text{params}} \eq m \cdot n + n + n \cdot p + p
-\end{hwmath}
+\end{mmath}
 
 For $m = 5$, $n = 100$, and $p = 3$:
-\begin{hwmath}
+\begin{mmath}
 N_{\text{params}} \eq 5 \times 100 + 100 + 100 \times 3 + 3 \\
 N_{\text{params}} \eq 500 + 100 + 300 + 3 \\
 N_{\text{params}} \eq 903
-\end{hwmath}
+\end{mmath}
 
 \subproblem{System Structure}
 For a simplified version where $m = 2$, $n = 3$, and $p = 1$, 
@@ -67,16 +67,16 @@ hyperplanes in an $m$-dimensional space ($k > m$).
 \textbf{Solution:}
 
 The formula is:
-\begin{hwmath}
+\begin{mmath}
 R(k, m) \eq \sum_{i=0}^{m} \binom{k}{i}
-\end{hwmath}
+\end{mmath}
 
 For $m = 2$ and $k = 4$:
-\begin{hwmath}
+\begin{mmath}
 R(4, 2) \eq \binom{4}{0} + \binom{4}{1} + \binom{4}{2} \\
 R(4, 2) \eq 1 + 4 + 6 \\
 R(4, 2) \eq 11
-\end{hwmath}
+\end{mmath}
 
 \hwpart{Optimization Methods}
 
@@ -88,19 +88,19 @@ Write the general form of an entropy-based cost function for a binary problem.
 
 \textbf{Solution:}
 
-\begin{hwmath}
+\begin{mmath}
 \mathcal{L}(y, \hat{y}) \eq -[y \log(\hat{y}) + (1-y) \log(1-\hat{y})]
-\end{hwmath}
+\end{mmath}
 
 \subproblem{Derivative Calculation}
 Compute the derivative with respect to the predicted value $\hat{y}$.
 
 \textbf{Solution:}
 
-\begin{hwmath}
+\begin{mmath}
 \frac{\partial \mathcal{L}}{\partial \hat{y}} \eq -\left[\frac{y}{\hat{y}} - \frac{1-y}{1-\hat{y}}\right] \\
 \frac{\partial \mathcal{L}}{\partial \hat{y}} \eq \frac{\hat{y} - y}{\hat{y}(1-\hat{y})}
-\end{hwmath}
+\end{mmath}
 
 \problem{Regularization Methods}
 
@@ -147,22 +147,22 @@ Write the forward propagation equations for a two-layer system.
 
 \textbf{Solution:}
 
-\begin{hwmath}
+\begin{mmath}
 z^{[1]} \eq W^{[1]} x + b^{[1]} \\
 a^{[1]} \eq \sigma(z^{[1]}) \\
 z^{[2]} \eq W^{[2]} a^{[1]} + b^{[2]} \\
 \hat{y} \eq \sigma(z^{[2]})
-\end{hwmath}
+\end{mmath}
 
 \subproblem{Gradient Derivation}
 Derive the gradient for the second layer weights using the chain rule.
 
 \textbf{Solution:}
 
-\begin{hwmath}
+\begin{mmath}
 \frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \frac{\partial \hat{y}}{\partial z^{[2]}} \cdot \frac{\partial z^{[2]}}{\partial W^{[2]}} \\
 \frac{\partial \mathcal{L}}{\partial W^{[2]}} \eq \delta^{[2]} \cdot (a^{[1]})^T
-\end{hwmath}
+\end{mmath}
 
 where $\delta^{[2]} = \frac{\partial \mathcal{L}}{\partial \hat{y}} \cdot \sigma'(z^{[2]})$.
 

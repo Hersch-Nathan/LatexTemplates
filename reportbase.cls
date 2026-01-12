@@ -175,9 +175,10 @@
 	\end{center}%
 }
 
-% Figure environment with caption
-% Usage: \figure[width]{filename}{caption}{label}
-\NewDocumentCommand{\figure}{O{0.6\textwidth} m m m}{%
+% Note: \figure environment is provided by article class
+% Users should use the standard LaTeX figure environment or \insertfigure command below
+% Custom figure insertion command (alternative if needed)
+\NewDocumentCommand{\insertfigure}{O{0.6\textwidth} m m m}{%
 	\begin{figure}[htbp]
 		\centering
 		\includegraphics[width=#1]{#2}

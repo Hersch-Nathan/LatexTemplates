@@ -93,16 +93,17 @@
 %% ============================================================================
 %% These are for use inside align* or align environments to align on operators
 %% Example: \begin{mmath} x \eq 5 \\ y \gt 3 \end{mmath}
+%% Using \providecommand to avoid conflicts if already defined elsewhere
 
-\newcommand{\eq}{&=}      % equals sign aligned
-\newcommand{\gt}{&>}      % greater than aligned
-\newcommand{\lt}{&<}      % less than aligned
-\newcommand{\llt}{&<<}    % much less than aligned
-\newcommand{\ggt}{&>>}    % much greater than aligned
-\newcommand{\geqq}{&\geq} % greater than or equal aligned
-\newcommand{\leqq}{&\leq} % less than or equal aligned
-\newcommand{\neqq}{&\neq} % not equal aligned
-\newcommand{\approxx}{&\approx} % approximately equal aligned
+\providecommand{\eq}{&=}      % equals sign aligned
+\providecommand{\gt}{&>}      % greater than aligned
+\providecommand{\lt}{&<}      % less than aligned
+\providecommand{\llt}{&<<}    % much less than aligned
+\providecommand{\ggt}{&>>}    % much greater than aligned
+\providecommand{\geqq}{&\geq} % greater than or equal aligned
+\providecommand{\leqq}{&\leq} % less than or equal aligned
+\providecommand{\neqq}{&\neq} % not equal aligned
+\providecommand{\approxx}{&\approx} % approximately equal aligned
 
 %% ============================================================================
 %% CODE LISTING ENVIRONMENTS

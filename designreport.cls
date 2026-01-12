@@ -306,15 +306,9 @@
     \end{figure}
 }
 
-% Add \figure environment with caption (enforces figures/)
-\NewDocumentCommand{\figure}{O{0.6\textwidth} m m m}{%
-    \begin{figure}[htbp]
-        \centering
-        \includegraphics[width=#1]{figures/#2}
-        \caption{#3}
-        \label{#4}
-    \end{figure}
-}
+% Note: Standard LaTeX figure environment is used with \graphic and \dualfigure
+% Users rely on standard \begin{figure}...\end{figure} environment
+% The overridden \graphic and \dualfigure commands enforce the figures/ folder convention
 
 % Legacy compatibility: insertFigure with figures/ folder
 \newcommand{\insertFigure}[3]{%

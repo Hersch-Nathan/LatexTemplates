@@ -1,4 +1,4 @@
-\documentclass{coursenotes}
+\documentclass{../coursenotes}
 
 \begin{document}
 
@@ -21,9 +21,9 @@
 
 A first-order system has the general transfer function:
 
-\begin{hwmath}
+\begin{mmath}
 G(s) \eq \frac{K}{\tau s + 1}
-\end{hwmath}
+\end{mmath}
 
 where $K$ is the DC gain and $\tau$ is the time constant. The step response of a first-order system is characterized by:
 
@@ -41,18 +41,18 @@ Consider an RC circuit with $R = 10k\Omega$ and $C = 10\mu F$. Find the time con
 \textbf{Solution:}
 
 The time constant is:
-\begin{hwmath}
+\begin{mmath}
 \tau \eq RC \\
 \eq (10 \times 10^3)(10 \times 10^{-6}) \\
 \eq 0.1 \text{ seconds}
-\end{hwmath}
+\end{mmath}
 
 The settling time is:
-\begin{hwmath}
+\begin{mmath}
 t_s \eq 4\tau \\
 \eq 4(0.1) \\
 \eq 0.4 \text{ seconds}
-\end{hwmath}
+\end{mmath}
 \end{example}
 
 Reference: \lectureref{3a}, \textbookref{§2.3}
@@ -61,7 +61,7 @@ Reference: \lectureref{3a}, \textbookref{§2.3}
 
 We can simulate the step response using MATLAB:
 
-\begin{hwmatlab}[caption=First-Order System Simulation]
+\begin{matlab}[caption=First-Order System Simulation]
 % Define system parameters
 K = 5;
 tau = 0.1;
@@ -74,13 +74,13 @@ G = K/(tau*s + 1);
 step(G);
 grid on;
 title('Step Response of First-Order System');
-\end{hwmatlab}
+\end{matlab}
 
 \subsection{Python Implementation}
 
 Alternatively, use Python with the control package:
 
-\begin{hwpython}[caption=Python Control System Analysis]
+\begin{python}[caption=Python Control System Analysis]
 import control as ct
 import numpy as np
 import matplotlib.pyplot as plt
@@ -102,15 +102,15 @@ plt.xlabel('Time (s)')
 plt.ylabel('Output')
 plt.title('Step Response')
 plt.show()
-\end{hwpython}
+\end{python}
 
 \section{Second-Order Systems} \label{sec:secondorder}
 
 Second-order systems have the standard form:
 
-\begin{hwmathnumbered}
+\begin{mathnumbered}
 G(s) \eq \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \label{eq:secondorder}
-\end{hwmathnumbered}
+\end{mathnumbered}
 
 where $\omega_n$ is the natural frequency and $\zeta$ is the damping ratio.
 
@@ -147,11 +147,11 @@ The DC gain is $K = 5$, found by evaluating $G(0) = \frac{5}{1} = 5$.
 \subproblem{Determine the settling time.}
 \begin{solution}
 The settling time is:
-\begin{hwmath}
+\begin{mmath}
 t_s \eq 4\tau \\
 \eq 4(0.2) \\
 \eq 0.8 \text{ seconds}
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 \problem{Second-Order System Parameters}
@@ -161,21 +161,21 @@ A second-order system has $\omega_n = 10$ rad/s and $\zeta = 0.5$.
 \subproblem{Write the transfer function.}
 \begin{solution}
 Using the standard form:
-\begin{hwmath}
+\begin{mmath}
 G(s) \eq \frac{\omega_n^2}{s^2 + 2\zeta\omega_n s + \omega_n^2} \\
 \eq \frac{100}{s^2 + 10s + 100}
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 \subproblem{Find the damped natural frequency.}
 \begin{solution}
 The damped natural frequency is:
-\begin{hwmath}
+\begin{mmath}
 \omega_d \eq \omega_n\sqrt{1 - \zeta^2} \\
 \eq 10\sqrt{1 - 0.5^2} \\
 \eq 10\sqrt{0.75} \\
 \approxx 8.66 \text{ rad/s}
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 % Change sub-problem style to roman numerals for next problem
@@ -212,29 +212,29 @@ Reference: \lectureref{7}, \textbookref{Chapter 4}
 
 From Bode plots, we can determine:
 
-\begin{hwmath}
+\begin{mmath}
 \text{Gain Margin (GM)} \eq \frac{1}{|G(j\omega_{pc})|}
-\end{hwmath}
+\end{mmath}
 
 where $\omega_{pc}$ is the phase crossover frequency ($\angle G(j\omega_{pc}) = -180^\circ$).
 
-\begin{hwmath}
+\begin{mmath}
 \text{Phase Margin (PM)} \eq 180^\circ + \angle G(j\omega_{gc})
-\end{hwmath}
+\end{mmath}
 
 where $\omega_{gc}$ is the gain crossover frequency ($|G(j\omega_{gc})| = 1$).
 
 For stable systems:
-\begin{hwmath}
+\begin{mmath}
 \text{GM} \ggt 1 \text{ (or GM} \ggt 6 \text{ dB)} \\
 \text{PM} \ggt 30^\circ
-\end{hwmath}
+\end{mmath}
 
 \section{Block Diagrams} \label{sec:blockdiagrams}
 
 Consider a unity feedback control system:
 
-\begin{hwblocks}[scale=0.75]
+\begin{diagram}[scale=0.75]
 \bXInput[r(s)]{A}
 \bXComp{B}{A}
 \bXBlocL[2]{C}{$G_c(s)$}{B}
@@ -245,19 +245,19 @@ Consider a unity feedback control system:
 \bXLink[$u$]{C}{D}
 \bXLink[$y$]{D}{E}
 \bXReturn{D-E}{B}{}
-\end{hwblocks}
+\end{diagram}
 
 The closed-loop transfer function is:
 
-\begin{hwmath}
+\begin{mmath}
 T(s) \eq \frac{G_c(s)G_p(s)}{1 + G_c(s)G_p(s)}
-\end{hwmath}
+\end{mmath}
 
 As discussed in \chapref{chap:time}, time domain characteristics can be related to frequency domain properties. The relationship between damping ratio and phase margin is approximately:
 
-\begin{hwmath}
+\begin{mmath}
 \zeta \approxx \frac{\text{PM}}{100}
-\end{hwmath}
+\end{mmath}
 
 for phase margins between $0^\circ$ and $60^\circ$.
 
@@ -277,28 +277,28 @@ Given a system with transfer function $G(s) = \frac{100}{s(s+10)}$.
 \subproblem{Find the gain crossover frequency.}
 \begin{solution}
 At the gain crossover frequency, $|G(j\omega_{gc})| = 1$. Solving:
-\begin{hwmath}
+\begin{mmath}
 \left|\frac{100}{j\omega_{gc}(j\omega_{gc}+10)}\right| \eq 1 \\
 \frac{100}{\omega_{gc}\sqrt{\omega_{gc}^2 + 100}} \eq 1 \\
 \omega_{gc} \approxx 3.01 \text{ rad/s}
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 \subproblem{Calculate the phase margin.}
 \begin{solution}
 The phase at $\omega_{gc}$ is:
-\begin{hwmath}
+\begin{mmath}
 \angle G(j\omega_{gc}) \eq -90^\circ - \arctan\left(\frac{\omega_{gc}}{10}\right) \\
 \approxx -90^\circ - 16.7^\circ \\
 \eq -106.7^\circ
-\end{hwmath}
+\end{mmath}
 
 Therefore, the phase margin is:
-\begin{hwmath}
+\begin{mmath}
 \text{PM} \eq 180^\circ + \angle G(j\omega_{gc}) \\
 \eq 180^\circ - 106.7^\circ \\
 \eq 73.3^\circ
-\end{hwmath}
+\end{mmath}
 \end{solution}
 
 \subproblem{Is the system stable?}
@@ -340,11 +340,11 @@ Starting with Ziegler-Nichols tuning or trial-and-error:
 \end{itemize}
 
 The PID controller is:
-\begin{hwmath}
+\begin{mmath}
 G_c(s) \eq K_p + \frac{K_i}{s} + K_d s \\
 \eq 5 + \frac{10}{s} + s \\
 \eq \frac{s^2 + 5s + 10}{s}
-\end{hwmath}
+\end{mmath}
 
 These gains should be refined using simulation and frequency response analysis.
 \end{solution}
@@ -371,9 +371,9 @@ For stability, we require $K > 0$. The system is stable for all positive $K$ val
 For $\zeta = 0.707$, the closed-loop poles should be at $45^\circ$ angles from the real axis. From the root locus, this occurs at approximately $K = 2$.
 
 The closed-loop poles are at:
-\begin{hwmath}
+\begin{mmath}
 s \eq -1 \pm j
-\end{hwmath}
+\end{mmath}
 
 which corresponds to $\omega_n = \sqrt{2}$ rad/s and $\zeta = 0.707$.
 \end{solution}
