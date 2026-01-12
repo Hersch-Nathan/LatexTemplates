@@ -44,6 +44,32 @@ Enable hierarchical numbering with major parts dividing the homework:
 - Sub-problems are formatted as uppercase letters with periods (A., B., C., ...)
 - Each new part automatically resets the problem counter
 
+## Migration from Old Environment Names
+
+If you have existing documents using the old environment names from before the refactoring, simply rename:
+
+| Old Name | New Name |
+|----------|----------|
+| `hwmath` | `mmath` |
+| `hwmathnumbered` | `mathnumbered` |
+| `hwpython` | `python` |
+| `hwmatlab` | `matlab` |
+| `hwterminal` | `terminal` |
+| `hwblocks` | `diagram` |
+
+See [MIGRATION.md](../MIGRATION.md) for complete migration details.
+
+## Compilation with TEXINPUTS
+
+When compiling from `examples/` or `templates/` subdirectories, you need to set TEXINPUTS to find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex homeworktest.tex
+```
+
+For details on editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../TEXINPUTS_GUIDE.md).
+
 ## Quick Start
 
 ### Standard Mode
@@ -158,11 +184,11 @@ Use the provided math environments to align at equals signs and comparison opera
 - `\approxx` for `&≈` (approximately equal)
 
 Math environments:
-- Unnumbered: `hwmath`
-- Numbered: `hwmathnumbered`
+- Unnumbered: `mmath`
+- Numbered: `mathnumbered`
 
 ```latex
-\begin{hwmath}
+\begin{mmath}
 G_{ol}(s) \eq G_c(s) G_p(s) \\
 \eq \frac{10(K_d s^2 + K_p s + K_i)}{s^2(s+2)} \\
 |G(j\omega)| \gt 1 \text{ for } \omega < 2 \\
@@ -172,38 +198,38 @@ G_{ol}(s) \eq G_c(s) G_p(s) \\
 \text{Error} \leqq 2\% \\
 K_p \neqq 0 \\
 G(s) \approxx H(s) \text{ for high frequencies}
-\end{hwmath}
+\end{mmath}
 
-\begin{hwmathnumbered}
+\begin{mathnumbered}
 |G(j\omega)| \eq \frac{10K}{\omega\sqrt{\omega^2 + 4}} \\
 f(x) \gt 0 \text{ for all } x \gt -1
-\end{hwmathnumbered}
+\end{mathnumbered}
 ```
 
 ## Code Listings
 
 These are wrappers over `listings` with sensible defaults. Pass any `listings` options via `[]`.
 
-- MATLAB: `hwmatlab`
-- Python: `hwpython`
-- Terminal/console: `hwterminal`
+- MATLAB: `matlab`
+- Python: `python`
+- Terminal/console: `terminal`
 
 ```latex
-\begin{hwmatlab}[caption=PID Design]
+\begin{matlab}[caption=PID Design]
 s = tf('s');
 Gp = 10/(s*(s+2));
-\end{hwmatlab}
+\end{matlab}
 
-\begin{hwpython}[caption=NumPy Example]
+\begin{python}[caption=NumPy Example]
 import numpy as np
 x = np.linspace(0, 10, 100)
-\end{hwpython}
+\end{python}
 
-\begin{hwterminal}[caption=Package Installation]
+\begin{terminal}[caption=Package Installation]
 $ pip install control
 Collecting control
 ...
-\end{hwterminal}
+\end{terminal}
 ```
 
 ## Notes and Highlights
@@ -245,7 +271,7 @@ Center images with optional title and scale.
 
 ## Block Diagrams with Blox Package
 
-The `hwblocks` environment provides a centered wrapper around `tikzpicture` for creating block diagrams using the blox package. It automatically loads tikz and blox packages, so you can use blox commands directly without extra `\usepackage` lines.
+The `diagram` environment provides a centered wrapper around `tikzpicture` for creating block diagrams using the blox package. It automatically loads tikz and blox packages, so you can use blox commands directly without extra `\usepackage` lines.
 
 The blox package is designed for creating control system block diagrams and algorithm flowcharts. It builds diagrams linearly from left to right, starting with an input and ending with an output.
 
@@ -256,11 +282,11 @@ Block diagrams are built by creating nodes first, then connecting them with link
 ### Basic Usage
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \node (a) at (0,0) {A}; 
 \node (b) at (2,0) {B}; 
 \draw[->] (a)--(b);
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Input and Output Nodes
@@ -268,11 +294,11 @@ Block diagrams are built by creating nodes first, then connecting them with link
 Every block diagram starts with an input and ends with an output:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput[Input Label]{A}    % Creates input node named A
 \bXOutput[2]{B}{A}          % Creates output B at distance 2 from A
 \bXLink{A}{B}               % Links A to B
-\end{hwblocks}
+\end{diagram}
 ```
 
 - `\bXInput[label]{Name}` - Creates an input node. Label is optional (can be blank or omitted entirely)
@@ -285,14 +311,14 @@ The blox package provides several block types:
 #### Basic Blocks
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBloc[2]{B}{$G_p(s)$}{A}          % Basic block
 \bXBlocL[2]{C}{$G_c(s)$}{B}         % Block with automatic link from previous
 \bXOutput{D}{C}
 \bXLink{A}{B}                        % Manual link needed for \bXBloc
 \bXLink{C}{D}                        % Manual link for output
-\end{hwblocks}
+\end{diagram}
 ```
 
 - `\bXBloc[distance]{Name}{Contents}{PreviousNode}` - Creates a rectangular block
@@ -303,13 +329,13 @@ The blox package provides several block types:
 For blocks on feedback paths:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocL{B}{$G(s)$}{A}
 \bXOutput{C}{B}
 \bXBlocr[2]{D}{$H(s)$}{A}           % Return/feedback block (goes left)
 \bXBlocrL[3]{E}{$K$}{D}             % Return block with automatic link
-\end{hwblocks}
+\end{diagram}
 ```
 
 - `\bXBlocr[distance]{Name}{Contents}{PreviousNode}` - Block for feedback path (placed to the left)
@@ -318,13 +344,13 @@ For blocks on feedback paths:
 #### Special Block Shapes
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocPotato[2]{B}{Nonlinear}{A}   % Creates oval/"potato" shaped block
 \bXOutput{C}{B}
 \bXLink{A}{B}
 \bXLink{B}{C}
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Comparators and Summing Junctions
@@ -334,24 +360,24 @@ Blox provides several commands for creating comparison and summing nodes:
 #### Simple Comparators
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXComp{B}{A}                       % Standard comparator (+ input, - feedback)
 \bXBlocL{C}{$G(s)$}{B}
 \bXOutput{D}{C}
 \bXReturn{C-D}{B}{$H(s)$}           % Feedback path
-\end{hwblocks}
+\end{diagram}
 ```
 
 #### Summing Junctions
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXSuma{B}{A}                       % Sum with input from above
 \bXSumb{C}{B}                       % Sum with input from below
 \bXOutput{D}{C}
-\end{hwblocks}
+\end{diagram}
 ```
 
 #### General Comparator/Summer
@@ -359,12 +385,12 @@ Blox provides several commands for creating comparison and summing nodes:
 For custom configurations:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXCompSum{B}{A}{+}{-}{+}{}         % General: North, South, West, East labels
 \bXBlocL{C}{$G(s)$}{B}
 \bXOutput{D}{C}
-\end{hwblocks}
+\end{diagram}
 ```
 
 - Arguments: `{Name}{PreviousNode}{North}{South}{West}{East}`
@@ -377,38 +403,38 @@ Various link types for different connection patterns:
 #### Basic Links
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocL{B}{$G_1(s)$}{A}
 \bXBlocL{C}{$G_2(s)$}{B}
 \bXOutput{D}{C}
 \bXLink[Signal]{A}{B}               % Link with label
-\end{hwblocks}
+\end{diagram}
 ```
 
 #### Right-Angle Links
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocL{B}{$G(s)$}{A}
 \bXBranchy[-3]{B}{E}                % Create branch point below B
 \bXBlocL{F}{$H(s)$}{E}
 \bXLinkxy{B}{F}                     % Horizontal then vertical link
 \bXLinkyx{F}{A}                     % Vertical then horizontal link
-\end{hwblocks}
+\end{diagram}
 ```
 
 #### Specialized Links
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocL{B}{$G(s)$}{A}
 \bXBranchy[-2]{B}{C}
 \bXLinktyx{B}{C}                    % Top-center to horizontal connection
 \bXLinktb{A}{C}                     % Top-to-bottom straight line
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Return/Feedback Paths
@@ -416,13 +442,13 @@ Various link types for different connection patterns:
 Create feedback loops with the return command:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXComp{B}{A}
 \bXBlocL{C}{$G(s)$}{B}
 \bXOutput{D}{C}
 \bXReturn[2]{C-D}{B}{$H(s)$}        % Creates feedback with block
-\end{hwblocks}
+\end{diagram}
 ```
 
 - `\bXReturn[distance]{StartNode}{EndNode}{Label}`
@@ -434,21 +460,21 @@ Create feedback loops with the return command:
 For multiple blocks in series:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXChain[1.5]{A}{B/$G_1(s)$,C/$G_2(s)$,D/$G_3(s)$}
 \bXOutput{E}{D}
 \bXLink{D}{E}
-\end{hwblocks}
+\end{diagram}
 ```
 
 Chain for feedback systems:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXLoop[2]{A}{B/$G_c(s)$,C/$G_p(s)$}  % Creates comparator + chain + feedback
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Branching and Multi-Path Diagrams
@@ -456,7 +482,7 @@ Chain for feedback systems:
 Create new branches for complex diagrams:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXInput{A}
 \bXBlocL{B}{$G(s)$}{A}
 \bXOutput{C}{B}
@@ -464,7 +490,7 @@ Create new branches for complex diagrams:
 \bXBranchy[-2]{B}{E}                % Vertical branch from B
 \bXBlocL{F}{$H_1(s)$}{D}
 \bXBlocL{G}{$H_2(s)$}{E}
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Styling and Customization
@@ -472,7 +498,7 @@ Create new branches for complex diagrams:
 Customize appearance using tikz styling:
 
 ```latex
-\begin{hwblocks}
+\begin{diagram}
 \bXLineStyle{red, thick}            % Change line style
 \bXStyleBloc{fill=blue!20, rounded corners}  % Change block style
 \bXInput{A}
@@ -480,13 +506,13 @@ Customize appearance using tikz styling:
 \bXDefaultLineStyle                 % Reset to default line style
 \bXStyleBlocDefault                 % Reset to default block style
 \bXOutput{C}{B}
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Complete Example: PID Control System
 
 ```latex
-\begin{hwblocks}[scale=0.8]
+\begin{diagram}[scale=0.8]
 \bXInput[r(s)]{A}
 \bXCompSum{B}{A}{}{-}{+}{}
 \bXLink[$r(s)$]{A}{B}
@@ -496,7 +522,7 @@ Customize appearance using tikz styling:
 \bXLink[$u$]{C}{D}
 \bXLink[$y$]{D}{E}
 \bXReturn{D-E}{B}{$H(s)$}
-\end{hwblocks}
+\end{diagram}
 ```
 
 ## Troubleshooting

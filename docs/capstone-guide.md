@@ -8,6 +8,17 @@ The `capstone_report` class standardizes weekly/biweekly individual progress rep
 **Template**: `templates/capstone_template.tex`  
 **Full Example**: `examples/capstonereporttest.tex`
 
+## Compilation with TEXINPUTS
+
+When compiling from `examples/` or `templates/` subdirectories, you need to set TEXINPUTS to find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex capstonereporttest.tex
+```
+
+For details on editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../TEXINPUTS_GUIDE.md).
+
 ## Class Overview
 
 The capstone report class provides:

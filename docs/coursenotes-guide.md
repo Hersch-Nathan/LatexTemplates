@@ -8,6 +8,32 @@ The `coursenotes` class extends `book` with commands and environments for compre
 **Template**: `templates/coursenotes_template.tex`  
 **Full Example**: `examples/coursenotestest.tex`
 
+## Migration from Old Environment Names
+
+If you have existing documents using old environment names from before the refactoring, simply rename:
+
+| Old Name | New Name |
+|----------|----------|
+| `hwmath` | `mmath` |
+| `hwmathnumbered` | `mathnumbered` |
+| `hwpython` | `python` |
+| `hwmatlab` | `matlab` |
+| `hwterminal` | `terminal` |
+| `hwblocks` | `diagram` |
+
+See [MIGRATION.md](../MIGRATION.md) for complete migration details.
+
+## Compilation with TEXINPUTS
+
+When compiling from `examples/` or `templates/` subdirectories, you need to set TEXINPUTS to find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex coursenotestest.tex
+```
+
+For details on editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../TEXINPUTS_GUIDE.md).
+
 ## Class Overview
 
 The course notes class provides:
@@ -210,7 +236,7 @@ Inherited from homework.cls, these environments provide aligned equations with s
 
 ### Alignment Shortcuts
 
-Use these inside `hwmath` or `hwmathnumbered` environments:
+Use these inside `mmath` or `mathnumbered` environments:
 
 - `\eq` for `&=` (equals)
 - `\gt` for `&>` (greater than)
@@ -226,21 +252,21 @@ Use these inside `hwmath` or `hwmathnumbered` environments:
 
 **Unnumbered equations:**
 ```latex
-\begin{hwmath}
+\begin{mmath}
 G_{cl}(s) \eq \frac{G(s)}{1 + G(s)H(s)} \\
 \eq \frac{10K}{s^2 + 2s + 10K} \\
 |G(j\omega)| \gt 1 \text{ for } \omega \lt \omega_c \\
 \text{PM} \geqq 45° \\
 \text{Error} \leqq 2\%
-\end{hwmath}
+\end{mmath}
 ```
 
 **Numbered equations:**
 ```latex
-\begin{hwmathnumbered}
+\begin{mathnumbered}
 \dot{x}(t) \eq Ax(t) + Bu(t) \\
 y(t) \eq Cx(t) + Du(t)
-\end{hwmathnumbered}
+\end{mathnumbered}
 ```
 
 ## Code Listings
@@ -250,20 +276,20 @@ Inherited from homework.cls with sensible defaults. Pass any `listings` options 
 ### MATLAB Code
 
 ```latex
-\begin{hwmatlab}[caption=State-Space Model]
+\begin{matlab}[caption=State-Space Model]
 A = [0 1; -2 -3];
 B = [0; 1];
 C = [1 0];
 D = 0;
 sys = ss(A,B,C,D);
 step(sys);
-\end{hwmatlab}
+\end{matlab}
 ```
 
 ### Python Code
 
 ```latex
-\begin{hwpython}[caption=Control System Simulation]
+\begin{python}[caption=Control System Simulation]
 import control as ct
 import numpy as np
 
@@ -274,18 +300,18 @@ G = ct.tf(num, den)
 
 # Step response
 t, y = ct.step_response(G)
-\end{hwpython}
+\end{python}
 ```
 
 ### Terminal Output
 
 ```latex
-\begin{hwterminal}[caption=Package Installation]
+\begin{terminal}[caption=Package Installation]
 $ pip install control
 Collecting control
 Installing collected packages: control
 Successfully installed control-0.9.2
-\end{hwterminal}
+\end{terminal}
 ```
 
 ## Notes and Highlights
@@ -326,8 +352,8 @@ The example environment creates a lightly shaded box with a bold header, perfect
 Center images with optional title and scale:
 
 ```latex
-% \hwgraphic{path}[Title][scale]
-\hwgraphic{figures/bode_plot.pdf}[Bode Plot][0.7]
+% \graphic{path}[Title][scale]
+\graphic{figures/bode_plot.pdf}[Bode Plot][0.7]
 ```
 
 ### Side-by-Side Images
@@ -335,26 +361,26 @@ Center images with optional title and scale:
 Display two images side by side with individual captions:
 
 ```latex
-% \hwdualfigure{image1}{image2}[width1][width2]{caption1}{caption2}
-\hwdualfigure{figures/step_response.pdf}{figures/impulse_response.pdf}
+% \dualfigure{image1}{image2}[width1][width2]{caption1}{caption2}
+\dualfigure{figures/step_response.pdf}{figures/impulse_response.pdf}
     [0.45\textwidth][0.45\textwidth]
     {Step Response}{Impulse Response}
 ```
 
 You can omit the width parameters to use defaults:
 ```latex
-\hwdualfigure{figures/plot1.pdf}{figures/plot2.pdf}
+\dualfigure{figures/plot1.pdf}{figures/plot2.pdf}
     {First Plot}{Second Plot}
 ```
 
 ## Block Diagrams with Blox Package
 
-The `hwblocks` environment provides a centered wrapper around `tikzpicture` for creating block diagrams using the blox package. (Full blox documentation inherited from homework.cls - see Block Diagrams section in homework-guide.md for complete details.)
+The `diagram` environment provides a centered wrapper around `tikzpicture` for creating block diagrams using the blox package. (Full blox documentation inherited from homework.cls - see Block Diagrams section in homework-guide.md for complete details.)
 
 ### Basic Control System Example
 
 ```latex
-\begin{hwblocks}[scale=0.8]
+\begin{diagram}[scale=0.8]
 \bXInput[r(s)]{A}
 \bXComp{B}{A}
 \bXBlocL{C}{$G_c(s)$}{B}
@@ -364,7 +390,7 @@ The `hwblocks` environment provides a centered wrapper around `tikzpicture` for 
 \bXLink[$u$]{C}{D}
 \bXLink[$y$]{D}{E}
 \bXReturn{D-E}{B}{}
-\end{hwblocks}
+\end{diagram}
 ```
 
 ### Common Blox Commands
@@ -447,12 +473,12 @@ In \secref{sec:observability}, we showed...
 % Equations
 \begin{hwmathnumbered}
 \dot{x} \eq Ax + Bu \label{eq:stateeq}
-\end{hwmathnumbered}
+\end{mathnumbered}
 Equation~\ref{eq:stateeq} describes...
 
 % Figures
 \begin{figure}
-\hwgraphic{plot.pdf}[Phase Portrait]
+\graphic{plot.pdf}[Phase Portrait]
 \caption{System phase portrait}
 \label{fig:phase}
 \end{figure}

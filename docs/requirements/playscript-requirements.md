@@ -673,6 +673,33 @@ Who's there?
 - Manual character list creation acceptable
 - Basic formatting sufficient for most productions
 
+## Compilation Requirements
+
+### When Compiling from examples/ or templates/ Directories
+
+You must set `TEXINPUTS` to help LaTeX find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex playscripttest.tex
+```
+
+For editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../../TEXINPUTS_GUIDE.md).
+
+### When Compiling from Root Directory
+
+No special setup needed - LaTeX automatically finds files in parent directory.
+
+### Basic Compilation
+- Single-pass compilation with `pdflatex`
+- No bibliography processing required
+- Compatible with `xelatex` and `lualatex`
+
+### File Structure Requirements
+- Main `.tex` file with playscript content
+- Class file (`playscript.cls`) must be in LaTeX path or same directory
+- Any referenced images or figures must be accessible
+
 ## Future Enhancements
 
 ### Potential Additions

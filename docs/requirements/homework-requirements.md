@@ -91,13 +91,13 @@ The `\hwheader{}{}{}{}}` command requires:
 
 ### Mathematical Environments
 
-#### Homework Math Environment (`hwmath`)
+#### Unnamed Math Environment (`mmath`)
 - Left-justified equations with alignment support
 - Based on `align*` (unnumbered equations)
 - Built-in vertical spacing for clean presentation
 
-#### Numbered Math Environment (`hwmathnumbered`)
-- Similar to `hwmath` but with equation numbering
+#### Numbered Math Environment (`mathnumbered`)
+- Similar to `mmath` but with equation numbering
 - Based on `align` environment
 - Automatic equation reference capability
 
@@ -125,7 +125,37 @@ Predefined shortcuts for common mathematical operators:
   - Customizable title for each example
   - Professional appearance for worked examples
 
+## Migration from Old Environment Names
+
+If you have documents using old environment names from before the refactoring, update them:
+
+| Old Name | New Name |
+|----------|----------|
+| `hwmath` | `mmath` |
+| `hwmathnumbered` | `mathnumbered` |
+| `hwpython` | `python` |
+| `hwmatlab` | `matlab` |
+| `hwterminal` | `terminal` |
+| `hwblocks` | `diagram` |
+
+For complete migration details, see [MIGRATION.md](../../MIGRATION.md).
+
 ## Compilation Requirements
+
+### When Compiling from examples/ or templates/ Directories
+
+You must set `TEXINPUTS` to help LaTeX find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex homeworktest.tex
+```
+
+For editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../../TEXINPUTS_GUIDE.md).
+
+### When Compiling from Root Directory
+
+No special setup needed - LaTeX automatically finds files in parent directory.
 
 ### Basic Compilation
 - Single-pass compilation with `pdflatex` for basic documents
@@ -150,10 +180,10 @@ Predefined shortcuts for common mathematical operators:
 \problem{Problem Title}
 Problem statement and work...
 
-\begin{hwmath}
+\begin{mmath}
 x \eq 5 + 3 \\
 x \eq 8
-\end{hwmath}
+\end{mmath}
 
 \subproblem
 Sub-problem work...

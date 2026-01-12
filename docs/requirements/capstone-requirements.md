@@ -75,6 +75,21 @@ While not enforced by the class, progress reports typically include:
 
 ## Compilation Requirements
 
+### When Compiling from examples/ or templates/ Directories
+
+You must set `TEXINPUTS` to help LaTeX find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex capstonereporttest.tex
+```
+
+For editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../../TEXINPUTS_GUIDE.md).
+
+### When Compiling from Root Directory
+
+No special setup needed - LaTeX automatically finds files in parent directory.
+
 ### Basic Compilation
 - Single-pass compilation with `pdflatex`
 - No bibliography processing required by default

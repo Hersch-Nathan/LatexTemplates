@@ -7,7 +7,16 @@ The `playscript` class extends `article` with commands and environments for prof
 **Location**: `playscript.cls` (root directory)  
 **Template**: `templates/playscript_template.tex`  
 **Full Example**: `examples/playscripttest.tex`
+## Compilation with TEXINPUTS
 
+When compiling from `examples/` or `templates/` subdirectories, you need to set TEXINPUTS to find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex playscripttest.tex
+```
+
+For details on editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../TEXINPUTS_GUIDE.md).
 ## Class Overview
 
 The playscript class provides:

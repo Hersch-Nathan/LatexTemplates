@@ -6,6 +6,17 @@
 **Template**: `templates/designreport_template.tex`  
 **Full Example**: `examples/designreporttest.tex`
 
+## Compilation with TEXINPUTS
+
+When compiling from `examples/` or `templates/` subdirectories, you need to set TEXINPUTS to find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex designreporttest.tex
+```
+
+For details on editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../TEXINPUTS_GUIDE.md).
+
 ## Overview
 
 The `designreport.cls` is a comprehensive LaTeX class designed for creating professional design reports, particularly Preliminary Design Reports (PDR) for engineering and design projects. This class provides a structured framework that meets academic and industry standards while maintaining flexibility for various project types.
@@ -209,7 +220,7 @@ The class provides specialized environments for displaying code with syntax high
 ### Python Code
 
 ```latex
-\begin{reportpython}[caption={Data Processing Algorithm}]
+\begin{python}[caption={Data Processing Algorithm}]
 import numpy as np
 
 def process_sensor_data(raw_data, threshold=0.5):
@@ -219,13 +230,13 @@ def process_sensor_data(raw_data, threshold=0.5):
                                mode='valid')
     events = filtered_data > threshold
     return filtered_data, events
-\end{reportpython}
+\end{python}
 ```
 
 ### MATLAB Code
 
 ```latex
-\begin{reportmatlab}[caption={Signal Processing Functions}]
+\begin{matlab}[caption={Signal Processing Functions}]
 function processed_signal = filter_data(raw_data, sampling_freq)
     % Design filter parameters
     cutoff_freq = 50; % Hz
@@ -235,13 +246,13 @@ function processed_signal = filter_data(raw_data, sampling_freq)
     [b, a] = butter(filter_order, cutoff_freq/(sampling_freq/2), 'low');
     processed_signal = filtfilt(b, a, raw_data);
 end
-\end{reportmatlab}
+\end{matlab}
 ```
 
 ### Terminal Output
 
 ```latex
-\begin{reportterminal}[caption={Development Environment Setup}]
+\begin{terminal}[caption={Development Environment Setup}]
 $ git clone https://github.com/yourteam/project-repo.git
 $ cd project-repo
 $ pip install -r requirements.txt
@@ -250,7 +261,7 @@ Installing dependencies...
 Setup complete!
 $ python main.py --test
 All tests passed successfully!
-\end{reportterminal}
+\end{terminal}
 ```
 
 ### General Code Block

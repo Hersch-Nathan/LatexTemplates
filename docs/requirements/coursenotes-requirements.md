@@ -110,12 +110,12 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 (Inherited from homework.cls)
 
 #### Unnumbered Math
-- **Environment**: `hwmath`
+- **Environment**: `mmath`
 - **Features**: Left-justified alignment at equals signs
 - **Shortcuts**: `\eq`, `\gt`, `\lt`, `\ggt`, `\llt`, `\geqq`, `\leqq`, `\neqq`, `\approxx`
 
 #### Numbered Math
-- **Environment**: `hwmathnumbered`
+- **Environment**: `mathnumbered`
 - **Features**: Automatic equation numbering with alignment
 - **Cross-references**: Can be labeled and referenced
 
@@ -123,17 +123,17 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 (Inherited from homework.cls)
 
 #### MATLAB Environment
-- **Environment**: `hwmatlab`
+- **Environment**: `matlab`
 - **Syntax**: MATLAB syntax highlighting
 - **Options**: Accepts all `listings` package options
 
 #### Python Environment
-- **Environment**: `hwpython`
+- **Environment**: `python`
 - **Syntax**: Python syntax highlighting
 - **Options**: Accepts all `listings` package options
 
 #### Terminal Environment
-- **Environment**: `hwterminal`
+- **Environment**: `terminal`
 - **Syntax**: Bash/shell formatting
 - **Style**: Gray frame with monospace font
 - **Options**: Accepts all `listings` package options
@@ -141,7 +141,7 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 ### Graphics Support
 
 #### Single Graphics
-- **Command**: `\hwgraphic{path}[title][scale]`
+- **Command**: `\graphic{path}[title][scale]`
 - **Parameters**: 
   - Required: image file path
   - Optional: title (displayed above image)
@@ -149,7 +149,7 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 - **Features**: Automatic centering and formatting
 
 #### Dual Graphics (Side-by-Side)
-- **Command**: `\hwdualfigure{img1}{img2}[width1][width2]{cap1}{cap2}`
+- **Command**: `\dualfigure{img1}{img2}[width1][width2]{cap1}{cap2}`
 - **Parameters**:
   - Required: two image paths
   - Optional: individual widths (default: 0.45\textwidth each)
@@ -159,7 +159,7 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 ### Block Diagrams
 (Inherited from homework.cls)
 
-- **Environment**: `hwblocks[scale]`
+- **Environment**: `diagram[scale]`
 - **Package**: TikZ + Blox
 - **Features**: Centered diagrams with optional scaling
 - **Usage**: Control system block diagrams, flowcharts
@@ -203,6 +203,21 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 
 ## Compilation Requirements
 
+### When Compiling from examples/ or templates/ Directories
+
+You must set `TEXINPUTS` to help LaTeX find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex coursenotestest.tex
+```
+
+For editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../../TEXINPUTS_GUIDE.md).
+
+### When Compiling from Root Directory
+
+No special setup needed - LaTeX automatically finds files in parent directory.
+
 ### Standard Workflow
 1. First compilation: `pdflatex document.tex` (generates TOC, aux files)
 2. Second compilation: `pdflatex document.tex` (resolves cross-references)
@@ -217,6 +232,21 @@ The `\courseheader{}{}{}{}}` command creates a formatted course title page:
 - **Default**: PDF with embedded hyperlinks
 - **Bookmarks**: Automatic chapter/section navigation in PDF viewers
 - **Links**: All cross-references are clickable
+
+## Migration from Old Environment Names
+
+If you have documents using old environment names from before the refactoring, update them:
+
+| Old Name | New Name |
+|----------|----------|
+| `hwmath` | `mmath` |
+| `hwmathnumbered` | `mathnumbered` |
+| `hwpython` | `python` |
+| `hwmatlab` | `matlab` |
+| `hwterminal` | `terminal` |
+| `hwblocks` | `diagram` |
+
+For complete migration details, see [MIGRATION.md](../../MIGRATION.md).
 
 ## Compatibility Notes
 

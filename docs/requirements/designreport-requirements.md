@@ -120,6 +120,21 @@ The following packages must be available in your LaTeX distribution:
 
 ## Compilation Requirements
 
+### When Compiling from examples/ or templates/ Directories
+
+You must set `TEXINPUTS` to help LaTeX find parent `.sty`/`.cls` files:
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex designreporttest.tex
+```
+
+For editor integration and troubleshooting, see [TEXINPUTS_GUIDE.md](../../TEXINPUTS_GUIDE.md).
+
+### When Compiling from Root Directory
+
+No special setup needed - LaTeX automatically finds files in parent directory.
+
 ### Required Compilation Steps
 1. `pdflatex` (or `xelatex`/`lualatex`)
 2. `biber` (for bibliography processing)
