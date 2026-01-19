@@ -12,6 +12,7 @@
 
 \RequirePackage{amsmath}           % Advanced math environments
 \RequirePackage{amssymb}           % Math symbols (for \mathbb, \mathcal, etc.)
+\RequirePackage{mathrsfs}          % Script/calligraphic fonts (for \mathscr)
 \RequirePackage{listings}          % Code listings with syntax highlighting
 \RequirePackage{xparse}            % Advanced command definitions
 \RequirePackage{fix-cm}            % Fix computer modern font sizes
@@ -35,6 +36,10 @@
 % Laplace transform (script L)
 % Usage: \laplace\{f(t)\}
 \newcommand{\laplace}{\mathcal{L}}
+
+% Script L (calligraphic/script font)
+% Usage: \Lscr or in equations: \Lscr\{f(t)\}
+\newcommand{\Lscr}{\mathscr{L}}
 
 % Norm operator: ||v||
 % Usage: \norm{v} or \norm*{v} for \left\|...\right\|
