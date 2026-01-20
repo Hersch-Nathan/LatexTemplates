@@ -116,17 +116,14 @@
 % Commands to generate front matter
 \newcommand{\maketoc}{%
     \tableofcontents
-    \clearpage
 }
 
 \newcommand{\makelof}{%
     \listoffigures
-    \clearpage
 }
 
 \newcommand{\makelot}{%
     \listoftables
-    \clearpage
 }
 
 % Combined command to generate all lists
