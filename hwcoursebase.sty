@@ -159,6 +159,48 @@
 	}%
 }{}
 
+%% ==========================================================================
+%% CODE LISTING INPUT WRAPPERS
+%% ==========================================================================
+%% These helpers mirror the listing environments but read from a file.
+
+% Python code from file
+% Usage: \pythoninput{file.py} or \pythoninput[caption=...]{file.py}
+\NewDocumentCommand{\pythoninput}{O{} m}{%
+	\lstinputlisting[language=Python, #1]{#2}%
+}
+
+% MATLAB code from file
+% Usage: \matlabinput{file.m} or \matlabinput[caption=...]{file.m}
+\NewDocumentCommand{\matlabinput}{O{} m}{%
+	\lstinputlisting[language=Matlab, #1]{#2}%
+}
+
+% Terminal/bash output from file
+% Usage: \terminalinput{output.txt} or \terminalinput[caption=...]{output.txt}
+\NewDocumentCommand{\terminalinput}{O{} m}{%
+	\lstinputlisting[
+		language=bash,
+		basicstyle=\ttfamily\footnotesize\color{black},
+		backgroundcolor=\color{white},
+		frame=single,
+		framerule=1pt,
+		rulecolor=\color{gray},
+		breaklines=true,
+		breakatwhitespace=false,
+		showstringspaces=false,
+		tabsize=4,
+		captionpos=b,
+		numbers=none,
+		xleftmargin=0pt,
+		xrightmargin=0pt,
+		keywordstyle=\color{blue},
+		commentstyle=\color{green!50!black},
+		stringstyle=\color{purple},
+		#1
+	]{#2}%
+}
+
 %% ============================================================================
 %% BLOCK DIAGRAM ENVIRONMENT
 %% ============================================================================
