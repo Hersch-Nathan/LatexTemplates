@@ -41,21 +41,17 @@ These LaTeX classes and templates help you create comprehensive course notes for
 - Shared macros: `\der`, `\laplace`, `\norm`, `\conj`, `\arr`, `\Arr`, `\inner`, `\Real`, `\Complex`
 - Alignment shortcuts: `\eq`, `\gt`, `\lt`, `\llt`, `\ggt`, `\geqq`, `\leqq`, `\neqq`, `\approxx`
 
-See [MIGRATION.md](MIGRATION.md) for refactoring changes and [TEXINPUTS_GUIDE.md](TEXINPUTS_GUIDE.md) for compilation from subdirectories.
-
 ## Repository Structure
 
 ```
 LatexTemplates/
-├── hwcoursebase.sty         # ← NEW: Shared base package
-├── reportbase.cls           # ← NEW: Shared report base class
+├── hwcoursebase.sty         # Shared base package
+├── reportbase.cls           # Shared report base class
 ├── homework.cls
 ├── coursenotes.cls
 ├── designreport.cls
 ├── capstone_report.cls
 ├── playscript.cls
-├── MIGRATION.md             # ← NEW: Refactoring and upgrade guide
-├── TEXINPUTS_GUIDE.md       # ← NEW: File path resolution for compilation
 ├── README.md
 ├── docs/                    # Documentation for each class
 │   ├── coursenotes-guide.md
@@ -233,6 +229,49 @@ To clean build artifacts:
 ```bash
 latexmk -c
 ```
+
+### Compiling from Subdirectories
+
+If you're working from the `examples/` or `templates/` subdirectories, you need to tell LaTeX where to find the `.sty` and `.cls` files in the parent directory.
+
+**On macOS / Linux:**
+
+```bash
+cd examples/
+TEXINPUTS="..:$TEXINPUTS" pdflatex homeworktest.tex
+```
+
+**In VS Code:**
+
+Add the environment variable to your build task in `.vscode/tasks.json`:
+
+```json
+{
+  "label": "Build LaTeX (with parent search path)",
+  "type": "shell",
+  "command": "pdflatex",
+  "args": ["-interaction=nonstopmode", "${file}"],
+  "options": {
+    "env": {
+      "TEXINPUTS": "..${env:TEXINPUTS}"
+    }
+  }
+}
+```
+
+**Why This Is Needed:**
+
+The template system uses a centralized architecture where shared `.sty` and `.cls` files are in the root directory. When LaTeX tries to compile from a subdirectory, it needs `TEXINPUTS` to know where to search for these dependency files.
+
+**Alternative: Direct Compilation from Root**
+
+You can also compile directly from the root directory without setting `TEXINPUTS`:
+
+```bash
+pdflatex examples/homeworktest.tex
+```
+
+This works because LaTeX naturally searches the working directory and its subdirectories.
 
 ## Contributing
 
