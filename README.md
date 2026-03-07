@@ -37,6 +37,7 @@ These LaTeX classes and templates help you create comprehensive course notes for
 **New Shared Environments:**
 - Math: `mmath`, `mathnumbered`
 - Code: `python`, `matlab`, `terminal`, `codeblock`
+- Code input helpers: `\pythoninput`, `\matlabinput`, `\terminalinput`
 - Graphics: `\graphic`, `\dualfigure`
 - Shared macros: `\der`, `\laplace`, `\norm`, `\conj`, `\arr`, `\Arr`, `\inner`, `\Real`, `\Complex`
 - Alignment shortcuts: `\eq`, `\gt`, `\lt`, `\llt`, `\ggt`, `\geqq`, `\leqq`, `\neqq`, `\approxx`

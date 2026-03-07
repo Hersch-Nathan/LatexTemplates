@@ -12,6 +12,7 @@
 
 \RequirePackage{amsmath}           % Advanced math environments
 \RequirePackage{amssymb}           % Math symbols (for \mathbb, \mathcal, etc.)
+\RequirePackage{mathrsfs}          % Script/calligraphic fonts (for \mathscr)
 \RequirePackage{listings}          % Code listings with syntax highlighting
 \RequirePackage{xparse}            % Advanced command definitions
 \RequirePackage{fix-cm}            % Fix computer modern font sizes
@@ -36,6 +37,14 @@
 % Usage: \laplace\{f(t)\}
 \newcommand{\laplace}{\mathcal{L}}
 
+% Script L (calligraphic/script font)
+% Usage: \Lscr or in equations: \Lscr\{f(t)\}
+\newcommand{\Lscr}{\mathscr{L}}
+
+% Determinant operator (upright det with operator spacing)
+% Usage: \det A
+\renewcommand{\det}{\operatorname{det}}
+
 % Norm operator: ||v||
 % Usage: \norm{v} or \norm*{v} for \left\|...\right\|
 \newcommand{\norm}[1]{\left\|#1\right\|}
@@ -43,6 +52,10 @@
 % Complex conjugate (overline)
 % Usage: \conj{z}
 \newcommand{\conj}[1]{\overline{#1}}
+
+% Such that (math text helper)
+% Usage: \st inside math for " s.t. "
+\providecommand{\st}{\ensuremath{\text{ s.t. }}}
 
 % Annotated arrow (rightarrow variant)
 % Usage: \arr{label} or \arr*{label}
@@ -145,6 +158,48 @@
 		#1
 	}%
 }{}
+
+%% ==========================================================================
+%% CODE LISTING INPUT WRAPPERS
+%% ==========================================================================
+%% These helpers mirror the listing environments but read from a file.
+
+% Python code from file
+% Usage: \pythoninput{file.py} or \pythoninput[caption=...]{file.py}
+\NewDocumentCommand{\pythoninput}{O{} m}{%
+	\lstinputlisting[language=Python, #1]{#2}%
+}
+
+% MATLAB code from file
+% Usage: \matlabinput{file.m} or \matlabinput[caption=...]{file.m}
+\NewDocumentCommand{\matlabinput}{O{} m}{%
+	\lstinputlisting[language=Matlab, #1]{#2}%
+}
+
+% Terminal/bash output from file
+% Usage: \terminalinput{output.txt} or \terminalinput[caption=...]{output.txt}
+\NewDocumentCommand{\terminalinput}{O{} m}{%
+	\lstinputlisting[
+		language=bash,
+		basicstyle=\ttfamily\footnotesize\color{black},
+		backgroundcolor=\color{white},
+		frame=single,
+		framerule=1pt,
+		rulecolor=\color{gray},
+		breaklines=true,
+		breakatwhitespace=false,
+		showstringspaces=false,
+		tabsize=4,
+		captionpos=b,
+		numbers=none,
+		xleftmargin=0pt,
+		xrightmargin=0pt,
+		keywordstyle=\color{blue},
+		commentstyle=\color{green!50!black},
+		stringstyle=\color{purple},
+		#1
+	]{#2}%
+}
 
 %% ============================================================================
 %% BLOCK DIAGRAM ENVIRONMENT
