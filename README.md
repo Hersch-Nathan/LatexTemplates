@@ -1,11 +1,12 @@
 # LaTeX Templates: Academic and Professional Classes
 
-This repository provides five robust LaTeX classes for academic and professional writing:
+This repository provides six robust LaTeX classes for academic and professional writing:
 
 - **`coursenotes.cls`** — Comprehensive course notes class: chapter organization, embedded problems with inline solutions, aligned math, code environments, block diagrams, lecture/textbook references, automatic TOC/LOF/LOT generation.
 - **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering (with standard and part-based modes), aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
 - **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
 - **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
+- **`poster.cls`** — Research poster framework based on Beamer + beamerposter with Jacobs-inspired defaults: customizable poster sizes (A-series or custom), multi-column layouts, branded headers, and highlighted content blocks.
 - **`playscript.cls`** — Theatrical playscripts: title pages, character lists, act/scene structure, dialogue formatting, stage directions, parentheticals, professional theatrical typography.
 
 ## Table of Contents
@@ -32,7 +33,7 @@ These LaTeX classes and templates help you create comprehensive course notes for
 - **`reportbase.cls`** — Shared base class for design reports
 - **`homework.cls`, `coursenotes.cls`** — Load article/book + require hwcoursebase
 - **`designreport.cls`** — Loads reportbase with design-specific extensions
-- **`playscript.cls`, `capstone_report.cls`** — Standalone classes
+- **`poster.cls`, `playscript.cls`, `capstone_report.cls`** — Standalone classes
 
 **New Shared Environments:**
 - Math: `mmath`, `mathnumbered`
@@ -52,6 +53,7 @@ LatexTemplates/
 ├── coursenotes.cls
 ├── designreport.cls
 ├── capstone_report.cls
+├── poster.cls
 ├── playscript.cls
 ├── README.md
 ├── docs/                    # Documentation for each class
@@ -59,6 +61,7 @@ LatexTemplates/
 │   ├── homework-guide.md
 │   ├── capstone-guide.md
 │   ├── designreport-guide.md
+│   ├── poster-guide.md
 │   ├── playscript-guide.md
 │   ├── examples.md
 │   └── requirements/        # System requirements for each class
@@ -66,6 +69,7 @@ LatexTemplates/
 │       ├── homework-requirements.md
 │       ├── capstone-requirements.md
 │       ├── designreport-requirements.md
+│       ├── poster-requirements.md
 │       └── playscript-requirements.md
 ├── templates/               # Starter templates
 │   ├── coursenotes_template.tex
@@ -73,6 +77,7 @@ LatexTemplates/
 │   ├── homework_partnumbering_template.tex
 │   ├── capstone_template.tex
 │   ├── designreport_template.tex
+│   ├── poster_template.tex
 │   └── playscript_template.tex
 ├── examples/                # Full working examples and test files
 │   ├── coursenotestest.tex
@@ -80,6 +85,7 @@ LatexTemplates/
 │   ├── homeworktest_partnumbering.tex
 │   ├── capstonereporttest.tex
 │   ├── designreporttest.tex
+│   ├── postertest.tex
 │   ├── playscripttest.tex
 │   ├── create_diagram.tex
 │   └── references.bib
@@ -171,6 +177,39 @@ The time constant is $\tau = 0.1$ seconds.
 \end{document}
 ```
 
+### Poster
+
+Starting point: use `templates/poster_template.tex` as the base file, then adapt content blocks and column widths for your project.
+
+```latex
+\documentclass[size=custom,custom=true,width=121.92,height=91.44,orientation=landscape,scale=1.12]{poster}
+\postertitle{My Research Title}
+\postersubtitle{Examining Key Aspects}
+\posterauthor{Jane Doe, John Smith}
+\posterinstitution{University of Kentucky}
+
+\begin{document}
+\begin{frame}[t]
+\makeposterheader
+\startcolumns
+
+\begin{column}{0.49\textwidth}
+\begin{posterbox}{Background}
+Research motivation and context...
+\end{posterbox}
+\end{column}
+
+\begin{column}{0.49\textwidth}
+\begin{accentbox}
+Key finding: ...
+\end{accentbox}
+\end{column}
+
+\stopcolumns
+\end{frame}
+\end{document}
+```
+
 ### Playscript
 
 ```latex
@@ -198,6 +237,7 @@ Comprehensive documentation for each class:
 - **Homework**: [docs/homework-guide.md](docs/homework-guide.md) — Complete reference for all homework class commands and environments
 - **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
 - **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
+- **Poster**: [docs/poster-guide.md](docs/poster-guide.md) — Complete guide for research posters with layout options and customization
 - **Playscript**: [docs/playscript-guide.md](docs/playscript-guide.md) — Complete guide to theatrical playscript formatting
 - **Examples**: [docs/examples.md](docs/examples.md) — Usage patterns and code snippets
 - **Requirements**: [docs/requirements/](docs/requirements/) — System requirements, package dependencies, and compatibility information for each class
@@ -309,6 +349,12 @@ If you want to add another LaTeX class (for example, a lab report class), follow
 5. **Keep docs in sync**
    - When you change public behavior in the class, update both `docs/your-class-guide.md` and the template/test files in the same PR.
    - Run a quick compile to ensure templates/demos still build cleanly.
+
+## Template Sources & Acknowledgments
+
+The following classes are based on or inspired by high-quality LaTeX templates:
+
+- **Poster Class** — Based on the [Jacobs Landscape Poster](https://www.latextemplates.com/template/jacobs-landscape-poster) template from [LaTeX Templates](https://www.latextemplates.com/). Original work by the Computational Physics and Biophysics Group at Jacobs University, modified by Nathaniel Johnston. Licensed under CC BY-NC-SA 3.0.
 
 ## Troubleshooting
 

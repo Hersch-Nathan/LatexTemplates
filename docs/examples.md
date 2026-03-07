@@ -1,8 +1,8 @@
 # Examples and Tutorials
 
-**Last Updated: December 2025**
+**Last Updated: March 2026**
 
-This page links to working examples and shows common patterns for all five classes.
+This page links to working examples and shows common patterns for all six classes.
 
 ## File Locations
 
@@ -12,6 +12,7 @@ This page links to working examples and shows common patterns for all five class
   - `homework_partnumbering_template.tex` — Part numbering mode template
   - `capstone_template.tex` — Basic capstone report starter
   - `designreport_template.tex` — Basic design report starter
+  - `poster_template.tex` — Basic research poster starter
   - `playscript_template.tex` — Basic playscript starter
   
 - **Full Examples**: Located in `examples/` directory
@@ -20,8 +21,9 @@ This page links to working examples and shows common patterns for all five class
   - `homeworktest_partnumbering.tex` — Part numbering mode demonstration
   - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
   - `designreporttest.tex` — Complete feature demonstration for design reports
+    - `postertest.tex` — Complete feature demonstration for poster class
   - `playscripttest.tex` — Complete feature demonstration for playscripts
-  - `playscript_simple_test.tex` — Minimal playscript example
+    - `playscript_simple_test.tex` — Minimal playscript example
   - `create_diagram.tex` — Block diagram examples
 
 ## Course Notes Examples
@@ -415,6 +417,106 @@ Figure~\ref{fig:after} demonstrates the improved stability.
 ```
 
 **Note**: All figure paths are automatically prefixed with `figures/`, so place your images in a `figures/` subdirectory.
+
+## Poster Examples
+
+Starter template: `templates/poster_template.tex`
+
+Full demo: `examples/postertest.tex`
+
+### Basic Custom-Size Landscape Poster
+```latex
+\documentclass[size=custom,custom=true,width=121.92,height=91.44,orientation=landscape,scale=1.12]{poster}
+
+\postertitle{Impact of Climate Change on Coral Reefs}
+\postersubtitle{A Global Perspective}
+\posterauthor{Jane Doe, John Smith, Sarah Johnson}
+\posterinstitution{University of Kentucky}
+\posterfooter{jane.doe@uky.edu | UK Research Symposium}
+
+\begin{document}
+\begin{frame}[t]
+\makeposterheader
+\startcolumns
+
+\begin{column}{0.32\textwidth}
+\begin{posterbox}{Background and Motivation}
+Coral reefs are among the most biodiverse ecosystems on Earth, supporting
+over 25\% of marine species despite covering less than 1\% of the ocean floor.
+\end{posterbox}
+\end{column}
+
+\begin{column}{0.32\textwidth}
+\begin{lightposterbox}{Research Approach}
+We analyzed temperature and pH data from 50 reef sites over 20 years
+using advanced statistical modeling techniques.
+\end{lightposterbox}
+\end{column}
+
+\begin{column}{0.32\textwidth}
+\begin{accentbox}
+We found a 1.2°C average temperature increase at reef sites,
+correlating with 35\% bleaching events in affected areas.
+\end{accentbox}
+\end{column}
+
+\stopcolumns
+\makeposterfooter
+\end{frame}
+\end{document}
+```
+
+### A0 Poster with Custom Colors
+```latex
+\documentclass[size=a0,orientation=landscape,scale=1.08]{poster}
+
+\setprimarycolor{0,102,204}
+\setaccentcolor{255,120,20}
+
+\postertitle{Machine Learning for Medical Imaging}
+\posterauthor{Dr. Jane Walker, Medical AI Lab}
+\posterinstitution{University of Kentucky}
+\posterleftlogo{figures/uk-logo.png}
+
+\begin{document}
+\begin{frame}[t]
+\makeposterheader
+\startcolumns
+
+\begin{column}{0.49\textwidth}
+\begin{posterbox}{Deep Learning Model}
+Custom CNN trained on 10,000 annotated images
+\end{posterbox}
+\end{column}
+
+\begin{column}{0.49\textwidth}
+\begin{accentbox}
+\textbf{Accuracy: 96.5\%}
+
+Sensitivity: 94.2\% | Specificity: 97.8\%
+\end{accentbox}
+\end{column}
+
+\stopcolumns
+\end{frame}
+\end{document}
+```
+
+### Poster with Images and References
+```latex
+\section{Experimental Setup}
+\begin{posterbox}{Apparatus}
+\includegraphics[width=0.95\linewidth]{apparatus.jpg}
+\end{posterbox}
+
+\section{References}
+\begin{accentbox}
+\small
+[1] Smith, J. (2024). Recent advances. \textit{Journal}, 45(3), 234-251.
+
+[2] Johnson, K. (2023). Data analysis. \textit{Research}, 12(1), 45-62.
+\end{accentbox}
+```
 
 ## Playscript Examples
 
