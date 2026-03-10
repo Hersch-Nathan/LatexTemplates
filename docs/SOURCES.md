@@ -14,6 +14,18 @@ For every external source, record:
 
 ## Entries
 
-No external sources are currently recorded.
+- Component: `llncs/*`
+- Source:
+	- https://www.springer.com/gp/computer-science/lncs/conference-proceedings-guidelines
+	- (files mirrored via package distribution referenced by Springer LNCS materials)
+- License/terms: Springer LNCS package terms (see `llncs/readme.txt` and related upstream documentation)
+- Date added: `2026-03-09`
+- Modification notes: Upstream files copied for convenience; this bundle is third-party and not original work by this repository owner.
 
-Add entries below this line when importing material from third-party work.
+- Component: `ieeetran/*`
+- Source:
+	- https://www.ieee.org/conferences/publishing/templates
+	- https://mirrors.ibiblio.org/pub/mirrors/CTAN/macros/latex/contrib/IEEEtran/
+- License/terms: LPPL 1.3 (per `ieeetran/README`)
+- Date added: `2026-03-09`
+- Modification notes: Upstream files copied for convenience; this bundle is third-party and not original work by this repository owner.

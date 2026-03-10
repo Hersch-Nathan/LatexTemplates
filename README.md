@@ -56,6 +56,16 @@ Rendered PDFs in `examples/` and `templates/` are intentionally tracked for prev
 Some templates may be adapted from external sources.
 Every non-original addition must be documented in `docs/SOURCES.md` with source link, license, date added, and modification notes.
 
+## External template bundles
+
+This repository includes third-party template bundles that are **not my original work** and are kept here to make my workflow easier.
+
+- `llncs/` - Springer LNCS template bundle
+- `ieeetran/` - IEEEtran template bundle
+
+Use of files in these folders is subject to their upstream terms/licenses.
+See `docs/SOURCES.md` for source URLs and licensing notes.
+
 **Why This Is Needed:**
 
 The template system uses a centralized architecture where shared `.sty` and `.cls` files are in the root directory. When LaTeX tries to compile from a subdirectory, it needs `TEXINPUTS` to know where to search for these dependency files.
