@@ -10,9 +10,9 @@ if ! command -v latexmk >/dev/null 2>&1; then
 fi
 
 tex_files=()
-while IFS= read -r -d '' file; do
+while IFS= read -r file; do
   tex_files+=("$file")
-done < <(find . -path './.git' -prune -o -type f -name '*.tex' -print0 | sort -z)
+done < <(find . -path './.git' -prune -o -type f -name '*.tex' -print | sort)
 
 if [[ "${#tex_files[@]}" -eq 0 ]]; then
   echo "No .tex files found."
