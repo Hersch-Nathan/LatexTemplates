@@ -1,264 +1,60 @@
-# LaTeX Templates: Academic and Professional Classes
+# LaTeX Templates
 
-This repository provides five robust LaTeX classes for academic and professional writing:
+Reusable LaTeX classes for coursework, reports, and scripts.
 
-- **`coursenotes.cls`** — Comprehensive course notes class: chapter organization, embedded problems with inline solutions, aligned math, code environments, block diagrams, lecture/textbook references, automatic TOC/LOF/LOT generation.
-- **`homework.cls`** — Feature-rich homework class: automatic problem/sub-problem numbering (with standard and part-based modes), aligned math, example boxes, code/terminal blocks, graphics, block diagrams, appendices.
-- **`capstone_report.cls`** — Standardized weekly/biweekly capstone progress reports: consistent headers, section helpers, code/figure support, customizable options.
-- **`designreport.cls`** — Professional design reports: title pages, engineering requirements, sub-project management, code environments, and comprehensive documentation features.
-- **`playscript.cls`** — Theatrical playscripts: title pages, character lists, act/scene structure, dialogue formatting, stage directions, parentheticals, professional theatrical typography.
+## Included classes
 
-## Table of Contents
+- `coursenotes.cls`: Chapter-based notes with embedded problems and solutions.
+- `homework.cls`: Assignment layout with standard and `partnumbering` modes.
+- `capstone_report.cls`: Periodic progress report format.
+- `designreport.cls`: Engineering design report format.
+- `playscript.cls`: Theatrical script format.
 
-- [Overview](#overview)
-- [Architecture](#architecture)
-- [Repository Structure](#repository-structure)
-- [Quick Start](#quick-start)
-- [Guides](#guides)
-- [Building Documents](#building-documents)
-- [Contributing](#contributing)
-- [Troubleshooting](#troubleshooting)
+Shared foundations:
 
-## Overview
+- `hwcoursebase.sty` for `homework.cls` and `coursenotes.cls`
+- `reportbase.cls` for `designreport.cls`
 
-These LaTeX classes and templates help you create comprehensive course notes for studying, write clean homework solutions, produce consistent capstone progress reports, generate professional design documents, and format theatrical playscripts. 
+## Start here
 
-**New (v2.0):** The course notes and homework classes now share a unified base package (`hwcoursebase.sty`) that provides common math environments, code listing environments, graphics helpers, and shared macros. Design reports use `reportbase.cls` for similar shared functionality.
+- Starters: `templates/*.tex`
+- Full demos: `examples/*.tex`
+- Usage reference: `docs/examples.md`
 
-## Architecture
+Recommended first files:
 
-**Two-Tier Base System:**
-- **`hwcoursebase.sty`** — Shared package for homework and course notes classes
-- **`reportbase.cls`** — Shared base class for design reports
-- **`homework.cls`, `coursenotes.cls`** — Load article/book + require hwcoursebase
-- **`designreport.cls`** — Loads reportbase with design-specific extensions
-- **`playscript.cls`, `capstone_report.cls`** — Standalone classes
+- `templates/coursenotes_template.tex`
+- `templates/homework_template.tex`
+- `templates/homework_partnumbering_template.tex`
+- `templates/capstone_template.tex`
+- `templates/designreport_template.tex`
+- `templates/playscript_template.tex`
 
-**New Shared Environments:**
-- Math: `mmath`, `mathnumbered`
-- Code: `python`, `matlab`, `terminal`, `codeblock`
-- Code input helpers: `\pythoninput`, `\matlabinput`, `\terminalinput`
-- Graphics: `\graphic`, `\dualfigure`
-- Shared macros: `\der`, `\laplace`, `\norm`, `\conj`, `\arr`, `\Arr`, `\inner`, `\Real`, `\Complex`
-- Alignment shortcuts: `\eq`, `\gt`, `\lt`, `\llt`, `\ggt`, `\geqq`, `\leqq`, `\neqq`, `\approxx`
-
-## Repository Structure
-
-```
-LatexTemplates/
-├── hwcoursebase.sty         # Shared base package
-├── reportbase.cls           # Shared report base class
-├── homework.cls
-├── coursenotes.cls
-├── designreport.cls
-├── capstone_report.cls
-├── playscript.cls
-├── README.md
-├── docs/                    # Documentation for each class
-│   ├── coursenotes-guide.md
-│   ├── homework-guide.md
-│   ├── capstone-guide.md
-│   ├── designreport-guide.md
-│   ├── playscript-guide.md
-│   ├── examples.md
-│   └── requirements/        # System requirements for each class
-│       ├── coursenotes-requirements.md
-│       ├── homework-requirements.md
-│       ├── capstone-requirements.md
-│       ├── designreport-requirements.md
-│       └── playscript-requirements.md
-├── templates/               # Starter templates
-│   ├── coursenotes_template.tex
-│   ├── homework_template.tex
-│   ├── homework_partnumbering_template.tex
-│   ├── capstone_template.tex
-│   ├── designreport_template.tex
-│   └── playscript_template.tex
-├── examples/                # Full working examples and test files
-│   ├── coursenotestest.tex
-│   ├── homeworktest.tex
-│   ├── homeworktest_partnumbering.tex
-│   ├── capstonereporttest.tex
-│   ├── designreporttest.tex
-│   ├── playscripttest.tex
-│   ├── create_diagram.tex
-│   └── references.bib
-├── figures/                 # Place your figures here for design reports
-└── .gitignore              # Excludes LaTeX auxiliary files
-```
-
-## Quick Start
-
-### Course Notes
-
-```latex
-\documentclass{coursenotes}
-\begin{document}
-\courseheader{EE 571}{Control Systems}{Fall 2025}{Your Name}
-\makealllists  % Generate TOC, LOF, LOT
-
-\chapter{Time Domain Analysis}
-\section{First-Order Systems}
-% Lecture content with math, code, diagrams...
-
-\problem{System Response}
-\subproblem{Calculate the time constant.}
-\begin{solution}
-The time constant is $\tau = 0.1$ seconds.
-\end{solution}
-\end{document}
-```
-
-### Homework (Standard Mode)
-
-```latex
-\documentclass{homework}
-\begin{document}
-\hwheader{EE571}{3}{2025-09-01}{Jane Smith}
-\problem{Design a PID controller}
-% ...
-\end{document}
-```
-
-### Homework (Part Numbering Mode)
-
-```latex
-\documentclass[partnumbering]{homework}
-\begin{document}
-\hwheader{EE599/699}{1}{Fall 2025}{Jane Smith}
-
-\hwpart{Shallow Networks \& Expressive Power}
-
-\problem{General Shallow Network Analysis}
-% Problems numbered as 1.1, 1.2, etc.
-
-\subproblem{Parameter Count}
-% Subproblems formatted as A., B., etc. with title text inline
-
-\hwpart{Deep Networks}
-
-\problem{Depth vs Width}
-% Numbered as 2.1, 2.2, etc.
-\end{document}
-```
-
-### Capstone Report
-
-```latex
-\documentclass[titlecase]{capstone_report}
-\begin{document}
-% \progressreport{report#}{name}{team}{team#}{start}{end}[course]
-\progressreport{01}{First Last}{Project/Team}{12}{Sep 1, 2025}{Sep 14, 2025}[Course Name]
-\makeheader
-\reportIntroduction
-% ... other sections ...
-\end{document}
-```
-
-### Design Report (PDR)
-
-```latex
-\documentclass[final]{designreport}
-\addbibresource{references.bib}
-\documentname{Preliminary Design Report}
-\teamname{Team 8 - PlayPal}
-\university{University of Kentucky}
-\teammembers{\teammember{John Smith}{john@uky.edu}}
-\begin{document}
-\maketitle
-\makefrontmatter
-% ... sections with engineering requirements, impact statements ...
-\end{document}
-```
-
-### Playscript
-
-```latex
-\documentclass{playscript}
-\title{Hamlet}
-\author{William Shakespeare}
-\begin{document}
-\maketitle
-\begin{characters}
-\character{HAMLET}
-\character{OPHELIA}
-\end{characters}
-\act{I}
-\scene{Elsinore Castle}
-\speaker{HAMLET}
-\dialogue{To be, or not to be, that is the question.}
-\end{document}
-```
-
-## Guides
-
-Comprehensive documentation for each class:
-
-- **Course Notes**: [docs/coursenotes-guide.md](docs/coursenotes-guide.md) — Complete guide for semester-long course notes with embedded problems and solutions
-- **Homework**: [docs/homework-guide.md](docs/homework-guide.md) — Complete reference for all homework class commands and environments
-- **Capstone Report**: [docs/capstone-guide.md](docs/capstone-guide.md) — Full guide to progress report formatting and sections
-- **Design Report**: [docs/designreport-guide.md](docs/designreport-guide.md) — Detailed documentation for design reports with all features
-- **Playscript**: [docs/playscript-guide.md](docs/playscript-guide.md) — Complete guide to theatrical playscript formatting
-- **Examples**: [docs/examples.md](docs/examples.md) — Usage patterns and code snippets
-- **Requirements**: [docs/requirements/](docs/requirements/) — System requirements, package dependencies, and compatibility information for each class
-
-## Building Documents
-
-To use these templates in your own documents:
-
-1. **Copy the class file** (e.g., `homework.cls`) to your project directory
-2. **Copy a starter template** from `templates/` (e.g., `homework_template.tex`) as a starting point
-3. **For design reports**: Place figures in a `figures/` subdirectory
-4. **Compile with LaTeX**:
+## Build
 
 ```bash
-# Basic compilation
 pdflatex yourdocument.tex
+```
 
-# Using latexmk (recommended)
-latexmk -pdf yourdocument.tex
+Recommended:
 
-# Continuous compilation (rebuilds on file changes)
-latexmk -pdf -pvc yourdocument.tex
-
-# With bibliography (for design reports)
+```bash
 latexmk -pdf yourdocument.tex
 ```
 
-To clean build artifacts:
+If compiling from `examples/` or `templates/`, include parent search path:
 
 ```bash
-latexmk -c
+TEXINPUTS="..:$TEXINPUTS" latexmk -pdf homeworktest.tex
 ```
 
-### Compiling from Subdirectories
+Generated non-PDF artifacts are ignored by `.gitignore`.
+Rendered PDFs in `examples/` and `templates/` are intentionally tracked for preview/reference.
 
-If you're working from the `examples/` or `templates/` subdirectories, you need to tell LaTeX where to find the `.sty` and `.cls` files in the parent directory.
+## Source provenance
 
-**On macOS / Linux:**
-
-```bash
-cd examples/
-TEXINPUTS="..:$TEXINPUTS" pdflatex homeworktest.tex
-```
-
-**In VS Code:**
-
-Add the environment variable to your build task in `.vscode/tasks.json`:
-
-```json
-{
-  "label": "Build LaTeX (with parent search path)",
-  "type": "shell",
-  "command": "pdflatex",
-  "args": ["-interaction=nonstopmode", "${file}"],
-  "options": {
-    "env": {
-      "TEXINPUTS": "..${env:TEXINPUTS}"
-    }
-  }
-}
-```
+Some templates may be adapted from external sources.
+Every non-original addition must be documented in `docs/SOURCES.md` with source link, license, date added, and modification notes.
 
 **Why This Is Needed:**
 

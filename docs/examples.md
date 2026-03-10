@@ -1,262 +1,90 @@
-# Examples and Tutorials
+# Examples
 
-**Last Updated: December 2025**
+This is the primary usage reference. Use starter templates for new documents and full examples for feature coverage.
 
-This page links to working examples and shows common patterns for all five classes.
+## Layout
 
-## File Locations
+- Starters: `templates/*.tex`
+- Full demos: `examples/*.tex`
+- Output previews: tracked `*.pdf` files in `templates/` and `examples/`
 
-- **Templates**: Located in `templates/` directory
-  - `coursenotes_template.tex` — Basic course notes starter with embedded problems
-  - `homework_template.tex` — Basic homework starter (standard mode)
-  - `homework_partnumbering_template.tex` — Part numbering mode template
-  - `capstone_template.tex` — Basic capstone report starter
-  - `designreport_template.tex` — Basic design report starter
-  - `playscript_template.tex` — Basic playscript starter
-  
-- **Full Examples**: Located in `examples/` directory
-  - `coursenotestest.tex` — Complete feature demonstration for course notes class
-  - `homeworktest.tex` — Complete feature demonstration for homework class (standard mode)
-  - `homeworktest_partnumbering.tex` — Part numbering mode demonstration
-  - `capstonereporttest.tex` — Complete feature demonstration for capstone reports
-  - `designreporttest.tex` — Complete feature demonstration for design reports
-  - `playscripttest.tex` — Complete feature demonstration for playscripts
-  - `playscript_simple_test.tex` — Minimal playscript example
-  - `create_diagram.tex` — Block diagram examples
+## By class
 
-## Course Notes Examples
+### Course notes
 
-Starter template: `templates/coursenotes_template.tex`
+- Starter: `templates/coursenotes_template.tex`
+- Full demo: `examples/coursenotestest.tex`
+- Typical features: chapter workflow, problem/solution blocks, lecture/textbook references.
 
-Full feature demo: `examples/coursenotestest.tex`
+### Homework
 
-### Complete Chapter with Problems and Inline Solutions
+- Starter (standard mode): `templates/homework_template.tex`
+- Starter (part numbering mode): `templates/homework_partnumbering_template.tex`
+- Full demos: `examples/homeworktest.tex`, `examples/homeworktest_partnumbering.tex`
+- Typical features: problem/subproblem numbering, math blocks, code blocks, terminal blocks.
+
+### Capstone report
+
+- Starter: `templates/capstone_template.tex`
+- Full demo: `examples/capstonereporttest.tex`
+- Typical features: reporting-period header, structured report sections, report figures.
+
+### Design report
+
+- Starter: `templates/designreport_template.tex`
+- Full demo: `examples/designreporttest.tex`
+- Typical features: title/front matter, engineering requirements tables, bibliography usage.
+
+### Playscript
+
+- Starter: `templates/playscript_template.tex`
+- Full demos: `examples/playscripttest.tex`, `examples/playscript_simple_test.tex`
+- Typical features: character lists, act/scene structure, dialogue formatting.
+
+## Quick patterns
+
+### Homework with part numbering
+
 ```latex
-\documentclass{coursenotes}
+\documentclass[partnumbering]{homework}
 \begin{document}
-
-\courseheader{EE 571}{Control Systems}{Fall 2025}{Your Name}
-\makealllists  % Generate TOC, LOF, LOT
-
-\chapter{Time Domain Analysis}
-\section{First-Order Systems}
-
-Content here... Reference: \lectureref{3a}, \textbookref{§2.3}
-
-\problem{System Response}
-
-\subproblem{Calculate the time constant.}
-\begin{solution}
-The time constant is $\tau = RC = 0.1$ seconds.
-\end{solution}
-
-\subproblem{Find the settling time.}
-\begin{solution}
-The settling time is $t_s = 4\tau = 0.4$ seconds.
-\end{solution}
-
+\hwheader{EE599/699}{1}{Fall 2026}{Your Name}
+\hwpart{Part One}
+\problem{Main problem}
+\subproblem{Subproblem title}
 \end{document}
 ```
 
-### Math with Lecture References
+### Course notes problem with solution
+
 ```latex
-\section{Transfer Functions}
-
-The standard form is:
-\begin{hwmath}
-G(s) \eq \frac{K}{\tau s + 1} \\
-\tau \gt 0 \text{ for stability}
-\end{hwmath}
-
-Reference: \lectureref{4b}, \textbookref{pp. 87-92}
-```
-
-### Flexible Sub-problem Numbering
-```latex
-\problem{First Problem}
-% Default: (a), (b), (c)
-\subproblem{Part a}
+\problem{System response}
+\subproblem{Find settling time}
 \begin{solution}
-Solution...
+For a first-order response, use $t_s \approx 4\tau$.
 \end{solution}
-
-\setsubproblemstyle{roman}
-
-\problem{Second Problem}
-% Now uses: (i), (ii), (iii)
-\subproblem{Part i}
-\begin{solution}
-Solution...
-\end{solution}
-
-\setsubproblemstyle{arabic}
-% Now uses: (1), (2), (3)
 ```
 
-## Homework Examples
-
-Starter template (standard mode): `templates/homework_template.tex`
-
-Part numbering template: `templates/homework_partnumbering_template.tex`
-
-Full feature demo (standard): `examples/homeworktest.tex`
-
-Part numbering demo: `examples/homeworktest_partnumbering.tex`
-
-### Problem Sets with Math (Standard Mode)
-```latex
-\problem{Analyze the system}
-\begin{hwmath}
-G(s) \eq \frac{10}{s(s+2)} \\
-\text{Design } G_c(s) \eq K_p + K_i/s + K_d s \\
-|G(j\omega)| \gt 1 \text{ for } \omega \lt 2 \\
-f(x) \ggt 0 \text{ for all } x
-\end{hwmath}
-```
-
-### Problem Sets with Parts (Part Numbering Mode)
-```latex
-\documentclass[partnumbering]{homework}
-
-\hwpart{Shallow Networks \& Expressive Power}
-
-\problem{General Shallow Network Analysis}
-Consider a network with inputs and hidden units...
-
-\subproblem{Parameter Count}
-Calculate the total parameters.
-
-\subproblem{Network Visualization}
-Draw the architecture.
-
-\problem{Exploring Linear Regions}
-Analyze the piecewise linear behavior...
-
-\hwpart{Deep Networks}
-
-\problem{Depth vs Width}
-Compare shallow vs deep networks...
-```
-
-### Example Boxes
-```latex
-\begin{example}{Example 3-2: Frequency Analysis}
-For $H(s) = \frac{1}{s+1}$, find the magnitude at $\omega = 1$:
-$$|H(j1)| = \frac{1}{\sqrt{2}} \approx 0.707$$
-\end{example}
-```
-
-### Code Blocks
-```latex
-\begin{hwpython}[caption=Computation]
-import numpy as np
-x = np.linspace(0,1,5)
-\end{hwpython}
-```
-
-### Terminal Output
-```latex
-\begin{hwterminal}[caption=Solver Output]
-$ python solve.py
-Converged in 12 iterations
-\end{hwterminal}
-```
-
-### Block Diagrams
+### Design report bibliography setup
 
 ```latex
-\begin{hwblocks}
-\node (a) at (0,0) {A}; 
-\node (b) at (2,0) {B}; 
-\draw[->] (a)--(b);
-\end{hwblocks}
+\documentclass[final]{designreport}
+\addbibresource{references.bib}
 ```
 
-## Capstone Report Examples
+## Build notes
 
-Starter template: `capstone_template.tex`
+Use standard LaTeX compilation in your document folder:
 
-Full demo: `capstonereporttest.tex`
-
-### Section Flow
-```latex
-\reportIntroduction
-Provide a brief summary of the reporting period objectives.
-
-\reportWorkAccomplished
-Summarize tasks completed with evidence and links to artifacts.
-
-\reportProblems
-List blockers and mitigation steps.
+```bash
+latexmk -pdf yourdocument.tex
 ```
 
-### Figures
-```latex
-% Label in the caption text and reference with \figref{\ref{...}}
-\reportfigure[0.55\textwidth]{figures/architecture.pdf}{System Architecture \label{fig:arch}}
+If compiling from inside `examples/` or `templates/`, include parent path so class/style files are found:
 
-See \figref{\ref{fig:arch}} for details.
+```bash
+TEXINPUTS="..:$TEXINPUTS" latexmk -pdf homeworktest.tex
 ```
-
-## Design Report Examples
-
-Starter template: `designreport_template.tex`
-
-Full demo: `designreporttest.tex`
-
-### Title Page Setup
-```latex
-\documentname{Preliminary Design Report}
-\teamname{Team 8 - PlayPal}
-\university{University of Kentucky}
-\department{Department of Electrical and Computer Engineering}
-\course{Senior Design}
-\teammembers{%
-    \teammember{John Smith}{john.smith@uky.edu}
-    \teammember{Jane Doe}{jane.doe@uky.edu}
-}
-```
-
-### Engineering Requirements (Using Longtable)
-```latex
-\begin{longtable}{|p{1cm}|p{4cm}|p{1cm}|p{4cm}|p{4cm}|}
-\caption{Engineering Requirements Table} \label{tab:engineering-requirements} \\
-\hline
-\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
-\hline
-\endfirsthead
-\hline
-\textbf{ER No.} & \textbf{Engineering Requirement} & \textbf{MR} & \textbf{Justification} & \textbf{Verification} \\
-\hline
-\endhead
-\hline
-\endfoot
-\hline
-\endlastfoot
-1 & Touch response time < 100ms & 1 & Children require immediate feedback & Test response time under various conditions \\
-\hline
-2 & System detects 3 pressure levels & 1 & Provides tactile variety for users & Calibrate sensors and verify distinct levels \\
-\hline
-\end{longtable}
-```
-
-### Impact Statements
-```latex
-\begin{impactstatement}{Economic}
-The economic impact extends beyond immediate development costs...
-\end{impactstatement}
-```
-
-### Sub-projects
-```latex
-\begin{subproject}{Hardware Development}{Team Member Name}
-    \item PCB design and fabrication
-    \item Sensor integration and testing
-    \item Hardware validation
-\end{subproject}
-```
-
-### Predefined Section Commands (Optional)
 
 The following commands can be added to your document preamble to create consistent section structures. These are examples that should be customized for your specific project:
 
