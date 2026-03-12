@@ -48,6 +48,21 @@ If compiling from `examples/` or `templates/`, include parent search path:
 TEXINPUTS="..:$TEXINPUTS" latexmk -pdf homeworktest.tex
 ```
 
+## Features
+
+### Math environments with automatic page breaking
+
+The `mmath` (unnumbered) and `mathnumbered` (numbered) environments support automatic page breaking for long mathematical derivations. This allows multi-page math content (e.g., complete backpropagation derivations, system analyses) to be contained in a single environment block without manual splitting.
+
+**Key features:**
+- `\begin{mmath}...\end{mmath}` for unnumbered equations with alignment
+- `\begin{mathnumbered}...\end{mathnumbered}` for numbered equations
+- Both automatically allow page breaks between lines
+- Backward compatible with existing documents
+- Test case: `examples/homeworktest_pagebreak.tex` (multi-page derivation example)
+
+For detailed usage patterns and examples, see [docs/examples.md](docs/examples.md#math-environments-with-page-breaking).
+
 Generated non-PDF artifacts are ignored by `.gitignore`.
 Rendered PDFs in `examples/` and `templates/` are intentionally tracked for preview/reference.
 

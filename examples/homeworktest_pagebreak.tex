@@ -1,0 +1,140 @@
+% Homework Assignment Test for Multi-Page Mathematical Derivations
+% This file tests the page-breaking capability of the mmath environment
+% Author: Template Testing
+% Date: March 2026
+
+\documentclass{../homework}
+
+\begin{document}
+
+% Feature: Multi-page Math Environment Test
+\hwheader{DEEP LEARNING}{Assignment 5}{2026-03-11}{Test User}
+
+\problem{Complete neural network backpropagation derivation}
+
+This problem demonstrates a complete multi-page mathematical derivation that spans across pages without requiring manual \texttt{mmath} environment breaks. The derivation includes initialization, forward propagation, loss calculation, and backpropagation through multiple layers.
+
+\subproblem[Setup]
+Define the neural network architecture and notation:
+
+\begin{mmath}
+\text{Input: } \mathbf{x} \in \mathbb{R}^{n_0}, \quad \text{Output: } \mathbf{y} \in \mathbb{R}^{n_L} \\
+\text{Weights: } \mathbf{W}^{(l)} \in \mathbb{R}^{n_l \times n_{l-1}}, \quad \text{Biases: } \mathbf{b}^{(l)} \in \mathbb{R}^{n_l} \\
+\text{Activation function: } \sigma(\cdot) = \max(0, \cdot) \quad \text{(ReLU)} \\
+\text{Layer outputs: } \mathbf{a}^{(l)} = \sigma(\mathbf{z}^{(l)}), \quad \mathbf{z}^{(l)} = \mathbf{W}^{(l)}\mathbf{a}^{(l-1)} + \mathbf{b}^{(l)}
+\end{mmath}
+
+\subproblem[Forward Propagation - Layer 1]
+Compute pre-activation and activation for the first hidden layer:
+
+\begin{mmath}
+\mathbf{z}^{(1)} \eq \mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)} \\
+z^{(1)}_i \eq \sum_{j=1}^{n_0} W^{(1)}_{ij} x_j + b^{(1)}_i \\
+\mathbf{a}^{(1)} \eq \sigma(\mathbf{z}^{(1)}) = \max(0, \mathbf{z}^{(1)}) \\
+\frac{\partial \sigma}{\partial z^{(1)}_i} \eq \begin{cases} 1 & \text{if } z^{(1)}_i > 0 \\ 0 & \text{otherwise} \end{cases} \\
+\text{Cache: } \{\mathbf{x}, \mathbf{z}^{(1)}, \mathbf{a}^{(1)}, \mathbf{W}^{(1)}, \mathbf{b}^{(1)}\}
+\end{mmath}
+
+\subproblem[Forward Propagation - Layer 2]
+Compute pre-activation and activation for the second hidden layer:
+
+\begin{mmath}
+\mathbf{z}^{(2)} \eq \mathbf{W}^{(2)}\mathbf{a}^{(1)} + \mathbf{b}^{(2)} \\
+z^{(2)}_i \eq \sum_{j=1}^{n_1} W^{(2)}_{ij} a^{(1)}_j + b^{(2)}_i \\
+\mathbf{a}^{(2)} \eq \sigma(\mathbf{z}^{(2)}) = \max(0, \mathbf{z}^{(2)}) \\
+\frac{\partial \sigma}{\partial z^{(2)}_i} \eq \begin{cases} 1 & \text{if } z^{(2)}_i > 0 \\ 0 & \text{otherwise} \end{cases} \\
+\text{Cache: } \{\mathbf{a}^{(1)}, \mathbf{z}^{(2)}, \mathbf{a}^{(2)}, \mathbf{W}^{(2)}, \mathbf{b}^{(2)}\}
+\end{mmath}
+
+\subproblem[Forward Propagation - Output Layer]
+Compute pre-activation and activations for the output layer:
+
+\begin{mmath}
+\mathbf{z}^{(3)} \eq \mathbf{W}^{(3)}\mathbf{a}^{(2)} + \mathbf{b}^{(3)} \\
+z^{(3)}_i \eq \sum_{j=1}^{n_2} W^{(3)}_{ij} a^{(2)}_j + b^{(3)}_i \\
+\text{For regression: } \hat{\mathbf{y}} = \mathbf{a}^{(3)} = \mathbf{z}^{(3)} \\
+\text{For classification: } \hat{\mathbf{y}} = \mathbf{a}^{(3)} = \text{softmax}(\mathbf{z}^{(3)}) \\
+\text{where } a^{(3)}_i = \frac{\exp(z^{(3)}_i)}{\sum_k \exp(z^{(3)}_k)} \\
+\text{Cache: } \{\mathbf{a}^{(2)}, \mathbf{z}^{(3)}, \hat{\mathbf{y}}, \mathbf{W}^{(3)}, \mathbf{b}^{(3)}\}
+\end{mmath}
+
+\subproblem[Loss Computation - Regression]
+Calculate the loss function for regression problems:
+
+\begin{mmath}
+L = \frac{1}{2m}\sum_{i=1}^{m} \left\|\hat{\mathbf{y}}^{(i)} - \mathbf{y}^{(i)}\right\|^2 \\
+\text{For single sample: } L = \frac{1}{2}\sum_{j=1}^{n_L} (\hat{y}_j - y_j)^2 \\
+\frac{\partial L}{\partial \hat{y}_j} \eq \hat{y}_j - y_j \\
+\text{Define: } \mathbf{dL} = \frac{\partial L}{\partial \hat{\mathbf{y}}} = \hat{\mathbf{y}} - \mathbf{y}
+\end{mmath}
+
+\subproblem[Loss Computation - Classification]
+Calculate the loss function for classification problems:
+
+\begin{mmath}
+L = -\frac{1}{m}\sum_{i=1}^{m}\sum_{j=1}^{n_L} y^{(i)}_j \log(\hat{y}^{(i)}_j) \\
+\text{For single sample: } L = -\sum_{j=1}^{n_L} y_j \log(\hat{y}_j) \\
+\frac{\partial L}{\partial \hat{y}_j} \eq -\frac{y_j}{\hat{y}_j} \\
+\text{For softmax output: } \frac{\partial L}{\partial z^{(3)}_j} \eq \hat{y}_j - y_j \\
+\text{Define: } \mathbf{dL} = \hat{\mathbf{y}} - \mathbf{y}
+\end{mmath}
+
+\subproblem[Backpropagation - Output Layer]
+Compute gradients for weights and biases in the output layer:
+
+\begin{mmath}
+\frac{\partial L}{\partial \mathbf{z}^{(3)}} \eq \frac{\partial L}{\partial \hat{\mathbf{y}}} \odot \frac{\partial \hat{\mathbf{y}}}{\partial \mathbf{z}^{(3)}} \eq \mathbf{dz}^{(3)} \\
+\text{Define: } \mathbf{dz}^{(3)} = \frac{\partial L}{\partial \mathbf{z}^{(3)}} = \hat{\mathbf{y}} - \mathbf{y} \quad \text{(for softmax-cross-entropy)} \\
+\frac{\partial L}{\partial \mathbf{W}^{(3)}} \eq \frac{1}{m}\mathbf{dz}^{(3)}(\mathbf{a}^{(2)})^T \\
+dW^{(3)}_{ij} \eq \frac{1}{m} dz^{(3)}_i \cdot a^{(2)}_j \\
+\frac{\partial L}{\partial \mathbf{b}^{(3)}} \eq \frac{1}{m}\mathbf{dz}^{(3)} \\
+db^{(3)}_i \eq \frac{1}{m} dz^{(3)}_i
+\end{mmath}
+
+\subproblem[Backpropagation - Hidden Layer 2]
+Compute gradients flowing back to the second hidden layer:
+
+\begin{mmath}
+\frac{\partial L}{\partial \mathbf{a}^{(2)}} \eq (\mathbf{W}^{(3)})^T \mathbf{dz}^{(3)} \eq \mathbf{da}^{(2)} \\
+\frac{\partial L}{\partial \mathbf{z}^{(2)}} \eq \frac{\partial L}{\partial \mathbf{a}^{(2)}} \odot \frac{\partial \mathbf{a}^{(2)}}{\partial \mathbf{z}^{(2)}} \eq \mathbf{dz}^{(2)} \\
+dz^{(2)}_i \eq da^{(2)}_i \cdot \begin{cases} 1 & \text{if } z^{(2)}_i > 0 \\ 0 & \text{otherwise} \end{cases} \\
+\frac{\partial L}{\partial \mathbf{W}^{(2)}} \eq \frac{1}{m}\mathbf{dz}^{(2)}(\mathbf{a}^{(1)})^T \\
+dW^{(2)}_{ij} \eq \frac{1}{m} dz^{(2)}_i \cdot a^{(1)}_j \\
+\frac{\partial L}{\partial \mathbf{b}^{(2)}} \eq \frac{1}{m}\mathbf{dz}^{(2)}
+\end{mmath}
+
+\subproblem[Backpropagation - Hidden Layer 1]
+Compute gradients flowing back to the first hidden layer:
+
+\begin{mmath}
+\frac{\partial L}{\partial \mathbf{a}^{(1)}} \eq (\mathbf{W}^{(2)})^T \mathbf{dz}^{(2)} \eq \mathbf{da}^{(1)} \\
+\frac{\partial L}{\partial \mathbf{z}^{(1)}} \eq \frac{\partial L}{\partial \mathbf{a}^{(1)}} \odot \frac{\partial \mathbf{a}^{(1)}}{\partial \mathbf{z}^{(1)}} \eq \mathbf{dz}^{(1)} \\
+dz^{(1)}_i \eq da^{(1)}_i \cdot \begin{cases} 1 & \text{if } z^{(1)}_i > 0 \\ 0 & \text{otherwise} \end{cases} \\
+\frac{\partial L}{\partial \mathbf{W}^{(1)}} \eq \frac{1}{m}\mathbf{dz}^{(1)}\mathbf{x}^T \\
+dW^{(1)}_{ij} \eq \frac{1}{m} dz^{(1)}_i \cdot x_j \\
+\frac{\partial L}{\partial \mathbf{b}^{(1)}} \eq \frac{1}{m}\mathbf{dz}^{(1)}
+\end{mmath}
+
+\subproblem[Gradient Summary]
+Summary of all computed gradients for parameter updates:
+
+\begin{mmath}
+\nabla_{\mathbf{W}^{(1)}} L \eq \frac{1}{m}\mathbf{dz}^{(1)}\mathbf{x}^T, \quad \nabla_{\mathbf{b}^{(1)}} L \eq \frac{1}{m}\mathbf{dz}^{(1)} \\
+\nabla_{\mathbf{W}^{(2)}} L \eq \frac{1}{m}\mathbf{dz}^{(2)}(\mathbf{a}^{(1)})^T, \quad \nabla_{\mathbf{b}^{(2)}} L \eq \frac{1}{m}\mathbf{dz}^{(2)} \\
+\nabla_{\mathbf{W}^{(3)}} L \eq \frac{1}{m}\mathbf{dz}^{(3)}(\mathbf{a}^{(2)})^T, \quad \nabla_{\mathbf{b}^{(3)}} L \eq \frac{1}{m}\mathbf{dz}^{(3)} \\
+\text{All gradients have the same shape as their corresponding parameters}
+\end{mmath}
+
+\subproblem[Weight Update Rule]
+Apply gradient descent to update parameters:
+
+\begin{mmath}
+\mathbf{W}^{(l)} \leftarrow \mathbf{W}^{(l)} - \alpha \nabla_{\mathbf{W}^{(l)}} L \\
+\mathbf{b}^{(l)} \leftarrow \mathbf{b}^{(l)} - \alpha \nabla_{\mathbf{b}^{(l)}} L \\
+\text{where } \alpha \text{ is the learning rate} \\
+\text{For momentum updates: } \mathbf{v}_{\mathbf{W}^{(l)}} \eq \beta \mathbf{v}_{\mathbf{W}^{(l)}} + (1-\beta)\nabla_{\mathbf{W}^{(l)}} L \\
+\mathbf{W}^{(l)} \leftarrow \mathbf{W}^{(l)} - \alpha \mathbf{v}_{\mathbf{W}^{(l)}} \\
+\text{where } \beta \in [0,1) \text{ is the momentum coefficient (typically } 0.9)
+\end{mmath}
+
+\end{document}

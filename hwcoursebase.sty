@@ -81,21 +81,27 @@
 %% MATH ENVIRONMENTS
 %% ============================================================================
 
-% Unnumbered aligned math environment
+% Unnumbered aligned math environment with page break support
 % Usage: \begin{mmath} x &= 1 \\ y &= 2 \end{mmath}
+% Note: Supports automatic page breaking for long mathematical derivations.
+%       Use \allowdisplaybreaks[1] for soft penalties, [4] for strict breaks only at line endings.
 \NewEnviron{mmath}{%
 	\par\vspace{0.5em}%
 	\begin{align*}%
+	\allowdisplaybreaks[1]%
 	\BODY%
 	\end{align*}%
 	\vspace{0.5em}%
 }
 
-% Numbered aligned math environment
+% Numbered aligned math environment with page break support
 % Usage: \begin{mathnumbered} x &= 1 \\ y &= 2 \end{mathnumbered}
+% Note: Supports automatic page breaking for long mathematical derivations.
+%       Use \allowdisplaybreaks[1] for soft penalties, [4] for strict breaks only at line endings.
 \NewEnviron{mathnumbered}{%
 	\par\vspace{0.5em}%
 	\begin{align}%
+	\allowdisplaybreaks[1]%
 	\BODY%
 	\end{align}%
 	\vspace{0.5em}%

@@ -43,6 +43,38 @@ This is the primary usage reference. Use starter templates for new documents and
 
 ## Quick patterns
 
+### Math environments with page breaking
+
+The `mmath` and `mathnumbered` environments automatically support page breaking for long mathematical derivations. This allows multi-page derivations to be written in a single environment block without manual splitting.
+
+**Features:**
+- `mmath`: Unnumbered aligned math (uses `align*` internally)
+- `mathnumbered`: Numbered equations (uses `align` internally)
+- Both support automatic page breaking with `\allowdisplaybreaks[1]`
+
+**Example – Long derivation spanning multiple pages:**
+```latex
+\problem{Complete backpropagation derivation}
+
+This derivation spans multiple pages without requiring manual breaks.
+
+\begin{mmath}
+\text{Layer 1: } \mathbf{z}^{(1)} &= \mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)} \\
+\mathbf{a}^{(1)} &= \sigma(\mathbf{z}^{(1)}) \\
+\text{Layer 2: } \mathbf{z}^{(2)} &= \mathbf{W}^{(2)}\mathbf{a}^{(1)} + \mathbf{b}^{(2)} \\
+\mathbf{a}^{(2)} &= \sigma(\mathbf{z}^{(2)}) \\
+% ... continues for many more lines across pages
+\text{Gradients: } \nabla_{\mathbf{W}^{(1)}} L &= \frac{1}{m}\mathbf{dz}^{(1)}\mathbf{x}^T
+\end{mmath}
+```
+
+**Page break penalties:** The environments use `\allowdisplaybreaks[1]` for soft penalties on page breaks. To adjust:
+- `[1]`: Encourage breaks (default) – allows good page breaks
+- `[4]`: Strict breaks only at line endings – minimizes breaks
+- Modify by redefining the environment if stricter control is needed
+
+**Full test example:** See `examples/homeworktest_pagebreak.tex` for a complete multi-page derivation test case.
+
 ### Homework with part numbering
 
 ```latex
