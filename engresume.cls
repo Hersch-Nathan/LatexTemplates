@@ -19,6 +19,7 @@
 \RequirePackage{xstring}
 \RequirePackage{etoolbox}
 \RequirePackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\hypersetup{hidelinks}
 
 %% ============================================================================
 %% ATS-SAFE GLOBAL FORMATTING
@@ -35,16 +36,21 @@
 \newif\ifengresume@topdividerdrawn
 \engresume@topdividerdrawnfalse
 
-\newcommand{\@resumebasefontsize}{11pt}
-\newcommand{\@resumebasebaselineskip}{13.2pt}
+\newcommand{\@resumebasefontsize}{10.4pt}
+\newcommand{\@resumebasebaselineskip}{12.2pt}
 \newcommand{\@resumelinespacing}{1.00}
+\newcommand{\@resumecitationformat}{old}
 
 \newlength{\engresume@sectionrulethickness}
 \setlength{\engresume@sectionrulethickness}{0.4pt}
 \newlength{\engresume@sectionruleprespace}
-\setlength{\engresume@sectionruleprespace}{0.25em}
+\setlength{\engresume@sectionruleprespace}{2pt}
 \newlength{\engresume@sectionrulepostspace}
-\setlength{\engresume@sectionrulepostspace}{0.15em}
+\setlength{\engresume@sectionrulepostspace}{2pt}
+\newlength{\engresume@sectionbeforeskip}
+\setlength{\engresume@sectionbeforeskip}{4pt}
+\newlength{\engresume@sectionafterskip}
+\setlength{\engresume@sectionafterskip}{4pt}
 
 \newcommand{\setresumelinespacing}[1]{%
 	\renewcommand{\@resumelinespacing}{#1}%
@@ -61,6 +67,16 @@
 	\renewcommand{\@resumebasefontsize}{#1}%
 	\renewcommand{\@resumebasebaselineskip}{#2}%
 	\fontsize{\@resumebasefontsize}{\@resumebasebaselineskip}\selectfont
+}
+
+\newcommand{\setresumesectionspacing}[2]{%
+	\setlength{\engresume@sectionbeforeskip}{#1}%
+	\setlength{\engresume@sectionafterskip}{#2}%
+	\titlespacing*{\section}{0pt}{\engresume@sectionbeforeskip}{\engresume@sectionafterskip}%
+}
+
+\newcommand{\setresumecitationformat}[1]{%
+	\renewcommand{\@resumecitationformat}{#1}%
 }
 
 \newcommand{\resumesectiondivideron}{\engresume@sectiondividertrue}
@@ -85,9 +101,9 @@
   label=\textbullet
 }
 
-\titleformat{\section}{\large\bfseries\raggedright}{}{0pt}{\MakeUppercase}
-\titlespacing*{\section}{0pt}{0.45em}{0.2em}
-\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat{\section}{\large\raggedright}{}{0pt}{}
+\titlespacing*{\section}{0pt}{\engresume@sectionbeforeskip}{\engresume@sectionafterskip}
+\titleformat*{\subsection}{\normalsize}
 \titlespacing*{\subsection}{0pt}{0.4em}{0.15em}
 
 \newcommand{\@resumeseparator}{\enspace|\enspace}
@@ -109,15 +125,27 @@
 			\href{mailto:\@trimmedvalue}{\@trimmedvalue}%
 		}{%
 			\IfBeginWith{\@trimmedvalue}{http://}{%
-				\href{\@trimmedvalue}{\nolinkurl{\@trimmedvalue}}%
+				\href{\@trimmedvalue}{\@trimmedvalue}%
 			}{%
 				\IfBeginWith{\@trimmedvalue}{https://}{%
-					\href{\@trimmedvalue}{\nolinkurl{\@trimmedvalue}}%
+					\href{\@trimmedvalue}{\@trimmedvalue}%
 				}{%
 					\IfBeginWith{\@trimmedvalue}{www.}{%
-						\href{https://\@trimmedvalue}{\nolinkurl{\@trimmedvalue}}%
+						\href{https://\@trimmedvalue}{\@trimmedvalue}%
 					}{%
-						\@trimmedvalue%
+						\IfBeginWith{\@trimmedvalue}{linkedin.com/}{%
+							\href{https://\@trimmedvalue}{\@trimmedvalue}%
+						}{%
+							\IfBeginWith{\@trimmedvalue}{github.com/}{%
+								\href{https://\@trimmedvalue}{\@trimmedvalue}%
+							}{%
+								\IfBeginWith{\@trimmedvalue}{herschnathan.com}{%
+									\href{https://\@trimmedvalue}{\@trimmedvalue}%
+								}{%
+									\@trimmedvalue%
+								}%
+							}%
+						}%
 					}%
 				}%
 			}%
@@ -177,7 +205,7 @@
 %% ============================================================================
 
 \NewDocumentCommand{\header}{m}{%
-\par\noindent\centering{\LARGE\bfseries #1\par}
+\par\noindent\centering{\LARGE #1\par}
 \vspace{0.05em}
 }
 
@@ -199,7 +227,7 @@
 
 \NewDocumentCommand{\school}{o o o o}{%
 	\par\noindent
-	\textbf{\IfValueTF{#1}{#1}{School Name}}%
+	\IfValueTF{#1}{#1}{School Name}%
 	\IfValueT{#2}{\hfill #2}%
 	\par
 	\IfValueT{#3}{#3\IfValueT{#4}{\hfill GPA: #4}\par}%
@@ -209,18 +237,32 @@
 
 \NewDocumentCommand{\resumelist}{m m}{%
 	\par\noindent
-	\textbf{#1}: #2\par
+	\ifstrempty{#1}{#2\par}{#1: #2\par}
 	\vspace{0.15em}
 }
 
 \NewDocumentCommand{\experience}{o o o o}{%
 	\par\noindent
-	\textbf{\IfValueTF{#1}{#1}{Organization}}\IfValueT{#4}{\hfill #4}\par
-	\IfValueT{#2}{\textit{#2}}\IfValueT{#3}{, #3}\par
+	\IfValueTF{#1}{#1}{Organization}\IfValueT{#4}{\hfill #4}\par
+	\IfValueT{#2}{#2}\IfValueT{#3}{, #3}\par
+}
+
+\NewDocumentCommand{\experienceshort}{o o o}{%
+	\par\noindent
+	\IfValueTF{#1}{#1}{Organization}\IfValueT{#2}{, #2}\IfValueT{#3}{\hfill #3}\par
+}
+
+\NewDocumentCommand{\experiecent}{o o o o}{%
+	\experienceshort[#1][#2][#4]
+}
+
+\NewDocumentCommand{\resumeciteold}{m}{%
+	\citefield{#1}{title}, \citefield{#1}{booktitle}, \citefield{#1}{year}%
 }
 
 \NewDocumentCommand{\resumecitation}{m}{%
-	\par\noindent\fullcite{#1}\par
+	\par\noindent
+	\ifdefstring{\@resumecitationformat}{full}{\fullcite{#1}}{\resumeciteold{#1}}\par
 }
 
 \makeatother
