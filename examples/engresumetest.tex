@@ -1,1 +1,73 @@
-\documentclass{../engresume.cls}
+\documentclass{engresume}
+\addbibresource{references.bib}
+
+\begin{document}
+
+\header[Firstname Lastname][they/them][name@email.com][(555) 555-5555][portfolio.example.com][linkedin.com/in/username][github.com/username]
+\tagline{Mechanical engineering student focused on controls, embedded systems, and design validation.}
+
+\section{Education}
+\school[University of Kentucky][May 2026][B.S. in Mechanical Engineering, Minor in Computer Science][3.82/4.00]
+\resumelist{Coursework}{Feedback Controls, System Dynamics, Manufacturing Processes, Embedded Systems}
+
+\section{Skills}
+\resumelist{Programming}{Python, C/C++, MATLAB, Bash}
+\resumelist{CAD/Simulation}{SolidWorks, Fusion 360, ANSYS, LTspice}
+\resumelist{Hardware}{STM32, Arduino, Oscilloscope Debugging, PCB Bring-Up}
+\resumelist{Lab Methods}{DOE, Tolerance Stack-Up, Failure Analysis, Test Automation}
+
+\section{Experience}
+\experience[Bluegrass Robotics Lab][Undergraduate Research Assistant][Mechanical Systems Group][Aug 2024 -- Present]
+\begin{itemize}
+    \item Designed and validated fixture updates that reduced calibration time by 28\%.
+    \item Built Python data-processing scripts for sensor drift tracking across 120+ runs.
+    \item Authored verification test procedures used by three new lab team members.
+\end{itemize}
+
+\experience[Lexington Manufacturing][Mechanical Engineering Intern][Process Improvement][May 2024 -- Aug 2024]
+\begin{itemize}
+    \item Reduced changeover time by 14\% through a revised quick-change tooling workflow.
+    \item Led root-cause analysis on repeat defects and implemented corrective actions.
+    \item Produced weekly KPI summaries for production and quality engineering teams.
+\end{itemize}
+
+\experience[Student Design Team][Controls Lead][Autonomous Systems][Jan 2023 -- May 2024]
+\begin{itemize}
+    \item Implemented PID control tuning process that improved path-tracking accuracy by 35\%.
+    \item Coordinated subsystem integration across mechanical, electrical, and software teams.
+    \item Presented technical results to faculty panel and external sponsor reviewers.
+\end{itemize}
+
+\experience[Campus IT Services][Technology Assistant][Operations][Sep 2022 -- Dec 2022]
+\begin{itemize}
+    \item Resolved workstation and network issues for student and staff tickets.
+    \item Standardized troubleshooting notes to shorten average ticket resolution time.
+    \item Supported asset tracking and deployment documentation.
+\end{itemize}
+
+\experience[Local STEM Outreach][Volunteer Instructor][K-12 Programs][2022 -- Present]
+\begin{itemize}
+    \item Delivered hands-on engineering activities to middle-school students.
+    \item Created low-cost build kits for repeatable classroom demonstrations.
+    \item Mentored student teams for regional design challenges.
+\end{itemize}
+
+\experience[Freelance CAD Support][Designer][Independent][2021 -- Present]
+\begin{itemize}
+    \item Produced manufacturable part models and drawings for local startups.
+    \item Collaborated with clients to revise designs based on DFM feedback.
+    \item Delivered complete handoff packages including BOM and drawing sets.
+\end{itemize}
+
+\section{Professional Involvement}
+\experience[ASME Student Chapter][Vice President][University Chapter][2025 -- Present]
+\experience[IEEE Student Branch][Member][University Branch][2023 -- Present]
+
+\section{Publications and Presentations}
+\subsection{Papers}
+\resumecitation{smith2024adaptive}
+\subsection{Conference Presentations}
+\resumecitation{wilson2023interactive}
+\resumecitation{consumer2023safety}
+
+\end{document}
