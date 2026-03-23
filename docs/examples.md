@@ -75,6 +75,13 @@ Resume appearance customization commands:
 \resumesectiondivideroff % or \resumesectiondivideron
 ```
 
+### A0 posters (third-party templates)
+
+- Landscape poster: `a0poster/conference_poster_5.tex`
+- Portrait poster: `a0poster/conference_poster_6.tex`
+- Supporting class/style: `a0poster/a0poster.cls`, `a0poster/a0size.sty`
+- License: CC BY-NC-SA 3.0 (see `docs/SOURCES.md`)
+
 ## Quick patterns
 
 ### Math environments with page breaking

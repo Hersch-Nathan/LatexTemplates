@@ -22,6 +22,7 @@ Shared foundations:
 
 - Starters: `templates/*.tex`
 - Full demos: `examples/*.tex`
+- External posters: `a0poster/conference_poster_5.tex` (landscape), `a0poster/conference_poster_6.tex` (portrait)
 - Usage reference: `docs/examples.md`
 - Source attribution: `docs/SOURCES.md`
 - Layout migration plan: `docs/repo-layout-plan.md`
@@ -70,7 +71,7 @@ Every non-original addition must be documented in `docs/SOURCES.md` with source 
 ## Licensing and ownership boundaries
 
 - MIT in `LICENSE` applies to original work authored or modified by repository owner.
-- Third-party bundles in `ieeetran/` and `llncs/` are excluded from MIT scope and remain under upstream licenses.
+- Third-party bundles in `ieeetran/`, `llncs/`, and `a0poster/` are excluded from MIT scope and remain under upstream licenses.
 - Canonical attribution and license/terms for excluded content are maintained in `docs/SOURCES.md`.
 - If a file is not original work, treat upstream terms as authoritative over repository-level defaults.
 
@@ -80,6 +81,7 @@ This repository includes third-party template bundles that are **not my original
 
 - `llncs/` - Springer LNCS template bundle
 - `ieeetran/` - IEEEtran template bundle
+- `a0poster/` - LaTeXTemplates A0 poster bundle (portrait and landscape)
 
 Use of files in these folders is subject to their upstream terms/licenses.
 See `docs/SOURCES.md` for source URLs and licensing notes.

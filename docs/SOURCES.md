@@ -29,3 +29,11 @@ For every external source, record:
 - License/terms: LPPL 1.3 (per `ieeetran/README`)
 - Date added: `2026-03-09`
 - Modification notes: Upstream files copied for convenience; this bundle is third-party and not original work by this repository owner.
+
+- Component: `a0poster/*` (including `conference_poster_5.tex` landscape and `conference_poster_6.tex` portrait)
+- Source:
+	- https://www.latextemplates.com/template/a0poster-landscape-poster
+	- https://www.latextemplates.com/template/a0poster-portrait-poster
+- License/terms: CC BY-NC-SA 3.0
+- Date added: `2026-03-23`
+- Modification notes: Templates and supporting assets copied from LaTeXTemplates for local workflow use; this bundle is third-party and excluded from MIT scope.
