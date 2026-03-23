@@ -279,36 +279,32 @@ Operating Temperature & -10 to 60 & °C \\
 
 ### Figure Insertion Examples
 
-#### Single Figure with Label
+#### Capstone report figures (`capstone_report.cls`)
 ```latex
-% Basic figure with caption and label
-\reportfigure[0.8\textwidth]{system-diagram.png}{System Architecture}{fig:architecture}
+% Basic figure with caption
+\reportfigure[0.8\textwidth]{system-diagram.png}{System Architecture}
 
 % Using default width (0.6\textwidth)
-\reportfigure{prototype.jpg}{Final Prototype}{fig:prototype}
+\reportfigure{prototype.jpg}{Final Prototype}
 
-% Reference the figure in text
-As shown in Figure~\ref{fig:architecture}, the system consists of three main components.
+% If you need labels, use standard figure environments around \includegraphics.
 ```
 
-#### Side-by-Side Figures
+#### Design report figures (`designreport.cls` via `reportbase.cls`)
 ```latex
-% Two related figures displayed side by side
-\reportdualfigure[0.45\textwidth]
-    {before-control.jpg}{System Behavior Without Control}{fig:before}
-    {after-control.jpg}{System Behavior With Control}{fig:after}
+% Generic centered graphic
+\graphic{figures/system-diagram.png}[System Architecture][0.8]
 
-% Reference both figures
-Figure~\ref{fig:before} shows the unstable behavior, while 
-Figure~\ref{fig:after} demonstrates the improved stability.
+% Single figure with caption and label
+\insertfigure[0.8\textwidth]{figures/prototype.jpg}{Final Prototype}{fig:prototype}
 
-% Another example with different sizes
-\reportdualfigure[0.4\textwidth]
-    {schematic.pdf}{Circuit Schematic}{fig:schematic}
-    {pcb-layout.pdf}{PCB Layout}{fig:pcb}
+% Side-by-side figures with captions and labels
+\dualfigure[0.45\textwidth]
+    {figures/before-control.jpg}{System Behavior Without Control}{fig:before}
+    {figures/after-control.jpg}{System Behavior With Control}{fig:after}
 ```
 
-**Note**: All figure paths are automatically prefixed with `figures/`, so place your images in a `figures/` subdirectory.
+**Note**: `\reportfigure` is capstone-specific. In design reports, use `\graphic`, `\insertfigure`, or `\dualfigure` from `reportbase.cls`.
 
 ## Playscript Examples
 

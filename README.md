@@ -2,6 +2,8 @@
 
 Reusable LaTeX classes for coursework, reports, and scripts.
 
+License summary: MIT applies to original files authored or modified in this repository, excluding third-party bundles listed in `docs/SOURCES.md`.
+
 ## Included classes
 
 - `coursenotes.cls`: Chapter-based notes with embedded problems and solutions.
@@ -14,13 +16,15 @@ Reusable LaTeX classes for coursework, reports, and scripts.
 Shared foundations:
 
 - `hwcoursebase.sty` for `homework.cls` and `coursenotes.cls`
-- `reportbase.cls` for `designreport.cls`
+- `reportbase.cls` for `designreport.cls` and `capstone_report.cls`
 
 ## Start here
 
 - Starters: `templates/*.tex`
 - Full demos: `examples/*.tex`
 - Usage reference: `docs/examples.md`
+- Source attribution: `docs/SOURCES.md`
+- Layout migration plan: `docs/repo-layout-plan.md`
 
 Recommended first files:
 
@@ -50,38 +54,10 @@ If compiling from `examples/` or `templates/`, include parent search path:
 TEXINPUTS="..:$TEXINPUTS" latexmk -pdf homeworktest.tex
 ```
 
-## Features
+## Build utilities
 
-### Engineering resume quick usage
-
-The `engresume` class uses a name-only header with one or more 3-field subheader lines:
-
-```latex
-\header{Full Name}
-\subheader{email@example.com}{(000) 000-0000}{City, ST}
-\subheader{portfolio.example.com}{linkedin.com/in/username}{github.com/username}
-```
-
-Common customization commands:
-
-```latex
-\setresumelinespacing{1.02}
-\setresumefontfamily{\sfdefault}
-\setresumefontsize{11pt}{13.2pt}
-```
-
-### Math environments with automatic page breaking
-
-The `mmath` (unnumbered) and `mathnumbered` (numbered) environments support automatic page breaking for long mathematical derivations. This allows multi-page math content (e.g., complete backpropagation derivations, system analyses) to be contained in a single environment block without manual splitting.
-
-**Key features:**
-- `\begin{mmath}...\end{mmath}` for unnumbered equations with alignment
-- `\begin{mathnumbered}...\end{mathnumbered}` for numbered equations
-- Both automatically allow page breaks between lines
-- Backward compatible with existing documents
-- Test case: `examples/homeworktest_pagebreak.tex` (multi-page derivation example)
-
-For detailed usage patterns and examples, see [docs/examples.md](docs/examples.md#math-environments-with-page-breaking).
+- `scripts/build_all_pdfs.sh`: build tracked template and example PDFs.
+- `scripts/clean_generated.sh`: remove generated LaTeX artifacts while preserving tracked preview PDFs.
 
 Generated non-PDF artifacts are ignored by `.gitignore`.
 Rendered PDFs in `examples/` and `templates/` are intentionally tracked for preview/reference.
@@ -90,6 +66,13 @@ Rendered PDFs in `examples/` and `templates/` are intentionally tracked for prev
 
 Some templates may be adapted from external sources.
 Every non-original addition must be documented in `docs/SOURCES.md` with source link, license, date added, and modification notes.
+
+## Licensing and ownership boundaries
+
+- MIT in `LICENSE` applies to original work authored or modified by repository owner.
+- Third-party bundles in `ieeetran/` and `llncs/` are excluded from MIT scope and remain under upstream licenses.
+- Canonical attribution and license/terms for excluded content are maintained in `docs/SOURCES.md`.
+- If a file is not original work, treat upstream terms as authoritative over repository-level defaults.
 
 ## External template bundles
 
@@ -131,11 +114,11 @@ If you want to add another LaTeX class (for example, a lab report class), follow
 
 1. **Create the class file**
    - Add a `your_class_name.cls` at the repo root.
-   - Include metadata with `\ProvidesClass{your_class_name}[YYYY/MM/DD vX.Y Description]`.
-   - Implement user-facing commands with `xparse` (e.g., `\NewDocumentCommand{...}{...}{...}`) and keep options documented in comments.
+   - Include standard class metadata using a consistent date/version format.
+   - Implement user-facing commands consistently and keep options documented in comments.
 2. **Provide docs in `docs/`**
    - Create `docs/your-class-guide.md` with:
-     - Quick Start snippet (`\documentclass{your_class_name}` … minimal compile-able example)
+     - Quick Start instructions (minimal compile-able example)
      - Options and defaults (e.g., `uppercase|titlecase`)
      - Public commands and environments (syntax, purpose, short examples)
      - Figures/listings helpers if any
