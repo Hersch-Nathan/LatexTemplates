@@ -38,8 +38,10 @@
 
 \newcommand{\@resumebasefontsize}{10.4pt}
 \newcommand{\@resumebasebaselineskip}{12.2pt}
-\newcommand{\@resumelinespacing}{1.00}
+\newcommand{\@resumelinespacing}{0.97}
 \newcommand{\@resumecitationformat}{old}
+\newcommand{\@resumejobtitlefontsize}{11pt}
+\newcommand{\@resumejobtitlebaselineskip}{12.6pt}
 
 \newlength{\engresume@sectionrulethickness}
 \setlength{\engresume@sectionrulethickness}{0.4pt}
@@ -51,6 +53,8 @@
 \setlength{\engresume@sectionbeforeskip}{4pt}
 \newlength{\engresume@sectionafterskip}
 \setlength{\engresume@sectionafterskip}{4pt}
+\newlength{\engresume@daterightcolwidth}
+\setlength{\engresume@daterightcolwidth}{1.85in}
 
 \newcommand{\setresumelinespacing}[1]{%
 	\renewcommand{\@resumelinespacing}{#1}%
@@ -79,6 +83,19 @@
 	\renewcommand{\@resumecitationformat}{#1}%
 }
 
+\newcommand{\setresumejobtitlesize}[2]{%
+	\renewcommand{\@resumejobtitlefontsize}{#1}%
+	\renewcommand{\@resumejobtitlebaselineskip}{#2}%
+}
+
+\newcommand{\setresumedatecolumnwidth}[1]{%
+	\setlength{\engresume@daterightcolwidth}{#1}%
+}
+
+\newcommand{\@resumedatebox}[1]{%
+	\hfill\makebox[\engresume@daterightcolwidth][l]{#1}%
+}
+
 \newcommand{\resumesectiondivideron}{\engresume@sectiondividertrue}
 \newcommand{\resumesectiondivideroff}{\engresume@sectiondividerfalse}
 \newcommand{\setresumesectiondividerthickness}[1]{\setlength{\engresume@sectionrulethickness}{#1}}
@@ -90,18 +107,18 @@
 }
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.2em}
+\setlength{\parskip}{0.12em}
 
 \setlist[itemize]{
   leftmargin=1.3em,
-  itemsep=0.15em,
-  topsep=0.2em,
+	itemsep=0.08em,
+	topsep=0.1em,
   parsep=0pt,
   partopsep=0pt,
   label=\textbullet
 }
 
-\titleformat{\section}{\large\raggedright}{}{0pt}{}
+\titleformat{\section}{\fontsize{16pt}{18pt}\selectfont\raggedright}{}{0pt}{}
 \titlespacing*{\section}{0pt}{\engresume@sectionbeforeskip}{\engresume@sectionafterskip}
 \titleformat*{\subsection}{\normalsize}
 \titlespacing*{\subsection}{0pt}{0.4em}{0.15em}
@@ -228,7 +245,7 @@
 \NewDocumentCommand{\school}{o o o o}{%
 	\par\noindent
 	\IfValueTF{#1}{#1}{School Name}%
-	\IfValueT{#2}{\hfill #2}%
+	\IfValueT{#2}{\@resumedatebox{#2}}%
 	\par
 	\IfValueT{#3}{#3\IfValueT{#4}{\hfill GPA: #4}\par}%
 	\IfNoValueT{#3}{\IfValueT{#4}{GPA: #4\par}}%
@@ -243,13 +260,16 @@
 
 \NewDocumentCommand{\experience}{o o o o}{%
 	\par\noindent
-	\IfValueTF{#1}{#1}{Organization}\IfValueT{#4}{\hfill #4}\par
-	\IfValueT{#2}{#2}\IfValueT{#3}{, #3}\par
+	\IfValueTF{#1}{#1}{Organization}\IfValueT{#4}{\@resumedatebox{#4}}\par
+	{\fontsize{\@resumejobtitlefontsize}{\@resumejobtitlebaselineskip}\selectfont
+	\IfValueT{#2}{#2}\IfValueT{#3}{ #3}\par}
 }
 
 \NewDocumentCommand{\experienceshort}{o o o}{%
 	\par\noindent
-	\IfValueTF{#1}{#1}{Organization}\IfValueT{#2}{, #2}\IfValueT{#3}{\hfill #3}\par
+	\IfValueTF{#1}{#1}{Organization}\IfValueT{#3}{\@resumedatebox{#3}}\par
+	{\fontsize{\@resumejobtitlefontsize}{\@resumejobtitlebaselineskip}\selectfont
+	\IfValueT{#2}{#2}\par}
 }
 
 \NewDocumentCommand{\experiecent}{o o o o}{%
