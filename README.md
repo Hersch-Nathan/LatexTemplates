@@ -8,6 +8,7 @@ Reusable LaTeX classes for coursework, reports, and scripts.
 - `homework.cls`: Assignment layout with standard and `partnumbering` modes.
 - `capstone_report.cls`: Periodic progress report format.
 - `designreport.cls`: Engineering design report format.
+- `engresume.cls`: ATS-friendly engineering resume format.
 - `playscript.cls`: Theatrical script format.
 
 Shared foundations:
@@ -28,6 +29,7 @@ Recommended first files:
 - `templates/homework_partnumbering_template.tex`
 - `templates/capstone_template.tex`
 - `templates/designreport_template.tex`
+- `templates/engresume_template.tex`
 - `templates/playscript_template.tex`
 
 ## Build
@@ -49,6 +51,24 @@ TEXINPUTS="..:$TEXINPUTS" latexmk -pdf homeworktest.tex
 ```
 
 ## Features
+
+### Engineering resume quick usage
+
+The `engresume` class uses a name-only header with one or more 3-field subheader lines:
+
+```latex
+\header{Full Name}
+\subheader{email@example.com}{(000) 000-0000}{City, ST}
+\subheader{portfolio.example.com}{linkedin.com/in/username}{github.com/username}
+```
+
+Common customization commands:
+
+```latex
+\setresumelinespacing{1.02}
+\setresumefontfamily{\sfdefault}
+\setresumefontsize{11pt}{13.2pt}
+```
 
 ### Math environments with automatic page breaking
 

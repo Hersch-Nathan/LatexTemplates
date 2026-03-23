@@ -1,0 +1,49 @@
+\documentclass{../engresume}
+\addbibresource{engresume_references.bib}
+
+% Optional resume-wide customization (uncomment to tune appearance)
+% Default line spacing is 1.00 in engresume.cls
+% \setresumelinespacing{0.98} % Example override
+% \setresumefontfamily{\sfdefault}
+% \setresumefontsize{11pt}{13.2pt}
+
+\begin{document}
+
+\header{Full Name}
+\subheader{email@example.com}{(000) 000-0000}{City, ST}
+\subheader{portfolio.example.com}{linkedin.com/in/username}{github.com/username}
+\tagline{Engineering student focused on control systems and embedded hardware.}
+
+% Keep resume body left-aligned; only header and tagline should be centered.
+\raggedright
+
+\section{Education}
+\school[University Name][May 2026][B.S. in Mechanical Engineering][3.80/4.00]
+
+\section{Skills}
+\resumelist{Programming}{Python, C/C++, MATLAB}
+\resumelist{Tools}{SolidWorks, ANSYS, Git}
+
+\section{Experience}
+\experience[Organization][Role][Department][Dates]
+\begin{itemize}
+  \item Use action verbs and quantify impact where possible.
+  \item Keep bullet points concise and ATS-friendly.
+\end{itemize}
+
+\experience[Organization][Role][Department][Dates]
+\begin{itemize}
+  \item Use action verbs and quantify impact where possible.
+  \item Keep bullet points concise and ATS-friendly.
+\end{itemize}
+
+\experience[Organization][Role][Department][Dates]
+\begin{itemize}
+  \item Use action verbs and quantify impact where possible.
+  \item Keep bullet points concise and ATS-friendly.
+\end{itemize}
+
+\section{Publications and Presentations}
+\resumecitation{anderson2025embedded}
+
+\end{document}

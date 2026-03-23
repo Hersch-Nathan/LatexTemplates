@@ -41,6 +41,40 @@ This is the primary usage reference. Use starter templates for new documents and
 - Full demos: `examples/playscripttest.tex`, `examples/playscript_simple_test.tex`
 - Typical features: character lists, act/scene structure, dialogue formatting.
 
+### Engineering resume
+
+- Starter: `templates/engresume_template.tex`
+- Full demo: `examples/engresumetest.tex`
+- Typical features: ATS-friendly single-column layout, section divider lines, auto-linked contact fields, compact experience blocks, IEEE-style citation support.
+- Bibliography example file for starter: `templates/engresume_references.bib`
+- Citation command: `\resumecitation{bibtex_key}`
+- Build from `templates/`: `TEXINPUTS="..:$TEXINPUTS" latexmk -pdf engresume_template.tex`
+
+Resume header usage now uses a name-only header and one or more 3-field subheader lines:
+
+```latex
+\header{Full Name}
+\subheader{email@example.com}{(000) 000-0000}{City, ST}
+\subheader{portfolio.example.com}{linkedin.com/in/username}{github.com/username}
+```
+
+Resume appearance customization commands:
+
+```latex
+% Vertical spacing between lines/items (default 1.00)
+\setresumelinespacing{1.02}
+
+% Base font family (examples: \rmdefault, \sfdefault)
+\setresumefontfamily{\sfdefault}
+
+% Base font size and baseline skip
+\setresumefontsize{11pt}{13.2pt}
+
+% Optional section divider controls
+\setresumesectiondividerthickness{0.5pt}
+\resumesectiondivideroff % or \resumesectiondivideron
+```
+
 ## Quick patterns
 
 ### Math environments with page breaking
